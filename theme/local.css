@@ -20,8 +20,8 @@
 .toc {
     position: relative;
     left: 0px;
-    padding:10px 0;
-    font-size:14px;
+    padding:1px 0;
+    font-size:16px;
 }
 
 .toc li {
@@ -34,14 +34,8 @@
 }
 
 #blog-nav{
-    padding: 5px 0;
     font-size:16px;
-    margin-top: 10px;
     width: inherit;
-}
-
-.row-fluid .span10 {
-    width:100%;
 }
 
 ul#sitelinks.nav.nav-list > li > a >i {
@@ -69,8 +63,8 @@ th {
 .brand { font-family: 'Alegreya SC', 'Garamond', 'Georgia'; font-weight: normal; font-size: 42px; line-height:40px; margin-top: 10px; display: block; color:#000001; }
 
 /* Styling for articles */
-.article { padding-bottom:15px; padding-right: 40px; }
-.content-title { margin-bottom: 30px; }
+.article { padding-bottom:5px; padding-right: 1px; }
+.content-title { margin-bottom: 5px; }
 .article a:hover { text-decoration: none; } 
 
 
