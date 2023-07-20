@@ -57,6 +57,15 @@ h1 { font-family: 'Alegreya SC', 'Garamond', 'Georgia' ; font-weight: normal;}
 h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
 .table th, .table td { line-height: 1.3em; }
 
+table {
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+th {
+   border-bottom: 1px solid grey;
+}
+
 .brand { font-family: 'Alegreya SC', 'Garamond', 'Georgia'; font-weight: normal; font-size: 42px; line-height:40px; margin-top: 10px; display: block; color:#000001; }
 
 /* Styling for articles */
