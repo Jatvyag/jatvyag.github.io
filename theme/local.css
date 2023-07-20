@@ -17,6 +17,18 @@
 /*    background-color:#E9EFF6; Initial colour to match bottom */
 }
 
+.toc {
+    position: relative;
+    left: 0px;
+    padding:10px 0;
+    font-size:14px;
+}
+
+.toc li {
+  list-style-type: square;
+  list-style-position:outside;
+}
+
 #blog-nav{
     padding: 5px 0;
     font-size:16px;
