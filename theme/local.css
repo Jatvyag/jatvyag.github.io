@@ -29,6 +29,10 @@
   list-style-position:outside;
 }
 
+.btn-mini {
+    font-size:16px;
+}
+
 #blog-nav{
     padding: 5px 0;
     font-size:16px;
