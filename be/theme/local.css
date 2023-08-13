@@ -2,7 +2,7 @@
 
 .blog-header {
   position: relative;
-  padding: 16px 0;
+  padding: 5px 0;
   background-color:#EEE;
 }
 
@@ -42,7 +42,7 @@ ul#sitelinks.nav.nav-list > li > a >i {
 a {color: #0A5693} 
 body {font-family: 'Gudea', 'Gill Sans', 'Arial'; font-size: 16px; line-height: 1.2em}
 p { font-family: 'Gudea', 'Gill Sans', 'Arial'; font-size: 16px; line-height: 1.2em; margin-top: 0.8em; margin-bottom: 0.8em; text-align: justify}
-li { line-height: 1.6em; }
+li { line-height: 1em; }
 h3 { font-family: 'Alegreya SC', 'Garamond', 'Georgia'; font-weight: normal}
 h2 { font-family: 'Alegreya SC', 'Garamond', 'Georgia' ; font-weight: normal;}
 h1 { font-family: 'Alegreya SC', 'Garamond', 'Georgia' ; font-weight: normal;}
@@ -111,4 +111,7 @@ th {
 #sitelinks { display: table-footer-group;}
 }
 
-
+.hero-unit {
+    padding: 10px;
+    margin-bottom: 10px;
+}
