@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YX34NR0GKC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YX34NR0GKC');
+    </script>
+
+    <meta charset="utf-8">
+    <title>JSON Data Web Scraping - Data Subject</title>
+    <meta name="description" content="">
+    <meta name="author" content="Anton Parfenchyk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Le styles -->
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/local.css" >
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/pygments.css" >
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/font-awesome.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<header class="blog-header">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+	<a href="https://jatvyag.github.io" class="brand">Data Subject</a>
+      </div>
+      <div class="span3" id="blog-nav">
+	<ul class="nav nav-pills pull-right">
+        <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="https://jatvyag.github.io/pages/reader.html">For&nbsp;Reader</a></li>
+	    <li  class="active" >
+	      <a href="https://jatvyag.github.io/category/articles.html ">Articles</a>
+
+    <!--choose language from dropdown menu-->
+    <li>
+      <div class="btn-group">
+        <a class="btn btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-globe"></i>
+Language          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <a href="https://jatvyag.github.io/">English</a>
+          <a href="https://jatvyag.github.io/be/">Беларуская</a>
+  
+        </ul>
+    </li>
+
+    <!--choose language from other than current language variants, disabled-->
+
+    <!--choose language from all variants, disabled-->
+    
+	</ul>
+      </div>
+    </div> <!-- End of fluid row-->
+  </div>   <!-- End of Container-->
+</header>
+    
+<div class="container">
+    <div class="content">
+    <div class="row-fluid">
+
+        <div class="span12">
+    <div class='article'>
+      <div class="row-fluid">
+           <div class="content-title span9">
+             <h1><span class="caps">JSON</span> Data Web&nbsp;Scraping</h1>
+           </div>
+      </div>
+    <div class="row-fluid">
+
+      <div class="span2">
+<p>24 November 2023</p>
+<p style="text-align: left;">
+Category: <a href="https://jatvyag.github.io/category/articles.html">Articles</a>
+</p>
+<p>Modified: 24.11.2023
+</p>
+<p style="text-align: left;">
+ 
+Tags:    <ul>
+        <li><a href="https://jatvyag.github.io/tag/data-analysis.html">data analysis</a></li>
+        <li><a href="https://jatvyag.github.io/tag/importing-cleaning-data.html">importing & cleaning data</a></li>
+    </ul>
+</p>
+<p>
+</p>
+
+<p style="text-align: left;">
+    <br>
+    <p>The topic: <b>IR IS</b></p>
+    <p>Part <b>1</b> out of <b>1</b>.
+    </p>
+
+
+</p>          <!-- added share post element-->
+          <p style="padding: 1px;">&nbsp</p>
+          <section style="position:bottom">
+            <p id="post-share-links">
+Share on:              <ul>
+              <li style="list-style-image:url('theme/images/icons/linkedin.png')"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//jatvyag.github.io/web-scraping.html&title=JSON%20Data%20Web%C2%A0Scraping&summary=Web%C2%A0Scraping&source=https%3A//jatvyag.github.io/web-scraping.html" title="Share on LinkedIn">LinkedIn</a></li>
+              <li style="list-style-image:url('theme/images/icons/twitter.png')"><a href="https://twitter.com/intent/tweet?text=JSON%20Data%20Web%C2%A0Scraping&url=https%3A//jatvyag.github.io/web-scraping.html&hashtags=data-analysis,importing-cleaning-data" title="Share on Twitter">Twitter</a></li>
+              <li style="list-style-image:url('theme/images/icons/facebook.png')"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//jatvyag.github.io/web-scraping.html" title="Share on Facebook">Facebook</a></li>
+              <li style="list-style-image:url('theme/images/icons/envelope.png')"><a href="mailto:?subject=JSON%20Data%20Web%C2%A0Scraping&amp;body=https%3A//jatvyag.github.io/web-scraping.html" title="Share via Email">Email</a></li>
+              </ul>
+            </p>
+          </section>
+      </div>
+
+      <div class="span8">
+        
+<p>While working on the monograph in 2021, I analyzed data on information systems and resources registered in Belarus. Some time has passed since then, and on the pages of this blog I will repeat the analysis, but using new approaches to both analysis and visualization of results.</p>
+<p>Our analysis will consist of a series of articles, and this article is the first of them.</p>
+<p>The difficulty we had to face in the beginning is that the data is presented in a convenient way for users, but not for analysts. In particular, there is an opportunity to add or remove columns, search the registry, but there is no convenient way to download all records. Given that the records are in <em><span class="caps">JSON</span></em> format, conventional web scraping techniques are not suitable, for example the <em>Beautiful Soup</em> library is almost useless.</p>
+<p>However, the <em><span class="caps">JSON</span></em> format is even more convenient in practice, since it loads all records into the browser.</p>
+<p>Here and hereafter, we perform the analysis using <em>Python</em> in a <em>Jupyter Notebook</em>.</p>
+<p>First, download the necessary libraries.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div>
+<h1 id="information-systems">Information Systems</h1>
+<p>Let’s collect information from the <em>Chrome</em> browser to establish an automatic connection.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># in the Chrome browser, look here: inspector (network -&gt; Fetch/XHR &gt; Headers and Responce)</span>
+<span class="n">endpoint_sys</span> <span class="o">=</span> <span class="s1">'http://xn--c1akxf.xn--90ais/api/systemRegister/list'</span>
+<span class="n">header_sys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Accept'</span><span class="p">:</span> <span class="s1">'application/json, text/plain, */*'</span><span class="p">,</span>
+          <span class="s1">'Accept-Language'</span><span class="p">:</span> <span class="s1">'en-US,en;q=0.9'</span><span class="p">,</span>
+          <span class="s1">'Connection'</span><span class="p">:</span> <span class="s1">'keep-alive'</span><span class="p">,</span>
+          <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json; charset=UTF-8'</span><span class="p">,</span>
+          <span class="s1">'Origin'</span><span class="p">:</span> <span class="s1">'http://xn--c1akxf.xn--90ais'</span><span class="p">,</span>
+          <span class="s1">'Referer'</span><span class="p">:</span> <span class="s1">'http://xn--c1akxf.xn--90ais/app/registerIS'</span><span class="p">,</span>
+          <span class="s1">'User-Agent'</span><span class="p">:</span> <span class="s1">'Mozilla/5.0 (X11; Linux x86_64)</span><span class="se">\</span>
+<span class="s1">          AppleWebKit/537.36 (KHTML, like Gecko)</span><span class="se">\</span>
+<span class="s1">          Chrome/114.0.0.0 Safari/537.36'</span><span class="p">}</span>
+
+<span class="c1"># make query based on the Chrome browser inspector data (copy as cURL), but we only need a few lines of code</span>
+<span class="n">query_sys</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="se">{{</span><span class="s1">"page":1,"rows":-1</span><span class="se">}}</span><span class="s1">'</span> <span class="c1"># also pay attention to the doubling of those "{" brackets</span>
+</code></pre></div>
+<p>Let’s move on to direct data loading.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># load data</span>
+<span class="n">response_sys</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">endpoint_sys</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header_sys</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">query_sys</span><span class="p">)</span>
+
+<span class="c1"># in the responce page we see that only rows are our main data, so change query a bit </span>
+<span class="n">parsed_sys</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_sys</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s1">'rows'</span><span class="p">]</span>
+
+<span class="c1"># convert JSON data into DataFrame</span>
+<span class="n">inf_sys</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">parsed_sys</span><span class="p">)</span>
+
+<span class="c1"># list the required columns</span>
+<span class="n">columns_sys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'numberOnRegistration'</span><span class="p">,</span> <span class="s1">'dateOnRegistration'</span><span class="p">,</span> <span class="s1">'dateActyalization'</span><span class="p">,</span>\
+               <span class="s1">'dateExclude'</span><span class="p">,</span> <span class="s1">'stateNotstateName'</span><span class="p">,</span> <span class="s1">'fullNameIs'</span><span class="p">,</span> <span class="s1">'shortNameIs'</span><span class="p">,</span>\
+               <span class="s1">'appointmentIs'</span><span class="p">,</span> <span class="s1">'functionIs'</span><span class="p">,</span> <span class="s1">'nameViewsIs'</span><span class="p">,</span> <span class="s1">'nameViewsStructures'</span><span class="p">,</span>\
+               <span class="s1">'nameSizeIs'</span><span class="p">,</span> <span class="s1">'clientsName'</span><span class="p">,</span> <span class="s1">'operatorsName'</span><span class="p">,</span> <span class="s1">'ownersName'</span><span class="p">,</span>\
+               <span class="s1">'developersName'</span><span class="p">,</span> <span class="s1">'proprietorsName'</span><span class="p">]</span>
+
+<span class="c1"># limit the DataFrame to the required columns</span>
+<span class="n">inf_sys</span> <span class="o">=</span> <span class="n">inf_sys</span><span class="p">[</span><span class="n">columns_sys</span><span class="p">]</span>
+
+<span class="c1"># convert dates to datetime objects</span>
+<span class="n">date_sys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'dateOnRegistration'</span><span class="p">,</span> <span class="s1">'dateActyalization'</span><span class="p">,</span> <span class="s1">'dateExclude'</span><span class="p">]</span>
+<span class="n">inf_sys</span><span class="p">[</span><span class="n">date_sys</span><span class="p">]</span> <span class="o">=</span> <span class="n">inf_sys</span><span class="p">[</span><span class="n">date_sys</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'</span><span class="si">%d</span><span class="s1">.%m.%Y'</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">inf_sys</span><span class="o">.</span><span class="n">info</span><span class="p">())</span> <span class="c1"># display information about the DataFrame</span>
+</code></pre></div>
+<p>Click the button below to view the information about the <em>DataFrame</em>.</p>
+<details class="collapsible" type="button">
+<summary>show info</summary>
+<div class="highlight"><pre><span></span><code>    <span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">'&gt;</span>
+    <span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">435</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">434</span>
+    <span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">17</span> <span class="n">columns</span><span class="p">):</span>
+     <span class="c1">#   Column                Non-Null Count  Dtype         </span>
+    <span class="o">---</span>  <span class="o">------</span>                <span class="o">--------------</span>  <span class="o">-----</span>         
+     <span class="mi">0</span>   <span class="n">numberOnRegistration</span>  <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">1</span>   <span class="n">dateOnRegistration</span>    <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">2</span>   <span class="n">dateActyalization</span>     <span class="mi">111</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">3</span>   <span class="n">dateExclude</span>           <span class="mi">38</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>     <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">4</span>   <span class="n">stateNotstateName</span>     <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">5</span>   <span class="n">fullNameIs</span>            <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">6</span>   <span class="n">shortNameIs</span>           <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">7</span>   <span class="n">appointmentIs</span>         <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">8</span>   <span class="n">functionIs</span>            <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">9</span>   <span class="n">nameViewsIs</span>           <span class="mi">433</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">10</span>  <span class="n">nameViewsStructures</span>   <span class="mi">434</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">11</span>  <span class="n">nameSizeIs</span>            <span class="mi">433</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">12</span>  <span class="n">clientsName</span>           <span class="mi">417</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">13</span>  <span class="n">operatorsName</span>         <span class="mi">356</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">14</span>  <span class="n">ownersName</span>            <span class="mi">434</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">15</span>  <span class="n">developersName</span>        <span class="mi">434</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+     <span class="mi">16</span>  <span class="n">proprietorsName</span>       <span class="mi">435</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+    <span class="n">dtypes</span><span class="p">:</span> <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">](</span><span class="mi">3</span><span class="p">),</span> <span class="nb">object</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">57.9</span><span class="o">+</span> <span class="n">KB</span>
+    <span class="kc">None</span>
+</code></pre></div>
+</details>
+<p>Save the DataFrame to a file so as not to upload it again.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># save to file</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">inf_sys</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'data/inf_sys.csv'</span><span class="p">)</span> 
+</code></pre></div>
+<p>In the following articles, we will start the analysis by downloading this file.
+<br/></p>
+<h1 id="information-resources">Information Resources</h1>
+<p>In Belarus, according to the legislation, in addition to information systems information resources are also subject to registration. Thus, it is necessary to repeat the above operations. We only change the web address.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># repeat previous steps</span>
+<span class="n">endpoint_res</span> <span class="o">=</span> <span class="s1">'http://xn--c1akxf.xn--90ais/api/resourceRegister/list'</span>
+<span class="n">header_res</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Accept'</span><span class="p">:</span> <span class="s1">'application/json, text/plain, */*'</span><span class="p">,</span>
+          <span class="s1">'Accept-Language'</span><span class="p">:</span> <span class="s1">'en-US,en;q=0.9'</span><span class="p">,</span>
+          <span class="s1">'Connection'</span><span class="p">:</span> <span class="s1">'keep-alive'</span><span class="p">,</span>
+          <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json; charset=UTF-8'</span><span class="p">,</span>
+          <span class="s1">'Origin'</span><span class="p">:</span> <span class="s1">'http://xn--c1akxf.xn--90ais'</span><span class="p">,</span>
+          <span class="s1">'Referer'</span><span class="p">:</span> <span class="s1">'http://xn--c1akxf.xn--90ais/app/registerIR'</span><span class="p">,</span>
+          <span class="s1">'User-Agent'</span><span class="p">:</span> <span class="s1">'Mozilla/5.0 (X11; Linux x86_64)</span><span class="se">\</span>
+<span class="s1">          AppleWebKit/537.36 (KHTML, like Gecko)</span><span class="se">\</span>
+<span class="s1">          Chrome/114.0.0.0 Safari/537.36'</span><span class="p">}</span>
+<span class="n">query_res</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="se">{{</span><span class="s1">"page":1,"rows":-1</span><span class="se">}}</span><span class="s1">'</span>
+</code></pre></div>
+<p>Several hundred information systems are registered, but there are more than 35,000 resources, so web scraping can take several minutes. The amount of data is more than a gigabyte.</p>
+<div class="highlight"><pre><span></span><code><span class="n">response_res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">endpoint_res</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header_res</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">query_res</span><span class="p">)</span>
+<span class="n">parsed_res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_res</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="s1">'rows'</span><span class="p">]</span>
+<span class="n">inf_res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">parsed_res</span><span class="p">)</span>
+<span class="n">columns_res</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'numberOnRegistration'</span><span class="p">,</span> <span class="s1">'dateOnRegistration'</span><span class="p">,</span> <span class="s1">'dateActualization'</span><span class="p">,</span>\
+               <span class="s1">'dateExclude'</span><span class="p">,</span> <span class="s1">'fullNameSource'</span><span class="p">,</span> <span class="s1">'shortNameSource'</span><span class="p">,</span> <span class="s1">'dbDepart'</span><span class="p">,</span> <span class="s1">'rtypeName'</span><span class="p">,</span>\
+               <span class="s1">'themesName'</span><span class="p">,</span> <span class="s1">'rubricName'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">,</span> <span class="s1">'dbSizeMb'</span><span class="p">,</span> <span class="s1">'dbSizeRec'</span><span class="p">,</span> <span class="s1">'dbLang'</span><span class="p">,</span>\
+               <span class="s1">'dbCreate'</span><span class="p">,</span> <span class="s1">'dbRetroBeg'</span><span class="p">,</span> <span class="s1">'dbRetroEnd'</span><span class="p">,</span> <span class="s1">'datasource'</span><span class="p">,</span> <span class="s1">'niokrFlag'</span><span class="p">,</span> <span class="s1">'niokrName'</span><span class="p">,</span>\
+               <span class="s1">'bePart'</span><span class="p">,</span> <span class="s1">'relationFlag'</span><span class="p">,</span> <span class="s1">'relation'</span><span class="p">,</span> <span class="s1">'programmShell'</span><span class="p">,</span> <span class="s1">'safetyRequirements'</span><span class="p">,</span>\
+               <span class="s1">'dtiBaseInfo'</span><span class="p">,</span> <span class="s1">'rstatus'</span><span class="p">,</span> <span class="s1">'dataChangeRstatus'</span><span class="p">,</span> <span class="s1">'dbDelivery'</span><span class="p">,</span> <span class="s1">'ownerName'</span><span class="p">,</span>\
+               <span class="s1">'developersName'</span><span class="p">,</span> <span class="s1">'placesName'</span><span class="p">,</span> <span class="s1">'urlsName'</span><span class="p">,</span> <span class="s1">'serviceName'</span><span class="p">,</span> <span class="s1">'securitiesName'</span><span class="p">,</span>\
+               <span class="s1">'informationObjectsInfo'</span><span class="p">]</span>
+<span class="n">inf_res</span> <span class="o">=</span> <span class="n">inf_res</span><span class="p">[</span><span class="n">columns_res</span><span class="p">]</span>
+<span class="n">date_res</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'dateOnRegistration'</span><span class="p">,</span> <span class="s1">'dateActualization'</span><span class="p">,</span> <span class="s1">'dateExclude'</span><span class="p">,</span> <span class="s1">'dtiBaseInfo'</span><span class="p">,</span>\
+            <span class="s1">'dataChangeRstatus'</span><span class="p">]</span>
+<span class="n">inf_res</span><span class="p">[</span><span class="n">date_res</span><span class="p">]</span> <span class="o">=</span> <span class="n">inf_res</span><span class="p">[</span><span class="n">date_res</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'</span><span class="si">%d</span><span class="s1">.%m.%Y'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inf_res</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div>
+<p>Details about <em>DataFrame</em> can be seen below.</p>
+<details class="collapsible" type="button">
+<summary>show info</summary>
+<div class="highlight"><pre><span></span><code>    <span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="s1">'&gt;</span>
+    <span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">36442</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">36441</span>
+    <span class="n">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">36</span> <span class="n">columns</span><span class="p">):</span>
+     <span class="c1">#   Column                  Non-Null Count  Dtype         </span>
+    <span class="o">---</span>  <span class="o">------</span>                  <span class="o">--------------</span>  <span class="o">-----</span>         
+     <span class="mi">0</span>   <span class="n">numberOnRegistration</span>    <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">1</span>   <span class="n">dateOnRegistration</span>      <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">2</span>   <span class="n">dateActualization</span>       <span class="mi">5975</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">3</span>   <span class="n">dateExclude</span>             <span class="mi">2534</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">4</span>   <span class="n">fullNameSource</span>          <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">5</span>   <span class="n">shortNameSource</span>         <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">6</span>   <span class="n">dbDepart</span>                <span class="mi">33664</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">7</span>   <span class="n">rtypeName</span>               <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">8</span>   <span class="n">themesName</span>              <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">9</span>   <span class="n">rubricName</span>              <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">10</span>  <span class="n">content</span>                 <span class="mi">36436</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">11</span>  <span class="n">dbSizeMb</span>                <span class="mi">36183</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">12</span>  <span class="n">dbSizeRec</span>               <span class="mi">1656</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="nb">object</span>        
+     <span class="mi">13</span>  <span class="n">dbLang</span>                  <span class="mi">36396</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">14</span>  <span class="n">dbCreate</span>                <span class="mi">36420</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">15</span>  <span class="n">dbRetroBeg</span>              <span class="mi">33881</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">16</span>  <span class="n">dbRetroEnd</span>              <span class="mi">16794</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">17</span>  <span class="n">datasource</span>              <span class="mi">29602</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">18</span>  <span class="n">niokrFlag</span>               <span class="mi">35994</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="n">float64</span>       
+     <span class="mi">19</span>  <span class="n">niokrName</span>               <span class="mi">1046</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="nb">object</span>        
+     <span class="mi">20</span>  <span class="n">bePart</span>                  <span class="mi">1356</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="nb">object</span>        
+     <span class="mi">21</span>  <span class="n">relationFlag</span>            <span class="mi">35936</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="n">float64</span>       
+     <span class="mi">22</span>  <span class="n">relation</span>                <span class="mi">1824</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="nb">object</span>        
+     <span class="mi">23</span>  <span class="n">programmShell</span>           <span class="mi">36286</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">24</span>  <span class="n">safetyRequirements</span>      <span class="mi">16775</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">25</span>  <span class="n">dtiBaseInfo</span>             <span class="mi">36382</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">26</span>  <span class="n">rstatus</span>                 <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">27</span>  <span class="n">dataChangeRstatus</span>       <span class="mi">36442</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+     <span class="mi">28</span>  <span class="n">dbDelivery</span>              <span class="mi">16688</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">29</span>  <span class="n">ownerName</span>               <span class="mi">36440</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">30</span>  <span class="n">developersName</span>          <span class="mi">35898</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">31</span>  <span class="n">placesName</span>              <span class="mi">32446</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">32</span>  <span class="n">urlsName</span>                <span class="mi">12592</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">33</span>  <span class="n">serviceName</span>             <span class="mi">32427</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>  <span class="nb">object</span>        
+     <span class="mi">34</span>  <span class="n">securitiesName</span>          <span class="mi">5274</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>   <span class="nb">object</span>        
+     <span class="mi">35</span>  <span class="n">informationObjectsInfo</span>  <span class="mi">839</span> <span class="n">non</span><span class="o">-</span><span class="n">null</span>    <span class="nb">object</span>        
+    <span class="n">dtypes</span><span class="p">:</span> <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">](</span><span class="mi">5</span><span class="p">),</span> <span class="n">float64</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">object</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span>
+    <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">10.0</span><span class="o">+</span> <span class="n">MB</span>
+    <span class="kc">None</span>
+</code></pre></div>
+</details>
+<p>Save the received DataFrame to a file.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># save to file</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">inf_res</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'data/inf_res.csv'</span><span class="p">)</span> 
+</code></pre></div>
+<p>The file size turned out to be 82.8 megabytes, much smaller than the original. This difference is explained by the fact that many data not needed for analysis are not stored. For example, information about the names and contacts of employees of organizations that entered this information into the register.</p>
+<p>Therefore, we downloaded publicly available data on registered information systems and resources for analysis. Moreover, we pre-cleaned the data from the information we don’t need and changed the data format for the dates. In the next article, we will continue to clean the data more thoroughly and look at the most promising data.</p>
+        <hr/>
+      </div>
+
+      <div class="span2">
+          <nav class="toc">
+            <b>Content:</b>
+          <div class="toc">
+<ul>
+<li><a href="#information-systems">Information Systems</a></li>
+<li><a href="#information-resources">Information Resources</a></li>
+</ul>
+</div>
+          </nav>
+      </div>  
+
+    </div>
+    <!--
+    <div class="span10">
+      <h3>Comments</h3>
+    
+    </div>
+    -->
+    </div>
+        </div>
+        
+        
+    </div>     </div> </div>
+
+<!--footer-->
+<div class="container">
+  <div class="well" style="background-color: #E9EFF6">
+    <div id="blog-footer">
+      <div class="row-fluid">
+	<div class="social span2" align="center" id="socialist">
+	  <ul class="nav nav-list">
+	    <li class="nav-header">
+Contacts	    </li>
+	    <li><a href="https://github.com/Jatvyag"><i class="icon-github" style="color: #1f334b"></i>github</a></li>
+	    <li><a href="https://www.linkedin.com/in/parfenchyk"><i class="icon-linkedin" style="color: #1f334b"></i>linkedin</a></li>
+            <a href="mailto:jatvyag@proton.me"><i class="icon-envelope" style="color: #1f334b" ></i> email</a>
+
+	  </ul>
+	</div>
+<div class="span8" id="colophon">
+  <h2 align="center">ABOUT</h2>
+  <p align="justify"> This is a personal blog that reflects my interests in data science, data-driven decision-making, legal tech, and data protection. </p>
+</div>
+	<div class="site-nav span2" align="center">
+          <ul class="nav nav-list" id="site-links">
+            <li class="nav-header"> 
+Site            </li>
+            <li><a href="https://jatvyag.github.io"><i class="icon-home" style="color: #1f334b">
+                </i>Home</a></li>
+            <li><a href="https://jatvyag.github.io/archives.html"><i class="icon-list" style="color: #1f334b">
+                </i>Archives</a></li>
+	          <li><a href="https://jatvyag.github.io/tags.html"><i class="icon-tags" style="color: #1f334b">
+                </i>Tags</a></li>
+	    
+	  </ul>
+
+        </div>
+
+      </div> <!--end of fluid row-->
+    </div> <!--end of blog-footer-->
+    <hr />
+    <p align="center"><a href="https://jatvyag.github.io">Data Subject</a>
+      &copy; Anton Parfenchyk, 2023.</p>
+    <p align="center">Powered by <a href="https://github.com/getpelican/pelican">Pelican <i class="icon-share-alt"></i></a> and      <a href="https://getbootstrap.com/2.1.1">Twitter Bootstrap <i class="icon-share-alt"></i></a>. 
+Icons by <a href="https://fontawesome.com/icons">Font Awesome <i class="icon-share-alt"></i>.</a></p>
+
+  </div> <!--end of well -->
+</div> <!--end of container -->
+
+<!--/footer-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
