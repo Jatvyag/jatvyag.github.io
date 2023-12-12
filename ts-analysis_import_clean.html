@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YX34NR0GKC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YX34NR0GKC');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Time Series: Importing & Cleaning Data - Data Subject</title>
+    <meta name="description" content="">
+    <meta name="author" content="Anton Parfenchyk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Le styles -->
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/local.css" >
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/pygments.css" >
+    <link rel="stylesheet" href="https://jatvyag.github.io/theme/font-awesome.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<header class="blog-header">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+	<a href="https://jatvyag.github.io" class="brand">Data Subject</a>
+      </div>
+      <div class="span3" id="blog-nav">
+	<ul class="nav nav-pills pull-right">
+        <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="https://jatvyag.github.io/pages/reader.html">For&nbsp;Reader</a></li>
+	    <li  class="active" >
+	      <a href="https://jatvyag.github.io/category/articles.html ">Articles</a>
+
+    <!--choose language from dropdown menu-->
+    <li>
+      <div class="btn-group">
+        <a class="btn btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-globe"></i>
+Language          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <a href="https://jatvyag.github.io/">English</a>
+          <a href="https://jatvyag.github.io/be/">Беларуская</a>
+  
+        </ul>
+    </li>
+
+    <!--choose language from other than current language variants, disabled-->
+
+    <!--choose language from all variants, disabled-->
+    
+	</ul>
+      </div>
+    </div> <!-- End of fluid row-->
+  </div>   <!-- End of Container-->
+</header>
+    
+<div class="container">
+    <div class="content">
+    <div class="row-fluid">
+
+        <div class="span12">
+    <div class='article'>
+      <div class="row-fluid">
+           <div class="content-title span9">
+             <h1>Time Series: Importing <span class="amp">&amp;</span> Cleaning&nbsp;Data</h1>
+           </div>
+      </div>
+    <div class="row-fluid">
+
+      <div class="span2">
+<p>12 December 2023</p>
+<p style="text-align: left;">
+Category: <a href="https://jatvyag.github.io/category/articles.html">Articles</a>
+</p>
+<p>Modified: 12.12.2023
+</p>
+<p style="text-align: left;">
+ 
+Tags:    <ul>
+        <li><a href="https://jatvyag.github.io/tag/data-analysis.html">data analysis</a></li>
+        <li><a href="https://jatvyag.github.io/tag/importing-cleaning-data.html">importing & cleaning data</a></li>
+        <li><a href="https://jatvyag.github.io/tag/time-series.html">time series</a></li>
+    </ul>
+</p>
+<p>
+</p>
+
+<p style="text-align: left;">
+    <br>
+    <p>The topic: <b>IR IS</b></p>
+    <p>Part <b>2</b> out of <b>2</b>.
+    </p>
+
+        <p>Previous topic articles:</p>
+            <p>
+            <ol class="parts">
+                        <li >
+                        <a href='https://jatvyag.github.io/web-scraping.html'><span class="caps">JSON</span> Data Web&nbsp;Scraping</a>
+                    </li>
+            </ol>
+            </p>
+
+</p>          <!-- added share post element-->
+          <p style="padding: 1px;">&nbsp</p>
+          <section style="position:bottom">
+            <p id="post-share-links">
+Share on:              <ul>
+              <li style="list-style-image:url('theme/images/icons/linkedin.png')"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//jatvyag.github.io/ts-analysis_import_clean.html&title=Time%20Series%3A%20Importing%20%26%20Cleaning%C2%A0Data&summary=Transform%20time%20series%20data%20about%20information%20systems%20and%20resources%20and%20the%20first%20look%20at%C2%A0it&source=https%3A//jatvyag.github.io/ts-analysis_import_clean.html" title="Share on LinkedIn">LinkedIn</a></li>
+              <li style="list-style-image:url('theme/images/icons/twitter.png')"><a href="https://twitter.com/intent/tweet?text=Time%20Series%3A%20Importing%20%26%20Cleaning%C2%A0Data&url=https%3A//jatvyag.github.io/ts-analysis_import_clean.html&hashtags=data-analysis,importing-cleaning-data,time-series" title="Share on Twitter">Twitter</a></li>
+              <li style="list-style-image:url('theme/images/icons/facebook.png')"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//jatvyag.github.io/ts-analysis_import_clean.html" title="Share on Facebook">Facebook</a></li>
+              <li style="list-style-image:url('theme/images/icons/envelope.png')"><a href="mailto:?subject=Time%20Series%3A%20Importing%20%26%20Cleaning%C2%A0Data&amp;body=https%3A//jatvyag.github.io/ts-analysis_import_clean.html" title="Share via Email">Email</a></li>
+              </ul>
+            </p>
+          </section>
+      </div>
+
+      <div class="span8">
+        
+<h3 id="load-necessary-libraries">Load Necessary Libraries</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div>
+<h3 id="define-custom-functions">Define custom functions</h3>
+<h4 id="time-series-data-frame-creation-function">Time series data frame creation function</h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">time_series</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Creates time series data frames with random noise'''</span>
+    <span class="c1"># simplification of column names</span>
+    <span class="n">df_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'reg'</span><span class="p">,</span> <span class="s1">'upd'</span><span class="p">,</span> <span class="s1">'exc'</span><span class="p">]</span> 
+    <span class="n">min_df</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df_cols</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> 
+    <span class="n">max_df</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df_cols</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">)</span>
+    <span class="c1"># create an empty datetime index</span>
+    <span class="n">df_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">min_df</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">max_df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'ids'</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_cols</span><span class="p">:</span>
+        <span class="c1"># create a datetime series for each column</span>
+        <span class="n">temp_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)[</span><span class="s1">'num'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+        <span class="c1"># unite series to a one data frame</span>
+        <span class="n">df_ts</span> <span class="o">=</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">temp_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>      
+    <span class="c1"># delete temporary index</span>
+    <span class="n">df_ts</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'ids'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+    <span class="c1"># NaN could be treated misleading, in our case zeros make more sense</span>
+    <span class="n">df_ts</span><span class="p">[</span><span class="n">df_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_ts</span><span class="p">[</span><span class="n">df_cols</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="c1"># reshape to monthly data, otherwise it is not enough data for conclusions</span>
+    <span class="n">df_ts</span> <span class="o">=</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">'M'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> 
+    <span class="c1"># create random noise for comparison</span>
+    <span class="n">mean_rand</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">df_ts</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> 
+    <span class="c1"># create random state for reproducibility</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> 
+    <span class="n">df_ts</span><span class="p">[</span><span class="s1">'rand'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mean_rand</span><span class="p">,</span> <span class="n">df_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df_ts</span>
+</code></pre></div>
+<h4 id="plots-creation-function">Plots creation function</h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ts_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">kind</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Creates one of three seaborn multi-plots'''</span>
+    <span class="c1"># melted data frame is easier to use in seaborn</span>
+    <span class="n">melted_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'reg'</span><span class="p">,</span> <span class="s1">'upd'</span><span class="p">,</span> <span class="s1">'exc'</span><span class="p">,</span> <span class="s1">'rand'</span><span class="p">],</span> 
+                       <span class="n">var_name</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">melted_df</span><span class="o">.</span><span class="n">Event</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=</span><span class="p">{</span><span class="s1">'reg'</span><span class="p">:</span><span class="s1">'Registration'</span><span class="p">,</span> 
+                                        <span class="s1">'upd'</span><span class="p">:</span><span class="s1">'Update'</span><span class="p">,</span> 
+                                        <span class="s1">'exc'</span><span class="p">:</span><span class="s1">'Exclusion'</span><span class="p">,</span> 
+                                        <span class="s1">'rand'</span><span class="p">:</span><span class="s1">'Random Noise'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'histogram'</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">melted_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> 
+                        <span class="n">col_wrap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'hist'</span><span class="p">,</span> 
+                        <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'Events Number'</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s1">'</span><span class="si">{col_name}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.93</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Histograms'</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'lineplot'</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">melted_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'date'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> 
+                        <span class="n">row</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'line'</span><span class="p">,</span> 
+                        <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'Event Numbers'</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s1">'</span><span class="si">{row_name}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.93</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Number of events over time'</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">)</span>
+            <span class="c1"># without the next two lines not all years are in xticks</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">YearLocator</span><span class="p">())</span> 
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">'%Y'</span><span class="p">))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">'boxplot'</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">melted_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> 
+                        <span class="n">kind</span><span class="o">=</span><span class="s1">'box'</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                        <span class="n">aspect</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.93</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Boxplots'</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="s1">'Nothing to show. Please, specify a histogram, a lineplot, or a boxplot'</span>
+    <span class="k">return</span> <span class="n">g</span>  
+</code></pre></div>
+<h3 id="load-data">Load Data</h3>
+<h4 id="load-columns-with-unique-numbers-and-dates">Load columns with unique numbers and dates</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># simplify column names</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'num'</span><span class="p">,</span> <span class="s1">'reg'</span><span class="p">,</span> <span class="s1">'upd'</span><span class="p">,</span> <span class="s1">'exc'</span><span class="p">]</span> 
+
+<span class="c1"># data related to registration, update, and exclusion of the information systems</span>
+<span class="n">sys_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/inf_sys.csv'</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'numberOnRegistration'</span><span class="p">,</span> 
+                                                                       <span class="s1">'dateOnRegistration'</span><span class="p">,</span>
+                                                                       <span class="s1">'dateActyalization'</span><span class="p">,</span>
+                                                                       <span class="s1">'dateExclude'</span><span class="p">])</span>
+<span class="n">sys_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span>
+
+<span class="c1"># data related to registration, update, and exclusion of the information resources</span>
+<span class="n">res_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/inf_res.csv'</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'numberOnRegistration'</span><span class="p">,</span>
+                                                                       <span class="s1">'dateOnRegistration'</span><span class="p">,</span>
+                                                                       <span class="s1">'dateActualization'</span><span class="p">,</span> 
+                                                                       <span class="s1">'dateExclude'</span><span class="p">])</span>
+<span class="n">res_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span>
+</code></pre></div>
+<h4 id="make-a-manageable-time-series-data-from-raw-numbers">Make a manageable time series data from raw numbers</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># information systems time series data frame</span>
+<span class="n">sys_df_dt</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">(</span><span class="n">sys_df</span><span class="p">)</span>
+
+<span class="c1"># information resources time series data frame</span>
+<span class="n">res_df_dt</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">(</span><span class="n">res_df</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="inspect-information-systems-events"><strong>Inspect information systems events</strong></h3>
+<hr/>
+<h4 id="the-total-number-of-events-distributions">The total number of events distributions</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">sys_df_dt</span><span class="p">,</span> <span class="s1">'histogram'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_12_0.png"/></p>
+<p>The distributions look highly skewed, especially in comparison to random numbers.</p>
+<h4 id="boxplot-details-about-total-number-of-events">Boxplot details about total number of events</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">sys_df_dt</span><span class="p">,</span> <span class="s1">'boxplot'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_15_0.png"/></p>
+<p>The number of registrations has more variance, however, the data has enormous outliers.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Let's have a look at our outliers</span>
+<span class="n">sys_df_dt</span><span class="o">.</span><span class="n">reg</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nx">date</span>
+<span class="mi">2014</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">31</span><span class="w">    </span><span class="mi">58</span>
+<span class="mi">2014</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">30</span><span class="w">    </span><span class="mi">25</span>
+<span class="mi">2014</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">31</span><span class="w">    </span><span class="mi">13</span>
+<span class="nx">Name</span><span class="p">:</span><span class="w"> </span><span class="nx">reg</span><span class="p">,</span><span class="w"> </span><span class="nx">dtype</span><span class="p">:</span><span class="w"> </span><span class="nx">int64</span>
+</code></pre></div>
+<p>The top three outliers are from the second half of 2014.</p>
+<h4 id="monthly-events-changes-over-time">Monthly events changes over time</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">sys_df_dt</span><span class="p">,</span> <span class="s1">'lineplot'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_20_0.png"/></p>
+<p>The gray dotted line represent at least one event per month. As we can see, exclusions from register or record modification are relatively rare events.</p>
+<p>We do heave a one unusual peak, which might be necessary to make smoother later. Nevertheless, the plot looks stationary: do not demonstrate any obvious trend or seasonality. </p>
+<p>So, we can build predictive model. However, the most promising is the number of registration per month.</p>
+<p>Let’s take a look at another data frame.</p>
+<h3 id="inspect-information-resources-events"><strong>Inspect information resources events</strong></h3>
+<hr/>
+<h4 id="the-total-number-of-events-distributions_1">The total number of events distributions</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">res_df_dt</span><span class="p">,</span> <span class="s1">'histogram'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_23_0.png"/></p>
+<p>The distributions are also skewed. However, the number of registrations is more balanced.</p>
+<h4 id="boxplot-details-about-total-number-of-events_1">Boxplot details about total number of events</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">res_df_dt</span><span class="p">,</span> <span class="s1">'boxplot'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_26_0.png"/></p>
+<p>Despite outliers, the variance of the number of registration is closer to random integers.</p>
+<h4 id="monthly-events-changes-over-time_1">Monthly events changes over time</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ts_plot</span><span class="p">(</span><span class="n">res_df_dt</span><span class="p">,</span> <span class="s1">'lineplot'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="images/ts-analysis_import_clean/output_29_0.png"/></p>
+<p>We might have a trend, autocorrelation, and seasonality at the number of registration. The number of record modification became more or less stable since 2018. Other data represents more rare events.</p>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<hr/>
+<p>We do have enough data for time series analysis of registration information systems and resources. However, it is preferred to treat them separately because they very differ in average monthly numbers and longitude.</p>
+<p>Information systems registration does look stationary. Thus, we might need an <span class="caps">ARIMA</span> model.</p>
+<p>Information resources might have a trend, autocorrelation, and seasonality. That is why we will employ <span class="caps">SARIMA</span> model.</p>
+<p>Our next step will be modeling this data for explanation and prediction.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># save the modified data for future analysis</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sys_df_dt</span><span class="p">[[</span><span class="s1">'reg'</span><span class="p">,</span> <span class="s1">'rand'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'data/sys_df_dt.csv'</span><span class="p">)</span> 
+<span class="n">res_df_dt</span><span class="p">[[</span><span class="s1">'reg'</span><span class="p">,</span> <span class="s1">'rand'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'data/res_df_dt.csv'</span><span class="p">)</span> 
+</code></pre></div>
+        <hr/>
+      </div>
+
+      <div class="span2">
+          <nav class="toc">
+            <b>Content:</b>
+          <div class="toc">
+<ul>
+<li><a href="#load-necessary-libraries">Load Necessary Libraries</a></li>
+<li><a href="#define-custom-functions">Define custom functions</a><ul>
+<li><a href="#time-series-data-frame-creation-function">Time series data frame creation function</a></li>
+<li><a href="#plots-creation-function">Plots creation function</a></li>
+</ul>
+</li>
+<li><a href="#load-data">Load Data</a><ul>
+<li><a href="#load-columns-with-unique-numbers-and-dates">Load columns with unique numbers and dates</a></li>
+<li><a href="#make-a-manageable-time-series-data-from-raw-numbers">Make a manageable time series data from raw numbers</a></li>
+</ul>
+</li>
+<li><a href="#inspect-information-systems-events">Inspect information systems events</a><ul>
+<li><a href="#the-total-number-of-events-distributions">The total number of events distributions</a></li>
+<li><a href="#boxplot-details-about-total-number-of-events">Boxplot details about total number of events</a></li>
+<li><a href="#monthly-events-changes-over-time">Monthly events changes over time</a></li>
+</ul>
+</li>
+<li><a href="#inspect-information-resources-events">Inspect information resources events</a><ul>
+<li><a href="#the-total-number-of-events-distributions_1">The total number of events distributions</a></li>
+<li><a href="#boxplot-details-about-total-number-of-events_1">Boxplot details about total number of events</a></li>
+<li><a href="#monthly-events-changes-over-time_1">Monthly events changes over time</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+          </nav>
+      </div>  
+
+    </div>
+    <!--
+    <div class="span10">
+      <h3>Comments</h3>
+    
+    </div>
+    -->
+    </div>
+        </div>
+        
+        
+    </div>     </div> </div>
+
+<!--footer-->
+<div class="container">
+  <div class="well" style="background-color: #E9EFF6">
+    <div id="blog-footer">
+      <div class="row-fluid">
+	<div class="social span2" align="center" id="socialist">
+	  <ul class="nav nav-list">
+	    <li class="nav-header">
+Contacts	    </li>
+	    <li><a href="https://github.com/Jatvyag"><i class="icon-github" style="color: #1f334b"></i>github</a></li>
+	    <li><a href="https://www.linkedin.com/in/parfenchyk"><i class="icon-linkedin" style="color: #1f334b"></i>linkedin</a></li>
+            <a href="mailto:jatvyag@proton.me"><i class="icon-envelope" style="color: #1f334b" ></i> email</a>
+
+	  </ul>
+	</div>
+<div class="span8" id="colophon">
+  <h2 align="center">ABOUT</h2>
+  <p align="justify"> This is a personal blog that reflects my interests in data science, data-driven decision-making, legal tech, and data protection. </p>
+</div>
+	<div class="site-nav span2" align="center">
+          <ul class="nav nav-list" id="site-links">
+            <li class="nav-header"> 
+Site            </li>
+            <li><a href="https://jatvyag.github.io"><i class="icon-home" style="color: #1f334b">
+                </i>Home</a></li>
+            <li><a href="https://jatvyag.github.io/archives.html"><i class="icon-list" style="color: #1f334b">
+                </i>Archives</a></li>
+	          <li><a href="https://jatvyag.github.io/tags.html"><i class="icon-tags" style="color: #1f334b">
+                </i>Tags</a></li>
+	    
+	  </ul>
+
+        </div>
+
+      </div> <!--end of fluid row-->
+    </div> <!--end of blog-footer-->
+    <hr />
+    <p align="center"><a href="https://jatvyag.github.io">Data Subject</a>
+      &copy; Anton Parfenchyk, 2023.</p>
+    <p align="center">Powered by <a href="https://github.com/getpelican/pelican">Pelican <i class="icon-share-alt"></i></a> and      <a href="https://getbootstrap.com/2.1.1">Twitter Bootstrap <i class="icon-share-alt"></i></a>. 
+Icons by <a href="https://fontawesome.com/icons">Font Awesome <i class="icon-share-alt"></i>.</a></p>
+
+  </div> <!--end of well -->
+</div> <!--end of container -->
+
+<!--/footer-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
