@@ -7,8 +7,6 @@ const { t } = useI18n()
 
 <template>
   <LangSwitcher />
-  <div>
-  </div>
   <About :msg="t('about.myName')" />
 </template>
 

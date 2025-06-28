@@ -12,6 +12,7 @@ const toggleDropdown = () => {
 const switchTo = (lang) => {
     locale.value = lang
     isOpen.value = false
+    sessionStorage.setItem('locale', lang)
 }
 const languages = computed(() => [
     { code: 'en', label: t('languageNames.en') },

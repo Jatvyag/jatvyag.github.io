@@ -3,9 +3,11 @@ import { createI18n } from 'vue-i18n'
 import en from './en.json'
 import be from './be.json'
 
+const savedLocale = sessionStorage.getItem('locale') || 'en'
+
 const i18n = createI18n({
     legacy: false, // Composition API
-    locale: 'en',  // Default language
+    locale: savedLocale,  // Default language
     fallbackLocale: 'en',
     messages: {
         en,
