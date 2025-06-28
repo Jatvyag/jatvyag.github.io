@@ -1,0 +1,10 @@
+{
+    "languageNames": {
+        "en": "English",
+        "be": "Belarusian"
+    },
+    "about":{
+        "myName": "Anton Parfenchyk",
+        "intro": "Here you can find info about myself"
+    }
+}

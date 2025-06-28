@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 defineProps({
   msg: String,
@@ -10,7 +12,7 @@ defineProps({
 <template>
   <h1>{{ msg }}</h1>
   <div class="card">
-    Here you can find info about myself
+    {{ t('about.intro') }}
   </div>
 </template>
 
