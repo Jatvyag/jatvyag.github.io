@@ -27,8 +27,8 @@ const currentLabel = computed(() => {
 
 <template>
     <div class="lang-switcher">
-        <button @click="toggleDropdown" class="lang-button">
-            <span>{{ '\u{1F310}' }}   </span> {{ currentLabel }}
+        <button @click="toggleDropdown">
+            {{ currentLabel }} <span>{{ '\u{1F310}' }}</span>
         </button>
         <div v-if="isOpen" class="dropdown">
             <button
@@ -46,23 +46,19 @@ const currentLabel = computed(() => {
 
 <style scoped>
 .lang-switcher {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    text-align: right;
-}
-
-.lang-button {
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.4rem;
-    cursor: pointer;
-    font-size: 1rem;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown {
-    margin-top: 0.5rem;
-    border-radius: 0.4rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    left: 1%;
+    margin-top: 0.1rem;
+    border-radius: 0.6rem;
+    box-shadow: var(--drop-down-box-shadow);
+    background: var(--bg);
+    z-index: 10;
 }
 
 .dropdown-item {
@@ -77,6 +73,7 @@ const currentLabel = computed(() => {
 
 .dropdown-item:hover,
 .dropdown-item.active {
-    background: rgb(133, 133, 133);
+    background: var(--btn-hover-color);
+    color: white;
 }
 </style>

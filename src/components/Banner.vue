@@ -19,7 +19,7 @@ function startTypewriter() {
     if (!el) return
 
     el.innerHTML = '' // Clear previous content
-    typewriterInstance = new Typewriter(el, {
+    new Typewriter(el, {
         strings: currentData.value.banner.titles,
         autoStart: true,
         loop: true,
