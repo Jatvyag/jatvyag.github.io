@@ -1,9 +1,23 @@
 <script setup>
+import { watch, onMounted } from 'vue'
 import About from './components/About.vue'
 import LangSwitcher from './components/LangSwitcher.vue'
 import ThemeSwitcher from './components/ThemeSwitcher.vue'
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+const { locale, t } = useI18n()
+
+function updateMetadata(lang) {
+  document.documentElement.lang = lang
+  document.title = t('app.title')
+}
+
+watch(locale, (newLocale) => {
+  updateMetadata(newLocale)
+})
+
+onMounted(() => {
+  updateMetadata(locale.value)
+})
 </script>
 
 <template>

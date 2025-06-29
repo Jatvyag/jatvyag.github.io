@@ -1,4 +1,7 @@
 {
+    "app": {
+        "title": "Parfenchyk's Portfolio"
+    },
     "languageNames": {
         "en": "English",
         "be": "Belarusian"
