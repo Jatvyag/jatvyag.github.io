@@ -40,11 +40,7 @@ const data_years = calculateYears('2014-09-04')
   background-color: var(--button-bg); 
   color: var(--text);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--drop-down-box-shadow);
   transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 </style>

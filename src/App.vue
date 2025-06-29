@@ -1,5 +1,6 @@
 <script setup>
 import { watch, onMounted } from 'vue'
+import NavMenu from './components/NavMenu.vue'
 import About from './components/About.vue'
 import LangSwitcher from './components/LangSwitcher.vue'
 import ThemeSwitcher from './components/ThemeSwitcher.vue'
@@ -21,14 +22,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="top-lang-theme-bar">
-    <LangSwitcher /> 
-    <ThemeSwitcher />       
+  <div class="top-bar">
+    <NavMenu />
+    <div class="top-lang-theme-bar">
+      <LangSwitcher />
+      <ThemeSwitcher />   
+    </div>
   </div>
   <About :msg="t('about.myName')" />
 </template>
 
 <style scoped>
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+}
+
 .top-lang-theme-bar {
   display: flex;
   justify-content: flex-end; /* or space-between / center */

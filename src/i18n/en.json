@@ -6,6 +6,14 @@
         "en": "English",
         "be": "Belarusian"
     },
+    "navMenu":{
+        "main":"Main",
+        "projects":"Projects",
+        "skills":"Skills",
+        "certifications":"Certifications",
+        "articles":"Articles",
+        "contact":"Contact"
+    },
     "about":{
         "myName": "Anton Parfenchyk",
         "intro": "Hi, I’m a Data Analyst & Data Engineer passionate about turning data into insights and scalable solutions.",
