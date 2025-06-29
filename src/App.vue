@@ -33,7 +33,7 @@ onMounted(() => {
   display: flex;
   justify-content: flex-end; /* or space-between / center */
   align-items: center;
-  gap: 1rem; /* spacing between buttons */
-  padding: 1rem;
+  gap: 0.5rem; /* spacing between buttons */
+  padding: 0.1rem;
 }
 </style>
