@@ -27,8 +27,8 @@ function toggleTheme() {
 <style scoped>
 .theme-toggle {
     position: relative;
-    width: 60px;
-    height: 30px;
+    width: 3.5rem; 
+    height: 1.75rem;
     background: var(--btn-bg);
     color: var(--text-color);
     border-radius: 999px;
@@ -37,7 +37,7 @@ function toggleTheme() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: background 0.3s ease;
 }
 
@@ -46,31 +46,36 @@ function toggleTheme() {
     transition: border-color 0.25s;
 }
 
-.icon {
+.theme-toggle .icon {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    height: 100%;
+    font-size: 1rem;
+    line-height: 1;
     z-index: 1;
     transition: opacity 0.3s ease;
 }
 
-.moon {
-    margin: 0px 0px 2px 3px;
-}
-
+.moon,
 .sun {
-    margin: 0px 3px 2px 0px;
+    margin: 0; 
 }
 
 .sliding-circle {
     position: absolute;
-    inset: 2px;
-    width: 26px;
-    height: 26px;
+    left: 2px;
+    width: calc(100% / 2 - 4px);
+    height: calc(100% - 4px);
     background: white;
     border-radius: 50%;
     transition: transform 0.3s ease;
 }
 
 .theme-toggle.light .sliding-circle {
-    transform: translateX(30px);
+    transform: translateX(115%);
 }
 
 .theme-toggle.dark .sun {

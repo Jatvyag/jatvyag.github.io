@@ -36,7 +36,7 @@ const data_years = calculateYears('2014-09-04')
 
 <style scoped>
 .card {
-  padding: 2em;
+  padding: 2rem;
   background-color: var(--button-bg); 
   color: var(--text);
   border-radius: 12px;
