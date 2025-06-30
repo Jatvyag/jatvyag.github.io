@@ -29,7 +29,7 @@ onMounted(() => {
       <ThemeSwitcher />   
     </div>
   </div>
-  <About :msg="t('about.myName')" />
+  <About :msg="t('about.my_name')" />
 </template>
 
 <style scoped>

@@ -15,10 +15,12 @@
         "contact":"Contact"
     },
     "about":{
-        "myName": "Anton Parfenchyk",
+        "my_name": "Anton Parfenchyk",
         "intro": "Hi, I’m a Data Analyst & Data Engineer passionate about turning data into insights and scalable solutions.",
-        "tagline": "{coding_years}+ years coding • Python • JavaScript • SQL • Bash",
-        "careerPath": "Previously an IT lawyer and researcher, I bring strong analytical skills and a deep understanding of privacy and tech regulations to my work.",
-        "legalTags": "{data_years}+ years in data • IT Law • Privacy • Security • IP"
+        "tagline_prefix": "{coding_years}+ years coding",
+        "tech_tags": ["Python", "JavaScript", "SQL", "Bash"],
+        "career_path": "Previously an IT lawyer and researcher, I bring strong analytical skills and a deep understanding of privacy and tech regulations to my work.",
+        "legal_prefix": "{data_years}+ years in data",
+        "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
     }
 }

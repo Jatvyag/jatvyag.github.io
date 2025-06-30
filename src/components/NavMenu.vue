@@ -102,11 +102,13 @@ function toggleMenu() {
 }
 
 .side-menu li {
-    padding: 0.5rem 0;
+    padding: 0.5rem;
+    margin-right: 1rem;
     display: flex;
+    cursor: pointer;
     gap: 0.5rem;
     align-items: center;
-    cursor: default;
+    border: 2px solid transparent; 
 }
 
 .side-menu li.active {
@@ -116,6 +118,12 @@ function toggleMenu() {
 .side-menu li.disabled {
     opacity: 0.5;
     pointer-events: none;
+}
+
+.side-menu li:hover {
+    border-color: var(--btn-hover-color);
+    background-color: var(--btn-bg);
+    border-radius: 8px;
 }
 
 .close-btn {

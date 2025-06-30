@@ -1,7 +1,7 @@
 <script setup>
 import Banner from './Banner.vue'
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+const { t, tm } = useI18n()
 
 defineProps({
   msg: String,
@@ -26,21 +26,41 @@ const data_years = calculateYears('2014-09-04')
 <template>
   <h1>{{ msg }}</h1>
   <Banner />
-  <div class="card">
+  <div>
     <p>{{ t('about.intro') }}</p>
-    <p>{{ t('about.tagline', { coding_years }) }}</p>
-    <p>{{ t('about.careerPath') }}</p>
-    <p>{{ t('about.legalTags', { data_years }) }}</p>
+    <p class="tagline">
+      <span class="tag">{{ t('about.tagline_prefix', { coding_years }) }}</span>
+      <span v-for="(tag, index) in tm('about.tech_tags')" :key="index" class="tag">
+        {{ tag }}
+      </span>
+    </p>
+    <p>{{ t('about.career_path') }}</p>
+    <p class="tagline">
+      <span class="tag">{{ t('about.legal_prefix', { data_years }) }}</span>
+      <span v-for="(tag, index) in tm('about.legal_tags')" :key="index" class="tag">
+        {{ tag }}
+      </span>
+    </p>
   </div>
 </template>
 
 <style scoped>
-.card {
-  padding: 2rem;
-  background-color: var(--button-bg); 
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: var(--drop-down-box-shadow);
-  transition: box-shadow 0.3s ease;
+.tagline {
+  font-size: 1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag {
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem 0.5rem 0.6rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 </style>
