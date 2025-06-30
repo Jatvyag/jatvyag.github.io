@@ -45,9 +45,10 @@ body {
 }
 
 main {
-  padding: 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;  
+  gap: 0.5rem;
 }
 
 h1 {
@@ -58,6 +59,7 @@ h1 {
 
 h2 {
   font-size: 2.4rem;
+  margin-top: 0.2rem;
   margin-bottom: 0.5rem;
 }
 
@@ -102,6 +104,43 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.section {
+  scroll-margin-top: 60px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: start;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.scroll-down {
+  text-align: center;
+  font-size: 4rem;
+  color: var(--btn-hover-color);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  padding-bottom: 1rem;
+}
+
+.scroll-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+  font-size: 4rem;
+  color: var(--btn-hover-color);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  height: 4rem;
+  padding: 0.1rem;
+  margin: 0.5rem;
 }
 
 .card {

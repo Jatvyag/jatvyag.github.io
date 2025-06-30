@@ -2,41 +2,70 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+const props = defineProps({
+    currentSection: {
+        type: String,
+        required: true,
+    }
+})
+
+const emit = defineEmits(['update:currentSection'])
+
 const { t } = useI18n()
 const isOpen = ref(false)
-const currentPage = ref('main') 
 
 const navItems = [
-    { key: 'main', icon: '\u{2630}', disabled: false },
-    { key: 'projects', icon: '\u{2699}', disabled: true },
-    { key: 'skills', icon: '\u{1F6E0}', disabled: true },
-    { key: 'certifications', icon: '\u{2714}', disabled: true },
-    { key: 'articles', icon: '\u{270E}', disabled: true },
-    { key: 'contact', icon: '\u{2709}', disabled: true },
+    { key: 'main', link: '#main', icon: '\u{2630}', disabled: false },
+    { key: 'projects', link: '#projects', icon: '\u{2699}', disabled: true },
+    { key: 'skills', link: '#skills', icon: '\u{1F6E0}', disabled: false },
+    { key: 'certifications', link: '#certifications', icon: '\u{2714}', disabled: true },
+    { key: 'articles', link: '#articles', icon: '\u{270E}', disabled: true },
+    { key: 'contact', link: '#contact', icon: '\u{2709}', disabled: true },
 ]
 
 function toggleMenu() {
     isOpen.value = !isOpen.value
 }
+
+function handleNavigation(item) {
+    if (item.disabled) return
+
+    const hash = item.link
+    if (hash && hash.startsWith('#')) {
+        const el = document.querySelector(hash)
+        if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+        emit('update:currentSection', item.key)
+        isOpen.value = false
+        }
+    } else {
+        /**
+         * TBD: handle router push
+         * router.push(item.link)
+         */
+    }
+}
 </script>
 
 <template>
     <div class="nav-wrapper">
-        <button class="menu-btn" @click="toggleMenu"><span>{{ '\u{2630}' }}</span></button>
-        <span class="page-title">{{ t(`navMenu.${currentPage}`) }}</span>
+        <button class="menu-btn" @click="toggleMenu">
+            <span>{{ '\u{2630}' }}</span>
+            <span class="page-title">{{ t(`navMenu.${props.currentSection}`) }}</span>
+        </button>
         <!-- Backdrop -->
         <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
         <!-- Side Menu -->
         <div class="side-menu" :class="{ open: isOpen }">
-        <button class="close-btn" @click="toggleMenu" :class="{ rotated: isOpen }"><span>{{ '\u{2716}' }}</span></button>
         <ul>
             <li
             v-for="item in navItems"
             :key="item.key"
-            :class="{ active: item.key === currentPage, disabled: item.disabled }"
+            :class="{ active: item.key === props.currentSection, disabled: item.disabled }"
+            @click="handleNavigation(item)"
             >
-            <span>{{ item.icon }}</span>
-            <span>{{ t(`navMenu.${item.key}`) }}</span>
+                <span>{{ item.icon }}</span>
+                <span>{{ t(`navMenu.${item.key}`) }}</span>
             </li>
         </ul>
         </div>
@@ -52,7 +81,10 @@ function toggleMenu() {
 }
 
 .menu-btn {
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
+    gap: 0.5rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -124,21 +156,6 @@ function toggleMenu() {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
     border-radius: 8px;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--attention-color);
-    cursor: pointer;
-    margin: 0 auto;
-    display: block;
-    transition: transform 0.4s ease, color 0.3s ease;
-}
-
-.close-btn.rotated {
-    transform: rotate(180deg);
 }
 
 @media (max-width: 600px) {

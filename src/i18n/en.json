@@ -22,5 +22,8 @@
         "career_path": "Previously an IT lawyer and researcher, I bring strong analytical skills and a deep understanding of privacy and tech regulations to my work.",
         "legal_prefix": "{data_years}+ years in data",
         "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
+    },
+    "skills":{
+        "header":"Skills"
     }
 }
