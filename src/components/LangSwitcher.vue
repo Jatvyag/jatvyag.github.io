@@ -28,7 +28,12 @@ const currentLabel = computed(() => {
 <template>
     <div class="lang-switcher">
         <button @click="toggleDropdown">
-            {{ currentLabel }} <font-awesome-icon :icon="['fas', 'language']" />
+            {{ currentLabel }}
+            <font-awesome-icon :icon="['fas', 'language']" />
+            <font-awesome-icon
+                :icon="['fas', 'chevron-down']"
+                :class="['chevron-icon', { open: isOpen }]"
+            />
         </button>
         <div v-if="isOpen" class="dropdown">
             <button
@@ -48,6 +53,14 @@ const currentLabel = computed(() => {
 .lang-switcher {
     position: relative;
     display: inline-block;
+}
+
+.chevron-icon {
+    transition: transform 0.3s ease;
+}
+
+.chevron-icon.open {
+    transform: rotate(180deg);
 }
 
 .dropdown {
