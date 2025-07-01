@@ -28,7 +28,7 @@ const currentLabel = computed(() => {
 <template>
     <div class="lang-switcher">
         <button @click="toggleDropdown">
-            {{ currentLabel }} <span>{{ '\u{1F310}' }}</span>
+            {{ currentLabel }} <font-awesome-icon :icon="['fas', 'language']" />
         </button>
         <div v-if="isOpen" class="dropdown">
             <button

@@ -15,11 +15,11 @@ const { t } = useI18n()
 const isOpen = ref(false)
 
 const navItems = [
-    { key: 'main', link: '#main', icon: '\u{2630}', disabled: false },
-    { key: 'projects', link: '#projects', icon: '\u{2699}', disabled: true },
-    { key: 'skills', link: '#skills', icon: '\u{1F6E0}', disabled: false },
-    { key: 'achievements', link: '#achievements', icon: '\u{2714}', disabled: true },
-    { key: 'contact', link: '#contact', icon: '\u{2709}', disabled: true },
+    { key: 'main', link: '#main', faIcon: ['fas', 'bars'], disabled: false },
+    { key: 'projects', link: '#projects', faIcon: ['fas', 'briefcase'], disabled: true },
+    { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
+    { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: true },
+    { key: 'contact', link: '#contact', faIcon: ['fas', 'envelope-open-text'], disabled: true },
 ]
 
 function toggleMenu() {
@@ -49,7 +49,9 @@ function handleNavigation(item) {
 <template>
     <div class="nav-wrapper">
         <button class="menu-btn" @click="toggleMenu">
-            <span>{{ '\u{2630}' }}</span>
+            <font-awesome-icon 
+                :icon="navItems.find(item => item.key === props.currentSection)?.faIcon || ['fas', 'bars']" 
+            />
             <span class="page-title">{{ t(`navMenu.${props.currentSection}`) }}</span>
         </button>
         <!-- Backdrop -->
@@ -63,7 +65,8 @@ function handleNavigation(item) {
             :class="{ active: item.key === props.currentSection, disabled: item.disabled }"
             @click="handleNavigation(item)"
             >
-                <span>{{ item.icon }}</span>
+                <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
+                <span v-else>{{ item.unicodeIcon }}</span>
                 <span>{{ t(`navMenu.${item.key}`) }}</span>
             </li>
         </ul>
