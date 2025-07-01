@@ -1,0 +1,50 @@
+{
+    "skills":{
+            "languages":[
+                {"name":"Python", "icon":"python.svg"},
+                {"name":"JavaScript", "icon":"javascript.svg"},
+                {"name":"SQL", "icon":"sql.svg"},
+                {"name":"Bash", "icon":"gnubash.svg"}
+            ],
+            "bi_tools":[
+                {"name":"Power BI", "icon":"powerbi.svg"},
+                {"name":"Tableau", "icon":"tableau.svg"},
+                {"name":"Superset", "icon":"apachesuperset.svg"}
+            ],
+            "analysis":[
+                {"name":"Pandas", "icon":"pandas.svg"},
+                {"name":"NumPy", "icon":"numpy.svg"}
+            ],
+            "data_workflow": [
+                {"name":"Airflow", "icon":"apacheairflow.svg"}, 
+                {"name":"dbt", "icon":"dbt.svg"}, 
+                {"name":"SQLAlchemy", "icon":"sqlalchemy.svg"}
+            ],
+            "db_storage":[
+                {"name":"PostgreSQL", "icon":"postgresql.svg"},
+                {"name":"SQLite", "icon":"sqlite.svg"},
+                {"name":"MongoDB", "icon":"mongodb.svg"},
+                {"name":"MinIO", "icon":"minio.svg"}
+            ],
+            "visualization": [
+                {"name":"Plotly", "icon":"plotly.svg"},
+                {"name":"Highcharts", "icon":"highcharts.svg"}
+            ],
+            "frontend": [
+                {"name":"Vue", "icon":"vuedotjs.svg"},
+                {"name":"JQuery", "icon":"jquery.svg"},
+                {"name":"DevExtreme", "icon":"devexpress.svg"}
+            ],
+            "devops_tools": [
+                {"name":"Git", "icon":"git.svg"},
+                {"name":"Docker", "icon":"docker.svg"},
+                {"name":"Linux", "icon":"linux.svg"}
+            ],
+            "tools": [
+                {"name":"Jupyter", "icon":"jupyter.svg"},
+                {"name":"Postman", "icon":"postman.svg"},
+                {"name":"FastAPI", "icon":"fastapi.svg"},
+                {"name":"Flask", "icon":"flask.svg"}
+            ]
+        }
+}

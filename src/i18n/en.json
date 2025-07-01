@@ -23,6 +23,17 @@
         "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
     },
     "skills":{
-        "header":"Skills"
+        "header":"Skills",
+        "h3":{
+            "languages":"Programming & Querying",
+            "bi_tools":"BI Tools",
+            "analysis":"Analysis Libraries",
+            "data_workflow":"Data Workflow",
+            "db_storage":"Databases & Storage",
+            "visualization":"Visualization Libraries",
+            "frontend":"Web & UI Frameworks",
+            "devops_tools":"DevOps & Tools",
+            "tools":"Tools & Ecosystem"
+        }
     }
 }
