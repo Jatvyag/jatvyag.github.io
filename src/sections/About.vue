@@ -25,27 +25,25 @@ function scrollToNextSection() {
 
 <template>
   <section id="main" class="section">
-    <div class="content">
-      <h1>{{ t('about.my_name') }}</h1>
-      <Banner />
-      <div>
-        <p>{{ t('about.intro') }}</p>
-        <p class="tagline">
-          <span class="tag">{{ t('about.tagline_prefix', { coding_years }) }}</span>
-          <span v-for="(tag, index) in tm('about.tech_tags')" :key="index" class="tag">
-            {{ tag }}
-          </span>
-        </p>
-        <p>{{ t('about.career_path') }}</p>
-        <p class="tagline">
-          <span class="tag">{{ t('about.legal_prefix', { data_years }) }}</span>
-          <span v-for="(tag, index) in tm('about.legal_tags')" :key="index" class="tag">
-            {{ tag }}
-          </span>
-        </p>
-      </div>
-      <div class="scroll-down" @click="scrollToNextSection">{{ '\u{2304}' }}</div>
+    <h1>{{ t('about.my_name') }}</h1>
+    <Banner />
+    <div>
+      <p>{{ t('about.intro') }}</p>
+      <p class="tagline">
+        <span class="tag">{{ t('about.tagline_prefix', { coding_years }) }}</span>
+        <span v-for="(tag, index) in tm('about.tech_tags')" :key="index" class="tag">
+          {{ tag }}
+        </span>
+      </p>
+      <p>{{ t('about.career_path') }}</p>
+      <p class="tagline">
+        <span class="tag">{{ t('about.legal_prefix', { data_years }) }}</span>
+        <span v-for="(tag, index) in tm('about.legal_tags')" :key="index" class="tag">
+          {{ tag }}
+        </span>
+      </p>
     </div>
+    <font-awesome-icon :icon="['fas', 'chevron-down']" class="scroll-down" @click="scrollToNextSection" />
   </section>
 </template>
 

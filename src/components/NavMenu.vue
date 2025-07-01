@@ -18,8 +18,7 @@ const navItems = [
     { key: 'main', link: '#main', icon: '\u{2630}', disabled: false },
     { key: 'projects', link: '#projects', icon: '\u{2699}', disabled: true },
     { key: 'skills', link: '#skills', icon: '\u{1F6E0}', disabled: false },
-    { key: 'certifications', link: '#certifications', icon: '\u{2714}', disabled: true },
-    { key: 'articles', link: '#articles', icon: '\u{270E}', disabled: true },
+    { key: 'achievements', link: '#achievements', icon: '\u{2714}', disabled: true },
     { key: 'contact', link: '#contact', icon: '\u{2709}', disabled: true },
 ]
 

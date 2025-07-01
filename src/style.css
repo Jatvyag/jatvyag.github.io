@@ -108,20 +108,21 @@ button:focus-visible {
 
 .section {
   scroll-margin-top: 60px;
+  scroll-snap-align: start;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  scroll-snap-align: start;
-}
-
-.content {
-  flex-grow: 1;
+  justify-content: flex-start;  
+  position: relative;
+  padding: 1rem;
+  padding-bottom: 3rem;
 }
 
 .scroll-down {
+  margin-top: auto;
+  margin-bottom: 3rem;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   color: var(--btn-hover-color);
   cursor: pointer;
   animation: bounce 2s infinite;
@@ -134,11 +135,11 @@ button:focus-visible {
   justify-content: center;
   text-align: center;
   line-height: 1;
-  font-size: 4rem;
+  font-size: 3rem;
   color: var(--btn-hover-color);
   cursor: pointer;
   animation: bounce 2s infinite;
-  height: 4rem;
+  height: 3rem;
   padding: 0.1rem;
   margin: 0.5rem;
 }

@@ -28,7 +28,7 @@ const observeSections = () => {
     },
     {
       rootMargin: '0px',
-      threshold: 0.2,
+      threshold: 0.1,
     }
   )
   document.querySelectorAll('main section[id]').forEach((section) => {

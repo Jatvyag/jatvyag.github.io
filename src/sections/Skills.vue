@@ -9,7 +9,7 @@ function scrollToPrevSection() {
 
 <template>
     <section id="skills" class="section">
-        <div class="scroll-up" @click="scrollToPrevSection">{{ '\u{2303}' }}</div>
+        <font-awesome-icon :icon="['fas', 'chevron-up']" class="scroll-up" @click="scrollToPrevSection" />
         <h2>{{ t('skills.header') }}</h2>
         <div class="content">
         <p>Some text...</p>
