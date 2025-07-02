@@ -10,6 +10,9 @@
   --btn-bg: #555555;
   --btn-hover-color: #646cff;
   --drop-down-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  --card-bg: #1e1e1e;
+  --card-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+  --icon-filter: invert(1);
 }
 
 :root[data-theme='light'] {
@@ -20,6 +23,10 @@
   --btn-bg: #dddddd;
   --btn-hover-color: #292d79;
   --drop-down-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  --card-bg: #f9f9f9;
+  --card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --icon-color: #333333;
+  --icon-filter: invert(0);
 }
 
 html {
@@ -145,15 +152,6 @@ button:focus-visible {
   height: 3rem;
   padding: 0.1rem;
   margin: 0.5rem;
-}
-
-.card {
-  padding: 2rem;
-  background-color: var(--button-bg); 
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: var(--drop-down-box-shadow);
-  transition: box-shadow 0.3s ease;
 }
 
 #app {
