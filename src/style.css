@@ -117,8 +117,8 @@ button:focus-visible {
 }
 
 .section {
-  scroll-margin-top: 60px;
-  scroll-snap-align: start;
+  scroll-margin-top: 2rem;
+  scroll-snap-align: start; 
   height: 100vh;
   display: flex;
   flex-direction: column;

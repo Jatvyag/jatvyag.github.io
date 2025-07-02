@@ -30,16 +30,10 @@ const getCategoryPairs = (skillsObj) => {
     }
     return pairs
 }
-
-function scrollToPrevSection() {
-    const previous = document.querySelector('#main') 
-    if (previous) previous.scrollIntoView({ behavior: 'smooth' })
-}
 </script>
 
 <template>
     <section id="skills" class="section">
-        <font-awesome-icon :icon="['fas', 'chevron-up']" class="scroll-up" @click="scrollToPrevSection" />
         <h2>{{ t('skills.header') }}</h2>
         <div class="skill-card">
         <div class="category-grid">
@@ -110,6 +104,7 @@ function scrollToPrevSection() {
 
 .skill-group h3 {
     margin-bottom: 1rem;
+    margin-top: 0.2rem;
     word-break: break-word;
     white-space: normal;
 }
@@ -126,6 +121,7 @@ function scrollToPrevSection() {
     align-items: left;
     width: calc(50% - 1rem); 
     justify-content: flex-start;
+    padding-bottom: 0.5rem;
 }
 
 .skill-icon {
