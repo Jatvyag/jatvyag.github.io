@@ -23,7 +23,6 @@
         "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
     },
     "skills":{
-        "header":"Skills",
         "h3":{
             "languages":"Programming & Querying",
             "bi_tools":"BI Tools",
@@ -35,5 +34,24 @@
             "devops_tools":"DevOps & Tools",
             "tools":"Tools & Ecosystem"
         }
+    },
+    "achievements":{
+        "datacamp":{
+            "intro":[
+                "DataCamp is an online learning platform that focuses on teaching the skills for becoming successful data scientists. The advantage of this platform is that these skills possible to acquire in an own pace — from non-coding essentials to data science and machine learning. Learning path could be self-constructed from course library.",
+                "On average, each course consists of 16 short 5-minutes long videos and 48 interactive coding exercises. Usually, it takes around 4 hours to finish the course. Instructors that make courses are either professional teachers or experts from leading companies such as Amazon, Spotify, Facebook.",
+                "Besides courses, it is possible to apply new skills in solving real-world problems using data science projects.",
+                "Here you can find the certificates that I got on this platform, the numbers of courses and projects that I finished."
+            ],
+            "completed":[
+                {"id":1, "type":"Courses", "number":130},
+                {"id":2, "type":"Projects", "number":21}
+            ]
+        },
+        "certificates":[
+            {"id":1,"name":"Data Analyst Professional", "badge":"data_analyst_professional.svg", "issuer":"DataCamp"},
+            {"id":2,"name":"Data Engineer Associate", "badge":"data_engineer_associate.svg", "issuer":"DataCamp"},
+            {"id":3,"name":"Data Scientist Professional", "badge":"data_scientist_professional.svg", "issuer":"DataCamp"}
+        ]
     }
 }

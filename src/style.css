@@ -117,7 +117,7 @@ button:focus-visible {
 .section {
   scroll-margin-top: 2rem;
   scroll-snap-align: start; 
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;  
@@ -126,7 +126,7 @@ button:focus-visible {
   padding-bottom: 3rem;
 }
 
-.scroll-down {
+.chevron {
   margin-top: auto;
   margin-bottom: 3rem;
   text-align: center;
@@ -137,19 +137,13 @@ button:focus-visible {
   padding-bottom: 1rem;
 }
 
-.scroll-up {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 1;
-  font-size: 3rem;
-  color: var(--btn-hover-color);
-  cursor: pointer;
-  animation: bounce 2s infinite;
-  height: 3rem;
-  padding: 0.1rem;
-  margin: 0.5rem;
+.card {
+    padding: 2rem;
+    background-color: var(--card-bg); 
+    color: var(--text);
+    border-radius: 12px;
+    box-shadow: var(--card-box-shadow);
+    transition: box-shadow 0.3s ease;
 }
 
 #app {

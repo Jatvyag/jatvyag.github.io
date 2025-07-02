@@ -18,8 +18,8 @@ const navItems = [
     { key: 'main', link: '#main', faIcon: ['fas', 'bars'], disabled: false },
     { key: 'projects', link: '#projects', faIcon: ['fas', 'briefcase'], disabled: true },
     { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
-    { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: true },
-    { key: 'contact', link: '#contact', faIcon: ['fas', 'envelope-open-text'], disabled: true },
+    { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: false },
+    { key: 'contact', link: '#contact', faIcon: ['fas', 'envelope-open-text'], disabled: false },
 ]
 
 function toggleMenu() {

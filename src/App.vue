@@ -1,11 +1,13 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import NavMenu from './components/NavMenu.vue'
-import About from './sections/About.vue'
-import Skills from './sections/Skills.vue'
 import LangSwitcher from './components/LangSwitcher.vue'
 import ThemeSwitcher from './components/ThemeSwitcher.vue'
+import About from './sections/About.vue'
+import Skills from './sections/Skills.vue'
+import Achievements from './sections/Achievements.vue'
 import { useI18n } from 'vue-i18n'
+import Contact from './sections/Contact.vue'
 
 const { locale, t } = useI18n()
 
@@ -68,6 +70,8 @@ onUnmounted(() => {
   <main>
     <About />
     <Skills />
+    <Achievements />
+    <Contact />
   </main>
 </template>
 

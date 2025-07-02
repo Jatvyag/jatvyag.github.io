@@ -43,7 +43,7 @@ function scrollToNextSection() {
         </span>
       </p>
     </div>
-    <font-awesome-icon :icon="['fas', 'chevron-down']" class="scroll-down" @click="scrollToNextSection" />
+    <font-awesome-icon :icon="['fas', 'chevron-down']" class="chevron" @click="scrollToNextSection" />
   </section>
 </template>
 

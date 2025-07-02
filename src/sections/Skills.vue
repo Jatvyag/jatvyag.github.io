@@ -30,16 +30,21 @@ const getCategoryPairs = (skillsObj) => {
     }
     return pairs
 }
+
+function scrollToNextSection() {
+    const next = document.querySelector('#achievements') 
+    if (next) next.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
     <section id="skills" class="section">
-        <h2>{{ t('skills.header') }}</h2>
-        <div class="skill-card">
+        <h2>{{ t('navMenu.skills') }}</h2>
+        <div class="card">
         <div class="category-grid">
             <div
-            v-for="(pair, i) in getCategoryPairs(skills)"
-            :key="i"
+            v-for="pair in getCategoryPairs(skills)"
+            :key="Object.keys(pair).join('-')"
             class="category-row"
             >
             <div
@@ -50,13 +55,13 @@ const getCategoryPairs = (skillsObj) => {
                 <h3>{{ t(`skills.h3.${key}`) }}</h3>
                 <div class="skill-grid">
                 <div
-                    v-for="(pair, i) in getSkillPairs(items)"
-                    :key="i"
+                    v-for="pair in getSkillPairs(items)"
+                    :key="pair.map(s => s.id).join('-')"
                     class="skill-row"
                 >
                     <div
                     v-for="skill in pair"
-                    :key="skill.name"
+                    :key="skill.id"
                     class="skill-item"
                     >
                     <img :src="getIconPath(skill.icon)" :alt="skill.name" class="skill-icon" />
@@ -68,20 +73,11 @@ const getCategoryPairs = (skillsObj) => {
             </div>
         </div>
         </div>
-        <font-awesome-icon :icon="['fas', 'chevron-down']" class="scroll-down" />
+        <font-awesome-icon :icon="['fas', 'chevron-down']" class="chevron" @click="scrollToNextSection" />
     </section>
 </template>
 
 <style scoped>
-.skill-card {
-    padding: 2rem;
-    background-color: var(--card-bg); 
-    color: var(--text);
-    border-radius: 12px;
-    box-shadow: var(--card-box-shadow);
-    transition: box-shadow 0.3s ease;
-}
-
 .category-grid {
     display: flex;
     flex-direction: column;

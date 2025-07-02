@@ -1,53 +1,53 @@
 {
     "skills":{
-            "languages":[
-                {"name":"Python", "icon":"python.svg"},
-                {"name":"JavaScript", "icon":"javascript.svg"},
-                {"name":"SQL", "icon":"sql.svg"},
-                {"name":"Bash", "icon":"gnubash.svg"}
-            ],
-            "bi_tools":[
-                {"name":"Power BI", "icon":"powerbi.svg"},
-                {"name":"Tableau", "icon":"tableau.svg"},
-                {"name":"Superset", "icon":"apachesuperset.svg"}
-            ],
-            "analysis":[
-                {"name":"Pandas", "icon":"pandas.svg"},
-                {"name":"NumPy", "icon":"numpy.svg"}
-            ],
-            "data_workflow": [
-                {"name":"Airflow", "icon":"apacheairflow.svg"}, 
-                {"name":"dbt", "icon":"dbt.svg"}, 
-                {"name":"SQLAlchemy", "icon":"sqlalchemy.svg"}
-            ],
-            "db_storage":[
-                {"name":"PostgreSQL", "icon":"postgresql.svg"},
-                {"name":"SQLite", "icon":"sqlite.svg"},
-                {"name":"MongoDB", "icon":"mongodb.svg"},
-                {"name":"MinIO", "icon":"minio.svg"}
-            ],
-            "visualization": [
-                {"name":"Matplotlib", "icon":"matplotlib.svg"},
-                {"name":"Seaborn", "icon":"seaborn.svg"},
-                {"name":"Plotly", "icon":"plotly.svg"},
-                {"name":"Highcharts", "icon":"highcharts.svg"}
-            ],
-            "frontend": [
-                {"name":"Vue", "icon":"vuedotjs.svg"},
-                {"name":"JQuery", "icon":"jquery.svg"},
-                {"name":"DevExtreme", "icon":"devexpress.svg"}
-            ],
-            "devops_tools": [
-                {"name":"Git", "icon":"git.svg"},
-                {"name":"Docker", "icon":"docker.svg"},
-                {"name":"Linux", "icon":"linux.svg"},
-                {"name": "Grafana", "icon":"grafana.svg"}
-            ],
-            "tools": [
-                {"name":"Jupyter", "icon":"jupyter.svg"},
-                {"name":"Postman", "icon":"postman.svg"},
-                {"name":"FastAPI", "icon":"fastapi.svg"},
-                {"name":"Flask", "icon":"flask.svg"}
-            ]
-        }
+        "languages":[
+            {"id":1, "name":"Python", "icon":"python.svg"},
+            {"id":2, "name":"JavaScript", "icon":"javascript.svg"},
+            {"id":3, "name":"SQL", "icon":"sql.svg"},
+            {"id":4, "name":"Bash", "icon":"gnubash.svg"}
+        ],
+        "bi_tools":[
+            {"id":1, "name":"Power BI", "icon":"powerbi.svg"},
+            {"id":2, "name":"Tableau", "icon":"tableau.svg"},
+            {"id":3, "name":"Superset", "icon":"apachesuperset.svg"}
+        ],
+        "analysis":[
+            {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+            {"id":2, "name":"NumPy", "icon":"numpy.svg"}
+        ],
+        "data_workflow": [
+            {"id":1, "name":"Airflow", "icon":"apacheairflow.svg"}, 
+            {"id":2, "name":"dbt", "icon":"dbt.svg"}, 
+            {"id":3, "name":"SQLAlchemy", "icon":"sqlalchemy.svg"}
+        ],
+        "db_storage":[
+            {"id":1, "name":"PostgreSQL", "icon":"postgresql.svg"},
+            {"id":2, "name":"SQLite", "icon":"sqlite.svg"},
+            {"id":3, "name":"MongoDB", "icon":"mongodb.svg"},
+            {"id":4, "name":"MinIO", "icon":"minio.svg"}
+        ],
+        "visualization": [
+            {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
+            {"id":2, "name":"Seaborn", "icon":"seaborn.svg"},
+            {"id":3, "name":"Plotly", "icon":"plotly.svg"},
+            {"id":4, "name":"Highcharts", "icon":"highcharts.svg"}
+        ],
+        "frontend": [
+            {"id":1, "name":"Vue", "icon":"vuedotjs.svg"},
+            {"id":2, "name":"JQuery", "icon":"jquery.svg"},
+            {"id":3, "name":"DevExtreme", "icon":"devexpress.svg"}
+        ],
+        "devops_tools": [
+            {"id":1, "name":"Git", "icon":"git.svg"},
+            {"id":2, "name":"Docker", "icon":"docker.svg"},
+            {"id":3, "name":"Linux", "icon":"linux.svg"},
+            {"id":4, "name": "Grafana", "icon":"grafana.svg"}
+        ],
+        "tools": [
+            {"id":1, "name":"Jupyter", "icon":"jupyter.svg"},
+            {"id":2, "name":"Postman", "icon":"postman.svg"},
+            {"id":3, "name":"FastAPI", "icon":"fastapi.svg"},
+            {"id":4, "name":"Flask", "icon":"flask.svg"}
+        ]
+    }
 }
