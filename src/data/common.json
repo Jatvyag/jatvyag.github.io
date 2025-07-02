@@ -27,6 +27,8 @@
                 {"name":"MinIO", "icon":"minio.svg"}
             ],
             "visualization": [
+                {"name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"name":"Seaborn", "icon":"seaborn.svg"},
                 {"name":"Plotly", "icon":"plotly.svg"},
                 {"name":"Highcharts", "icon":"highcharts.svg"}
             ],

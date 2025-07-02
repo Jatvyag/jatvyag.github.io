@@ -128,7 +128,6 @@ const getCategoryPairs = (skillsObj) => {
     width: 24px;
     height: 24px;
     margin-right: 0.75rem;
-    filter: var(--icon-filter);
 }
 
 .skill-name {

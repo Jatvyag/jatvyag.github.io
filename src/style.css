@@ -10,9 +10,8 @@
   --btn-bg: #555555;
   --btn-hover-color: #646cff;
   --drop-down-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-  --card-bg: #1e1e1e;
+  --card-bg: #555555;
   --card-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
-  --icon-filter: invert(1);
 }
 
 :root[data-theme='light'] {
@@ -26,7 +25,6 @@
   --card-bg: #f9f9f9;
   --card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --icon-color: #333333;
-  --icon-filter: invert(0);
 }
 
 html {
