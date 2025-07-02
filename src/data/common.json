@@ -38,7 +38,8 @@
             "devops_tools": [
                 {"name":"Git", "icon":"git.svg"},
                 {"name":"Docker", "icon":"docker.svg"},
-                {"name":"Linux", "icon":"linux.svg"}
+                {"name":"Linux", "icon":"linux.svg"},
+                {"name": "Grafana", "icon":"grafana.svg"}
             ],
             "tools": [
                 {"name":"Jupyter", "icon":"jupyter.svg"},
