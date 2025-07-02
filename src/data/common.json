@@ -13,7 +13,9 @@
         ],
         "analysis":[
             {"id":1, "name":"Pandas", "icon":"pandas.svg"},
-            {"id":2, "name":"NumPy", "icon":"numpy.svg"}
+            {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+            {"id":3, "name":"SciPy", "icon":"scipy.svg"},
+            {"id":4, "name":"Statsmodels", "icon":"statsmodels.svg"}
         ],
         "data_workflow": [
             {"id":1, "name":"Airflow", "icon":"apacheairflow.svg"}, 

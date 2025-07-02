@@ -71,7 +71,8 @@ h3.in-section {
     align-items: center;
     width: 100%;
     max-width: 15rem;
-    background-color: #666;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-box-shadow);
     border-radius: 10px;
     padding: 0.75rem;
 }
@@ -96,7 +97,7 @@ h3.in-section {
 
 .issuer {
     text-align: left;
-    color: lightgray;
+    color: #8f8f8f;
     font-size: 0.9rem;
 }
 .completed-stats {

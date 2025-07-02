@@ -23,7 +23,6 @@ const observeSections = () => {
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          console.log('Section in view:', entry.target.id)
           currentSection.value = entry.target.id
         }
       }

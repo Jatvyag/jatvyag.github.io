@@ -118,6 +118,7 @@ button:focus-visible {
   scroll-margin-top: 2rem;
   scroll-snap-align: start; 
   min-height: 100vh;
+  overflow-anchor: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;  
@@ -138,12 +139,14 @@ button:focus-visible {
 }
 
 .card {
-    padding: 2rem;
-    background-color: var(--card-bg); 
-    color: var(--text);
-    border-radius: 12px;
-    box-shadow: var(--card-box-shadow);
-    transition: box-shadow 0.3s ease;
+  position: relative;
+  padding: 2rem;
+  background-color: var(--card-bg); 
+  color: var(--text);
+  border-radius: 12px;
+  box-shadow: var(--card-box-shadow);
+  overflow-anchor: none;
+  transition: box-shadow 0.3s ease;
 }
 
 #app {
