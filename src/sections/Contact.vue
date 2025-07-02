@@ -10,8 +10,8 @@ function scrollToMain() {
 </script>
 
 <template>
-    <section id="contact" class="section">
-        <h2>{{ t('navMenu.contact') }}</h2>
+    <section id="contacts" class="section">
+        <h2>{{ t('navMenu.contacts') }}</h2>
         <p>Some text...</p>
         <font-awesome-icon :icon="['fas', 'chevron-up']" class="chevron" @click="scrollToMain" />
     </section>

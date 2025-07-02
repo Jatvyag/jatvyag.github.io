@@ -6,6 +6,10 @@ const props = defineProps({
     currentSection: {
         type: String,
         required: true,
+    },
+    navItems: {
+        type: Array,
+        required: true,
     }
 })
 
@@ -13,14 +17,6 @@ const emit = defineEmits(['update:currentSection'])
 
 const { t } = useI18n()
 const isOpen = ref(false)
-
-const navItems = [
-    { key: 'main', link: '#main', faIcon: ['fas', 'bars'], disabled: false },
-    { key: 'projects', link: '#projects', faIcon: ['fas', 'briefcase'], disabled: true },
-    { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
-    { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: false },
-    { key: 'contact', link: '#contact', faIcon: ['fas', 'envelope-open-text'], disabled: false },
-]
 
 function toggleMenu() {
     isOpen.value = !isOpen.value

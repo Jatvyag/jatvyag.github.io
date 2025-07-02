@@ -6,6 +6,7 @@ import ThemeSwitcher from './components/ThemeSwitcher.vue'
 import About from './sections/About.vue'
 import Skills from './sections/Skills.vue'
 import Achievements from './sections/Achievements.vue'
+import Footer from './components/Footer.vue'
 import { useI18n } from 'vue-i18n'
 import Contact from './sections/Contact.vue'
 
@@ -17,6 +18,13 @@ function updateMetadata(lang) {
 }
 
 const currentSection = ref('main')
+
+const navItems = [
+    { key: 'main', link: '#main', faIcon: ['fas', 'bars'], disabled: false },
+    { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
+    { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: false },
+    { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], disabled: false },
+]
 
 const observeSections = () => {
   const observer = new IntersectionObserver(
@@ -59,7 +67,7 @@ onUnmounted(() => {
 
 <template>
   <div class="top-bar">
-    <NavMenu v-model:currentSection="currentSection" />
+    <NavMenu v-model:currentSection="currentSection" :navItems="navItems" />
     <div class="top-lang-theme-bar">
       <LangSwitcher />
       <ThemeSwitcher />   
@@ -72,6 +80,7 @@ onUnmounted(() => {
     <Achievements />
     <Contact />
   </main>
+  <Footer />
 </template>
 
 <style scoped>

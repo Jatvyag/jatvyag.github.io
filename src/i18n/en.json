@@ -8,10 +8,9 @@
     },
     "navMenu":{
         "main":"Main",
-        "projects":"Projects",
         "skills":"Skills",
         "achievements":"Achievements",
-        "contact":"Contact"
+        "contacts":"Contacts"
     },
     "about":{
         "my_name": "Anton Parfenchyk",
@@ -26,13 +25,13 @@
         "h3":{
             "languages":"Programming & Querying",
             "bi_tools":"BI Tools",
-            "analysis":"Analysis Libraries",
+            "analysis":"Analysis",
             "data_workflow":"Data Workflow",
             "db_storage":"Databases & Storage",
-            "visualization":"Visualization Libraries",
+            "visualization":"Visualization",
             "frontend":"Web & UI Frameworks",
-            "devops_tools":"DevOps & Tools",
-            "tools":"Tools & Ecosystem"
+            "devops_tools":"DevOps",
+            "tools":"Tools & Ecosystems"
         }
     },
     "achievements":{

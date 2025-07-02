@@ -7,7 +7,7 @@ const getBadgePath = (badgeFile) =>
     new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
 
 function scrollToNextSection() {
-    const next = document.querySelector('#contact') 
+    const next = document.querySelector('#contacts') 
     if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>

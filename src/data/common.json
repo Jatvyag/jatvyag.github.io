@@ -6,10 +6,11 @@
             {"id":3, "name":"SQL", "icon":"sql.svg"},
             {"id":4, "name":"Bash", "icon":"gnubash.svg"}
         ],
-        "bi_tools":[
-            {"id":1, "name":"Power BI", "icon":"powerbi.svg"},
-            {"id":2, "name":"Tableau", "icon":"tableau.svg"},
-            {"id":3, "name":"Superset", "icon":"apachesuperset.svg"}
+        "db_storage":[
+            {"id":1, "name":"PostgreSQL", "icon":"postgresql.svg"},
+            {"id":2, "name":"SQLite", "icon":"sqlite.svg"},
+            {"id":3, "name":"MongoDB", "icon":"mongodb.svg"},
+            {"id":4, "name":"MinIO", "icon":"minio.svg"}
         ],
         "analysis":[
             {"id":1, "name":"Pandas", "icon":"pandas.svg"},
@@ -17,22 +18,21 @@
             {"id":3, "name":"SciPy", "icon":"scipy.svg"},
             {"id":4, "name":"Statsmodels", "icon":"statsmodels.svg"}
         ],
-        "data_workflow": [
-            {"id":1, "name":"Airflow", "icon":"apacheairflow.svg"}, 
-            {"id":2, "name":"dbt", "icon":"dbt.svg"}, 
-            {"id":3, "name":"SQLAlchemy", "icon":"sqlalchemy.svg"}
-        ],
-        "db_storage":[
-            {"id":1, "name":"PostgreSQL", "icon":"postgresql.svg"},
-            {"id":2, "name":"SQLite", "icon":"sqlite.svg"},
-            {"id":3, "name":"MongoDB", "icon":"mongodb.svg"},
-            {"id":4, "name":"MinIO", "icon":"minio.svg"}
+        "bi_tools":[
+            {"id":1, "name":"Power BI", "icon":"powerbi.svg"},
+            {"id":2, "name":"Tableau", "icon":"tableau.svg"},
+            {"id":3, "name":"Superset", "icon":"apachesuperset.svg"}
         ],
         "visualization": [
             {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
             {"id":2, "name":"Seaborn", "icon":"seaborn.svg"},
             {"id":3, "name":"Plotly", "icon":"plotly.svg"},
             {"id":4, "name":"Highcharts", "icon":"highcharts.svg"}
+        ],  
+        "data_workflow": [
+            {"id":1, "name":"Airflow", "icon":"apacheairflow.svg"}, 
+            {"id":2, "name":"dbt", "icon":"dbt.svg"}, 
+            {"id":3, "name":"SQLAlchemy", "icon":"sqlalchemy.svg"}
         ],
         "frontend": [
             {"id":1, "name":"Vue", "icon":"vuedotjs.svg"},

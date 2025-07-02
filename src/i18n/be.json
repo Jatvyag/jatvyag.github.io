@@ -8,10 +8,9 @@
     },
     "navMenu":{
         "main":"Галоўная",
-        "projects":"Праекты",
         "skills":"Навыкі",
         "achievements":"Дасягненні",
-        "contact":"Кантакты"
+        "contacts":"Кантакты"
     },
     "about": {
         "my_name": "Антон Парфенчык",
@@ -26,13 +25,13 @@
         "h3":{
             "languages":"Праграмаванне і запыты",
             "bi_tools":"Бізнес-аналітыка",
-            "analysis":"Бібліятэкі аналізу",
+            "analysis":"Аналіз",
             "data_workflow":"Апрацоўка даных",
             "db_storage":"Базы і сховішчы даных",
-            "visualization":"Бібліятэкі візуалізацыі",
-            "frontend":"Фрэймворкі",
-            "devops_tools":"Дэвопс інструменты",
-            "tools":"Інструменты і экасістэма"
+            "visualization":"Візуалізацыя",
+            "frontend":"Вэб і фрэймворкі",
+            "devops_tools":"Дэвопс",
+            "tools":"Інструменты і экасістэмы"
         }
     },
     "achievements":{
