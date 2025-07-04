@@ -1,38 +1,15 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import commonData from '../data/common.json'
+import JSONData from '../data/data.json'
 
-const { t, tm } = useI18n()
-
-const skills = commonData.skills
+const { t } = useI18n()
+const skillsData = JSONData.skills
 
 const getIconPath = (iconFile) =>
     new URL(`../assets/skills/${iconFile}`, import.meta.url).href
 
-const getSkillPairs = (skillsArray) => {
-    const pairs = []
-    for (let i = 0; i < skillsArray.length; i += 2) {
-        pairs.push(skillsArray.slice(i, i + 2))
-    }
-    return pairs
-}
-
-const getCategoryPairs = (skillsObj) => {
-    const entries = Object.entries(skillsObj)
-    const pairs = []
-    for (let i = 0; i < entries.length; i += 2) {
-        const pair = {}
-        pair[entries[i][0]] = entries[i][1]
-        if (entries[i + 1]) {
-        pair[entries[i + 1][0]] = entries[i + 1][1]
-        }
-        pairs.push(pair)
-    }
-    return pairs
-}
-
 function scrollToNextSection() {
-    const next = document.querySelector('#achievements') 
+    const next = document.querySelector('#achievements')
     if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
@@ -40,89 +17,71 @@ function scrollToNextSection() {
 <template>
     <section id="skills" class="section">
         <h2>{{ t('navMenu.skills') }}</h2>
-        <div class="card">
-        <div class="category-grid">
+        <div class="card skills">
             <div
-            v-for="pair in getCategoryPairs(skills)"
-            :key="Object.keys(pair).join('-')"
-            class="category-row"
+            v-for="(items, categoryKey) in skillsData"
+            :key="categoryKey"
+            class="skill-group"
             >
-            <div
-                v-for="(items, key) in pair"
-                :key="key"
-                class="skill-group"
-            >
-                <h3>{{ t(`skills.h3.${key}`) }}</h3>
-                <div class="skill-grid">
+            <h3>{{ t(`skills.${categoryKey}`) }}</h3>
+            <div class="skill-grid">
                 <div
-                    v-for="pair in getSkillPairs(items)"
-                    :key="pair.map(s => s.id).join('-')"
-                    class="skill-row"
+                v-for="skill in items"
+                :key="skill.id"
+                class="skill-item"
                 >
-                    <div
-                    v-for="skill in pair"
-                    :key="skill.id"
-                    class="skill-item"
-                    >
-                    <img :src="getIconPath(skill.icon)" :alt="skill.name" class="skill-icon" />
-                    <span class="skill-name">{{ skill.name }}</span>
-                    </div>
-                </div>
+                <img
+                    :src="getIconPath(skill.icon)"
+                    :alt="skill.name"
+                    class="skill-icon"
+                />
+                <span class="skill-name">{{ skill.name }}</span>
                 </div>
             </div>
             </div>
         </div>
-        </div>
-        <font-awesome-icon :icon="['fas', 'chevron-down']" class="chevron" @click="scrollToNextSection" />
+        <font-awesome-icon
+        :icon="['fas', 'chevron-down']"
+        class="chevron"
+        @click="scrollToNextSection"
+        />
     </section>
 </template>
 
 <style scoped>
-.category-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.category-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+.card.skills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.5rem 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 }
 
 .skill-group {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
 .skill-group h3 {
-    margin-bottom: 1rem;
-    margin-top: 0.2rem;
+    margin: 0.5rem 0;
+    text-align: center;
     word-break: break-word;
-    white-space: normal;
 }
 
 .skill-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 1rem;
 }
 
 .skill-item {
     display: flex;
-    align-items: left;
-    width: calc(50% - 1rem); 
-    justify-content: flex-start;
-    padding-bottom: 0.5rem;
+    align-items: center;
 }
 
 .skill-icon {
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     margin-right: 0.75rem;
 }
 
@@ -132,21 +91,18 @@ function scrollToNextSection() {
     text-overflow: ellipsis;
 }
 
-@media (max-width: 768px) {
-    .category-row {
-        flex-direction: column;
+@media (max-width: 600px) {
+    .skill-group {
+        align-items: start;
     }
 
-    .skill-grid {
-        flex-direction: column;
-        align-items: center;
+    .skill-group h3 {
+        text-align: start;
     }
 
-    .skill-item {
-        width: 100%;
-        justify-content: center;
+    .card.skills {
+        grid-template-columns: 1fr;
     }
 }
-
 </style>
 

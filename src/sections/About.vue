@@ -28,14 +28,14 @@ function scrollToNextSection() {
     <h1>{{ t('about.my_name') }}</h1>
     <Banner />
     <div>
-      <p>{{ t('about.intro') }}</p>
+      <p class="tagline">{{ t('about.intro') }}</p>
       <p class="tagline">
         <span class="tag">{{ t('about.tagline_prefix', { coding_years }) }}</span>
         <span v-for="(tag, index) in tm('about.tech_tags')" :key="index" class="tag">
           {{ tag }}
         </span>
       </p>
-      <p>{{ t('about.career_path') }}</p>
+      <p class="tagline">{{ t('about.career_path') }}</p>
       <p class="tagline">
         <span class="tag">{{ t('about.legal_prefix', { data_years }) }}</span>
         <span v-for="(tag, index) in tm('about.legal_tags')" :key="index" class="tag">
@@ -49,12 +49,11 @@ function scrollToNextSection() {
 
 <style scoped>
 .tagline {
-  font-size: 1rem;
-  line-height: 1.6;
   display: flex;
+  font-size: 1rem;
   flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center;
+  text-align: center;
   justify-content: center;
 }
 
@@ -65,5 +64,12 @@ function scrollToNextSection() {
   padding: 0.3rem 0.6rem 0.5rem 0.6rem;
   font-size: 0.9rem;
   white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .tagline {
+    text-align: start;
+    justify-content: start;
+  }
 }
 </style>

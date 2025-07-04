@@ -1,5 +1,6 @@
 :root {
   --attention-color: #e63946;
+  --border-radius: 10px;
 }
 
 :root[data-theme='dark'] {
@@ -11,7 +12,7 @@
   --btn-hover-color: #646cff;
   --drop-down-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   --card-bg: #555555;
-  --card-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+  --card-box-shadow: 0 4px 8px rgba(111, 86, 255, 0.3);
   --footer-box-shadow: 0 -4px 8px -2px rgba(255, 255, 255, 0.3);
 }
 
@@ -24,8 +25,7 @@
   --btn-hover-color: #292d79;
   --drop-down-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   --card-bg: #f9f9f9;
-  --card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --icon-color: #333333;
+  --card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   --footer-box-shadow: 0 -4px 8px -2px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,43 +52,45 @@ body {
 }
 
 main {
+  margin: 0;
+}
+
+.section {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  max-width: 1280px;  
-  gap: 0.5rem;
+  flex-flow: column;
+  align-items: center;
+  padding: 1.5rem;
+  max-width: 1200px;
 }
 
 h1 {
   font-size: 3.2rem;
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  text-align: center;
+  margin: 3rem 1rem 1rem 1rem;
 }
 
 h2 {
   font-size: 2.4rem;
-  margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 h3 {
   font-size: 1.8rem;
-  margin-bottom: 0.5rem;
 }
 
 h4 {
   font-size: 1.4rem;
-  margin-bottom: 0.5rem;
 }
 
 h5 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
 h6 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
   font-weight: 500;
   color: gray;
 }
@@ -99,34 +101,22 @@ button {
   gap: 0.3rem;
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
-  font-weight: 500;
   font-family: inherit;
   color: var(--text-color);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   background-color: var(--btn-bg);
-  border: 2px solid transparent;    
+  border: 2px solid transparent;
   transition: border-color 0.25s;
   cursor: pointer;
 }
+
 button:hover {
   border-color: var(--btn-hover-color);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-.section {
-  scroll-margin-top: 2rem;
-  scroll-snap-align: start; 
-  min-height: 100vh;
-  overflow-anchor: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;  
-  position: relative;
-  padding: 1rem;
-  padding-bottom: 3rem;
 }
 
 .chevron {
@@ -136,7 +126,6 @@ button:focus-visible {
   font-size: 3rem;
   color: var(--btn-hover-color);
   cursor: pointer;
-  animation: bounce 2s infinite;
   padding-bottom: 1rem;
 }
 
@@ -145,21 +134,12 @@ button:focus-visible {
 }
 
 .card {
-  position: relative;
-  padding: 2rem;
   background-color: var(--card-bg); 
   color: var(--text);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   box-shadow: var(--card-box-shadow);
-  overflow-anchor: none;
+  border: 2px solid var(--card-box-shadow); 
   transition: box-shadow 0.3s ease;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 @media (max-width: 600px) {

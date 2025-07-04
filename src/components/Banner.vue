@@ -1,18 +1,9 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { computed, watch, onMounted } from 'vue'
-import enData from '../data/en.json'
-import beData from '../data/be.json'
+import { watch, onMounted } from 'vue'
 import Typewriter from 'typewriter-effect/dist/core'
 
-const { locale } = useI18n()
-
-const dataMap = {
-    en: enData,
-    be: beData,
-}
-
-const currentData = computed(() => dataMap[locale.value] || enData)
+const { tm, locale } = useI18n()
 
 function startTypewriter() {
     const el = document.getElementById('typewriter')
@@ -20,7 +11,7 @@ function startTypewriter() {
 
     el.innerHTML = '' // Clear previous content
     new Typewriter(el, {
-        strings: currentData.value.banner.titles,
+        strings: tm('banner'),
         autoStart: true,
         loop: true,
         deleteSpeed: 5,

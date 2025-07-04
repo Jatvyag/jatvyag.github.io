@@ -68,7 +68,7 @@ const currentLabel = computed(() => {
     top: 100%;
     left: 1%;
     margin-top: 0.1rem;
-    border-radius: 0.6rem;
+    border-radius: var(--border-radius);
     box-shadow: var(--drop-down-box-shadow);
     background: var(--bg);
     z-index: 10;
@@ -80,13 +80,14 @@ const currentLabel = computed(() => {
     width: 100%;
     text-align: left;
     background: none;
-    border: none;
+    border: 2px solid transparent; 
     cursor: pointer;
 }
 
 .dropdown-item:hover,
 .dropdown-item.active {
-    background: var(--btn-hover-color);
-    color: white;
+    border-color: var(--btn-hover-color);
+    background-color: var(--btn-bg);
+    border-radius: var(--border-radius);
 }
 </style>

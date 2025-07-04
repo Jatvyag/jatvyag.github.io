@@ -37,7 +37,7 @@ const observeSections = () => {
     },
     {
       rootMargin: '0px',
-      threshold: 0.1,
+      threshold: 0.3,
     }
   )
   document.querySelectorAll('main section[id]').forEach((section) => {
@@ -66,6 +66,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- Top Bar -->
   <div class="top-bar">
     <NavMenu v-model:currentSection="currentSection" :navItems="navItems" />
     <div class="top-lang-theme-bar">
@@ -73,17 +74,24 @@ onUnmounted(() => {
       <ThemeSwitcher />   
     </div>
   </div>
-  <!-- Main Page Sections -->
-  <main>
+  <!-- Main -->
+  <main class="about">
     <About />
     <Skills />
     <Achievements />
     <Contact />
   </main>
+  <!-- Footer -->
   <Footer />
 </template>
 
 <style scoped>
+main.about {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .top-bar {
   position: fixed;
   top: 0;
@@ -100,9 +108,9 @@ onUnmounted(() => {
 
 .top-lang-theme-bar {
   display: flex;
-  justify-content: flex-end; /* or space-between / center */
+  justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem; /* spacing between buttons */
+  gap: 0.5rem; 
   padding: 0.3rem 1rem 0.3rem 0.3rem;
 }
 </style>

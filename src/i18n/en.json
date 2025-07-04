@@ -12,6 +12,12 @@
         "achievements":"Achievements",
         "contacts":"Contacts"
     },
+    "banner":[
+        "Python Developer",
+        "JavaScript Developer",
+        "Data Analyst",
+        "Data Engineer"
+    ],
     "about":{
         "my_name": "Anton Parfenchyk",
         "intro": "Hi, I’m a Data Analyst & Data Engineer passionate about turning data into insights and scalable solutions.",
@@ -22,17 +28,15 @@
         "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
     },
     "skills":{
-        "h3":{
-            "languages":"Programming & Querying",
-            "bi_tools":"BI Tools",
-            "analysis":"Analysis",
-            "data_workflow":"Data Workflow",
-            "db_storage":"Databases & Storage",
-            "visualization":"Visualization",
-            "frontend":"Web & UI Frameworks",
-            "devops_tools":"DevOps",
-            "tools":"Tools & Ecosystems"
-        }
+        "languages":"Programming & Querying",
+        "bi_tools":"BI Tools",
+        "analysis":"Analysis",
+        "data_workflow":"Data Workflow",
+        "db_storage":"Databases & Storage",
+        "visualization":"Visualization",
+        "frontend":"Web & UI Frameworks",
+        "devops_tools":"DevOps",
+        "tools":"Tools & Ecosystems"
     },
     "achievements":{
         "datacamp":{
@@ -48,9 +52,9 @@
             ]
         },
         "certificates":[
-            {"id":1,"name":"Data Analyst Professional", "badge":"data_analyst_professional.svg", "issuer":"DataCamp"},
-            {"id":2,"name":"Data Engineer Associate", "badge":"data_engineer_associate.svg", "issuer":"DataCamp"},
-            {"id":3,"name":"Data Scientist Professional", "badge":"data_scientist_professional.svg", "issuer":"DataCamp"}
+            {"id":1,"name":"Data Analyst Professional", "badge":"data_analyst_professional.svg", "issuer":"DataCamp", "issued":2022},
+            {"id":2,"name":"Data Engineer Associate", "badge":"data_engineer_associate.svg", "issuer":"DataCamp", "issued":2023},
+            {"id":3,"name":"Data Scientist Professional", "badge":"data_scientist_professional.svg", "issuer":"DataCamp", "issued":2023}
         ]
     }
 }

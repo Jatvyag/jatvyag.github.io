@@ -1,6 +1,11 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-const { t, tm } = useI18n()
+const { t } = useI18n()
+
+function scrollToMain() {
+    const next = document.querySelector('#main') 
+    if (next) next.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -9,23 +14,20 @@ const { t, tm } = useI18n()
             <font-awesome-icon :icon="['fas', 'copyright']" />
             {{ t('about.my_name') }}, 2025
         </p>
+        <font-awesome-icon :icon="['fas', 'chevron-up']" class="chevron up" @click="scrollToMain" />
     </footer>
 </template>
 
 <style scoped>
 .footer-bar {
-    width: 100vw; 
-    background-color: var(--bg);
-    box-shadow: var(--footer-box-shadow);
-    padding: 0.3rem;
     display: flex;
+    flex-direction: column;
+    box-shadow: var(--footer-box-shadow);
     justify-content: center;
     align-items: center;
-    /* These break it out of centered layout if inside a constrained container */
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+}
+
+.chevron.up{
+    margin-bottom: 0rem;
 }
 </style>

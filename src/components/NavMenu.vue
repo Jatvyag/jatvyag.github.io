@@ -83,9 +83,15 @@ function handleNavigation(item) {
     align-items: center;
     font-size: 1.5rem;
     gap: 0.5rem;
+    border: 2px solid transparent; 
     background: none;
-    border: none;
     cursor: pointer;
+}
+
+.menu-btn:hover {
+    border-color: var(--btn-hover-color);
+    background-color: var(--btn-bg);
+    border-radius: var(--border-radius);
 }
 
 .page-title {
@@ -141,19 +147,16 @@ function handleNavigation(item) {
     border: 2px solid transparent; 
 }
 
-.side-menu li.active {
-    font-weight: bold;
+.side-menu li.active,
+.side-menu li:hover {
+    border-color: var(--btn-hover-color);
+    background-color: var(--btn-bg);
+    border-radius: var(--border-radius);
 }
 
 .side-menu li.disabled {
     opacity: 0.5;
     pointer-events: none;
-}
-
-.side-menu li:hover {
-    border-color: var(--btn-hover-color);
-    background-color: var(--btn-bg);
-    border-radius: 8px;
 }
 
 @media (max-width: 600px) {

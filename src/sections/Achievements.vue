@@ -15,10 +15,11 @@ function scrollToNextSection() {
 <template>
     <section id="achievements" class="section">
         <h2>{{ t('navMenu.achievements') }}</h2>
-        <h3 class="in-section">DataCamp</h3>
+        <h3 class="achievements">DataCamp</h3>
         <p
             v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
             :key="index"
+            class="achievements"
         >
             {{ paragraph }}
         </p>
@@ -35,7 +36,7 @@ function scrollToNextSection() {
                 />
                 <div class="info">
                     <div class="name">{{ certificate.name }}</div>
-                    <div class="issuer">{{ certificate.issuer }}</div>
+                    <div class="issuer">{{ certificate.issuer }}, {{ certificate.issued }}</div>
                 </div>
             </div>
             <div class="completed-stats">
@@ -54,8 +55,13 @@ function scrollToNextSection() {
 </template>
 
 <style scoped>
-h3.in-section {
+h3.achievements {
     margin-top: 0rem;
+}
+
+p.achievements {
+    text-align: left; 
+    width: 100%;
 }
 
 .certificates {
@@ -69,11 +75,10 @@ h3.in-section {
 .certificate {
     display: flex;
     align-items: center;
-    width: 100%;
     max-width: 15rem;
     background-color: var(--card-bg);
     box-shadow: var(--card-box-shadow);
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     padding: 0.75rem;
 }
 
@@ -100,26 +105,20 @@ h3.in-section {
     color: #8f8f8f;
     font-size: 0.9rem;
 }
+
 .completed-stats {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .stat-card {
     background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    padding: 0.7rem 0.9rem;
     box-shadow: var(--card-box-shadow);
     text-align: center;
     min-width: 6rem;
-}
-
-.stat-number {
-    font-size: 1.5rem;
-    font-weight: bold;
 }
 
 .stat-type {
@@ -127,5 +126,9 @@ h3.in-section {
     color: var(--text-light);
 }
 
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 </style>
 
