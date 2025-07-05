@@ -12,6 +12,9 @@
             "skills":"Skills",
             "achievements":"Achievements",
             "contacts":"Contacts"
+        },
+        "blog": {
+            "home":"Home"
         }
     },
     "banner":"Developer",

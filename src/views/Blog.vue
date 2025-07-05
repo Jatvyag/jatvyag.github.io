@@ -1,9 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import About from '../sections/About.vue'
-import Skills from '../sections/Skills.vue'
-import Achievements from '../sections/Achievements.vue'
-import Contacts from '../sections/Contacts.vue'
+import BlogPage from '../sections/BlogPage.vue'
 
 const emit = defineEmits([
   'update:mainSection', 
@@ -14,13 +11,10 @@ const emit = defineEmits([
 ])
 
 const navItems = [
-  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], disabled: false },
-  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
-  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: false },
-  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], disabled: false },
+  { key: 'home', link: '#home', faIcon: ['fas', 'house'], disabled: true }
 ]
 
-const navMenuLangPage = 'navMenu.main'
+const navMenuLangPage = 'navMenu.blog'
 
 const currentSection = ref('')
 
@@ -48,7 +42,7 @@ function observeSections() {
 }
 
 onMounted(async () => {
-  emit('update:mainSection', getLinkByKey('about'))
+  emit('update:mainSection', getLinkByKey('home'))
   emit('update:navItems', navItems)
   emit('update:currentSection', currentSection.value)
   emit('update:navMenuLangPage', navMenuLangPage)
@@ -66,30 +60,15 @@ watch(currentSection, (newVal) => {
 </script>
 
 <template>
-  <main class="about">
-    <About 
-      :sectionLink="getLinkByKey('about')" 
-      :nextSection="getLinkByKey('skills')"
-    />
-    <Skills 
-      :sectionLink="getLinkByKey('skills')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('achievements')"
-    />
-    <Achievements 
-      :sectionLink="getLinkByKey('achievements')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('contacts')"
-    />
-    <Contacts 
-      :sectionLink="getLinkByKey('contacts')" 
-      :navMenuLangPage="navMenuLangPage" 
+  <main class="blog">
+    <BlogPage 
+      :sectionLink="getLinkByKey('home')" 
     />
   </main>
 </template>
 
 <style scoped>
-main.about {
+main.blog {
   display: flex;
   flex-flow: column;
   align-items: center;

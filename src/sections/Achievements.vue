@@ -11,6 +11,10 @@ const props = defineProps({
     navMenuLangPage: {
         type: String,
         required: true
+    },
+    nextSection: {
+        type: String,
+        required: true
     }
 })
 
@@ -18,7 +22,7 @@ const getBadgePath = (badgeFile) =>
     new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
 
 function scrollToNextSection() {
-    const next = document.querySelector('#contacts') 
+    const next = document.querySelector(props.nextSection) 
     if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>

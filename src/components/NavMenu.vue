@@ -42,7 +42,11 @@ function handleNavigation(item) {
 
 <template>
     <div class="nav-wrapper">
-        <button class="menu-btn" @click="toggleMenu">
+        <button 
+            class="menu-btn" 
+            @click="toggleMenu"
+            :disabled="navItems.length <= 1"
+        >
             <font-awesome-icon 
                 :icon="navItems.find(item => item.key === currentSection)?.faIcon || ['fas', 'bars']" 
             />
@@ -93,6 +97,14 @@ function handleNavigation(item) {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
     border-radius: var(--border-radius);
+}
+
+.menu-btn:disabled {
+    opacity: 0.5;
+    border: 2px solid transparent;
+    background: none;
+    cursor: not-allowed;
+    transform: scale(1);
 }
 
 .page-title {

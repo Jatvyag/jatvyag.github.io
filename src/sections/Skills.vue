@@ -13,6 +13,10 @@ const props = defineProps({
     navMenuLangPage: {
         type: String,
         required: true
+    },
+    nextSection: {
+        type: String,
+        required: true
     }
 })
 
@@ -20,7 +24,7 @@ const getIconPath = (iconFile) =>
     new URL(`../assets/skills/${iconFile}`, import.meta.url).href
 
 function scrollToNextSection() {
-    const next = document.querySelector('#achievements')
+    const next = document.querySelector(props.nextSection)
     if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>

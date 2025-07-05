@@ -7,6 +7,10 @@ const props = defineProps({
     sectionLink: {
         type: String,
         required: true,
+    },
+    nextSection: {
+      type: String,
+      required: true
     }
 })
 
@@ -25,7 +29,7 @@ function calculateYears(startDateStr) {
 const coding_years = calculateYears('2023-09-04')
 const data_years = calculateYears('2014-09-04')
 function scrollToNextSection() {
-  const next = document.querySelector('#skills') 
+  const next = document.querySelector(props.nextSection) 
   if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
