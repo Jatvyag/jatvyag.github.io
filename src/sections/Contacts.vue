@@ -4,6 +4,17 @@ import JSONData from '../data/data.json'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
+const props = defineProps({
+    sectionLink: {
+        type: String,
+        required: true,
+    },
+    navMenuLangPage: {
+        type: String,
+        required: true
+    }
+})
+
 const contactsData = JSONData.contacts
 
 function copyEmail() {
@@ -53,8 +64,8 @@ function clearError(event) {
 </script>
 
 <template>
-    <section id="contacts" class="section last">
-        <h2>{{ t('navMenu.contacts') }}</h2>
+    <section :id="props.sectionLink.replace('#', '')" class="section last">
+        <h2>{{ t(`${navMenuLangPage}.contacts`) }}</h2>
         <p class="contacts">{{ t('contacts.email_client') }}: 
             <a :href="`mailto:${contactsData.email}`" title="Email">
                 <font-awesome-icon :icon="['fas', 'at']" />

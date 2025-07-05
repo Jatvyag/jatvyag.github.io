@@ -6,11 +6,13 @@
         "en": "ENG",
         "be": "BEL"
     },
-    "navMenu":{
-        "main":"Main",
-        "skills":"Skills",
-        "achievements":"Achievements",
-        "contacts":"Contacts"
+    "navMenu": {
+        "main": {
+            "about":"About",
+            "skills":"Skills",
+            "achievements":"Achievements",
+            "contacts":"Contacts"
+        }
     },
     "banner":"Developer",
     "about":{

@@ -3,6 +3,13 @@ import Banner from '../components/Banner.vue'
 import { useI18n } from 'vue-i18n'
 const { t, tm } = useI18n()
 
+const props = defineProps({
+    sectionLink: {
+        type: String,
+        required: true,
+    }
+})
+
 function calculateYears(startDateStr) {
   const startDate = new Date(startDateStr)
   const today = new Date()
@@ -24,7 +31,7 @@ function scrollToNextSection() {
 </script>
 
 <template>
-  <section id="main" class="section">
+  <section :id="props.sectionLink.replace('#', '')" class="section">
     <h1>{{ t('about.my_name') }}</h1>
     <Banner />
     <div>

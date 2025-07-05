@@ -10,6 +10,10 @@ const props = defineProps({
     navItems: {
         type: Array,
         required: true,
+    },
+    navMenuLangPage: {
+        type: String,
+        required: true,
     }
 })
 
@@ -24,7 +28,6 @@ function toggleMenu() {
 
 function handleNavigation(item) {
     if (item.disabled) return
-
     const hash = item.link
     if (hash && hash.startsWith('#')) {
         const el = document.querySelector(hash)
@@ -33,11 +36,6 @@ function handleNavigation(item) {
         emit('update:currentSection', item.key)
         isOpen.value = false
         }
-    } else {
-        /**
-         * TBD: handle router push
-         * router.push(item.link)
-         */
     }
 }
 </script>
@@ -46,9 +44,12 @@ function handleNavigation(item) {
     <div class="nav-wrapper">
         <button class="menu-btn" @click="toggleMenu">
             <font-awesome-icon 
-                :icon="navItems.find(item => item.key === props.currentSection)?.faIcon || ['fas', 'bars']" 
+                :icon="navItems.find(item => item.key === currentSection)?.faIcon || ['fas', 'bars']" 
             />
-            <span class="page-title">{{ t(`navMenu.${props.currentSection}`) }}</span>
+            <span class="page-title">{{ currentSection ? 
+                t(`${navMenuLangPage}.${currentSection}`) :
+                ''
+            }}</span>
         </button>
         <!-- Backdrop -->
         <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
@@ -58,12 +59,12 @@ function handleNavigation(item) {
             <li
             v-for="item in navItems"
             :key="item.key"
-            :class="{ active: item.key === props.currentSection, disabled: item.disabled }"
+            :class="{ active: item.key === currentSection, disabled: item.disabled }"
             @click="handleNavigation(item)"
             >
                 <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
                 <span v-else>{{ item.unicodeIcon }}</span>
-                <span>{{ t(`navMenu.${item.key}`) }}</span>
+                <span>{{ t(`${navMenuLangPage}.${item.key}`) }}</span>
             </li>
         </ul>
         </div>

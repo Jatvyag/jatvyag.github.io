@@ -5,6 +5,17 @@ import JSONData from '../data/data.json'
 const { t } = useI18n()
 const skillsData = JSONData.skills
 
+const props = defineProps({
+    sectionLink: {
+        type: String,
+        required: true,
+    },
+    navMenuLangPage: {
+        type: String,
+        required: true
+    }
+})
+
 const getIconPath = (iconFile) =>
     new URL(`../assets/skills/${iconFile}`, import.meta.url).href
 
@@ -15,8 +26,8 @@ function scrollToNextSection() {
 </script>
 
 <template>
-    <section id="skills" class="section">
-        <h2>{{ t('navMenu.skills') }}</h2>
+    <section :id="props.sectionLink.replace('#', '')" class="section">
+        <h2>{{ t(`${navMenuLangPage}.skills`) }}</h2>
         <div class="card skills">
             <div
             v-for="(items, categoryKey) in skillsData"

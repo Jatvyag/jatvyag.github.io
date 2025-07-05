@@ -6,11 +6,13 @@
         "en": "АНГ",
         "be": "БЕЛ"
     },
-    "navMenu":{
-        "main":"Галоўная",
-        "skills":"Навыкі",
-        "achievements":"Дасягненні",
-        "contacts":"Кантакты"
+    "navMenu": {
+        "main": {
+            "about":"Пра мяне",
+            "skills":"Навыкі",
+            "achievements":"Дасягненні",
+            "contacts":"Кантакты"
+        }
     },
     "banner":"распрацоўшчык",
     "about": {

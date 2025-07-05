@@ -3,11 +3,18 @@ import JSONData from '../data/data.json'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
+const props = defineProps({
+    mainSection: {
+        type: String,
+        required: true,
+    }
+})
+
 const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
 const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
 
 function scrollToMain() {
-    const next = document.querySelector('#main') 
+    const next = document.querySelector(props.mainSection) 
     if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
