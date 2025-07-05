@@ -51,5 +51,17 @@
             {"id":3, "name":"FastAPI", "icon":"fastapi.svg"},
             {"id":4, "name":"Flask", "icon":"flask.svg"}
         ]
-    }
+    },
+    "contacts":{
+        "social":[
+            {"id":1, "media":"linkedin", "faIcon":["fab", "linkedin"], "link":"https://www.linkedin.com/in/parfenchyk/", "tooltip":"LinkedIn"},
+            {"id":2, "media":"github", "faIcon":["fab", "github"], "link":"https://github.com/Jatvyag", "tooltip":"GitHub"},
+            {"id":3, "media":"orcid", "faIcon":["fab", "orcid"], "link":"https://orcid.org/0000-0002-5436-9220", "tooltip":"ORCiD"}
+            ],
+        "email":"jatvyag@proton.me"
+        },
+    "footer_creds":[
+        {"id":1, "brand":"vue", "faIcon":["fab", "vuejs"], "link":"https://vuejs.org/", "tooltip":"Vue"},
+        {"id":2, "brand":"fontawesome", "faIcon":["fab", "font-awesome"], "link":"https://fontawesome.com/", "tooltip":"Font Awesome"}
+    ]
 }

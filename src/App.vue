@@ -8,7 +8,7 @@ import Skills from './sections/Skills.vue'
 import Achievements from './sections/Achievements.vue'
 import Footer from './components/Footer.vue'
 import { useI18n } from 'vue-i18n'
-import Contact from './sections/Contact.vue'
+import Contacts from './sections/Contacts.vue'
 
 const { locale, t } = useI18n()
 
@@ -79,7 +79,7 @@ onUnmounted(() => {
     <About />
     <Skills />
     <Achievements />
-    <Contact />
+    <Contacts />
   </main>
   <!-- Footer -->
   <Footer />

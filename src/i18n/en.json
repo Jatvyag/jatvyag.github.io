@@ -56,5 +56,24 @@
             {"id":2,"name":"Data Engineer Associate", "badge":"data_engineer_associate.svg", "issuer":"DataCamp", "issued":2023},
             {"id":3,"name":"Data Scientist Professional", "badge":"data_scientist_professional.svg", "issuer":"DataCamp", "issued":2023}
         ]
+    },
+    "contacts":{
+        "email_client":"Contact me via email client",
+        "email_address":"Copy my email address into clipboard",
+        "social_platforms":"Find me on these platforms",
+        "tooltip_copy":"Copy",
+        "form":{
+            "name":"Your name",
+            "email":"Your email",
+            "subject":"Subject",
+            "message":"Message",
+            "send":"Send",
+            "required_field":"This field cannot be empty",
+            "valid_email":"Please enter correct email"
+        }
+    },
+    "footer":{
+        "powerby":"Power by",
+        "iconsby":"Icons by"
     }
 }

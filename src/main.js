@@ -7,11 +7,22 @@ import i18n from './i18n'
 
 import { 
     faChevronDown, faChevronUp, 
-    faEnvelopeOpenText, faBars, faAward, faBarsProgress,
-    faLanguage, faCopyright
+    faEnvelopeOpenText, faBars, faAward, faBarsProgress, faAt,
+    faLanguage, faCopyright, faClipboard
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faChevronDown, faChevronUp, faEnvelopeOpenText, faBars, faAward, faBarsProgress, faLanguage, faCopyright)
+import { 
+    faVuejs, 
+    faLinkedin, 
+    faGithub, 
+    faOrcid, 
+    faFontAwesome
+} from '@fortawesome/free-brands-svg-icons'
+
+library.add(
+    faChevronDown, faChevronUp, faEnvelopeOpenText, faAt, faClipboard,
+    faBars, faAward, faBarsProgress, faLanguage, faCopyright)
+library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
 const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)

@@ -52,9 +52,28 @@
             ]
         },
         "certificates":[
-            {"name":"Прафесійны аналітык даных", "badge":"data_analyst_professional.svg", "issuer":"DataCamp"},
-            {"name":"Асацыяваны інжынера даных", "badge":"data_engineer_associate.svg", "issuer":"DataCamp"},
-            {"name":"Прафесійны навуковец па даных", "badge":"data_scientist_professional.svg", "issuer":"DataCamp"}
+            {"name":"Прафесійны аналітык даных", "badge":"data_analyst_professional.svg", "issuer":"DataCamp", "issued":2022},
+            {"name":"Асацыяваны інжынера даных", "badge":"data_engineer_associate.svg", "issuer":"DataCamp", "issued":2023},
+            {"name":"Прафесійны навуковец па даных", "badge":"data_scientist_professional.svg", "issuer":"DataCamp", "issued":2023}
         ]
+    },
+    "contacts":{
+        "email_client":"Звязацца са мной праз кліент паштовай скрыні",
+        "email_address":"Скапіяваць мой адрас электроннай пошты ў буфер абмену",
+        "social_platforms":"Знайсці мяне на наступных платформах",        
+        "tooltip_copy":"Капіраваць",
+        "form":{
+            "name":"Ваша імя",
+            "email":"Ваш email",
+            "subject":"Тэма",
+            "message":"Паведамленне",
+            "send":"Накіраваць",
+            "required_field":"Гэта поле не можа быць пустым",
+            "valid_email":"Калі ласка, увядзіце карэктны адрас электроннай пошты"
+        }
+    },
+    "footer":{
+        "powerby":"Працуе на",
+        "iconsby":"Іконкі"
     }
 }
