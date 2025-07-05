@@ -9,7 +9,8 @@ import i18n from './i18n'
 import { 
     faChevronDown, faChevronUp, 
     faEnvelopeOpenText, faBars, faAward, faBarsProgress, faAt,
-    faLanguage, faCopyright, faClipboard, faHouse
+    faLanguage, faCopyright, faClipboard, faHouse,
+    faAddressCard, faBlog
 } from '@fortawesome/free-solid-svg-icons'
 
 import { 
@@ -22,7 +23,8 @@ import {
 
 library.add(
     faChevronDown, faChevronUp, faEnvelopeOpenText, faAt, faClipboard,
-    faBars, faAward, faBarsProgress, faLanguage, faCopyright, faHouse)
+    faBars, faAward, faBarsProgress, faLanguage, faCopyright, 
+    faHouse, faAddressCard, faBlog)
 library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
 const app = createApp(App)

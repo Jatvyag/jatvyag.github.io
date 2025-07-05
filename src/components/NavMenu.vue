@@ -81,6 +81,9 @@ function handleNavigation(item) {
     align-items: center;
     gap: 0.5rem;
     position: relative;
+    flex-shrink: 1;
+    flex-grow: 0;
+    min-width: 0;
 }
 
 .menu-btn {
@@ -88,6 +91,7 @@ function handleNavigation(item) {
     align-items: center;
     font-size: 1.5rem;
     gap: 0.5rem;
+    min-width: 0;
     border: 2px solid transparent; 
     background: none;
     cursor: pointer;
@@ -108,7 +112,12 @@ function handleNavigation(item) {
 }
 
 .page-title {
+    display: block;
+    max-width: 100%;  
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .backdrop {
