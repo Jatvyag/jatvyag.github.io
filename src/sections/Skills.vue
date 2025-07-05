@@ -21,7 +21,7 @@ const props = defineProps({
 })
 
 const getIconPath = (iconFile) =>
-    new URL(`../assets/skills/${iconFile}`, import.meta.url).href
+    new URL(`../assets/icons/${iconFile}`, import.meta.url).href
 
 function scrollToNextSection() {
     const next = document.querySelector(props.nextSection)

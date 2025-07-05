@@ -3,24 +3,31 @@ const props = defineProps({
     post: {
         type: Object,
         required: true
+    },
+    empty: {
+        type: Boolean,
+        default: false
     }
 })
 
-const thumbnails = import.meta.glob('../assets/blog/thumbs/*', { eager: true, query: '?url', import: 'default' })
+const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
 
-const skillIcons = import.meta.glob('../assets/skills/*', { eager: true, query: '?url', import: 'default' })
+const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
 
 function getThumb(path) {
-    return thumbnails[`../assets/blog/thumbs/${path}`]
+    return thumbnails[`../assets/thumbs/${path}`]
 }
 
 function getIcon(path) {
-    return skillIcons[`../assets/skills/${path}`]
+    return skillIcons[`../assets/icons/${path}`]
 }
 </script>
 
 <template>
-    <div class="card blog">
+    <div class="card blog empty-card" v-if="empty">
+        <p class="empty-message">{{ post.title }}</p>
+    </div>
+    <div v-else class="card blog">
         <!-- Image -->
         <div class="thumb-info">
             <img
@@ -92,6 +99,7 @@ function getIcon(path) {
 .blog-info {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     gap: 0.5rem;
 }
 
@@ -146,6 +154,17 @@ function getIcon(path) {
 
 .post-link span {
     color: #999;
+}
+
+.empty-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    border: 2px dashed #ccc;
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
 }
 
 @media (max-width: 800px) {

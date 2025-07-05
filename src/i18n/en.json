@@ -77,6 +77,16 @@
         "iconsby":"Icons by"
     },
     "blog":{
-        "title":"Personal and Learning Projects"
+        "title":"Personal and Learning Projects",
+        "noResults":"The item that you looking for is not here",
+        "search":"Search",
+        "categories":"Category",
+        "tags":"Tags",
+        "types":"Types",
+        "date":"Date",
+        "libs":"Libraries",
+        "reset":"Reset",
+        "prev":"Prev",
+        "next":"Next"
     }
 }

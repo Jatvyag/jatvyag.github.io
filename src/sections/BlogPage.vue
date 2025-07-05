@@ -5,7 +5,7 @@ import BlogPostCard from '../components/BlogPostCard.vue'
 import jsonENPostsData from '../data/posts_en.json'
 import jsonBEPostsData from '../data/posts_be.json'
 
-const skillIcons = import.meta.glob('../assets/skills/*', {
+const skillIcons = import.meta.glob('../assets/icons/*', {
   eager: true,
   import: 'default',
   query: '?url',
@@ -56,7 +56,7 @@ const tags = computed(() => [...new Set(posts.value.flatMap(p => p.tag))])
 const types = computed(() => [...new Set(posts.value.map(p => p.type.name))])
 
 function getIconPath(iconName) {
-  return skillIcons[`../assets/skills/${iconName.toLowerCase()}.svg`]
+  return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
 }
 </script>
 
@@ -70,13 +70,13 @@ function getIconPath(iconName) {
         <input
           v-model="searchQuery"
           type="text"
-          placeholder="Search..."
+          :placeholder="t('blog.search') + '...'"
           class="search-input"
         />
 
         <!-- Categories -->
         <div>
-          <h2 class="sidebar-heading">Categories</h2>
+          <h2 class="sidebar-heading">{{ t('blog.categories') }}</h2>
           <ul class="category-list">
             <li
               v-for="cat in categories"
@@ -87,12 +87,12 @@ function getIconPath(iconName) {
               {{ cat }}
             </li>
           </ul>
-          <span class="sidebar-reset" @click="selectedCategory = null">Reset</span>
+          <span class="sidebar-reset" @click="selectedCategory = null">{{ t('blog.reset') }}</span>
         </div>
 
         <!-- Tags -->
         <div>
-          <h2 class="sidebar-heading">Tags</h2>
+          <h2 class="sidebar-heading">{{ t('blog.tags') }}</h2>
           <div class="tag-cloud">
             <span
               v-for="tag in tags"
@@ -103,12 +103,12 @@ function getIconPath(iconName) {
               {{ tag }}
             </span>
           </div>
-          <span class="sidebar-reset" @click="selectedTag = null">Reset</span>
+          <span class="sidebar-reset" @click="selectedTag = null">{{ t('blog.reset') }}</span>
         </div>
 
         <!-- Types -->
         <div>
-          <h2 class="sidebar-heading">Types</h2>
+          <h2 class="sidebar-heading">{{ t('blog.types') }}</h2>
           <div class="type-icons">
             <img
               v-for="type in types"
@@ -120,17 +120,34 @@ function getIconPath(iconName) {
               @click="selectedType = type"
             />
           </div>
-          <span class="sidebar-reset" @click="selectedType = null">Reset</span>
+          <span class="sidebar-reset" @click="selectedType = null">{{ t('blog.reset') }}</span>
         </div>
       </aside>
 
       <!-- Post List -->
       <div class="blog-posts">
-        <BlogPostCard
-          v-for="post in paginatedPosts"
-          :key="post.id"
-          :post="post"
-        />
+        <template v-if="paginatedPosts.length">
+          <BlogPostCard
+            v-for="post in paginatedPosts"
+            :key="post.id"
+            :post="post"
+          />
+        </template>
+        <template v-else>
+          <BlogPostCard
+            :post="{
+              title: t('blog.noResults') || 'No posts match your search.',
+              desc: '',
+              tag: [],
+              libs: [],
+              cat: '',
+              date: '',
+              link: '',
+              pic: ''
+            }"
+            :empty="true"
+          />
+        </template>
 
         <!-- Pagination -->
         <div v-if="filteredPosts.length > postsPerPage" class="pagination">
@@ -139,7 +156,7 @@ function getIconPath(iconName) {
             :disabled="currentPage === 1"
             @click="currentPage--"
           >
-            Prev
+            {{ t('blog.prev') }}
           </button>
           <span class="page-number">{{ currentPage }}</span>
           <button
@@ -147,7 +164,7 @@ function getIconPath(iconName) {
             :disabled="currentPage * postsPerPage >= filteredPosts.length"
             @click="currentPage++"
           >
-            Next
+            {{ t('blog.next') }}
           </button>
         </div>
       </div>
@@ -158,15 +175,18 @@ function getIconPath(iconName) {
 <style scoped>
 .blog-section {
   padding: 2rem;
+  max-width: 1200px;
 }
 
 h1.blog {
+  font-size: 3rem;
   margin-bottom: 2rem;
 }
 
 .blog-grid {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
+  align-items: start;
   gap: 2rem;
 }
 
@@ -278,6 +298,7 @@ h1.blog {
 .blog-posts {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 1.5rem;
 }
 
@@ -302,6 +323,14 @@ h1.blog {
 
 .page-number {
   font-size: 1.2rem;
+}
+
+.no-results {
+  padding: 2rem;
+  text-align: center;
+  width: 100px;
+  color: #888;
+  font-style: italic;
 }
 
 @media (max-width: 800px) {
