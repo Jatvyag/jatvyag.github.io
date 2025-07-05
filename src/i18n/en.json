@@ -12,12 +12,7 @@
         "achievements":"Achievements",
         "contacts":"Contacts"
     },
-    "banner":[
-        "Python Developer",
-        "JavaScript Developer",
-        "Data Analyst",
-        "Data Engineer"
-    ],
+    "banner":"Developer",
     "about":{
         "my_name": "Anton Parfenchyk",
         "intro": "Hi, I’m a Data Analyst & Data Engineer passionate about turning data into insights and scalable solutions.",

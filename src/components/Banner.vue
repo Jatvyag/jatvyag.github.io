@@ -1,9 +1,9 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { watch, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import Typewriter from 'typewriter-effect/dist/core'
 
-const { tm, locale } = useI18n()
+const { tm } = useI18n()
 
 function startTypewriter() {
     const el = document.getElementById('typewriter')
@@ -11,7 +11,7 @@ function startTypewriter() {
 
     el.innerHTML = '' // Clear previous content
     new Typewriter(el, {
-        strings: tm('banner'),
+        strings: ['Python','JavaScript', 'Full-Stack'],
         autoStart: true,
         loop: true,
         deleteSpeed: 5,
@@ -21,17 +21,31 @@ function startTypewriter() {
 onMounted(() => {
     startTypewriter()
 })
-
-watch(locale, () => {
-    startTypewriter()
-})
 </script>
 
 <template>
-    <div>
-        <h2 id="typewriter"></h2>
-    </div>
+    <h2 class="typewriter-line">
+        <span class="typewriter-dynamic" id="typewriter"></span>
+        <span class="typewriter-fixed">{{ tm('banner') }}</span>
+    </h2>
 </template>
 
 <style scoped>
+.typewriter-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.typewriter-dynamic {
+    min-width: 11ch; /* the max length of typewritten words */
+    display: inline-block;
+    text-align: right;
+}
+
+.typewriter-fixed {
+    flex-shrink: 0;
+}
 </style>

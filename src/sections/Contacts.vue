@@ -249,7 +249,7 @@ button.clipboard:active {
     font-size: 0.8rem;
     margin-top: 0rem;
     padding: 0.2rem;
-    background-color: #cbb6b6;
+    background-color: #dfc9c9;
     border: 1px solid var(--attention-color);  
     min-height: 1em;
     /* Keep space reserved but invisible */
