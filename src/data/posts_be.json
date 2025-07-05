@@ -1,0 +1,186 @@
+{
+    "posts":[
+        {
+            "id":"1",
+            "title":"Аналіз тэлевізійных даных",
+            "desc":"Выкарыстанне апрацоўкі даных і візуалізацыі, каб даследаваць адно з двух розных наборы даных тэлевізійнага вяшчання: Суперкубак і папулярны сітком \"Офіс\"",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":3, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-06-13",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"left_shark.jpg"
+        },
+        {
+            "id":"2",
+            "title":"Распрацоўка маркетынгавай базы даных банка",
+            "desc":"Выкарыстанне навыкаў ачысткі даных і праектавання базы даных, каб скласці сцэнарый, які стварае табліцы ў базе даных PostgreSQL для банкаўскіх маркетынгавых кампаній",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"}
+                ],
+            "date":"2023-06-29",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"pig.jpg"
+        },
+        {
+            "id":"3",
+            "title":"Android App Market у Google Play",
+            "desc":"Загрузка, ачышска і візуалізацыя скрабаваных даных з Google Play Store, каб атрымаць уяўленне аб рынку прыкладанняў для Android",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":4, "name":"Plotly", "icon":"plotly.svg"}
+                ],
+            "date":"2023-07-05",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"google-store.png"
+        },
+        {
+            "id":"4",
+            "title":"Прагназаванне адабрэння крэдытных карт",
+            "desc":"Стварэнне мадэлі машыннага навучання для прагназавання, што заяўка на крэдытную карту будзе зацверджана",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
+                ],
+            "date":"2023-07-14",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"credit_card.jpg"
+        },
+        {
+            "id":"5",
+            "title":"Даследаванне фільмаў Netflix і запрошаных зорак у офісе",
+            "desc":"Прымяненне асноўных навыкаў Python шляхам апрацоўкі і візуалізацыі даных фільмаў і тэлеперадач",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":2, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-07-04",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"netflix.jpg"
+        },
+        {
+            "id":"6",
+            "title":"Доктар Земмельвейс і адкрыццё мыцця рук",
+            "desc":"Паўторны аналіз даных, якія ляжаць у аснове аднаго з самых важных адкрыццяў сучаснай медыцыны: мыццё рук",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":2, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-07-13",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ignaz_semmelweis_1860.jpeg"
+        },
+        {
+            "id":"7",
+            "title":"Візуальная гісторыя лаўрэатаў Нобелеўскай прэміі",
+            "desc":"Даследванне набора даных ад Kaggle, які змяшчае лаўрэатаў Нобелеўскай прэміі за стагоддзе. Хто перамог? Каго абняволілі?",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":4, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-07-12",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"nobel_prize.png"
+        },
+        {
+            "id":"8",
+            "title":"Якія даўгі вартыя намаганняў банка?",
+            "desc":"Гуляйце ў навукоўца па банкаўскіх даных і выкарыстоўвайце разрыў рэгрэсіі, каб убачыць, якія даўгі варта спагнаць",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Scikit-learn", "icon":"scikitlearn.svg"},
+                {"id":5, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-10",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"bank_debts.png"
+        },
+        {
+            "id":"9",
+            "title":"Праверка гіпотэз у ахове здароўя: бяспека лекаў",
+            "desc":"Выканайце тэсты гіпотэз, каб вызначыць, ці значныя пабочныя эфекты фармацэўтычнага прэпарата",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"},
+                {"id":6, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-15",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"health_care_drug_safety.png"
+        },
+        {
+            "id":"10",
+            "title":"Праверка гіпотэз ў мужчынскіх і жаночых футбольных матчах",
+            "desc":"Выканайце праверку гіпотэзы, каб вызначыць, ці забіваецца больш галоў у жаночых футбольных матчах, чым у мужчынскіх!",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
+                ],
+            "date":"2023-07-15",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"soccer.png"
+        },
+        {
+            "id":"11",
+            "title":"Мадэляванне вынікаў прэтэнзій па страхаванні аўтамабіля",
+            "desc":"Ачысціце даныя кліентаў і выкарыстоўвайце лагістычную рэгрэсію, каб прадбачыць, ці будуць людзі прад'яўляць прэтэнзіі па страхоўцы аўтамабіля",
+            "cat":"DataCamp",
+            "tag":["Python", "Data Analysis"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-20",
+            "link":"",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"car_insurance.jpeg"
+        }
+    ]
+}

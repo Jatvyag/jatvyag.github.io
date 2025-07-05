@@ -16,7 +16,8 @@
             {"id":1, "name":"Pandas", "icon":"pandas.svg"},
             {"id":2, "name":"NumPy", "icon":"numpy.svg"},
             {"id":3, "name":"SciPy", "icon":"scipy.svg"},
-            {"id":4, "name":"Statsmodels", "icon":"statsmodels.svg"}
+            {"id":4, "name":"Statsmodels", "icon":"statsmodels.svg"},
+            {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
         ],
         "bi_tools":[
             {"id":1, "name":"Power BI", "icon":"powerbi.svg"},

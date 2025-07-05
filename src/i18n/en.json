@@ -75,5 +75,8 @@
     "footer":{
         "powerby":"Power by",
         "iconsby":"Icons by"
+    },
+    "blog":{
+        "title":"Personal and Learning Projects"
     }
 }
