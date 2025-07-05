@@ -68,15 +68,6 @@ function scrollToNextSection() {
   justify-content: center;
 }
 
-.tag {
-  background-color: var(--btn-bg);
-  color: var(--text-color);
-  border-radius: 999px;
-  padding: 0.3rem 0.6rem 0.5rem 0.6rem;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
 @media (max-width: 600px) {
   .tagline {
     text-align: start;

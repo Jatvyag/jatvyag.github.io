@@ -20,49 +20,48 @@ function getIcon(path) {
 </script>
 
 <template>
-    <div class="blog-card">
+    <div class="card blog">
         <!-- Image -->
-        <img
-        :src="getThumb(post.pic)"
-        alt="Project image"
-        class="blog-thumb"
-        />
-
+        <div class="thumb-info">
+            <img
+                :src="getThumb(post.pic)"
+                alt="Project image"
+                class="blog-thumb"
+            />
+            <p class="post-cat">{{ post.cat }}</p>
+            <p class="post-cat">{{ post.date }}</p>
+        </div>
         <!-- Info -->
         <div class="blog-info">
         <h3 class="post-title">{{ post.title }}</h3>
         <p class="post-desc">{{ post.desc }}</p>
-        <p class="post-cat">{{ post.cat }}</p>
-
         <!-- Tags -->
         <div class="post-tags">
             <span
-            v-for="tag in post.tag"
-            :key="tag"
-            class="tag"
+                v-for="tag in post.tag"
+                :key="tag"
+                class="tag blog"
             >
-            {{ tag }}
+                {{ tag }}
             </span>
         </div>
-
         <!-- Libs -->
         <div class="post-libs">
             <img
-            v-for="lib in post.libs"
-            :key="lib.id"
-            :src="getIcon(lib.icon)"
-            :alt="lib.name"
-            :title="lib.name"
-            class="icon-img"
+                v-for="lib in post.libs"
+                :key="lib.id"
+                :src="getIcon(lib.icon)"
+                :alt="lib.name"
+                :title="lib.name"
+                class="icon-img"
             />
         </div>
-
         <!-- Link -->
         <div class="post-link">
             <a
-            v-if="post.link"
-            :href="post.link"
-            target="_blank"
+                v-if="post.link"
+                :href="post.link"
+                target="_blank"
             >
             View Project
             </a>
@@ -73,16 +72,13 @@ function getIcon(path) {
 </template>
 
 <style scoped>
-.blog-card {
+.card.blog {
     display: flex;
     gap: 1rem;
-    border: 1px solid #ccc;
     padding: 1rem;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s ease;
 }
-.blog-card:hover {
+
+.card.blog:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -90,12 +86,10 @@ function getIcon(path) {
     width: 160px;
     height: 128px;
     object-fit: cover;
-    border-radius: 4px;
-    flex-shrink: 0;
+    border-radius: var(--border-radius);
 }
 
 .blog-info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -103,19 +97,16 @@ function getIcon(path) {
 
 .post-title {
     font-size: 1.25rem;
-    font-weight: bold;
     margin: 0;
 }
 
 .post-desc {
     font-size: 0.875rem;
-    color: #555;
     margin: 0;
 }
 
 .post-cat {
     font-size: 0.75rem;
-    color: #2563eb; /* blue-600 */
 }
 
 .post-tags {
@@ -125,10 +116,8 @@ function getIcon(path) {
     font-size: 0.75rem;
 }
 
-.tag {
-    background-color: #e5e7eb; /* gray-200 */
-    border-radius: 4px;
-    padding: 0.25rem 0.5rem;
+.tag.blog {
+    border: 2px solid var(--btn-hover-color)
 }
 
 .post-libs {
@@ -139,8 +128,8 @@ function getIcon(path) {
 }
 
 .icon-img {
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     display: block;
 }
@@ -157,6 +146,34 @@ function getIcon(path) {
 
 .post-link span {
     color: #999;
+}
+
+@media (max-width: 800px) {
+    .card.blog {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .blog-thumb {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+    }
+
+    .thumb-info {
+        order: 2;
+    }
+
+    .blog-info {
+        align-items: center;
+        order: 1;
+    }
+
+    .post-tags,
+    .post-libs {
+        justify-content: center;
+    }
 }
 </style>
 

@@ -162,6 +162,16 @@ button:focus-visible {
   transition: box-shadow 0.3s ease;
 }
 
+.tag {
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem 0.5rem 0.6rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: default;
+}
+
 @media (max-width: 600px) {
     html {
       font-size: 16px;

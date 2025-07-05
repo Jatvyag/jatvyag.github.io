@@ -29,7 +29,7 @@
             "date":"2023-06-29",
             "link":"",
             "type":{"name":"Jupyter","icon":"jupyter.svg"},
-            "pic":"pig.jpg"
+            "pic":"pig.jpeg"
         },
         {
             "id":"3",
@@ -164,7 +164,7 @@
             "date":"2023-07-15",
             "link":"",
             "type":{"name":"Jupyter","icon":"jupyter.svg"},
-            "pic":"soccer.png"
+            "pic":"soccer.jpeg"
         },
         {
             "id":"11",

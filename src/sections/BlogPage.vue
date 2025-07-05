@@ -62,8 +62,7 @@ function getIconPath(iconName) {
 
 <template>
   <section :id="props.sectionLink.replace('#', '')" class="blog-section">
-    <h1 class="blog-title">{{ t('blog.title') }}</h1>
-
+    <h1 class="blog">{{ t('blog.title') }}</h1>
     <div class="blog-grid">
       <!-- Sidebar -->
       <aside class="blog-sidebar">
@@ -87,8 +86,8 @@ function getIconPath(iconName) {
             >
               {{ cat }}
             </li>
-            <li class="sidebar-reset" @click="selectedCategory = null">Reset</li>
           </ul>
+          <span class="sidebar-reset" @click="selectedCategory = null">Reset</span>
         </div>
 
         <!-- Tags -->
@@ -98,13 +97,13 @@ function getIconPath(iconName) {
             <span
               v-for="tag in tags"
               :key="tag"
-              class="tag"
+              class="tag blog"
               @click="selectedTag = tag"
             >
               {{ tag }}
             </span>
-            <span class="tag-reset" @click="selectedTag = null">Reset</span>
           </div>
+          <span class="sidebar-reset" @click="selectedTag = null">Reset</span>
         </div>
 
         <!-- Types -->
@@ -120,8 +119,8 @@ function getIconPath(iconName) {
               class="type-icon"
               @click="selectedType = type"
             />
-            <span class="type-reset" @click="selectedType = null">Reset</span>
           </div>
+          <span class="sidebar-reset" @click="selectedType = null">Reset</span>
         </div>
       </aside>
 
@@ -161,10 +160,7 @@ function getIconPath(iconName) {
   padding: 2rem;
 }
 
-.blog-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
+h1.blog {
   margin-bottom: 2rem;
 }
 
@@ -182,15 +178,22 @@ function getIconPath(iconName) {
 }
 
 .search-input {
-  width: 100%;
   padding: 0.5rem;
-  border: 1px solid #aaa;
-  border-radius: 4px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--btn-hover-color);
 }
 
 .sidebar-heading {
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .category-list {
@@ -200,16 +203,37 @@ function getIconPath(iconName) {
 }
 
 .sidebar-item {
-  color: #2563eb;
+  display: inline-block;
+  padding: 0.25rem;
+  color: var(--link);
   cursor: pointer;
   padding: 0.25rem 0;
 }
 
+.sidebar-item:hover {
+  color: var(--link-hover);
+}
+
+.sidebar-item:active {
+  color: var(--link-active);
+  transform: scale(0.95);
+}
+
 .sidebar-reset {
+  display: inline-block;
+  padding: 0.25rem;
   color: #999;
   font-size: 0.875rem;
   cursor: pointer;
   margin-top: 0.5rem;
+}
+
+.sidebar-reset:hover {
+  color: var(--link-hover);
+}
+
+.sidebar-reset:active {
+  transform: scale(0.95);
 }
 
 .tag-cloud {
@@ -218,19 +242,18 @@ function getIconPath(iconName) {
   gap: 0.5rem;
 }
 
-.tag {
-  background: #e5e7eb;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
+.tag.blog {
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
-.tag-reset {
-  color: #999;
-  font-size: 0.75rem;
+.tag.blog:hover {
   cursor: pointer;
-  align-self: center;
+  border-color: var(--btn-hover-color);
+}
+
+.tag.blog:active {
+  transform: scale(0.95);
 }
 
 .type-icons {
@@ -241,19 +264,14 @@ function getIconPath(iconName) {
 }
 
 .type-icon {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 .type-icon:hover {
   transform: scale(1.1);
-}
-
-.type-reset {
-  font-size: 0.75rem;
-  color: #999;
-  cursor: pointer;
 }
 
 /* Posts */
@@ -272,19 +290,31 @@ function getIconPath(iconName) {
 }
 
 .page-btn {
-  padding: 0.25rem 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
   cursor: pointer;
 }
 
 .page-btn:disabled {
+  border: 2px solid transparent;
+  transform: scale(1);
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 .page-number {
-  font-size: 0.875rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 800px) {
+  h1.blog {
+    font-size: 2rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr; /* Stack items vertically */
+  }
+
+  .pagination {
+    justify-content: center;
+  }
 }
 </style>
