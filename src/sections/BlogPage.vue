@@ -217,6 +217,8 @@ h1.blog {
 }
 
 .category-list {
+  display: flex;            
+  gap: 1rem;                
   list-style: none;
   padding: 0;
   margin: 0;
