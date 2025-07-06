@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
@@ -30,21 +30,25 @@ function handleNavigation(item) {
     if (item.disabled) return
     const hash = item.link
     if (!hash || !hash.startsWith('#')) return
-    let el = null
-    if (item.type === 'main_menu') {
-        el = document.querySelector(hash)
-    } else if (item.type === 'jupyter') {
-        const iframe = document.querySelector('iframe')
-        const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
-        if (iframeDoc) {
-            el = iframeDoc.querySelector(hash)
+    nextTick(() => {
+        let el = null
+        if (item.type === 'jupyter') {
+            const iframe = document.querySelector('iframe')
+            const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
+            if (iframeDoc) {
+                el = iframeDoc.querySelector(hash)
+            }
+        } else {
+            el = document.querySelector(hash)
         }
-    }
-    if (el) {
-        el.scrollIntoView({ behavior: 'smooth' })
-        emit('update:currentSection', item.key)
-        isOpen.value = false
-    }
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' })
+            emit('update:currentSection', item.key)
+            isOpen.value = false
+        } else {
+            console.warn('Element not found for', hash)
+        }
+    })
 }
 
 const jupyterIcon = new URL(`../assets/icons/jupyter.svg`, import.meta.url).href
