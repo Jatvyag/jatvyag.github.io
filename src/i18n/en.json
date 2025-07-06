@@ -1,0 +1,92 @@
+{
+    "app": {
+        "title": "Parfenchyk's Portfolio"
+    },
+    "languageNames": {
+        "en": "ENG",
+        "be": "BEL"
+    },
+    "navMenu": {
+        "main": {
+            "about":"About",
+            "skills":"Skills",
+            "achievements":"Achievements",
+            "contacts":"Contacts"
+        },
+        "blog": {
+            "home":"Home"
+        }
+    },
+    "banner":"Developer",
+    "about":{
+        "my_name": "Anton Parfenchyk",
+        "intro": "Hi, I’m a Data Analyst & Data Engineer passionate about turning data into insights and scalable solutions.",
+        "tagline_prefix": "{coding_years}+ years coding",
+        "tech_tags": ["Python", "JavaScript", "SQL", "Bash"],
+        "career_path": "Previously an IT lawyer and researcher, I bring strong analytical skills and a deep understanding of privacy and tech regulations to my work.",
+        "legal_prefix": "{data_years}+ years in data",
+        "legal_tags": ["IT Law", "Privacy", "Security", "IP"]
+    },
+    "skills":{
+        "languages":"Programming & Querying",
+        "bi_tools":"BI Tools",
+        "analysis":"Analysis",
+        "data_workflow":"Data Workflow",
+        "db_storage":"Databases & Storage",
+        "visualization":"Visualization",
+        "frontend":"Web & UI Frameworks",
+        "devops_tools":"DevOps",
+        "tools":"Tools & Ecosystems"
+    },
+    "achievements":{
+        "datacamp":{
+            "intro":[
+                "DataCamp is an online learning platform that focuses on teaching the skills for becoming successful data scientists. The advantage of this platform is that these skills possible to acquire in an own pace — from non-coding essentials to data science and machine learning. Learning path could be self-constructed from course library.",
+                "On average, each course consists of 16 short 5-minutes long videos and 48 interactive coding exercises. Usually, it takes around 4 hours to finish the course. Instructors that make courses are either professional teachers or experts from leading companies such as Amazon, Spotify, Facebook.",
+                "Besides courses, it is possible to apply new skills in solving real-world problems using data science projects.",
+                "Here you can find the certificates that I got on this platform, the numbers of courses and projects that I finished."
+            ],
+            "completed":[
+                {"id":1, "type":"Courses", "number":130},
+                {"id":2, "type":"Projects", "number":21}
+            ]
+        },
+        "certificates":[
+            {"id":1,"name":"Data Analyst Professional", "badge":"data_analyst_professional.svg", "issuer":"DataCamp", "issued":2022},
+            {"id":2,"name":"Data Engineer Associate", "badge":"data_engineer_associate.svg", "issuer":"DataCamp", "issued":2023},
+            {"id":3,"name":"Data Scientist Professional", "badge":"data_scientist_professional.svg", "issuer":"DataCamp", "issued":2023}
+        ]
+    },
+    "contacts":{
+        "email_client":"Contact me via email client",
+        "email_address":"Copy my email address into clipboard",
+        "social_platforms":"Find me on these platforms",
+        "tooltip_copy":"Copy",
+        "form":{
+            "name":"Your name",
+            "email":"Your email",
+            "subject":"Subject",
+            "message":"Message",
+            "send":"Send",
+            "required_field":"This field cannot be empty",
+            "valid_email":"Please enter correct email"
+        }
+    },
+    "footer":{
+        "powerby":"Power by",
+        "iconsby":"Icons by"
+    },
+    "blog":{
+        "title":"Personal and Learning Projects",
+        "noResults":"The item that you looking for is not here",
+        "search":"Search",
+        "categories":"Category",
+        "tags":"Tags",
+        "types":"Types",
+        "date":"Date",
+        "libs":"Libraries",
+        "reset":"Reset",
+        "prev":"Prev",
+        "next":"Next"
+    }
+}
