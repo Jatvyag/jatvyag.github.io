@@ -40,7 +40,12 @@ function getIcon(path) {
         </div>
         <!-- Info -->
         <div class="blog-info">
-        <h3 class="post-title">{{ post.title }}</h3>
+        <component
+            :is="post.link ? 'router-link' : 'div'"
+            :to="post.link ? `/jupyter/${encodeURIComponent(post.link)}` : undefined"
+        >
+            <h3 class="post-title">{{ post.title }}</h3>
+        </component>
         <p class="post-desc">{{ post.desc }}</p>
         <!-- Tags -->
         <div class="post-tags">
@@ -62,17 +67,6 @@ function getIcon(path) {
                 :title="lib.name"
                 class="icon-img"
             />
-        </div>
-        <!-- Link -->
-        <div class="post-link">
-            <a
-                v-if="post.link"
-                :href="post.link"
-                target="_blank"
-            >
-            View Project
-            </a>
-            <span v-else>No link available</span>
         </div>
         </div>
     </div>

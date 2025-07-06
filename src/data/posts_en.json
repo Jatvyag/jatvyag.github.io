@@ -12,7 +12,7 @@
                 {"id":3, "name":"Pandas", "icon":"pandas.svg"}
                 ],
             "date":"2023-06-13",
-            "link":"",
+            "link":"analyse_tv.html",
             "type":{"name":"Jupyter","icon":"jupyter.svg"},
             "pic":"left_shark.jpg"
         },

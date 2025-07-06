@@ -35,7 +35,12 @@ function scrollToMain() {
                 <font-awesome-icon :icon="faCred.faIcon" />
             </a>.
         </p>
-        <font-awesome-icon :icon="['fas', 'chevron-up']" class="chevron up" @click="scrollToMain" />
+        <font-awesome-icon 
+            v-if="mainSection" 
+            :icon="['fas', 'chevron-up']" 
+            class="chevron up" 
+            @click="scrollToMain" 
+        />
     </footer>
 </template>
 

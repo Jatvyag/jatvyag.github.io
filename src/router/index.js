@@ -6,7 +6,12 @@ import Jupyter from '../views/Jupyter.vue'
 const routes = [
     { path: '/', name: 'Main', component: Main },
     { path: '/blog', name: 'Blog', component: Blog },
-    { path: '/jupyter', name: 'Jupyter', component: Jupyter }
+    {
+        path: '/jupyter/:postUrl',
+        name: 'JupyterView',
+        component: () => import('../views/Jupyter.vue'),
+        props: route => ({ post_url: route.params.postUrl })
+    }
 ]
 
 const router = createRouter({
