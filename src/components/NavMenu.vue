@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
@@ -29,15 +29,48 @@ function toggleMenu() {
 function handleNavigation(item) {
     if (item.disabled) return
     const hash = item.link
-    if (hash && hash.startsWith('#')) {
-        const el = document.querySelector(hash)
-        if (el) {
+    if (!hash || !hash.startsWith('#')) return
+    let el = null
+    if (item.type === 'main_menu') {
+        el = document.querySelector(hash)
+    } else if (item.type === 'jupyter') {
+        const iframe = document.querySelector('iframe')
+        const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
+        if (iframeDoc) {
+            el = iframeDoc.querySelector(hash)
+        }
+    }
+    if (el) {
         el.scrollIntoView({ behavior: 'smooth' })
         emit('update:currentSection', item.key)
         isOpen.value = false
-        }
     }
 }
+
+const jupyterIcon = new URL(`../assets/icons/jupyter.svg`, import.meta.url).href
+
+const activeItem = computed(() => {
+    return props.navItems.find(item => item.key === props.currentSection)
+})
+
+const isJupyter = computed(() => {
+    return props.navItems.some(item => item.type === 'jupyter')
+})
+
+const currentIcon = computed(() => activeItem.value?.faIcon || ['fas', 'bars'])
+
+const currentTitle = computed(() => {
+    if (isJupyter.value && props.currentSection) {
+        return props.currentSection
+    } else if (isJupyter.value && !props.currentSection){
+        const icon = "Jupyter"
+        return icon
+    }
+    if ( props.navMenuLangPage && props.currentSection ) {
+        const key = `${props.navMenuLangPage}.${props.currentSection}`
+        return t(key, props.currentSection)
+    }
+})
 </script>
 
 <template>
@@ -45,15 +78,15 @@ function handleNavigation(item) {
         <button 
             class="menu-btn" 
             @click="toggleMenu"
-            :disabled="navItems.length <= 1"
+            :disabled="props.navItems.length <= 1"
         >
-            <font-awesome-icon 
-                :icon="navItems.find(item => item.key === currentSection)?.faIcon || ['fas', 'bars']" 
-            />
-            <span class="page-title">{{ currentSection ? 
-                t(`${navMenuLangPage}.${currentSection}`) :
-                ''
-            }}</span>
+            <template v-if="isJupyter">
+                <img :src="jupyterIcon" alt="Jupyter" class="jupyter-icon" />
+            </template>
+            <template v-else>
+                <font-awesome-icon :icon="currentIcon" />
+            </template>
+                <span class="page-title">{{ currentTitle }}</span>
         </button>
         <!-- Backdrop -->
         <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
@@ -61,14 +94,19 @@ function handleNavigation(item) {
         <div class="side-menu" :class="{ open: isOpen }">
         <ul>
             <li
-            v-for="item in navItems"
-            :key="item.key"
-            :class="{ active: item.key === currentSection, disabled: item.disabled }"
-            @click="handleNavigation(item)"
+                v-for="item in props.navItems"
+                :key="item.key"
+                :class="{ active: item.key === currentSection, disabled: item.disabled }"
+                @click="handleNavigation(item)"
             >
+            <!-- Icon for non-jupyter -->
+            <template v-if="item.type !== 'jupyter'">
                 <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
                 <span v-else>{{ item.unicodeIcon }}</span>
-                <span>{{ t(`${navMenuLangPage}.${item.key}`) }}</span>
+            </template>
+            <span>
+                {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
+            </span>
             </li>
         </ul>
         </div>
@@ -112,7 +150,7 @@ function handleNavigation(item) {
 }
 
 .page-title {
-    display: block;
+    display: inline-block;
     max-width: 100%;  
     font-weight: bold;
     white-space: nowrap;
@@ -179,6 +217,14 @@ function handleNavigation(item) {
 .side-menu li.disabled {
     opacity: 0.5;
     pointer-events: none;
+}
+
+.jupyter-icon {
+    width: 1em; 
+    height: 1em;
+    margin-right: 0.5em;
+    flex-shrink: 0; 
+    display: inline-block; 
 }
 
 @media (max-width: 600px) {

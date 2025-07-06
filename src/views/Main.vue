@@ -14,10 +14,10 @@ const emit = defineEmits([
 ])
 
 const navItems = [
-  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], disabled: false },
-  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], disabled: false },
-  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], disabled: false },
-  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], disabled: false },
+  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], type: "main_manu", disabled: false },
+  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], type: "main_manu", disabled: false },
+  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: "main_manu", disabled: false },
+  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: "main_manu", disabled: false },
 ]
 
 const navMenuLangPage = 'navMenu.main'

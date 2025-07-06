@@ -34,16 +34,16 @@ function scrollToNextSection() {
         <h2>{{ t(`${navMenuLangPage}.skills`) }}</h2>
         <div class="card skills">
             <div
-            v-for="(items, categoryKey) in skillsData"
-            :key="categoryKey"
-            class="skill-group"
+                v-for="(items, categoryKey) in skillsData"
+                :key="categoryKey"
+                class="skill-group"
             >
             <h3>{{ t(`skills.${categoryKey}`) }}</h3>
             <div class="skill-grid">
                 <div
-                v-for="skill in items"
-                :key="skill.id"
-                class="skill-item"
+                    v-for="skill in items"
+                    :key="skill.id"
+                    class="skill-item"
                 >
                 <img
                     :src="getIconPath(skill.icon)"

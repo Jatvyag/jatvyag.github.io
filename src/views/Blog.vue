@@ -11,7 +11,7 @@ const emit = defineEmits([
 ])
 
 const navItems = [
-  { key: 'home', link: '#home', faIcon: ['fas', 'house'], disabled: true }
+  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: "main_manu", disabled: true }
 ]
 
 const navMenuLangPage = 'navMenu.blog'
