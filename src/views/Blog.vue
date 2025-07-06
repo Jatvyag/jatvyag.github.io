@@ -82,7 +82,7 @@ const posts = computed(() => {
 
 // Filtered and paginated posts
 const filteredPosts = computed(() =>
-  posts.value.filter(post => {
+  posts.value.slice().reverse().filter(post => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       post.desc.toLowerCase().includes(searchQuery.value.toLowerCase())

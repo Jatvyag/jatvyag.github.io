@@ -62,7 +62,7 @@ watch(currentSection, (newVal) => {
 
 // Jupyter-specific logic
 const theme = ref(sessionStorage.getItem('theme') || 'dark')
-const iframeSrc = ref(`/notebooks/${theme.value}/analyse_tv.html`)
+const iframeSrc = ref(`/notebooks/${theme.value}/${props.post_url}`)
 const jupyterNavItems = ref([])
 
 function extractHeadingsFromIframe(iframeEl) {

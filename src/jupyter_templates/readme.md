@@ -11,7 +11,7 @@ jupyter nbconvert \
   --to html \
   --template=mod_lab \
   --TemplateExporter.extra_template_basedirs=./src/jupyter_templates \
-  ./src/assets/notebooks/analyse_tv.ipynb \
+  ./src/assets/notebooks/* \
   --theme dark \
   --output-dir=public/notebooks/dark
 
@@ -20,7 +20,7 @@ jupyter nbconvert \
   --to html \
   --template=mod_lab \
   --TemplateExporter.extra_template_basedirs=./src/jupyter_templates \
-  ./src/assets/notebooks/analyse_tv.ipynb \
+  ./src/assets/notebooks/* \
   --output-dir=public/notebooks/light
 ```
 

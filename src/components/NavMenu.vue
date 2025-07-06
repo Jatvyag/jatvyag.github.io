@@ -188,6 +188,8 @@ const currentTitle = computed(() => {
     left: 0;
     top: 0;
     padding-top: 2rem;
+    overflow-y: auto;
+    max-height: 100vh; 
     transform: translateX(0);
 }
 
