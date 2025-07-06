@@ -1,3 +1,3 @@
 # About
 
-Here the code of my webpage before build.
+This website is build with Vue.
