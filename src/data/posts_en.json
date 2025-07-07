@@ -5,7 +5,7 @@
             "title":"Analyzing TV Data",
             "desc":"Use data manipulation and visualization to explore one of two different television broadcast datasets: The Super Bowl and hit sitcom The Office",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
                 {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"},
@@ -21,7 +21,7 @@
             "title":"Designing a Bank Marketing Database",
             "desc":"Use your data cleaning and database design skills to author a script that sets up tables in a PostgreSQL database for bank marketing campaigns",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"}
@@ -36,7 +36,7 @@
             "title":"The Android App Market on Google Play",
             "desc":"Load, clean, and visualize scraped Google Play Store data to gain insights into the Android app market",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -53,7 +53,7 @@
             "title":"Predicting Credit Card Approvals",
             "desc":"Build a machine learning model to predict if a credit card application will get approved",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -69,7 +69,7 @@
             "title":"Investigating Netflix Movies and Guest Stars in The Office",
             "desc":"Apply the foundational Python skills you learned in Introduction to Python and Intermediate Python by manipulating and visualizing movie and TV data",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
                 {"id":2, "name":"Pandas", "icon":"pandas.svg"}
@@ -84,7 +84,7 @@
             "title":"Dr. Semmelweis and the Discovery of Handwashing",
             "desc":"Reanalyse the data behind one of the most important discoveries of modern medicine: handwashing",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
                 {"id":2, "name":"Pandas", "icon":"pandas.svg"}
@@ -99,7 +99,7 @@
             "title":"A Visual History of Nobel Prize Winners",
             "desc":"Explore a dataset from Kaggle containing a century's worth of Nobel Laureates. Who won? Who got snubbed?",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -116,7 +116,7 @@
             "title":"Which Debts Are Worth the Bank's Effort?",
             "desc":"Play bank data scientist and use regression discontinuity to see which debts are worth collecting",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -134,7 +134,7 @@
             "title":"Hypothesis Testing in Healthcare: Drug Safety",
             "desc":"Perform hypothesis tests to determine if the adverse effects of a pharmaceutical drug are significant",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -153,7 +153,7 @@
             "title":"Hypothesis Testing with Men's and Women's Soccer Matches",
             "desc":"Perform a hypothesis test to determine if more goals are scored in women's soccer matches than men's",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -171,7 +171,7 @@
             "title":"Modeling Car Insurance Claim Outcomes",
             "desc":"Clean customer data and use logistic regression to predict whether people will make a claim on their car insurance",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},

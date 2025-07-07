@@ -5,7 +5,7 @@
             "title":"Аналіз тэлевізійных даных",
             "desc":"Выкарыстанне апрацоўкі даных і візуалізацыі, каб даследаваць адно з двух розных наборы даных тэлевізійнага вяшчання: Суперкубак і папулярны сітком \"Офіс\"",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
                 {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"},
@@ -21,7 +21,7 @@
             "title":"Распрацоўка маркетынгавай базы даных банка",
             "desc":"Выкарыстанне навыкаў ачысткі даных і праектавання базы даных, каб скласці сцэнарый, які стварае табліцы ў базе даных PostgreSQL для банкаўскіх маркетынгавых кампаній",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"}
@@ -36,7 +36,7 @@
             "title":"Android App Market у Google Play",
             "desc":"Загрузка, ачышска і візуалізацыя скрабаваных даных з Google Play Store, каб атрымаць уяўленне аб рынку прыкладанняў для Android",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -53,7 +53,7 @@
             "title":"Прагназаванне адабрэння крэдытных карт",
             "desc":"Стварэнне мадэлі машыннага навучання для прагназавання, што заяўка на крэдытную карту будзе зацверджана",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -69,7 +69,7 @@
             "title":"Даследаванне фільмаў Netflix і запрошаных зорак у офісе",
             "desc":"Прымяненне асноўных навыкаў Python шляхам апрацоўкі і візуалізацыі даных фільмаў і тэлеперадач",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
                 {"id":2, "name":"Pandas", "icon":"pandas.svg"}
@@ -84,7 +84,7 @@
             "title":"Доктар Земмельвейс і адкрыццё мыцця рук",
             "desc":"Паўторны аналіз даных, якія ляжаць у аснове аднаго з самых важных адкрыццяў сучаснай медыцыны: мыццё рук",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
                 {"id":2, "name":"Pandas", "icon":"pandas.svg"}
@@ -99,7 +99,7 @@
             "title":"Візуальная гісторыя лаўрэатаў Нобелеўскай прэміі",
             "desc":"Даследванне набора даных ад Kaggle, які змяшчае лаўрэатаў Нобелеўскай прэміі за стагоддзе. Хто перамог? Каго абняволілі?",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -116,7 +116,7 @@
             "title":"Якія даўгі вартыя намаганняў банка?",
             "desc":"Гуляйце ў навукоўца па банкаўскіх даных і выкарыстоўвайце разрыў рэгрэсіі, каб убачыць, якія даўгі варта спагнаць",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -134,7 +134,7 @@
             "title":"Праверка гіпотэз у ахове здароўя: бяспека лекаў",
             "desc":"Выканайце тэсты гіпотэз, каб вызначыць, ці значныя пабочныя эфекты фармацэўтычнага прэпарата",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -153,7 +153,7 @@
             "title":"Праверка гіпотэз ў мужчынскіх і жаночых футбольных матчах",
             "desc":"Выканайце праверку гіпотэзы, каб вызначыць, ці забіваецца больш галоў у жаночых футбольных матчах, чым у мужчынскіх!",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Visualization"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
@@ -171,7 +171,7 @@
             "title":"Мадэляванне вынікаў прэтэнзій па страхаванні аўтамабіля",
             "desc":"Ачысціце даныя кліентаў і выкарыстоўвайце лагістычную рэгрэсію, каб прадбачыць, ці будуць людзі прад'яўляць прэтэнзіі па страхоўцы аўтамабіля",
             "cat":"DataCamp",
-            "tag":["Python", "Data Analysis"],
+            "tag":["Analysis"],
             "libs":[
                 {"id":1, "name":"Pandas", "icon":"pandas.svg"},
                 {"id":2, "name":"NumPy", "icon":"numpy.svg"},
