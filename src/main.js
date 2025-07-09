@@ -21,6 +21,12 @@ import {
     faFontAwesome
 } from '@fortawesome/free-brands-svg-icons'
 
+const savedPath = sessionStorage.getItem('redirect-path');
+if (savedPath) {
+    sessionStorage.removeItem('redirect-path');
+    router.replace(savedPath);
+}
+
 library.add(
     faChevronDown, faChevronUp, faEnvelopeOpenText, faAt, faClipboard,
     faBars, faAward, faBarsProgress, faLanguage, faCopyright, 
