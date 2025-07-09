@@ -17,6 +17,14 @@ function toggleTheme() {
     window.dispatchEvent(new CustomEvent('theme-changed', {
         detail: { theme: theme.value }
     }))
+    // Send to iframe
+    const iframe = document.querySelector('iframe') // or give iframe an ID and use that
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+            type: 'set-theme',
+            theme: theme.value
+        }, '*')  // Replace '*' with your origin if needed
+    }
 }
 </script>
 

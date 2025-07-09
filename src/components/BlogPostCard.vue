@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue'
+
 const props = defineProps({
     post: {
         type: Object,
@@ -13,6 +15,8 @@ const props = defineProps({
 const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
 
 const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
+
+const lang = ref(sessionStorage.getItem('locale') || 'en')
 
 function getThumb(path) {
     return thumbnails[`../assets/thumbs/${path}`]

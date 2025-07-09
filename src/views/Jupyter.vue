@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted, onBeforeUnmount, watch, nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+
 const props = defineProps({
     post_url: {
         type: String,
@@ -56,13 +59,17 @@ onUnmounted(() => {
   if (observer) observer.disconnect()
 })
 
-watch(currentSection, (newVal) => {
-  emit('update:currentSection', newVal)
-})
+watch(
+  [() => locale.value, () => props.post_url, () => currentSection.value],
+  ([newLang, newUrl, newSection]) => {
+    iframeSrc.value = `/notebooks/${newLang}/${newUrl}`
+    emit('update:currentSection', newSection)
+  }
+)
 
 // Jupyter-specific logic
 const theme = ref(sessionStorage.getItem('theme') || 'dark')
-const iframeSrc = ref(`/notebooks/${theme.value}/${props.post_url}`)
+const iframeSrc = ref(`/notebooks/${locale.value}/${props.post_url}`)
 const jupyterNavItems = ref([])
 
 function extractHeadingsFromIframe(iframeEl) {
@@ -102,10 +109,6 @@ function scrollToFirstHeading() {
 function onThemeChange(e) {
   theme.value = e.detail.theme
 }
-
-watch(theme, (newTheme) => {
-  iframeSrc.value = `/notebooks/${newTheme}/${props.post_url}`
-})
 
 let hasExtracted = false
 

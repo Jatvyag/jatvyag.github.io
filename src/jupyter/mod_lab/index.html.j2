@@ -1,0 +1,103 @@
+{% extends 'lab/index.html.j2' %}
+
+{% block extra_css %}
+{{ super() }}
+<style>
+/* Make wide pandas DataFrames horizontally scrollable */
+.dataframe {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap;
+}
+</style>
+{% endblock extra_css %}
+
+{% block notebook_css %}
+{{ resources.include_css("static/index.css") }}
+
+<style type="text/css">
+:root[data-theme='dark'] {
+{% include "static/theme-dark.css" %}
+}
+:root[data-theme='light'] {
+{% include "static/theme-light.css" %}
+}
+</style>
+
+<style type="text/css">
+/* Force rendering true colors when outputing to pdf */
+* {
+  -webkit-print-color-adjust: exact;
+}
+
+/* Misc */
+a.anchor-link {
+  display: none;
+}
+
+/* Input area styling */
+.jp-InputArea {
+  overflow: hidden;
+}
+
+.jp-InputArea-editor {
+  overflow: hidden;
+}
+
+.cm-editor.cm-s-jupyter .highlight pre {
+  padding: var(--jp-code-padding) 4px;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
+}
+
+.jp-Collapser {
+  display: none;
+}
+
+@page {
+    margin: 0.5in;
+}
+
+@media print {
+  .jp-Cell-inputWrapper,
+  .jp-Cell-outputWrapper {
+    display: block;
+  }
+}
+</style>
+{% endblock notebook_css %}
+
+{% block body_footer %}
+{{ super() }}
+<script>
+  // Get theme from sessionStorage on load
+  const savedTheme = sessionStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.body.setAttribute('data-jp-theme-light', savedTheme === 'light');
+  document.body.setAttribute('data-jp-theme-name', `JupyterLab ${savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1)}`);
+
+  // Listen for theme updates from parent
+  window.addEventListener('message', (event) => {
+    if (event.data?.type === 'set-theme' && event.data.theme) {
+      const newTheme = event.data.theme;
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.body.setAttribute('data-jp-theme-light', newTheme === 'light');
+      document.body.setAttribute('data-jp-theme-name', `JupyterLab ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)}`);
+    }
+  });
+</script>
+{% endblock body_footer %}
