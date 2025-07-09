@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>credit_card</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>car_insurence</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style>
 /* Make wide pandas DataFrames horizontally scrollable */
 .dataframe {
@@ -62,19 +62,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
 .highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
 .highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
-  </style>
-<style type="text/css">
-    /*This file contains any manual css for this page that needs to override the global styles.
-This is only required when different pages style the same element differently. This is just
-a hack to deal with our current css styles and no new styling should be added in this file.*/
-
-#ipython-main-app {
-    position: relative;
-}
-#jupyter-main-app {
-    position: relative;
-}
-
   </style>
 <style type="text/css">
 /*-----------------------------------------------------------------------------
@@ -6831,6 +6818,7 @@ div.jp-Cell-Placeholder-content-3 {
 
 </style>
 <style type="text/css">
+:root[data-theme='dark'] {
 /*-----------------------------------------------------------------------------
 | Copyright (c) Jupyter Development Team.
 | Distributed under the terms of the Modified BSD License.
@@ -6857,7 +6845,6 @@ Material Design when selecting colors. We are not, however, following
 all of MD as it is not optimized for dense, information rich UIs.
 */
 
-:root {
   /* Elevation
    *
    * We style box-shadows using Material Design's idea of elevation. These particular numbers are taken from here:
@@ -7269,6 +7256,429 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-switch-color: var(--md-grey-400);
   --jp-switch-true-position-color: var(--md-orange-700);
 }
+:root[data-theme='light'] {
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+/*
+The following CSS variables define the main, public API for styling JupyterLab.
+These variables should be used by all plugins wherever possible. In other
+words, plugins should not define custom colors, sizes, etc unless absolutely
+necessary. This enables users to change the visual theme of JupyterLab
+by changing these variables.
+
+Many variables appear in an ordered sequence (0,1,2,3). These sequences
+are designed to work well together, so for example, `--jp-border-color1` should
+be used with `--jp-layout-color1`. The numbers have the following meanings:
+
+* 0: super-primary, reserved for special emphasis
+* 1: primary, most important under normal situations
+* 2: secondary, next most important under normal situations
+* 3: tertiary, next most important under normal situations
+
+Throughout JupyterLab, we are mostly following principles from Google's
+Material Design when selecting colors. We are not, however, following
+all of MD as it is not optimized for dense, information rich UIs.
+*/
+
+  /* Elevation
+   *
+   * We style box-shadows using Material Design's idea of elevation. These particular numbers are taken from here:
+   *
+   * https://github.com/material-components/material-components-web
+   * https://material-components-web.appspot.com/elevation.html
+   */
+
+  --jp-shadow-base-lightness: 0;
+  --jp-shadow-umbra-color: rgba(
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    0.2
+  );
+  --jp-shadow-penumbra-color: rgba(
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    0.14
+  );
+  --jp-shadow-ambient-color: rgba(
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    var(--jp-shadow-base-lightness),
+    0.12
+  );
+  --jp-elevation-z0: none;
+  --jp-elevation-z1: 0 2px 1px -1px var(--jp-shadow-umbra-color),
+    0 1px 1px 0 var(--jp-shadow-penumbra-color),
+    0 1px 3px 0 var(--jp-shadow-ambient-color);
+  --jp-elevation-z2: 0 3px 1px -2px var(--jp-shadow-umbra-color),
+    0 2px 2px 0 var(--jp-shadow-penumbra-color),
+    0 1px 5px 0 var(--jp-shadow-ambient-color);
+  --jp-elevation-z4: 0 2px 4px -1px var(--jp-shadow-umbra-color),
+    0 4px 5px 0 var(--jp-shadow-penumbra-color),
+    0 1px 10px 0 var(--jp-shadow-ambient-color);
+  --jp-elevation-z6: 0 3px 5px -1px var(--jp-shadow-umbra-color),
+    0 6px 10px 0 var(--jp-shadow-penumbra-color),
+    0 1px 18px 0 var(--jp-shadow-ambient-color);
+  --jp-elevation-z8: 0 5px 5px -3px var(--jp-shadow-umbra-color),
+    0 8px 10px 1px var(--jp-shadow-penumbra-color),
+    0 3px 14px 2px var(--jp-shadow-ambient-color);
+  --jp-elevation-z12: 0 7px 8px -4px var(--jp-shadow-umbra-color),
+    0 12px 17px 2px var(--jp-shadow-penumbra-color),
+    0 5px 22px 4px var(--jp-shadow-ambient-color);
+  --jp-elevation-z16: 0 8px 10px -5px var(--jp-shadow-umbra-color),
+    0 16px 24px 2px var(--jp-shadow-penumbra-color),
+    0 6px 30px 5px var(--jp-shadow-ambient-color);
+  --jp-elevation-z20: 0 10px 13px -6px var(--jp-shadow-umbra-color),
+    0 20px 31px 3px var(--jp-shadow-penumbra-color),
+    0 8px 38px 7px var(--jp-shadow-ambient-color);
+  --jp-elevation-z24: 0 11px 15px -7px var(--jp-shadow-umbra-color),
+    0 24px 38px 3px var(--jp-shadow-penumbra-color),
+    0 9px 46px 8px var(--jp-shadow-ambient-color);
+
+  /* Borders
+   *
+   * The following variables, specify the visual styling of borders in JupyterLab.
+   */
+
+  --jp-border-width: 1px;
+  --jp-border-color0: var(--md-grey-400);
+  --jp-border-color1: var(--md-grey-400);
+  --jp-border-color2: var(--md-grey-300);
+  --jp-border-color3: var(--md-grey-200);
+  --jp-inverse-border-color: var(--md-grey-600);
+  --jp-border-radius: 2px;
+
+  /* UI Fonts
+   *
+   * The UI font CSS variables are used for the typography all of the JupyterLab
+   * user interface elements that are not directly user generated content.
+   *
+   * The font sizing here is done assuming that the body font size of --jp-ui-font-size1
+   * is applied to a parent element. When children elements, such as headings, are sized
+   * in em all things will be computed relative to that body size.
+   */
+
+  --jp-ui-font-scale-factor: 1.2;
+  --jp-ui-font-size0: 0.83333em;
+  --jp-ui-font-size1: 13px; /* Base font size */
+  --jp-ui-font-size2: 1.2em;
+  --jp-ui-font-size3: 1.44em;
+  --jp-ui-font-family: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI',
+    helvetica, arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+
+  /*
+   * Use these font colors against the corresponding main layout colors.
+   * In a light theme, these go from dark to light.
+   */
+
+  /* Defaults use Material Design specification */
+  --jp-ui-font-color0: rgba(0, 0, 0, 1);
+  --jp-ui-font-color1: rgba(0, 0, 0, 0.87);
+  --jp-ui-font-color2: rgba(0, 0, 0, 0.54);
+  --jp-ui-font-color3: rgba(0, 0, 0, 0.38);
+
+  /*
+   * Use these against the brand/accent/warn/error colors.
+   * These will typically go from light to darker, in both a dark and light theme.
+   */
+
+  --jp-ui-inverse-font-color0: rgba(255, 255, 255, 1);
+  --jp-ui-inverse-font-color1: rgba(255, 255, 255, 1);
+  --jp-ui-inverse-font-color2: rgba(255, 255, 255, 0.7);
+  --jp-ui-inverse-font-color3: rgba(255, 255, 255, 0.5);
+
+  /* Content Fonts
+   *
+   * Content font variables are used for typography of user generated content.
+   *
+   * The font sizing here is done assuming that the body font size of --jp-content-font-size1
+   * is applied to a parent element. When children elements, such as headings, are sized
+   * in em all things will be computed relative to that body size.
+   */
+
+  --jp-content-line-height: 1.6;
+  --jp-content-font-scale-factor: 1.2;
+  --jp-content-font-size0: 0.83333em;
+  --jp-content-font-size1: 14px; /* Base font size */
+  --jp-content-font-size2: 1.2em;
+  --jp-content-font-size3: 1.44em;
+  --jp-content-font-size4: 1.728em;
+  --jp-content-font-size5: 2.0736em;
+
+  /* This gives a magnification of about 125% in presentation mode over normal. */
+  --jp-content-presentation-font-size1: 17px;
+  --jp-content-heading-line-height: 1;
+  --jp-content-heading-margin-top: 1.2em;
+  --jp-content-heading-margin-bottom: 0.8em;
+  --jp-content-heading-font-weight: 500;
+
+  /* Defaults use Material Design specification */
+  --jp-content-font-color0: rgba(0, 0, 0, 1);
+  --jp-content-font-color1: rgba(0, 0, 0, 0.87);
+  --jp-content-font-color2: rgba(0, 0, 0, 0.54);
+  --jp-content-font-color3: rgba(0, 0, 0, 0.38);
+  --jp-content-link-color: var(--md-blue-900);
+  --jp-content-font-family: system-ui, -apple-system, blinkmacsystemfont,
+    'Segoe UI', helvetica, arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  /*
+   * Code Fonts
+   *
+   * Code font variables are used for typography of code and other monospaces content.
+   */
+
+  --jp-code-font-size: 13px;
+  --jp-code-line-height: 1.3077; /* 17px for 13px base */
+  --jp-code-padding: 5px; /* 5px for 13px base, codemirror highlighting needs integer px value */
+  --jp-code-font-family-default: menlo, consolas, 'DejaVu Sans Mono', monospace;
+  --jp-code-font-family: var(--jp-code-font-family-default);
+
+  /* This gives a magnification of about 125% in presentation mode over normal. */
+  --jp-code-presentation-font-size: 16px;
+
+  /* may need to tweak cursor width if you change font size */
+  --jp-code-cursor-width0: 1.4px;
+  --jp-code-cursor-width1: 2px;
+  --jp-code-cursor-width2: 4px;
+
+  /* Layout
+   *
+   * The following are the main layout colors use in JupyterLab. In a light
+   * theme these would go from light to dark.
+   */
+
+  --jp-layout-color0: white;
+  --jp-layout-color1: white;
+  --jp-layout-color2: var(--md-grey-200);
+  --jp-layout-color3: var(--md-grey-400);
+  --jp-layout-color4: var(--md-grey-600);
+
+  /* Inverse Layout
+   *
+   * The following are the inverse layout colors use in JupyterLab. In a light
+   * theme these would go from dark to light.
+   */
+
+  --jp-inverse-layout-color0: #111;
+  --jp-inverse-layout-color1: var(--md-grey-900);
+  --jp-inverse-layout-color2: var(--md-grey-800);
+  --jp-inverse-layout-color3: var(--md-grey-700);
+  --jp-inverse-layout-color4: var(--md-grey-600);
+
+  /* Brand/accent */
+
+  --jp-brand-color0: var(--md-blue-900);
+  --jp-brand-color1: var(--md-blue-700);
+  --jp-brand-color2: var(--md-blue-300);
+  --jp-brand-color3: var(--md-blue-100);
+  --jp-brand-color4: var(--md-blue-50);
+  --jp-accent-color0: var(--md-green-900);
+  --jp-accent-color1: var(--md-green-700);
+  --jp-accent-color2: var(--md-green-300);
+  --jp-accent-color3: var(--md-green-100);
+
+  /* State colors (warn, error, success, info) */
+
+  --jp-warn-color0: var(--md-orange-900);
+  --jp-warn-color1: var(--md-orange-700);
+  --jp-warn-color2: var(--md-orange-300);
+  --jp-warn-color3: var(--md-orange-100);
+  --jp-error-color0: var(--md-red-900);
+  --jp-error-color1: var(--md-red-700);
+  --jp-error-color2: var(--md-red-300);
+  --jp-error-color3: var(--md-red-100);
+  --jp-success-color0: var(--md-green-900);
+  --jp-success-color1: var(--md-green-700);
+  --jp-success-color2: var(--md-green-300);
+  --jp-success-color3: var(--md-green-100);
+  --jp-info-color0: var(--md-cyan-900);
+  --jp-info-color1: var(--md-cyan-700);
+  --jp-info-color2: var(--md-cyan-300);
+  --jp-info-color3: var(--md-cyan-100);
+
+  /* Cell specific styles */
+
+  --jp-cell-padding: 5px;
+  --jp-cell-collapser-width: 8px;
+  --jp-cell-collapser-min-height: 20px;
+  --jp-cell-collapser-not-active-hover-opacity: 0.6;
+  --jp-cell-editor-background: var(--md-grey-100);
+  --jp-cell-editor-border-color: var(--md-grey-300);
+  --jp-cell-editor-box-shadow: inset 0 0 2px var(--md-blue-300);
+  --jp-cell-editor-active-background: var(--jp-layout-color0);
+  --jp-cell-editor-active-border-color: var(--jp-brand-color1);
+  --jp-cell-prompt-width: 64px;
+  --jp-cell-prompt-font-family: var(--jp-code-font-family-default);
+  --jp-cell-prompt-letter-spacing: 0;
+  --jp-cell-prompt-opacity: 1;
+  --jp-cell-prompt-not-active-opacity: 0.5;
+  --jp-cell-prompt-not-active-font-color: var(--md-grey-700);
+
+  /* A custom blend of MD grey and blue 600
+   * See https://meyerweb.com/eric/tools/color-blend/#546E7A:1E88E5:5:hex */
+  --jp-cell-inprompt-font-color: #307fc1;
+
+  /* A custom blend of MD grey and orange 600
+   * https://meyerweb.com/eric/tools/color-blend/#546E7A:F4511E:5:hex */
+  --jp-cell-outprompt-font-color: #bf5b3d;
+
+  /* Notebook specific styles */
+
+  --jp-notebook-padding: 10px;
+  --jp-notebook-select-background: var(--jp-layout-color1);
+  --jp-notebook-multiselected-color: var(--md-blue-50);
+
+  /* The scroll padding is calculated to fill enough space at the bottom of the
+  notebook to show one single-line cell (with appropriate padding) at the top
+  when the notebook is scrolled all the way to the bottom. We also subtract one
+  pixel so that no scrollbar appears if we have just one single-line cell in the
+  notebook. This padding is to enable a 'scroll past end' feature in a notebook.
+  */
+  --jp-notebook-scroll-padding: calc(
+    100% - var(--jp-code-font-size) * var(--jp-code-line-height) -
+      var(--jp-code-padding) - var(--jp-cell-padding) - 1px
+  );
+
+  /* Rendermime styles */
+
+  --jp-rendermime-error-background: #fdd;
+  --jp-rendermime-table-row-background: var(--md-grey-100);
+  --jp-rendermime-table-row-hover-background: var(--md-light-blue-50);
+
+  /* Dialog specific styles */
+
+  --jp-dialog-background: rgba(0, 0, 0, 0.25);
+
+  /* Console specific styles */
+
+  --jp-console-padding: 10px;
+
+  /* Toolbar specific styles */
+
+  --jp-toolbar-border-color: var(--jp-border-color1);
+  --jp-toolbar-micro-height: 8px;
+  --jp-toolbar-background: var(--jp-layout-color1);
+  --jp-toolbar-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.24);
+  --jp-toolbar-header-margin: 4px 4px 0 4px;
+  --jp-toolbar-active-background: var(--md-grey-300);
+
+  /* Statusbar specific styles */
+
+  --jp-statusbar-height: 24px;
+
+  /* Input field styles */
+
+  --jp-input-box-shadow: inset 0 0 2px var(--md-blue-300);
+  --jp-input-active-background: var(--jp-layout-color1);
+  --jp-input-hover-background: var(--jp-layout-color1);
+  --jp-input-background: var(--md-grey-100);
+  --jp-input-border-color: var(--jp-inverse-border-color);
+  --jp-input-active-border-color: var(--jp-brand-color1);
+  --jp-input-active-box-shadow-color: rgba(19, 124, 189, 0.3);
+
+  /* General editor styles */
+
+  --jp-editor-selected-background: #d9d9d9;
+  --jp-editor-selected-focused-background: #d7d4f0;
+  --jp-editor-cursor-color: var(--jp-ui-font-color0);
+
+  /* Code mirror specific styles */
+
+  --jp-mirror-editor-keyword-color: #008000;
+  --jp-mirror-editor-atom-color: #88f;
+  --jp-mirror-editor-number-color: #080;
+  --jp-mirror-editor-def-color: #00f;
+  --jp-mirror-editor-variable-color: var(--md-grey-900);
+  --jp-mirror-editor-variable-2-color: rgb(0, 54, 109);
+  --jp-mirror-editor-variable-3-color: #085;
+  --jp-mirror-editor-punctuation-color: #05a;
+  --jp-mirror-editor-property-color: #05a;
+  --jp-mirror-editor-operator-color: #a2f;
+  --jp-mirror-editor-comment-color: #408080;
+  --jp-mirror-editor-string-color: #ba2121;
+  --jp-mirror-editor-string-2-color: #708;
+  --jp-mirror-editor-meta-color: #a2f;
+  --jp-mirror-editor-qualifier-color: #555;
+  --jp-mirror-editor-builtin-color: #008000;
+  --jp-mirror-editor-bracket-color: #997;
+  --jp-mirror-editor-tag-color: #170;
+  --jp-mirror-editor-attribute-color: #00c;
+  --jp-mirror-editor-header-color: blue;
+  --jp-mirror-editor-quote-color: #090;
+  --jp-mirror-editor-link-color: #00c;
+  --jp-mirror-editor-error-color: #f00;
+  --jp-mirror-editor-hr-color: #999;
+
+  /*
+    RTC user specific colors.
+    These colors are used for the cursor, username in the editor,
+    and the icon of the user.
+  */
+
+  --jp-collaborator-color1: #ffad8e;
+  --jp-collaborator-color2: #dac83d;
+  --jp-collaborator-color3: #72dd76;
+  --jp-collaborator-color4: #00e4d0;
+  --jp-collaborator-color5: #45d4ff;
+  --jp-collaborator-color6: #e2b1ff;
+  --jp-collaborator-color7: #ff9de6;
+
+  /* Vega extension styles */
+
+  --jp-vega-background: white;
+
+  /* Sidebar-related styles */
+
+  --jp-sidebar-min-width: 250px;
+
+  /* Search-related styles */
+
+  --jp-search-toggle-off-opacity: 0.5;
+  --jp-search-toggle-hover-opacity: 0.8;
+  --jp-search-toggle-on-opacity: 1;
+  --jp-search-selected-match-background-color: rgb(245, 200, 0);
+  --jp-search-selected-match-color: black;
+  --jp-search-unselected-match-background-color: var(
+    --jp-inverse-layout-color0
+  );
+  --jp-search-unselected-match-color: var(--jp-ui-inverse-font-color0);
+
+  /* Icon colors that work well with light or dark backgrounds */
+  --jp-icon-contrast-color0: var(--md-purple-600);
+  --jp-icon-contrast-color1: var(--md-green-600);
+  --jp-icon-contrast-color2: var(--md-pink-600);
+  --jp-icon-contrast-color3: var(--md-blue-600);
+
+  /* Button colors */
+  --jp-accept-color-normal: var(--md-blue-700);
+  --jp-accept-color-hover: var(--md-blue-800);
+  --jp-accept-color-active: var(--md-blue-900);
+  --jp-warn-color-normal: var(--md-red-700);
+  --jp-warn-color-hover: var(--md-red-800);
+  --jp-warn-color-active: var(--md-red-900);
+  --jp-reject-color-normal: var(--md-grey-600);
+  --jp-reject-color-hover: var(--md-grey-700);
+  --jp-reject-color-active: var(--md-grey-800);
+
+  /* File or activity icons and switch semantic variables */
+  --jp-jupyter-icon-color: #f37626;
+  --jp-notebook-icon-color: #f37626;
+  --jp-json-icon-color: var(--md-orange-700);
+  --jp-console-icon-background-color: var(--md-blue-700);
+  --jp-console-icon-color: white;
+  --jp-terminal-icon-background-color: var(--md-grey-800);
+  --jp-terminal-icon-color: var(--md-grey-200);
+  --jp-text-editor-icon-color: var(--md-grey-700);
+  --jp-inspector-icon-color: var(--md-grey-700);
+  --jp-switch-color: var(--md-grey-400);
+  --jp-switch-true-position-color: var(--md-orange-900);
+}
 </style>
 <style type="text/css">
 /* Force rendering true colors when outputing to pdf */
@@ -7291,15 +7701,12 @@ a.anchor-link {
 }
 
 .cm-editor.cm-s-jupyter .highlight pre {
-/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.cm-line */
   padding: var(--jp-code-padding) 4px;
   margin: 0;
-
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   color: inherit;
-
 }
 
 .jp-OutputArea-output pre {
@@ -7312,13 +7719,12 @@ a.anchor-link {
   font-size: var(--jp-code-font-size);
 }
 
-/* Hiding the collapser by default */
 .jp-Collapser {
   display: none;
 }
 
 @page {
-    margin: 0.5in; /* Margin for each printed piece of paper */
+    margin: 0.5in;
 }
 
 @media print {
@@ -7546,745 +7952,143 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
-<body class="jp-Notebook" data-jp-theme-light="false" data-jp-theme-name="JupyterLab Dark">
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3547a93-03e3-4e49-aa1c-77840b79e10c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3f0e974-faf8-458f-bf2a-06a469d0ea5e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Credit-card-applications">Credit card applications<a class="anchor-link" href="#Credit-card-applications">¶</a></h2><p>Commercial banks receive <em>a lot</em> of applications for credit cards. Many of them get rejected for many reasons, like high loan balances, low income levels, or too many inquiries on an individual's credit report, for example. Manually analyzing these applications is mundane, error-prone, and time-consuming (and time is money!). Luckily, this task can be automated with the power of machine learning and pretty much every commercial bank does so nowadays. In this notebook, we will build an automatic credit card approval predictor using machine learning techniques, just like the real banks do.</p>
-<p>We'll use the <a href="http://archive.ics.uci.edu/ml/datasets/credit+approval">Credit Card Approval dataset</a> from the UCI Machine Learning Repository. The structure of this notebook is as follows:</p>
-<ul>
-<li>First, we will start off by loading and viewing the dataset.</li>
-<li>We will see that the dataset has a mixture of both numerical and non-numerical features, that it contains values from different ranges, plus that it contains a number of missing entries.</li>
-<li>We will have to preprocess the dataset to ensure the machine learning model we choose can make good predictions.</li>
-<li>After our data is in good shape, we will do some exploratory data analysis to build our intuitions.</li>
-<li>Finally, we will build a machine learning model that can predict if an individual's application for a credit card will be accepted.</li>
-</ul>
-<p>First, loading and viewing the dataset. We find that since this data is confidential, the contributor of the dataset has anonymized the feature names.</p>
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Intro">Intro<a class="anchor-link" href="#Intro">¶</a></h2><p>Insurance companies invest a lot of <a href="https://www.accenture.com/_acnmedia/pdf-84/accenture-machine-leaning-insurance.pdf">time and money</a> into optimizing their pricing and accurately estimating the likelihood that customers will make a claim. In many countries insurance it is a legal requirement to have car insurance in order to drive a vehicle on public roads, so the market is very large!</p>
+<p>Knowing all of this, On the Road car insurance have requested your services in building a model to predict whether a customer will make a claim on their insurance during the policy period. As they have very little expertise and infrastructure for deploying and monitoring machine learning models, they've asked you to identify the single feature that results in the best performing model, as measured by accuracy, so they can start with a simple model in production.</p>
+<p>They have supplied you with their customer data as a csv file called <code>car_insurance.csv</code>, along with a table detailing the column names and descriptions below.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=72d5b3e1-ecaa-4750-a2dd-e8b13e29ec29">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8928ffdf-25d6-4ad9-909f-0dd8d10b9a42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-dataset">The dataset<a class="anchor-link" href="#The-dataset">¶</a></h2><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Unique client identifier</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>Client's age: <br/> <ul><li><code>0</code>: 16-25</li><li><code>1</code>: 26-39</li><li><code>2</code>: 40-64</li><li><code>3</code>: 65+</li></ul></td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>Client's gender: <br/> <ul><li><code>0</code>: Female</li><li><code>1</code>: Male</li></ul></td>
+</tr>
+<tr>
+<td><code>driving_experience</code></td>
+<td>Years the client has been driving: <br/> <ul><li><code>0</code>: 0-9</li><li><code>1</code>: 10-19</li><li><code>2</code>: 20-29</li><li><code>3</code>: 30+</li></ul></td>
+</tr>
+<tr>
+<td><code>education</code></td>
+<td>Client's level of education: <br/> <ul><li><code>0</code>: No education</li><li><code>1</code>: High school</li><li><code>2</code>: University</li></ul></td>
+</tr>
+<tr>
+<td><code>income</code></td>
+<td>Client's income level: <br/> <ul><li><code>0</code>: Poverty</li><li><code>1</code>: Working class</li><li><code>2</code>: Middle class</li><li><code>3</code>: Upper class</li></ul></td>
+</tr>
+<tr>
+<td><code>credit_score</code></td>
+<td>Client's credit score (between zero and one)</td>
+</tr>
+<tr>
+<td><code>vehicle_ownership</code></td>
+<td>Client's vehicle ownership status: <br/><ul><li><code>0</code>: Does not own their vehilce (paying off finance)</li><li><code>1</code>: Owns their vehicle</li></ul></td>
+</tr>
+<tr>
+<td><code>vehcile_year</code></td>
+<td>Year of vehicle registration: <br/><ul><li><code>0</code>: Before 2015</li><li><code>1</code>: 2015 or later</li></ul></td>
+</tr>
+<tr>
+<td><code>married</code></td>
+<td>Client's marital status: <br/><ul><li><code>0</code>: Not married</li><li><code>1</code>: Married</li></ul></td>
+</tr>
+<tr>
+<td><code>children</code></td>
+<td>Client's number of children</td>
+</tr>
+<tr>
+<td><code>postal_code</code></td>
+<td>Client's postal code</td>
+</tr>
+<tr>
+<td><code>annual_mileage</code></td>
+<td>Number of miles driven by the client each year</td>
+</tr>
+<tr>
+<td><code>vehicle_type</code></td>
+<td>Type of car: <br/> <ul><li><code>0</code>: Sedan</li><li><code>1</code>: Sports car</li></ul></td>
+</tr>
+<tr>
+<td><code>speeding_violations</code></td>
+<td>Total number of speeding violations received by the client</td>
+</tr>
+<tr>
+<td><code>duis</code></td>
+<td>Number of times the client has been caught driving under the influence of alcohol</td>
+</tr>
+<tr>
+<td><code>past_accidents</code></td>
+<td>Total number of previous accidents the client has been involved in</td>
+</tr>
+<tr>
+<td><code>outcome</code></td>
+<td>Whether the client made a claim on their car insurance (response variable): <br/><ul><li><code>0</code>: No claim</li><li><code>1</code>: Made a claim</li></ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d0eb4f16-5a99-460d-a5ba-706b7ef0bbe7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import pandas</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import required modules</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># Load dataset</span>
-<span class="n">cc_apps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'datasets/cc_approvals.data'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="c1"># Inspect data</span>
-<span class="n">cc_apps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>b</td>
-<td>30.83</td>
-<td>0.000</td>
-<td>u</td>
-<td>g</td>
-<td>w</td>
-<td>v</td>
-<td>1.25</td>
-<td>t</td>
-<td>t</td>
-<td>1</td>
-<td>f</td>
-<td>g</td>
-<td>00202</td>
-<td>0</td>
-<td>+</td>
-</tr>
-<tr>
-<th>1</th>
-<td>a</td>
-<td>58.67</td>
-<td>4.460</td>
-<td>u</td>
-<td>g</td>
-<td>q</td>
-<td>h</td>
-<td>3.04</td>
-<td>t</td>
-<td>t</td>
-<td>6</td>
-<td>f</td>
-<td>g</td>
-<td>00043</td>
-<td>560</td>
-<td>+</td>
-</tr>
-<tr>
-<th>2</th>
-<td>a</td>
-<td>24.50</td>
-<td>0.500</td>
-<td>u</td>
-<td>g</td>
-<td>q</td>
-<td>h</td>
-<td>1.50</td>
-<td>t</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00280</td>
-<td>824</td>
-<td>+</td>
-</tr>
-<tr>
-<th>3</th>
-<td>b</td>
-<td>27.83</td>
-<td>1.540</td>
-<td>u</td>
-<td>g</td>
-<td>w</td>
-<td>v</td>
-<td>3.75</td>
-<td>t</td>
-<td>t</td>
-<td>5</td>
-<td>t</td>
-<td>g</td>
-<td>00100</td>
-<td>3</td>
-<td>+</td>
-</tr>
-<tr>
-<th>4</th>
-<td>b</td>
-<td>20.17</td>
-<td>5.625</td>
-<td>u</td>
-<td>g</td>
-<td>w</td>
-<td>v</td>
-<td>1.71</td>
-<td>t</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>s</td>
-<td>00120</td>
-<td>0</td>
-<td>+</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6018304e-2e8b-412d-8504-6b07855facc6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Inspecting-the-applications">Inspecting the applications<a class="anchor-link" href="#Inspecting-the-applications">¶</a></h2><p>The output may appear a bit confusing at its first sight, but let's try to figure out the most important features of a credit card application. The features of this dataset have been anonymized to protect the privacy, but <a href="http://rstudio-pubs-static.s3.amazonaws.com/73039_9946de135c0a49daa7a0a9eda4a67a72.html">this blog</a> gives us a pretty good overview of the probable features. The probable features in a typical credit card application are <code>Gender</code>, <code>Age</code>, <code>Debt</code>, <code>Married</code>, <code>BankCustomer</code>, <code>EducationLevel</code>, <code>Ethnicity</code>, <code>YearsEmployed</code>, <code>PriorDefault</code>, <code>Employed</code>, <code>CreditScore</code>, <code>DriversLicense</code>, <code>Citizen</code>, <code>ZipCode</code>, <code>Income</code> and finally the <code>ApprovalStatus</code>. This gives us a pretty good starting point, and we can map these features with respect to the columns in the output.   </p>
-<p>As we can see from our first glance at the data, the dataset has a mixture of numerical and non-numerical features. This can be fixed with some preprocessing, but before we do that, let's learn about the dataset a bit more to see if there are other dataset issues that need to be fixed.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=9ed2e508-5462-4dd5-adb1-8c33b3934865">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Print summary statistics</span>
-<span class="n">cc_apps_description</span> <span class="o">=</span> <span class="n">cc_apps</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_description</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
-
-<span class="c1"># Print DataFrame information</span>
-<span class="n">cc_apps_info</span> <span class="o">=</span> <span class="n">cc_apps</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_info</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
-
-<span class="c1"># Inspect missing values in the dataset</span>
-<span class="n">cc_apps</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>               2           7          10             14
-count  690.000000  690.000000  690.00000     690.000000
-mean     4.758725    2.223406    2.40000    1017.385507
-std      4.978163    3.346513    4.86294    5210.102598
-min      0.000000    0.000000    0.00000       0.000000
-25%      1.000000    0.165000    0.00000       0.000000
-50%      2.750000    1.000000    0.00000       5.000000
-75%      7.207500    2.625000    3.00000     395.500000
-max     28.000000   28.500000   67.00000  100000.000000
-
-
-&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 690 entries, 0 to 689
-Data columns (total 16 columns):
-0     690 non-null object
-1     690 non-null object
-2     690 non-null float64
-3     690 non-null object
-4     690 non-null object
-5     690 non-null object
-6     690 non-null object
-7     690 non-null float64
-8     690 non-null object
-9     690 non-null object
-10    690 non-null int64
-11    690 non-null object
-12    690 non-null object
-13    690 non-null object
-14    690 non-null int64
-15    690 non-null object
-dtypes: float64(2), int64(2), object(12)
-memory usage: 86.3+ KB
-None
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>673</th>
-<td>?</td>
-<td>29.50</td>
-<td>2.000</td>
-<td>y</td>
-<td>p</td>
-<td>e</td>
-<td>h</td>
-<td>2.000</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00256</td>
-<td>17</td>
-<td>-</td>
-</tr>
-<tr>
-<th>674</th>
-<td>a</td>
-<td>37.33</td>
-<td>2.500</td>
-<td>u</td>
-<td>g</td>
-<td>i</td>
-<td>h</td>
-<td>0.210</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00260</td>
-<td>246</td>
-<td>-</td>
-</tr>
-<tr>
-<th>675</th>
-<td>a</td>
-<td>41.58</td>
-<td>1.040</td>
-<td>u</td>
-<td>g</td>
-<td>aa</td>
-<td>v</td>
-<td>0.665</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00240</td>
-<td>237</td>
-<td>-</td>
-</tr>
-<tr>
-<th>676</th>
-<td>a</td>
-<td>30.58</td>
-<td>10.665</td>
-<td>u</td>
-<td>g</td>
-<td>q</td>
-<td>h</td>
-<td>0.085</td>
-<td>f</td>
-<td>t</td>
-<td>12</td>
-<td>t</td>
-<td>g</td>
-<td>00129</td>
-<td>3</td>
-<td>-</td>
-</tr>
-<tr>
-<th>677</th>
-<td>b</td>
-<td>19.42</td>
-<td>7.250</td>
-<td>u</td>
-<td>g</td>
-<td>m</td>
-<td>v</td>
-<td>0.040</td>
-<td>f</td>
-<td>t</td>
-<td>1</td>
-<td>f</td>
-<td>g</td>
-<td>00100</td>
-<td>1</td>
-<td>-</td>
-</tr>
-<tr>
-<th>678</th>
-<td>a</td>
-<td>17.92</td>
-<td>10.210</td>
-<td>u</td>
-<td>g</td>
-<td>ff</td>
-<td>ff</td>
-<td>0.000</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00000</td>
-<td>50</td>
-<td>-</td>
-</tr>
-<tr>
-<th>679</th>
-<td>a</td>
-<td>20.08</td>
-<td>1.250</td>
-<td>u</td>
-<td>g</td>
-<td>c</td>
-<td>v</td>
-<td>0.000</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00000</td>
-<td>0</td>
-<td>-</td>
-</tr>
-<tr>
-<th>680</th>
-<td>b</td>
-<td>19.50</td>
-<td>0.290</td>
-<td>u</td>
-<td>g</td>
-<td>k</td>
-<td>v</td>
-<td>0.290</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00280</td>
-<td>364</td>
-<td>-</td>
-</tr>
-<tr>
-<th>681</th>
-<td>b</td>
-<td>27.83</td>
-<td>1.000</td>
-<td>y</td>
-<td>p</td>
-<td>d</td>
-<td>h</td>
-<td>3.000</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00176</td>
-<td>537</td>
-<td>-</td>
-</tr>
-<tr>
-<th>682</th>
-<td>b</td>
-<td>17.08</td>
-<td>3.290</td>
-<td>u</td>
-<td>g</td>
-<td>i</td>
-<td>v</td>
-<td>0.335</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>t</td>
-<td>g</td>
-<td>00140</td>
-<td>2</td>
-<td>-</td>
-</tr>
-<tr>
-<th>683</th>
-<td>b</td>
-<td>36.42</td>
-<td>0.750</td>
-<td>y</td>
-<td>p</td>
-<td>d</td>
-<td>v</td>
-<td>0.585</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00240</td>
-<td>3</td>
-<td>-</td>
-</tr>
-<tr>
-<th>684</th>
-<td>b</td>
-<td>40.58</td>
-<td>3.290</td>
-<td>u</td>
-<td>g</td>
-<td>m</td>
-<td>v</td>
-<td>3.500</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>t</td>
-<td>s</td>
-<td>00400</td>
-<td>0</td>
-<td>-</td>
-</tr>
-<tr>
-<th>685</th>
-<td>b</td>
-<td>21.08</td>
-<td>10.085</td>
-<td>y</td>
-<td>p</td>
-<td>e</td>
-<td>h</td>
-<td>1.250</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00260</td>
-<td>0</td>
-<td>-</td>
-</tr>
-<tr>
-<th>686</th>
-<td>a</td>
-<td>22.67</td>
-<td>0.750</td>
-<td>u</td>
-<td>g</td>
-<td>c</td>
-<td>v</td>
-<td>2.000</td>
-<td>f</td>
-<td>t</td>
-<td>2</td>
-<td>t</td>
-<td>g</td>
-<td>00200</td>
-<td>394</td>
-<td>-</td>
-</tr>
-<tr>
-<th>687</th>
-<td>a</td>
-<td>25.25</td>
-<td>13.500</td>
-<td>y</td>
-<td>p</td>
-<td>ff</td>
-<td>ff</td>
-<td>2.000</td>
-<td>f</td>
-<td>t</td>
-<td>1</td>
-<td>t</td>
-<td>g</td>
-<td>00200</td>
-<td>1</td>
-<td>-</td>
-</tr>
-<tr>
-<th>688</th>
-<td>b</td>
-<td>17.92</td>
-<td>0.205</td>
-<td>u</td>
-<td>g</td>
-<td>aa</td>
-<td>v</td>
-<td>0.040</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>f</td>
-<td>g</td>
-<td>00280</td>
-<td>750</td>
-<td>-</td>
-</tr>
-<tr>
-<th>689</th>
-<td>b</td>
-<td>35.00</td>
-<td>3.375</td>
-<td>u</td>
-<td>g</td>
-<td>c</td>
-<td>h</td>
-<td>8.290</td>
-<td>f</td>
-<td>f</td>
-<td>0</td>
-<td>t</td>
-<td>g</td>
-<td>00000</td>
-<td>0</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=363ad6d4-c977-4f75-8f3e-7b2d328343a7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Splitting-the-dataset-into-train-and-test-sets">Splitting the dataset into train and test sets<a class="anchor-link" href="#Splitting-the-dataset-into-train-and-test-sets">¶</a></h2><p>Now, we will split our data into train set and test set to prepare our data for two different phases of machine learning modeling: training and testing. Ideally, no information from the test data should be used to preprocess the training data or should be used to direct the training process of a machine learning model. Hence, we first split the data and then preprocess it.</p>
-<p>Also, features like <code>DriversLicense</code> and <code>ZipCode</code> are not as important as the other features in the dataset for predicting credit card approvals. To get a better sense, we can measure their <a href="https://realpython.com/numpy-scipy-pandas-correlation-python/">statistical correlation</a> to the labels of the dataset. But this is out of scope for this project. We should drop them to design our machine learning model with the best set of features. In Data Science literature, this is often referred to as <em>feature selection</em>. </p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_sample_code" id="cell-id=4478bea6-5b15-4a86-9a07-20d0fb357467">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import train_test_split</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-
-<span class="c1"># Drop the features 11 and 13</span>
-<span class="n">cc_apps</span> <span class="o">=</span> <span class="n">cc_apps</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
-
-<span class="c1"># Split into train and test sets</span>
-<span class="n">cc_apps_train</span><span class="p">,</span> <span class="n">cc_apps_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cc_apps</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b471d04-c981-4095-82d0-62ac2b388d6d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h2><p>Now we've split our data, we can handle some of the issues we identified when inspecting the DataFrame, including:</p>
-<ul>
-<li>Our dataset contains both numeric and non-numeric data (specifically data that are of <code>float64</code>, <code>int64</code> and <code>object</code> types). Specifically, the features 2, 7, 10 and 14 contain numeric values (of types float64, float64, int64 and int64 respectively) and all the other features contain non-numeric values.</li>
-<li>The dataset also contains values from several ranges. Some features have a value range of 0 - 28, some have a range of 2 - 67, and some have a range of 1017 - 100000. Apart from these, we can get useful statistical information (like <code>mean</code>, <code>max</code>, and <code>min</code>) about the features that have numerical values. </li>
-<li>Finally, the dataset has missing values, which we'll take care of in this task. The missing values in the dataset are labeled with '?', which can be seen in the last cell's output of the second task.</li>
-</ul>
-<p>Now, let's temporarily replace these missing value question marks with NaN.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_sample_code" id="cell-id=cc924dbd-fdd3-429f-acae-f8e7cc30ee41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import numpy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">logit</span>
 
-<span class="c1"># Replace the '?'s with NaN in the train and test sets</span>
-<span class="n">cc_apps_train</span> <span class="o">=</span> <span class="n">cc_apps_train</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'?'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="n">cc_apps_test</span> <span class="o">=</span> <span class="n">cc_apps_test</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'?'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="c1"># import dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'car_insurance.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0772ccf9-5733-44b4-988f-0e690a3ecb52">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We replaced all the question marks with NaNs. This is going to help us in the next missing value treatment that we are going to perform.</p>
-<p>An important question that gets raised here is <em>why are we giving so much importance to missing values</em>? Can't they be just ignored? Ignoring missing values can affect the performance of a machine learning model heavily. While ignoring the missing values our machine learning model may miss out on information about the dataset that may be useful for its training. Then, there are many models which cannot handle missing values implicitly such as Linear Discriminant Analysis (LDA). </p>
-<p>So, to avoid this problem, we are going to impute the missing values with a strategy called mean imputation.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=5e05a787-4925-4ecb-bd25-48ec03c0703c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6fb70731-96b5-432e-8f64-a5a131edc137">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Impute the missing values with mean imputation</span>
-<span class="n">cc_apps_train</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">cc_apps_test</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">cc_apps_test</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Count the number of NaNs in the datasets and print the counts to verify</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_test</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># examine dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -8297,72 +8101,89 @@ None
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>0     8
-1     5
-2     0
-3     6
-4     6
-5     7
-6     7
-7     0
-8     0
-9     0
-10    0
-12    0
-14    0
-15    0
-dtype: int64
-0     4
-1     7
-2     0
-3     0
-4     0
-5     2
-6     2
-7     0
-8     0
-9     0
-10    0
-12    0
-14    0
-15    0
+<pre>                  id           age  ...  past_accidents       outcome
+count   10000.000000  10000.000000  ...    10000.000000  10000.000000
+mean   500521.906800      1.489500  ...        1.056300      0.313300
+std    290030.768758      1.025278  ...        1.652454      0.463858
+min       101.000000      0.000000  ...        0.000000      0.000000
+25%    249638.500000      1.000000  ...        0.000000      0.000000
+50%    501777.000000      1.000000  ...        0.000000      0.000000
+75%    753974.500000      2.000000  ...        2.000000      1.000000
+max    999976.000000      3.000000  ...       15.000000      1.000000
+
+[8 rows x 13 columns]
+id                       0
+age                      0
+gender                   0
+driving_experience       0
+education                0
+income                   0
+credit_score           982
+vehicle_ownership        0
+vehicle_year             0
+married                  0
+children                 0
+postal_code              0
+annual_mileage         957
+vehicle_type             0
+speeding_violations      0
+duis                     0
+past_accidents           0
+outcome                  0
 dtype: int64
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8dedc203-f7a8-412d-8124-0bdffeb907d9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We have successfully taken care of the missing values present in the numeric columns. There are still some missing values to be imputed for columns 0, 1, 3, 4, 5, 6 and 13. All of these columns contain non-numeric data and this is why the mean imputation strategy would not work here. This needs a different treatment. </p>
-<p>We are going to impute these missing values with the most frequent values as present in the respective columns. This is <a href="https://www.datacamp.com/community/tutorials/categorical-data">good practice</a> when it comes to imputing missing values for categorical data in general.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=4bc8ae35-1f40-41ef-80c9-3383c297429c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f504f856-98df-42db-8dbc-fcc8fb103ec3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Iterate over each column of cc_apps_train</span>
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cc_apps_train</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="c1"># Check if the column is of object type</span>
-    <span class="k">if</span> <span class="n">cc_apps_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtypes</span> <span class="o">==</span> <span class="s1">'object'</span><span class="p">:</span>
-        <span class="c1"># Impute with the most frequent value</span>
-        <span class="n">cc_apps_train</span> <span class="o">=</span> <span class="n">cc_apps_train</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">cc_apps_test</span> <span class="o">=</span> <span class="n">cc_apps_test</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># filling missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">credit_score</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">credit_score</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">annual_mileage</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">annual_mileage</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a783cefe-a366-4d0b-8bb7-9700a4269811">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># model preparation</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'outcome'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8cbc18a9-9f33-493a-9d3c-d9b2daf229e7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># import model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">logit</span>
 
-<span class="c1"># Count the number of NaNs in the dataset and print the counts to verify</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cc_apps_test</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="c1"># model per feature</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">logit</span><span class="p">(</span><span class="sa">f</span><span class="s1">'outcome ~ </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8375,142 +8196,106 @@ dtype: int64
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>0     0
-1     0
-2     0
-3     0
-4     0
-5     0
-6     0
-7     0
-8     0
-9     0
-10    0
-12    0
-14    0
-15    0
-dtype: int64
-0     0
-1     0
-2     0
-3     0
-4     0
-5     0
-6     0
-7     0
-8     0
-9     0
-10    0
-12    0
-14    0
-15    0
-dtype: int64
+<pre>Optimization terminated successfully.
+         Current function value: 0.511794
+         Iterations 6
+Optimization terminated successfully.
+         Current function value: 0.615951
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.467092
+         Iterations 8
+Optimization terminated successfully.
+         Current function value: 0.603742
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.531499
+         Iterations 6
+Optimization terminated successfully.
+         Current function value: 0.572557
+         Iterations 6
+Optimization terminated successfully.
+         Current function value: 0.552412
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.572668
+         Iterations 6
+Optimization terminated successfully.
+         Current function value: 0.586659
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.595431
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.617345
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.605716
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.621700
+         Iterations 5
+Optimization terminated successfully.
+         Current function value: 0.558922
+         Iterations 7
+Optimization terminated successfully.
+         Current function value: 0.598699
+         Iterations 6
+Optimization terminated successfully.
+         Current function value: 0.549220
+         Iterations 7
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=df5a061c-f05d-4c79-8c10-a99234a59702">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Preprocessing-the-data">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h2><p>The missing values are now successfully handled.</p>
-<p>There is still some minor but essential data preprocessing needed before we proceed towards building our machine learning model. We are going to divide these remaining preprocessing steps into two main tasks:</p>
-<ol>
-<li>Convert the non-numeric data into numeric.</li>
-<li>Scale the feature values to a uniform range.</li>
-</ol>
-<p>First, we will be converting all the non-numeric values into numeric ones. We do this because not only it results in a faster computation but also many machine learning models (like XGBoost) (and especially the ones developed using scikit-learn) require the data to be in a strictly numeric format. We will do this by using the <code>get_dummies()</code> method from pandas.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_sample_code" id="cell-id=e93d2d71-ebe4-4fe4-ba53-1fe1c757c293">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6c60d641-dc4b-4619-a97f-841031957925">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Convert the categorical features in the train and test sets independently</span>
-<span class="n">cc_apps_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">cc_apps_train</span><span class="p">)</span>
-<span class="n">cc_apps_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">cc_apps_test</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># measuring performance</span>
+<span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="c1"># Reindex the columns of the test set aligning with the train set</span>
-<span class="n">cc_apps_test</span> <span class="o">=</span> <span class="n">cc_apps_test</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cc_apps_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Loop through models</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">)):</span>
+    <span class="c1"># Compute the confusion matrix</span>
+    <span class="n">conf_matrix</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">pred_table</span><span class="p">()</span>
+    <span class="c1"># True negatives</span>
+    <span class="n">tn</span> <span class="o">=</span> <span class="n">conf_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># True positives</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">conf_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># False negatives</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">conf_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># False positives</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">conf_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Compute accuracy</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fn</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)</span>
+    <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83f72807-fcc0-43f7-baa0-3a73fb94ffe1">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Preprocessing-the-data">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h3><p>Now, we are only left with one final preprocessing step of scaling before we can fit a machine learning model to the data. </p>
-<p>Now, let's try to understand what these scaled values mean in the real world. Let's use <code>CreditScore</code> as an example. The credit score of a person is their creditworthiness based on their credit history. The higher this number, the more financially trustworthy a person is considered to be. So, a <code>CreditScore</code> of 1 is the highest since we're rescaling all the values to the range of 0-1.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_sample_code" id="cell-id=834f9782-9066-40e5-9749-1a2d1e6105f7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74815cd4-d6b4-44f3-b932-0824a0d241ec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import MinMaxScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Find the feature with the largest accuracy</span>
+<span class="n">best_feature</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">accuracies</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">accuracies</span><span class="p">))]</span>
 
-<span class="c1"># Segregate features and labels into separate variables</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">cc_apps_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">cc_apps_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cc_apps_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">cc_apps_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># Instantiate MinMaxScaler and use it to rescale X_train and X_test</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">rescaledX_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">rescaledX_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff01db70-57d7-456f-9e55-971de94fe6fc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Fitting-a-logistic-regression-model-to-the-train-set">Fitting a logistic regression model to the train set<a class="anchor-link" href="#Fitting-a-logistic-regression-model-to-the-train-set">¶</a></h2><p>Essentially, predicting if a credit card application will be approved or not is a <a href="https://en.wikipedia.org/wiki/Statistical_classification">classification</a> task. According to UCI, our dataset contains more instances that correspond to "Denied" status than instances corresponding to "Approved" status. Specifically, out of 690 instances, there are 383 (55.5%) applications that got denied and 307 (44.5%) applications that got approved. </p>
-<p>This gives us a benchmark. A good machine learning model should be able to accurately predict the status of the applications with respect to these statistics.</p>
-<p>Which model should we pick? A question to ask is: <em>are the features that affect the credit card approval decision process correlated with each other?</em> Although we can measure correlation, that is outside the scope of this notebook, so we'll rely on our intuition that they indeed are correlated for now. Because of this correlation, we'll take advantage of the fact that generalized linear models perform well in these cases. Let's start our machine learning modeling with a Logistic Regression model (a generalized linear model).</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=2f61bf3e-76d2-471c-a864-60248c2d1599">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import LogisticRegression</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
-
-<span class="c1"># Instantiate a LogisticRegression classifier with default parameter values</span>
-<span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-
-<span class="c1"># Fit logreg to the train set</span>
-<span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">rescaledX_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># Create best_feature_df</span>
+<span class="n">best_feature_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"best_feature"</span><span class="p">:</span> <span class="n">best_feature</span><span class="p">,</span>
+                                <span class="s2">"best_accuracy"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">accuracies</span><span class="p">)},</span>
+                                <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">best_feature_df</span>
 </pre></div>
 </div>
 </div>
@@ -8521,157 +8306,39 @@ dtype: int64
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-          intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
-          penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
-          verbose=0, warm_start=False)</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8f626924-1cc7-450a-b986-736a389f41ee">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Making-predictions-and-evaluating-performance">Making predictions and evaluating performance<a class="anchor-link" href="#Making-predictions-and-evaluating-performance">¶</a></h2><p>But how well does our model perform? </p>
-<p>We will now evaluate our model on the test set with respect to <a href="https://developers.google.com/machine-learning/crash-course/classification/accuracy">classification accuracy</a>. But we will also take a look the model's <a href="http://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/">confusion matrix</a>. In the case of predicting credit card applications, it is important to see if our machine learning model is equally capable of predicting approved and denied status, in line with the frequency of these labels in our original dataset. If our model is not performing well in this aspect, then it might end up approving the application that should have been approved. The confusion matrix helps us to view our model's performance from these aspects.  </p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=bfa374e9-414f-4b35-a1aa-79871f6e83de">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import confusion_matrix</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="c1"># Use logreg to predict instances from the test set and store it</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">rescaledX_test</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="c1"># Get the accuracy score of logreg model and print it</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy of logistic regression classifier: "</span><span class="p">,</span> <span class="n">logreg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">rescaledX_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-
-<span class="c1"># Print the confusion matrix of the logreg model</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>best_feature</th>
+<th>best_accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>driving_experience</td>
+<td>0.7771</td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy of logistic regression classifier:  1.0
-[[103   0]
- [  0 125]]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64a0e7f7-8430-4d2f-a470-8aac393f09d8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Grid-searching-and-making-the-model-perform-better">Grid searching and making the model perform better<a class="anchor-link" href="#Grid-searching-and-making-the-model-perform-better">¶</a></h2><p>Our model was pretty good! In fact it was able to yield an accuracy score of 100%.</p>
-<p>For the confusion matrix, the first element of the of the first row of the confusion matrix denotes the true negatives meaning the number of negative instances (denied applications) predicted by the model correctly. And the last element of the second row of the confusion matrix denotes the true positives meaning the number of positive instances (approved applications) predicted by the model correctly.</p>
-<p>But if we hadn't got a perfect score what's to be done?. We can perform a <a href="https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/">grid search</a> of the model parameters to improve the model's ability to predict credit card approvals.</p>
-<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn's implementation of logistic regression</a> consists of different hyperparameters but we will grid search over the following two:</p>
-<ul>
-<li>tol</li>
-<li>max_iter</li>
-</ul>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_sample_code" id="cell-id=703a93e0-7fbf-4051-ace9-f9f18b0e39fa">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import GridSearchCV</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
-
-<span class="c1"># Define the grid of values for tol and max_iter</span>
-<span class="n">tol</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">]</span>
-<span class="n">max_iter</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
-
-<span class="c1"># Create a dictionary where tol and max_iter are keys and the lists of their values are corresponding values</span>
-<span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">'tol'</span><span class="p">,</span><span class="n">tol</span><span class="p">),</span> <span class="p">(</span><span class="s1">'max_iter'</span><span class="p">,</span><span class="n">max_iter</span><span class="p">)])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f9cc3740-59bd-4925-a123-e197fb18fc0a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Finding-the-best-performing-model">Finding the best performing model<a class="anchor-link" href="#Finding-the-best-performing-model">¶</a></h2><p>We have defined the grid of hyperparameter values and converted them into a single dictionary format which <code>GridSearchCV()</code> expects as one of its parameters. Now, we will begin the grid search to see which values perform best.</p>
-<p>We will instantiate <code>GridSearchCV()</code> with our earlier <code>logreg</code> model with all the data we have. We will also instruct <code>GridSearchCV()</code> to perform a <a href="https://www.dataschool.io/machine-learning-with-scikit-learn/">cross-validation</a> of five folds.</p>
-<p>We'll end the notebook by storing the best-achieved score and the respective best parameters.</p>
-<p>While building this credit card predictor, we tackled some of the most widely-known preprocessing steps such as <strong>scaling</strong>, <strong>label encoding</strong>, and <strong>missing value imputation</strong>. We finished with some <strong>machine learning</strong> to predict if a person's application for a credit card would get approved or not given some information about that person.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_sample_code" id="cell-id=0b102b28-97d8-40a9-a9bd-87ef82a94490">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Instantiate GridSearchCV with the required parameters</span>
-<span class="n">grid_model</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">logreg</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1"># Fit grid_model to the data</span>
-<span class="n">grid_model_result</span> <span class="o">=</span> <span class="n">grid_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">rescaledX_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># Summarize results</span>
-<span class="n">best_score</span><span class="p">,</span> <span class="n">best_params</span> <span class="o">=</span> <span class="n">grid_model_result</span><span class="o">.</span><span class="n">best_score_</span><span class="p">,</span> <span class="n">grid_model_result</span><span class="o">.</span><span class="n">best_params_</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Best: </span><span class="si">%f</span><span class="s2"> using </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">best_score</span><span class="p">,</span> <span class="n">best_params</span><span class="p">))</span>
-
-<span class="c1"># Extract the best model and evaluate it on the test set</span>
-<span class="n">best_model</span> <span class="o">=</span> <span class="n">grid_model_result</span><span class="o">.</span><span class="n">best_estimator_</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy of logistic regression classifier: "</span><span class="p">,</span> <span class="n">best_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">rescaledX_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Best: 1.000000 using {'max_iter': 100, 'tol': 0.01}
-Accuracy of logistic regression classifier:  1.0
-</pre>
 </div>
 </div>
 </div>
@@ -8679,4 +8346,22 @@ Accuracy of logistic regression classifier:  1.0
 </div>
 </main>
 </body>
+<script>
+  // Get theme from sessionStorage on load
+  const savedTheme = sessionStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.body.setAttribute('data-jp-theme-light', savedTheme === 'light');
+  document.body.setAttribute('data-jp-theme-name', `JupyterLab ${savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1)}`);
+
+  // Listen for theme updates from parent
+  window.addEventListener('message', (event) => {
+    if (event.data?.type === 'set-theme' && event.data.theme) {
+      const newTheme = event.data.theme;
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.body.setAttribute('data-jp-theme-light', newTheme === 'light');
+      document.body.setAttribute('data-jp-theme-name', `JupyterLab ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)}`);
+    }
+  });
+</script>
 </html>
+<!-- StripNestedRoot was here -->
