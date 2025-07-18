@@ -4,23 +4,23 @@ Firstly, we need to install `jupyter`, and `nbconvert=7.16.6` libraries.
 
 The available templates are here: `.venv/share/jupyter/nbconverter/templates`.
 
-In order to use ordinary template we can apply the following commands:
+In order to use ordinary template (from ./src/jupyter), we need to run the following command:
 ```sh
 # Dark theme
 jupyter nbconvert \
   --to html \
   --template lab \
   --theme dark \
-  ./src/jupyter/notebooks/en/analyse_tv.ipynb \
-  --output-dir public/notebooks/en
+  notebooks/en/analyse_tv.ipynb \
+  --output-dir ../../public/notebooks/en
 
 # Light theme
 jupyter nbconvert \
   --to html \
   --template lab \
   --theme light \
-  ./src/jupyter/notebooks/en/analyse_tv.ipynb \
-  --output-dir public/notebooks/en
+  notebooks/en/analyse_tv.ipynb \
+  --output-dir ../../public/notebooks/en
 ```
 
 However, for our case, this is not enough. We need to adapt templates a bit, and import both dark and light css styles. 

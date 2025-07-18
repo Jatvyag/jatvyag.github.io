@@ -1,2 +1,2 @@
 jupyter
-nbconvert=7.16.6
+nbconvert==7.16.6

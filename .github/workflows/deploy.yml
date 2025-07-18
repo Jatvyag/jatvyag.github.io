@@ -1,4 +1,4 @@
-name: Deploy Vue app to GitHub Pages
+name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
@@ -13,7 +13,23 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v3
 
-      - name: Install Node.js
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Jupyter dependencies
+        working-directory: ./src/jupyter
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Export Jupyter notebooks to public dir
+        working-directory: ./src/jupyter
+        run: |
+          python export_mod_lab.py
+
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
