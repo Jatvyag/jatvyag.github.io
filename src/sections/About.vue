@@ -1,5 +1,5 @@
 <script setup>
-import Banner from '../components/Banner.vue'
+import Banner from '@/components/Banner.vue'
 import { useI18n } from 'vue-i18n'
 const { t, tm } = useI18n()
 

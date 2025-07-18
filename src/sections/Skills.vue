@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import JSONData from '../data/data.json'
+import JSONData from '@/data/data.json'
 
 const { t } = useI18n()
 const skillsData = JSONData.skills

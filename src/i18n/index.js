@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n'
 
-import en from './en.json'
-import be from './be.json'
+import en from '@/i18n/en.json'
+import be from '@/i18n/be.json'
 
 const savedLocale = sessionStorage.getItem('locale') || 'en'
 

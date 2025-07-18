@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import About from '../sections/About.vue'
-import Skills from '../sections/Skills.vue'
-import Achievements from '../sections/Achievements.vue'
-import Contacts from '../sections/Contacts.vue'
+import About from '@/sections/About.vue'
+import Skills from '@/sections/Skills.vue'
+import Achievements from '@/sections/Achievements.vue'
+import Contacts from '@/sections/Contacts.vue'
 
 const emit = defineEmits([
   'update:mainSection', 

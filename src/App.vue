@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import TopBar from './components/TopBar.vue'
-import Footer from './components/Footer.vue'
+import TopBar from '@/components/TopBar.vue'
+import Footer from '@/components/Footer.vue'
 import { useI18n } from 'vue-i18n'
 
 const { locale, t, messages } = useI18n()

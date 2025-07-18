@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import BlogPostCard from '../components/BlogPostCard.vue'
-import jsonENPostsData from '../data/posts_en.json'
-import jsonBEPostsData from '../data/posts_be.json'
+import BlogPostCard from '@/components/BlogPostCard.vue'
+import jsonENPostsData from '@/data/posts_en.json'
+import jsonBEPostsData from '@/data/posts_be.json'
 
 const emit = defineEmits([
   'update:mainSection', 

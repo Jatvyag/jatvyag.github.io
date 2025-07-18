@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '../views/Main.vue'
-import Blog from '../views/Blog.vue'
+import Main from '@/views/Main.vue'
+import Blog from '@/views/Blog.vue'
 
 const routes = [
     { path: '/', name: 'Main', component: Main },
@@ -8,7 +8,7 @@ const routes = [
     {
         path: '/jupyter/:postUrl',
         name: 'Jupyter',
-        component: () => import('../views/Jupyter.vue'),
+        component: () => import('@/views/Jupyter.vue'),
         props: route => ({ post_url: route.params.postUrl })
     }
 ]

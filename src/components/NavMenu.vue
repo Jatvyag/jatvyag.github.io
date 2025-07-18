@@ -51,7 +51,7 @@ function handleNavigation(item) {
     })
 }
 
-const jupyterIcon = new URL(`../assets/icons/jupyter.svg`, import.meta.url).href
+const jupyterIcon = new URL(`@/assets/icons/jupyter.svg`, import.meta.url).href
 
 const activeItem = computed(() => {
     return props.navItems.find(item => item.key === props.currentSection)
