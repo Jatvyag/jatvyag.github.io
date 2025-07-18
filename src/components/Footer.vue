@@ -1,24 +1,3 @@
-<script setup>
-import JSONData from '@/data/data.json'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-const props = defineProps({
-    mainSection: {
-        type: String,
-        required: true,
-    }
-})
-
-const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
-const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
-
-function scrollToMain() {
-    const next = document.querySelector(props.mainSection) 
-    if (next) next.scrollIntoView({ behavior: 'smooth' })
-}
-</script>
-
 <template>
     <footer class="footer-bar">
         <p class="footer">
@@ -43,6 +22,27 @@ function scrollToMain() {
         />
     </footer>
 </template>
+
+<script setup>
+import JSONData from '@/data/data.json'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+const props = defineProps({
+    mainSection: {
+        type: String,
+        required: true,
+    }
+})
+
+const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
+const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
+
+function scrollToMain() {
+    const next = document.querySelector(props.mainSection) 
+    if (next) next.scrollIntoView({ behavior: 'smooth' })
+}
+</script>
 
 <style scoped>
 .footer-bar {

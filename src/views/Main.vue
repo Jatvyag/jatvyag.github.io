@@ -1,3 +1,26 @@
+<template>
+  <main class="about">
+    <About 
+      :sectionLink="getLinkByKey('about')" 
+      :nextSection="getLinkByKey('skills')"
+    />
+    <Skills 
+      :sectionLink="getLinkByKey('skills')" 
+      :navMenuLangPage="navMenuLangPage" 
+      :nextSection="getLinkByKey('achievements')"
+    />
+    <Achievements 
+      :sectionLink="getLinkByKey('achievements')" 
+      :navMenuLangPage="navMenuLangPage" 
+      :nextSection="getLinkByKey('contacts')"
+    />
+    <Contacts 
+      :sectionLink="getLinkByKey('contacts')" 
+      :navMenuLangPage="navMenuLangPage" 
+    />
+  </main>
+</template>
+
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import About from '@/sections/About.vue'
@@ -64,29 +87,6 @@ watch(currentSection, (newVal) => {
   emit('update:currentSection', newVal)
 })
 </script>
-
-<template>
-  <main class="about">
-    <About 
-      :sectionLink="getLinkByKey('about')" 
-      :nextSection="getLinkByKey('skills')"
-    />
-    <Skills 
-      :sectionLink="getLinkByKey('skills')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('achievements')"
-    />
-    <Achievements 
-      :sectionLink="getLinkByKey('achievements')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('contacts')"
-    />
-    <Contacts 
-      :sectionLink="getLinkByKey('contacts')" 
-      :navMenuLangPage="navMenuLangPage" 
-    />
-  </main>
-</template>
 
 <style scoped>
 main.about {

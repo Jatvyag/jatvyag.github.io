@@ -1,3 +1,43 @@
+<template>
+    <div class="nav-wrapper">
+        <button 
+            class="menu-btn" 
+            @click="toggleMenu"
+            :disabled="props.navItems.length <= 1"
+        >
+            <template v-if="isJupyter">
+                <img :src="jupyterIcon" alt="Jupyter" class="jupyter-icon" />
+            </template>
+            <template v-else>
+                <font-awesome-icon :icon="currentIcon" />
+            </template>
+                <span class="page-title">{{ currentTitle }}</span>
+        </button>
+        <!-- Backdrop -->
+        <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
+        <!-- Side Menu -->
+        <div class="side-menu" :class="{ open: isOpen }">
+        <ul>
+            <li
+                v-for="item in props.navItems"
+                :key="item.key"
+                :class="{ active: item.key === currentSection, disabled: item.disabled }"
+                @click="handleNavigation(item)"
+            >
+            <!-- Icon for non-jupyter -->
+            <template v-if="item.type !== 'jupyter'">
+                <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
+                <span v-else>{{ item.unicodeIcon }}</span>
+            </template>
+            <span>
+                {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
+            </span>
+            </li>
+        </ul>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import { ref, computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -77,47 +117,7 @@ const currentTitle = computed(() => {
 })
 </script>
 
-<template>
-    <div class="nav-wrapper">
-        <button 
-            class="menu-btn" 
-            @click="toggleMenu"
-            :disabled="props.navItems.length <= 1"
-        >
-            <template v-if="isJupyter">
-                <img :src="jupyterIcon" alt="Jupyter" class="jupyter-icon" />
-            </template>
-            <template v-else>
-                <font-awesome-icon :icon="currentIcon" />
-            </template>
-                <span class="page-title">{{ currentTitle }}</span>
-        </button>
-        <!-- Backdrop -->
-        <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
-        <!-- Side Menu -->
-        <div class="side-menu" :class="{ open: isOpen }">
-        <ul>
-            <li
-                v-for="item in props.navItems"
-                :key="item.key"
-                :class="{ active: item.key === currentSection, disabled: item.disabled }"
-                @click="handleNavigation(item)"
-            >
-            <!-- Icon for non-jupyter -->
-            <template v-if="item.type !== 'jupyter'">
-                <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
-                <span v-else>{{ item.unicodeIcon }}</span>
-            </template>
-            <span>
-                {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
-            </span>
-            </li>
-        </ul>
-        </div>
-    </div>
-</template>
-
-<style scoped>
+<style lang="scss" scoped>
 .nav-wrapper {
     display: flex;
     align-items: center;
@@ -142,7 +142,7 @@ const currentTitle = computed(() => {
 .menu-btn:hover {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
 }
 
 .menu-btn:disabled {
@@ -217,7 +217,7 @@ const currentTitle = computed(() => {
 .side-menu li:hover {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
 }
 
 .side-menu li.disabled {

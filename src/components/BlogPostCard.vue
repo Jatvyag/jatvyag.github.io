@@ -1,32 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-
-const props = defineProps({
-    post: {
-        type: Object,
-        required: true
-    },
-    empty: {
-        type: Boolean,
-        default: false
-    }
-})
-
-const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
-
-const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
-
-const lang = ref(sessionStorage.getItem('locale') || 'en')
-
-function getThumb(path) {
-    return thumbnails[`../assets/thumbs/${path}`]
-}
-
-function getIcon(path) {
-    return skillIcons[`../assets/icons/${path}`]
-}
-</script>
-
 <template>
     <div class="card blog empty-card" v-if="empty">
         <p class="empty-message">{{ post.title }}</p>
@@ -76,7 +47,36 @@ function getIcon(path) {
     </div>
 </template>
 
-<style scoped>
+<script setup>
+import { ref } from 'vue'
+
+const props = defineProps({
+    post: {
+        type: Object,
+        required: true
+    },
+    empty: {
+        type: Boolean,
+        default: false
+    }
+})
+
+const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
+
+const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
+
+const lang = ref(sessionStorage.getItem('locale') || 'en')
+
+function getThumb(path) {
+    return thumbnails[`../assets/thumbs/${path}`]
+}
+
+function getIcon(path) {
+    return skillIcons[`../assets/icons/${path}`]
+}
+</script>
+
+<style lang="scss" scoped>
 .card.blog {
     display: flex;
     gap: 1rem;
@@ -91,7 +91,7 @@ function getIcon(path) {
     width: 160px;
     height: 128px;
     object-fit: cover;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
 }
 
 .blog-info {

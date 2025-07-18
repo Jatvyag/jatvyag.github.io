@@ -1,115 +1,3 @@
-<script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import BlogPostCard from '@/components/BlogPostCard.vue'
-import jsonENPostsData from '@/data/posts_en.json'
-import jsonBEPostsData from '@/data/posts_be.json'
-
-const emit = defineEmits([
-  'update:mainSection', 
-  'update:navMenuComponent',
-  'update:currentSection',
-  'update:navItems',
-  'update:navMenuLangPage'
-])
-
-const navItems = [
-  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: "main_manu", disabled: true }
-]
-
-const navMenuLangPage = 'navMenu.blog'
-
-const currentSection = ref('')
-
-function getLinkByKey(key) {
-  const item = navItems.find(i => i.key === key)
-  return item?.link || ''
-}
-
-let observer = null
-
-function observeSections() {
-  observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        currentSection.value = entry.target.id
-      }
-    }
-  }, {
-    rootMargin: '0px',
-    threshold: 0.3,
-  })
-  document.querySelectorAll('main section[id]').forEach(section => {
-    observer.observe(section)
-  })
-}
-
-onMounted(async () => {
-  emit('update:mainSection', getLinkByKey('home'))
-  emit('update:navItems', navItems)
-  emit('update:currentSection', currentSection.value)
-  emit('update:navMenuLangPage', navMenuLangPage)
-  await nextTick()
-  observeSections()
-})
-
-onUnmounted(() => {
-  if (observer) observer.disconnect()
-})
-
-watch(currentSection, (newVal) => {
-  emit('update:currentSection', newVal)
-})
-
-const skillIcons = import.meta.glob('../assets/icons/*', {
-  eager: true,
-  import: 'default',
-  query: '?url',
-})
-
-const { t, locale } = useI18n()
-
-const searchQuery = ref('')
-const selectedCategory = ref(null)
-const selectedTag = ref(null)
-const selectedType = ref(null)
-const currentPage = ref(1)
-const postsPerPage = 10
-
-const posts = computed(() => {
-  return locale.value === 'be' ? jsonBEPostsData.posts : jsonENPostsData.posts
-})
-
-// Filtered and paginated posts
-const filteredPosts = computed(() =>
-  posts.value.slice().reverse().filter(post => {
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      post.desc.toLowerCase().includes(searchQuery.value.toLowerCase())
-
-    const matchesCategory = !selectedCategory.value || post.cat === selectedCategory.value
-    const matchesTag = !selectedTag.value || post.tag.includes(selectedTag.value)
-    const matchesType = !selectedType.value || post.type.name === selectedType.value
-
-    return matchesSearch && matchesCategory && matchesTag && matchesType
-  })
-)
-
-const paginatedPosts = computed(() => {
-  const start = (currentPage.value - 1) * postsPerPage
-  return filteredPosts.value.slice(start, start + postsPerPage)
-})
-
-// Extract unique values
-const categories = computed(() => [...new Set(posts.value.map(p => p.cat))])
-const tags = computed(() => [...new Set(posts.value.flatMap(p => p.tag))])
-const types = computed(() => [...new Set(posts.value.map(p => p.type.name))])
-
-function getIconPath(iconName) {
-  return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
-}
-</script>
-
 <template>
   <main class="blog">
     <section id="home" class="blog-section">
@@ -224,7 +112,119 @@ function getIconPath(iconName) {
   </main>
 </template>
 
-<style scoped>
+<script setup>
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import BlogPostCard from '@/components/BlogPostCard.vue'
+import jsonENPostsData from '@/data/posts_en.json'
+import jsonBEPostsData from '@/data/posts_be.json'
+
+const emit = defineEmits([
+  'update:mainSection', 
+  'update:navMenuComponent',
+  'update:currentSection',
+  'update:navItems',
+  'update:navMenuLangPage'
+])
+
+const navItems = [
+  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: "main_manu", disabled: true }
+]
+
+const navMenuLangPage = 'navMenu.blog'
+
+const currentSection = ref('')
+
+function getLinkByKey(key) {
+  const item = navItems.find(i => i.key === key)
+  return item?.link || ''
+}
+
+let observer = null
+
+function observeSections() {
+  observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        currentSection.value = entry.target.id
+      }
+    }
+  }, {
+    rootMargin: '0px',
+    threshold: 0.3,
+  })
+  document.querySelectorAll('main section[id]').forEach(section => {
+    observer.observe(section)
+  })
+}
+
+onMounted(async () => {
+  emit('update:mainSection', getLinkByKey('home'))
+  emit('update:navItems', navItems)
+  emit('update:currentSection', currentSection.value)
+  emit('update:navMenuLangPage', navMenuLangPage)
+  await nextTick()
+  observeSections()
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
+
+watch(currentSection, (newVal) => {
+  emit('update:currentSection', newVal)
+})
+
+const skillIcons = import.meta.glob('../assets/icons/*', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+})
+
+const { t, locale } = useI18n()
+
+const searchQuery = ref('')
+const selectedCategory = ref(null)
+const selectedTag = ref(null)
+const selectedType = ref(null)
+const currentPage = ref(1)
+const postsPerPage = 10
+
+const posts = computed(() => {
+  return locale.value === 'be' ? jsonBEPostsData.posts : jsonENPostsData.posts
+})
+
+// Filtered and paginated posts
+const filteredPosts = computed(() =>
+  posts.value.slice().reverse().filter(post => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      post.desc.toLowerCase().includes(searchQuery.value.toLowerCase())
+
+    const matchesCategory = !selectedCategory.value || post.cat === selectedCategory.value
+    const matchesTag = !selectedTag.value || post.tag.includes(selectedTag.value)
+    const matchesType = !selectedType.value || post.type.name === selectedType.value
+
+    return matchesSearch && matchesCategory && matchesTag && matchesType
+  })
+)
+
+const paginatedPosts = computed(() => {
+  const start = (currentPage.value - 1) * postsPerPage
+  return filteredPosts.value.slice(start, start + postsPerPage)
+})
+
+// Extract unique values
+const categories = computed(() => [...new Set(posts.value.map(p => p.cat))])
+const tags = computed(() => [...new Set(posts.value.flatMap(p => p.tag))])
+const types = computed(() => [...new Set(posts.value.map(p => p.type.name))])
+
+function getIconPath(iconName) {
+  return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
+}
+</script>
+
+<style lang="scss" scoped>
 main.blog {
   display: flex;
   flex-flow: column;
@@ -258,7 +258,7 @@ h1.blog {
 .search-input {
   padding: 0.5rem;
   border: 1px solid transparent;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
 }
 
 .search-input:focus {

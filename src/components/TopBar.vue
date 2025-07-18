@@ -1,20 +1,3 @@
-<script setup>
-import { useRoute } from 'vue-router'
-import LangSwitcher from '@/components/LangSwitcher.vue'
-import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
-import NavMenu from '@/components/NavMenu.vue'
-
-const route = useRoute()
-
-defineProps({
-    navItems: Array,
-    currentSection: String,
-    navMenuLangPage: String
-})
-
-defineEmits(['update:currentSection'])
-</script>
-
 <template>
     <div class="top-bar">
         <NavMenu
@@ -44,7 +27,24 @@ defineEmits(['update:currentSection'])
     </div>
 </template>
 
-<style scoped>
+<script setup>
+import { useRoute } from 'vue-router'
+import LangSwitcher from '@/components/LangSwitcher.vue'
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+import NavMenu from '@/components/NavMenu.vue'
+
+const route = useRoute()
+
+defineProps({
+    navItems: Array,
+    currentSection: String,
+    navMenuLangPage: String
+})
+
+defineEmits(['update:currentSection'])
+</script>
+
+<style lang="scss" scoped>
 .top-bar {
     position: fixed;
     display: flex;
@@ -77,7 +77,7 @@ defineEmits(['update:currentSection'])
 .top-link-btn {
     display: flex;
     font-size: 1.7rem;
-    border-radius: 6px;
+    border-radius: $border-radius;
     color: inherit;
     transition: background 0.3s, border-color 0.3s;
 }

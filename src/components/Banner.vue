@@ -1,3 +1,10 @@
+<template>
+    <h2 class="typewriter-line">
+        <span class="typewriter-dynamic" id="typewriter"></span>
+        <span class="typewriter-fixed">{{ tm('banner') }}</span>
+    </h2>
+</template>
+
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { onMounted } from 'vue'
@@ -22,13 +29,6 @@ onMounted(() => {
     startTypewriter()
 })
 </script>
-
-<template>
-    <h2 class="typewriter-line">
-        <span class="typewriter-dynamic" id="typewriter"></span>
-        <span class="typewriter-fixed">{{ tm('banner') }}</span>
-    </h2>
-</template>
 
 <style scoped>
 .typewriter-line {

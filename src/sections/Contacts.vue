@@ -1,68 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import JSONData from '@/data/data.json'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-
-const props = defineProps({
-    sectionLink: {
-        type: String,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true
-    }
-})
-
-const contactsData = JSONData.contacts
-
-function copyEmail() {
-    const email = document.getElementById('email')?.textContent
-    if (email) {
-        navigator.clipboard.writeText(email)
-    }
-}
-
-const formRef = ref(null)
-const handleSubmit = (event) => {
-    event.preventDefault()
-    const form = formRef.value
-    if (!form) return
-    form.classList.add('was-attempted')
-    const inputs = form.querySelectorAll('input, textarea')
-    let isFormValid = true
-    inputs.forEach(input => {
-        input.setCustomValidity('') 
-        if (!input.checkValidity()) {
-        isFormValid = false
-        let message = ''
-        if (input.validity.valueMissing) {
-            message = t('contacts.form.required_field')
-        } else if (input.validity.typeMismatch) {
-            message = t('contacts.form.valid_email')
-        }
-        input.setCustomValidity(message)
-        const errorSpan = input.nextElementSibling
-        if (errorSpan) errorSpan.textContent = message
-        } else {
-        const errorSpan = input.nextElementSibling
-        if (errorSpan) errorSpan.textContent = ''
-        }
-    })
-    if (isFormValid) {
-        form.submit()
-    }
-}
-
-function clearError(event) {
-    const input = event.target
-    input.setCustomValidity('')
-    const errorSpan = input.nextElementSibling
-    if (errorSpan) errorSpan.textContent = ''
-}
-</script>
-
 <template>
     <section :id="props.sectionLink.replace('#', '')" class="section last">
         <h2>{{ t(`${navMenuLangPage}.contacts`) }}</h2>
@@ -149,7 +84,72 @@ function clearError(event) {
     </section>
 </template>
 
-<style scoped>
+<script setup>
+import { ref } from 'vue'
+import JSONData from '@/data/data.json'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+const props = defineProps({
+    sectionLink: {
+        type: String,
+        required: true,
+    },
+    navMenuLangPage: {
+        type: String,
+        required: true
+    }
+})
+
+const contactsData = JSONData.contacts
+
+function copyEmail() {
+    const email = document.getElementById('email')?.textContent
+    if (email) {
+        navigator.clipboard.writeText(email)
+    }
+}
+
+const formRef = ref(null)
+const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = formRef.value
+    if (!form) return
+    form.classList.add('was-attempted')
+    const inputs = form.querySelectorAll('input, textarea')
+    let isFormValid = true
+    inputs.forEach(input => {
+        input.setCustomValidity('') 
+        if (!input.checkValidity()) {
+        isFormValid = false
+        let message = ''
+        if (input.validity.valueMissing) {
+            message = t('contacts.form.required_field')
+        } else if (input.validity.typeMismatch) {
+            message = t('contacts.form.valid_email')
+        }
+        input.setCustomValidity(message)
+        const errorSpan = input.nextElementSibling
+        if (errorSpan) errorSpan.textContent = message
+        } else {
+        const errorSpan = input.nextElementSibling
+        if (errorSpan) errorSpan.textContent = ''
+        }
+    })
+    if (isFormValid) {
+        form.submit()
+    }
+}
+
+function clearError(event) {
+    const input = event.target
+    input.setCustomValidity('')
+    const errorSpan = input.nextElementSibling
+    if (errorSpan) errorSpan.textContent = ''
+}
+</script>
+
+<style lang="scss" scoped>
 .section.last{
     min-height: 80vh;
 }
@@ -211,7 +211,7 @@ button.clipboard:active {
     margin-top: 1rem;
     padding: 1rem;
     background-color: var(--card-bg);
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
     box-shadow: var(--card-box-shadow);
 }
 
@@ -238,7 +238,7 @@ button.clipboard:active {
     background-color: var(--link);
     color: white;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -249,19 +249,19 @@ button.clipboard:active {
 
 .contact-form.was-attempted input:invalid,
 .contact-form.was-attempted textarea:invalid {
-    border: 1px solid var(--attention-color);
+    border: 1px solid $attention-color;
     outline: none;
 }
 
 .error-message {
     display: inline-block;
-    color: var(--attention-color);
+    color: $attention-color;
     border-radius: 0px 0px 10px 10px;
     font-size: 0.8rem;
     margin-top: 0rem;
     padding: 0.2rem;
     background-color: #dfc9c9;
-    border: 1px solid var(--attention-color);  
+    border: 1px solid $attention-color;  
     min-height: 1em;
     /* Keep space reserved but invisible */
     min-height: 1em;     
@@ -282,7 +282,7 @@ button.clipboard:active {
     visibility: visible;
     opacity: 1;
     padding: 0.2rem;
-    border: 1px solid var(--attention-color);
+    border: 1px solid $attention-color;
     min-height: 1em;
 }
 

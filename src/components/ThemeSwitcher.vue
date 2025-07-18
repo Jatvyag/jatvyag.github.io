@@ -1,3 +1,11 @@
+<template>
+    <div class="theme-toggle" @click="toggleTheme" :class="theme">
+        <span class="icon moon">{{ '\u{1F315}' }}</span>
+        <span class="icon sun">{{ '\u{26C5}' }}</span>
+        <span class="sliding-circle"></span> 
+    </div>
+</template>
+
 <script setup>
 import { ref, onMounted } from 'vue'
 
@@ -27,14 +35,6 @@ function toggleTheme() {
     }
 }
 </script>
-
-<template>
-    <div class="theme-toggle" @click="toggleTheme" :class="theme">
-        <span class="icon moon">{{ '\u{1F315}' }}</span>
-        <span class="icon sun">{{ '\u{26C5}' }}</span>
-        <span class="sliding-circle"></span> 
-    </div>
-</template>
 
 <style scoped>
 .theme-toggle {

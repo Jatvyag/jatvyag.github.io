@@ -1,3 +1,23 @@
+<template>
+  <main class="blog">
+    <section :id="getLinkByKey('home').replace('#', '')" class="jupyter-section">
+      <div class="iframe-wrapper">
+        <iframe 
+          :src="iframeSrc" 
+          frameborder="0" 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          title="Jupyter Notebook"
+        />
+        <font-awesome-icon 
+          :icon="['fas', 'chevron-up']" 
+          class="chevron up iframe" 
+          @click="scrollToFirstHeading" 
+        />
+      </div>
+    </section>
+  </main>
+</template>
+
 <script setup>
 import { ref, onMounted, onUnmounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -128,27 +148,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<template>
-  <main class="blog">
-    <section :id="getLinkByKey('home').replace('#', '')" class="jupyter-section">
-      <div class="iframe-wrapper">
-        <iframe 
-          :src="iframeSrc" 
-          frameborder="0" 
-          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-          title="Jupyter Notebook"
-        />
-        <font-awesome-icon 
-          :icon="['fas', 'chevron-up']" 
-          class="chevron up iframe" 
-          @click="scrollToFirstHeading" 
-        />
-      </div>
-    </section>
-  </main>
-</template>
-
-<style scoped>
+<style lang="scss" scoped>
 main.blog {
   display: flex;
   flex-flow: column;
@@ -162,7 +162,7 @@ main.blog {
 }
 
 iframe {
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   width: 100%; 
   height: 80vh; 
 }

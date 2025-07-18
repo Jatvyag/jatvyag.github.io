@@ -1,3 +1,27 @@
+<template>
+    <div class="lang-switcher">
+        <button @click="toggleDropdown">
+            {{ currentLabel }}
+            <font-awesome-icon :icon="['fas', 'language']" />
+            <font-awesome-icon
+                :icon="['fas', 'chevron-down']"
+                :class="['chevron-icon', { open: isOpen }]"
+            />
+        </button>
+        <div v-if="isOpen" class="dropdown">
+            <button
+                v-for="lang in languages"
+                :key="lang.code"
+                @click="switchTo(lang.code)"
+                class="dropdown-item"
+                :class="{ active: lang.code === locale }"
+            >
+                {{ lang.label }}
+            </button>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { ref, computed } from 'vue'
@@ -25,31 +49,7 @@ const currentLabel = computed(() => {
 })
 </script>
 
-<template>
-    <div class="lang-switcher">
-        <button @click="toggleDropdown">
-            {{ currentLabel }}
-            <font-awesome-icon :icon="['fas', 'language']" />
-            <font-awesome-icon
-                :icon="['fas', 'chevron-down']"
-                :class="['chevron-icon', { open: isOpen }]"
-            />
-        </button>
-        <div v-if="isOpen" class="dropdown">
-            <button
-                v-for="lang in languages"
-                :key="lang.code"
-                @click="switchTo(lang.code)"
-                class="dropdown-item"
-                :class="{ active: lang.code === locale }"
-            >
-                {{ lang.label }}
-            </button>
-        </div>
-    </div>
-</template>
-
-<style scoped>
+<style lang="scss" scoped>
 .lang-switcher {
     position: relative;
     display: inline-block;
@@ -68,7 +68,7 @@ const currentLabel = computed(() => {
     top: 100%;
     left: 1%;
     margin-top: 0.1rem;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
     box-shadow: var(--drop-down-box-shadow);
     background: var(--bg);
     z-index: 10;
@@ -88,6 +88,6 @@ const currentLabel = computed(() => {
 .dropdown-item.active {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
 }
 </style>

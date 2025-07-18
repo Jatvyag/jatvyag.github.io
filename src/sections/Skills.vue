@@ -1,34 +1,3 @@
-<script setup>
-import { useI18n } from 'vue-i18n'
-import JSONData from '@/data/data.json'
-
-const { t } = useI18n()
-const skillsData = JSONData.skills
-
-const props = defineProps({
-    sectionLink: {
-        type: String,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true
-    },
-    nextSection: {
-        type: String,
-        required: true
-    }
-})
-
-const getIconPath = (iconFile) =>
-    new URL(`../assets/icons/${iconFile}`, import.meta.url).href
-
-function scrollToNextSection() {
-    const next = document.querySelector(props.nextSection)
-    if (next) next.scrollIntoView({ behavior: 'smooth' })
-}
-</script>
-
 <template>
     <section :id="props.sectionLink.replace('#', '')" class="section">
         <h2>{{ t(`${navMenuLangPage}.skills`) }}</h2>
@@ -62,6 +31,37 @@ function scrollToNextSection() {
         />
     </section>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+import JSONData from '@/data/data.json'
+
+const { t } = useI18n()
+const skillsData = JSONData.skills
+
+const props = defineProps({
+    sectionLink: {
+        type: String,
+        required: true,
+    },
+    navMenuLangPage: {
+        type: String,
+        required: true
+    },
+    nextSection: {
+        type: String,
+        required: true
+    }
+})
+
+const getIconPath = (iconFile) =>
+    new URL(`../assets/icons/${iconFile}`, import.meta.url).href
+
+function scrollToNextSection() {
+    const next = document.querySelector(props.nextSection)
+    if (next) next.scrollIntoView({ behavior: 'smooth' })
+}
+</script>
 
 <style scoped>
 .card.skills {

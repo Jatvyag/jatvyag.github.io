@@ -1,27 +1,3 @@
-<script setup>
-import { ref, computed, watch, onMounted } from 'vue'
-import TopBar from '@/components/TopBar.vue'
-import Footer from '@/components/Footer.vue'
-import { useI18n } from 'vue-i18n'
-
-const { locale, t, messages } = useI18n()
-
-const navItems = ref([])
-const currentSection = ref('')
-const mainSection = ref('')
-const navMenuLangPage = ref('')
-
-const isLocaleReady = computed(() => Boolean(messages.value?.[locale.value]))
-
-function updateMetadata(lang) {
-  document.documentElement.lang = lang
-  document.title = t('app.title')
-}
-
-watch(locale, updateMetadata)
-onMounted(() => updateMetadata(locale.value))
-</script>
-
 <template>
   <TopBar 
     :navItems="navItems"
@@ -46,6 +22,30 @@ onMounted(() => updateMetadata(locale.value))
   </div>
   <Footer :mainSection="mainSection" />
 </template>
+
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue'
+import TopBar from '@/components/TopBar.vue'
+import Footer from '@/components/Footer.vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale, t, messages } = useI18n()
+
+const navItems = ref([])
+const currentSection = ref('')
+const mainSection = ref('')
+const navMenuLangPage = ref('')
+
+const isLocaleReady = computed(() => Boolean(messages.value?.[locale.value]))
+
+function updateMetadata(lang) {
+  document.documentElement.lang = lang
+  document.title = t('app.title')
+}
+
+watch(locale, updateMetadata)
+onMounted(() => updateMetadata(locale.value))
+</script>
 
 <style scoped>
 </style>
