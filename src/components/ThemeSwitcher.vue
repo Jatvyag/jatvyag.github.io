@@ -1,9 +1,13 @@
 <template>
-    <div class="theme-toggle" @click="toggleTheme" :class="theme">
-        <span class="icon moon">{{ '\u{1F315}' }}</span>
-        <span class="icon sun">{{ '\u{26C5}' }}</span>
-        <span class="sliding-circle"></span> 
-    </div>
+  <div
+    class="theme-toggle"
+    :class="theme"
+    @click="toggleTheme"
+  >
+    <span class="icon moon">{{ '\u{1F315}' }}</span>
+    <span class="icon sun">{{ '\u{26C5}' }}</span>
+    <span class="sliding-circle" />
+  </div>
 </template>
 
 <script setup>
@@ -12,34 +16,34 @@ import { ref, onMounted } from 'vue'
 const theme = ref('dark')
 
 onMounted(() => {
-    const saved = sessionStorage.getItem('theme')
-    theme.value = saved || 'dark'
-    document.documentElement.setAttribute('data-theme', theme.value)
+  const saved = sessionStorage.getItem('theme')
+  theme.value = saved || 'dark'
+  document.documentElement.setAttribute('data-theme', theme.value)
 })
 
-function toggleTheme() {
-    theme.value = theme.value === 'dark' ? 'light' : 'dark'
-    sessionStorage.setItem('theme', theme.value)
-    document.documentElement.setAttribute('data-theme', theme.value)
-    // Custom Event dispatch, so, we can listen it other objects
-    window.dispatchEvent(new CustomEvent('theme-changed', {
-        detail: { theme: theme.value }
-    }))
-    // Send to iframe
-    const iframe = document.querySelector('iframe') // or give iframe an ID and use that
-    if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({
-            type: 'set-theme',
-            theme: theme.value
-        }, '*')  // Replace '*' with your origin if needed
-    }
+function toggleTheme () {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  sessionStorage.setItem('theme', theme.value)
+  document.documentElement.setAttribute('data-theme', theme.value)
+  // Custom Event dispatch, so, we can listen it other objects
+  window.dispatchEvent(new CustomEvent('theme-changed', {
+    detail: { theme: theme.value }
+  }))
+  // Send to iframe
+  const iframe = document.querySelector('iframe')
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({
+      type: 'set-theme',
+      theme: theme.value
+    }, '*')
+  }
 }
 </script>
 
 <style scoped>
 .theme-toggle {
     position: relative;
-    width: 3.5rem; 
+    width: 3.5rem;
     height: 1.75rem;
     background: var(--btn-bg);
     color: var(--text-color);
@@ -73,7 +77,7 @@ function toggleTheme() {
 
 .moon,
 .sun {
-    margin: 0; 
+    margin: 0;
 }
 
 .sliding-circle {

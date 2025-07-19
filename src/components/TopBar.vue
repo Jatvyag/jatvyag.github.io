@@ -1,30 +1,30 @@
 <template>
-    <div class="top-bar">
-        <NavMenu
-            :navItems="navItems"
-            :currentSection="currentSection"
-            :navMenuLangPage="navMenuLangPage"
-            @update:currentSection="$emit('update:currentSection', $event)"
-        />
-        <div class="top-right-bar">
-            <router-link
-                v-if="route.path !== '/'"
-                to="/"
-                class="top-link-btn"
-            >
-                <font-awesome-icon :icon="['fas', 'address-card']" />
-            </router-link>
-            <router-link
-                v-if="route.path !== '/blog'"
-                to="/blog"
-                class="top-link-btn"
-            >
-                <font-awesome-icon :icon="['fas', 'blog']" />
-            </router-link>
-            <LangSwitcher />
-            <ThemeSwitcher />
-        </div>
+  <div class="top-bar">
+    <NavMenu
+      :nav-items="navItems"
+      :current-section="currentSection"
+      :nav-menu-lang-page="navMenuLangPage"
+      @update:current-section="$emit('update:currentSection', $event)"
+    />
+    <div class="top-right-bar">
+      <router-link
+        v-if="route.path !== '/'"
+        to="/"
+        class="top-link-btn"
+      >
+        <font-awesome-icon :icon="['fas', 'address-card']" />
+      </router-link>
+      <router-link
+        v-if="route.path !== '/blog'"
+        to="/blog"
+        class="top-link-btn"
+      >
+        <font-awesome-icon :icon="['fas', 'blog']" />
+      </router-link>
+      <LangSwitcher />
+      <ThemeSwitcher />
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -35,10 +35,19 @@ import NavMenu from '@/components/NavMenu.vue'
 
 const route = useRoute()
 
-defineProps({
-    navItems: Array,
-    currentSection: String,
-    navMenuLangPage: String
+const { navItems, currentSection, navMenuLangPage } = defineProps({
+  navItems: {
+    type: Array,
+    required: true
+  },
+  currentSection: {
+    type: String,
+    required: true
+  },
+  navMenuLangPage: {
+    type: String,
+    required: true
+  }
 })
 
 defineEmits(['update:currentSection'])
@@ -51,7 +60,7 @@ defineEmits(['update:currentSection'])
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--bg); 
+    background-color: var(--bg);
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +73,7 @@ defineEmits(['update:currentSection'])
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.5rem; 
+    gap: 0.5rem;
     padding: 0.3rem 1rem 0.3rem 0.3rem;
 }
 

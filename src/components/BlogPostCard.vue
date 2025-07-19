@@ -1,78 +1,90 @@
 <template>
-    <div class="card blog empty-card" v-if="empty">
-        <p class="empty-message">{{ post.title }}</p>
+  <div
+    v-if="empty"
+    class="card blog empty-card"
+  >
+    <p class="empty-message">
+      {{ post.title }}
+    </p>
+  </div>
+  <div
+    v-else
+    class="card blog"
+  >
+    <!-- Image -->
+    <div class="thumb-info">
+      <img
+        :src="getThumb(post.pic)"
+        alt="Project image"
+        class="blog-thumb"
+      >
+      <p class="post-cat">
+        {{ post.cat }}
+      </p>
+      <p class="post-cat">
+        {{ post.date }}
+      </p>
     </div>
-    <div v-else class="card blog">
-        <!-- Image -->
-        <div class="thumb-info">
-            <img
-                :src="getThumb(post.pic)"
-                alt="Project image"
-                class="blog-thumb"
-            />
-            <p class="post-cat">{{ post.cat }}</p>
-            <p class="post-cat">{{ post.date }}</p>
-        </div>
-        <!-- Info -->
-        <div class="blog-info">
-        <component
-            :is="post.link ? 'router-link' : 'div'"
-            :to="post.link ? `/jupyter/${encodeURIComponent(post.link)}` : undefined"
+    <!-- Info -->
+    <div class="blog-info">
+      <component
+        :is="post.link ? 'router-link' : 'div'"
+        :to="post.link ? `/jupyter/${encodeURIComponent(post.link)}` : undefined"
+      >
+        <h3 class="post-title">
+          {{ post.title }}
+        </h3>
+      </component>
+      <p class="post-desc">
+        {{ post.desc }}
+      </p>
+      <!-- Tags -->
+      <div class="post-tags">
+        <span
+          v-for="tag in post.tag"
+          :key="tag"
+          class="tag blog"
         >
-            <h3 class="post-title">{{ post.title }}</h3>
-        </component>
-        <p class="post-desc">{{ post.desc }}</p>
-        <!-- Tags -->
-        <div class="post-tags">
-            <span
-                v-for="tag in post.tag"
-                :key="tag"
-                class="tag blog"
-            >
-                {{ tag }}
-            </span>
-        </div>
-        <!-- Libs -->
-        <div class="post-libs">
-            <img
-                v-for="lib in post.libs"
-                :key="lib.id"
-                :src="getIcon(lib.icon)"
-                :alt="lib.name"
-                :title="lib.name"
-                class="icon-img"
-            />
-        </div>
-        </div>
+          {{ tag }}
+        </span>
+      </div>
+      <!-- Libs -->
+      <div class="post-libs">
+        <img
+          v-for="lib in post.libs"
+          :key="lib.id"
+          :src="getIcon(lib.icon)"
+          :alt="lib.name"
+          :title="lib.name"
+          class="icon-img"
+        >
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const props = defineProps({
-    post: {
-        type: Object,
-        required: true
-    },
-    empty: {
-        type: Boolean,
-        default: false
-    }
+const { post, empty } = defineProps({
+  post: {
+    type: Object,
+    required: true
+  },
+  empty: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
 
 const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
 
-const lang = ref(sessionStorage.getItem('locale') || 'en')
-
-function getThumb(path) {
-    return thumbnails[`../assets/thumbs/${path}`]
+function getThumb (path) {
+  return thumbnails[`../assets/thumbs/${path}`]
 }
 
-function getIcon(path) {
-    return skillIcons[`../assets/icons/${path}`]
+function getIcon (path) {
+  return skillIcons[`../assets/icons/${path}`]
 }
 </script>
 
@@ -193,5 +205,3 @@ function getIcon(path) {
     }
 }
 </style>
-
-

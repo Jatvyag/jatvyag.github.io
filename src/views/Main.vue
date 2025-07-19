@@ -1,22 +1,22 @@
 <template>
   <main class="about">
-    <About 
-      :sectionLink="getLinkByKey('about')" 
-      :nextSection="getLinkByKey('skills')"
+    <About
+      :section-link="getLinkByKey('about')"
+      :next-section="getLinkByKey('skills')"
     />
-    <Skills 
-      :sectionLink="getLinkByKey('skills')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('achievements')"
+    <Skills
+      :section-link="getLinkByKey('skills')"
+      :nav-menu-lang-page="navMenuLangPage"
+      :next-section="getLinkByKey('achievements')"
     />
-    <Achievements 
-      :sectionLink="getLinkByKey('achievements')" 
-      :navMenuLangPage="navMenuLangPage" 
-      :nextSection="getLinkByKey('contacts')"
+    <Achievements
+      :section-link="getLinkByKey('achievements')"
+      :nav-menu-lang-page="navMenuLangPage"
+      :next-section="getLinkByKey('contacts')"
     />
-    <Contacts 
-      :sectionLink="getLinkByKey('contacts')" 
-      :navMenuLangPage="navMenuLangPage" 
+    <Contacts
+      :section-link="getLinkByKey('contacts')"
+      :nav-menu-lang-page="navMenuLangPage"
     />
   </main>
 </template>
@@ -29,7 +29,7 @@ import Achievements from '@/sections/Achievements.vue'
 import Contacts from '@/sections/Contacts.vue'
 
 const emit = defineEmits([
-  'update:mainSection', 
+  'update:mainSection',
   'update:navMenuComponent',
   'update:currentSection',
   'update:navItems',
@@ -37,24 +37,24 @@ const emit = defineEmits([
 ])
 
 const navItems = [
-  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], type: "main_manu", disabled: false },
-  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], type: "main_manu", disabled: false },
-  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: "main_manu", disabled: false },
-  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: "main_manu", disabled: false },
+  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], type: 'main_manu', disabled: false },
+  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], type: 'main_manu', disabled: false },
+  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: 'main_manu', disabled: false },
+  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: 'main_manu', disabled: false }
 ]
 
 const navMenuLangPage = 'navMenu.main'
 
 const currentSection = ref('')
 
-function getLinkByKey(key) {
+function getLinkByKey (key) {
   const item = navItems.find(i => i.key === key)
   return item?.link || ''
 }
 
 let observer = null
 
-function observeSections() {
+function observeSections () {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
@@ -63,7 +63,7 @@ function observeSections() {
     }
   }, {
     rootMargin: '0px',
-    threshold: 0.3,
+    threshold: 0.3
   })
   document.querySelectorAll('main section[id]').forEach(section => {
     observer.observe(section)

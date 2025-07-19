@@ -1,41 +1,55 @@
 <template>
-    <div class="nav-wrapper">
-        <button 
-            class="menu-btn" 
-            @click="toggleMenu"
-            :disabled="props.navItems.length <= 1"
+  <div class="nav-wrapper">
+    <button
+      class="menu-btn"
+      :disabled="props.navItems.length <= 1"
+      @click="toggleMenu"
+    >
+      <template v-if="isJupyter">
+        <img
+          :src="jupyterIcon"
+          alt="Jupyter"
+          class="jupyter-icon"
         >
-            <template v-if="isJupyter">
-                <img :src="jupyterIcon" alt="Jupyter" class="jupyter-icon" />
-            </template>
-            <template v-else>
-                <font-awesome-icon :icon="currentIcon" />
-            </template>
-                <span class="page-title">{{ currentTitle }}</span>
-        </button>
-        <!-- Backdrop -->
-        <div v-if="isOpen" class="backdrop" @click="toggleMenu"></div>
-        <!-- Side Menu -->
-        <div class="side-menu" :class="{ open: isOpen }">
-        <ul>
-            <li
-                v-for="item in props.navItems"
-                :key="item.key"
-                :class="{ active: item.key === currentSection, disabled: item.disabled }"
-                @click="handleNavigation(item)"
-            >
-            <!-- Icon for non-jupyter -->
-            <template v-if="item.type !== 'jupyter'">
-                <font-awesome-icon v-if="item.faIcon" :icon="item.faIcon" />
-                <span v-else>{{ item.unicodeIcon }}</span>
-            </template>
-            <span>
-                {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
-            </span>
-            </li>
-        </ul>
-        </div>
+      </template>
+      <template v-else>
+        <font-awesome-icon :icon="currentIcon" />
+      </template>
+      <span class="page-title">{{ currentTitle }}</span>
+    </button>
+    <!-- Backdrop -->
+    <div
+      v-if="isOpen"
+      class="backdrop"
+      @click="toggleMenu"
+    />
+    <!-- Side Menu -->
+    <div
+      class="side-menu"
+      :class="{ open: isOpen }"
+    >
+      <ul>
+        <li
+          v-for="item in props.navItems"
+          :key="item.key"
+          :class="{ active: item.key === currentSection, disabled: item.disabled }"
+          @click="handleNavigation(item)"
+        >
+          <!-- Icon for non-jupyter -->
+          <template v-if="item.type !== 'jupyter'">
+            <font-awesome-icon
+              v-if="item.faIcon"
+              :icon="item.faIcon"
+            />
+            <span v-else>{{ item.unicodeIcon }}</span>
+          </template>
+          <span>
+            {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
+          </span>
+        </li>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -43,18 +57,18 @@ import { ref, computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
-    currentSection: {
-        type: String,
-        required: true,
-    },
-    navItems: {
-        type: Array,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true,
-    }
+  currentSection: {
+    type: String,
+    required: true
+  },
+  navItems: {
+    type: Array,
+    required: true
+  },
+  navMenuLangPage: {
+    type: String,
+    required: true
+  }
 })
 
 const emit = defineEmits(['update:currentSection'])
@@ -62,58 +76,59 @@ const emit = defineEmits(['update:currentSection'])
 const { t } = useI18n()
 const isOpen = ref(false)
 
-function toggleMenu() {
-    isOpen.value = !isOpen.value
+function toggleMenu () {
+  isOpen.value = !isOpen.value
 }
 
-function handleNavigation(item) {
-    if (item.disabled) return
-    const hash = item.link
-    if (!hash || !hash.startsWith('#')) return
-    nextTick(() => {
-        let el = null
-        if (item.type === 'jupyter') {
-            const iframe = document.querySelector('iframe')
-            const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
-            if (iframeDoc) {
-                el = iframeDoc.querySelector(hash)
-            }
-        } else {
-            el = document.querySelector(hash)
-        }
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' })
-            emit('update:currentSection', item.key)
-            isOpen.value = false
-        } else {
-            console.warn('Element not found for', hash)
-        }
-    })
+function handleNavigation (item) {
+  if (item.disabled) return
+  const hash = item.link
+  if (!hash || !hash.startsWith('#')) return
+  nextTick(() => {
+    let el = null
+    if (item.type === 'jupyter') {
+      const iframe = document.querySelector('iframe')
+      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
+      if (iframeDoc) {
+        el = iframeDoc.querySelector(hash)
+      }
+    } else {
+      el = document.querySelector(hash)
+    }
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+      emit('update:currentSection', item.key)
+      isOpen.value = false
+    }
+  })
 }
 
-const jupyterIcon = new URL(`@/assets/icons/jupyter.svg`, import.meta.url).href
+const jupyterIcon = new URL('@/assets/icons/jupyter.svg', import.meta.url).href
 
 const activeItem = computed(() => {
-    return props.navItems.find(item => item.key === props.currentSection)
+  return props.navItems.find(item => item.key === props.currentSection)
 })
 
 const isJupyter = computed(() => {
-    return props.navItems.some(item => item.type === 'jupyter')
+  return props.navItems.some(item => item.type === 'jupyter')
 })
 
-const currentIcon = computed(() => activeItem.value?.faIcon || ['fas', 'bars'])
+const currentIcon = computed(() => {
+  return activeItem.value?.faIcon || ['fas', 'bars']
+})
 
 const currentTitle = computed(() => {
-    if (isJupyter.value && props.currentSection) {
-        return props.currentSection
-    } else if (isJupyter.value && !props.currentSection){
-        const icon = "Jupyter"
-        return icon
-    }
-    if ( props.navMenuLangPage && props.currentSection ) {
-        const key = `${props.navMenuLangPage}.${props.currentSection}`
-        return t(key, props.currentSection)
-    }
+  if (isJupyter.value && props.currentSection) {
+    return props.currentSection
+  } else if (isJupyter.value && !props.currentSection) {
+    const icon = 'Jupyter'
+    return icon
+  }
+  if (props.navMenuLangPage && props.currentSection) {
+    const key = `${props.navMenuLangPage}.${props.currentSection}`
+    return t(key, props.currentSection)
+  }
+  return ''
 })
 </script>
 
@@ -134,7 +149,7 @@ const currentTitle = computed(() => {
     font-size: 1.5rem;
     gap: 0.5rem;
     min-width: 0;
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
     background: none;
     cursor: pointer;
 }
@@ -155,11 +170,11 @@ const currentTitle = computed(() => {
 
 .page-title {
     display: inline-block;
-    max-width: 100%;  
+    max-width: 100%;
     font-weight: bold;
     white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .backdrop {
@@ -168,7 +183,7 @@ const currentTitle = computed(() => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 999; /* below side-menu (1000) */
 }
 
@@ -193,7 +208,7 @@ const currentTitle = computed(() => {
     top: 0;
     padding-top: 2rem;
     overflow-y: auto;
-    max-height: 100vh; 
+    max-height: 100vh;
     transform: translateX(0);
 }
 
@@ -210,7 +225,7 @@ const currentTitle = computed(() => {
     cursor: pointer;
     gap: 0.5rem;
     align-items: center;
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
 }
 
 .side-menu li.active,
@@ -226,11 +241,11 @@ const currentTitle = computed(() => {
 }
 
 .jupyter-icon {
-    width: 1em; 
+    width: 1em;
     height: 1em;
     margin-right: 0.5em;
-    flex-shrink: 0; 
-    display: inline-block; 
+    flex-shrink: 0;
+    display: inline-block;
 }
 
 @media (max-width: 600px) {

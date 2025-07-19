@@ -1,26 +1,26 @@
 <template>
-  <TopBar 
-    :navItems="navItems"
-    :currentSection="currentSection"
-    :navMenuLangPage="navMenuLangPage"
-    @update:currentSection="currentSection = $event" 
+  <TopBar
+    :nav-items="navItems"
+    :current-section="currentSection"
+    :nav-menu-lang-page="navMenuLangPage"
+    @update:current-section="currentSection = $event"
   />
   <div v-if="isLocaleReady">
     <router-view
       v-slot="{ Component }"
-      @update:navItems="navItems = $event"
-      @update:currentSection="currentSection = $event"
-      @update:mainSection="mainSection = $event"
-      @update:navMenuLangPage="navMenuLangPage = $event"
+      @update:nav-items="navItems = $event"
+      @update:current-section="currentSection = $event"
+      @update:main-section="mainSection = $event"
+      @update:nav-menu-lang-page="navMenuLangPage = $event"
     >
       <component
         :is="Component"
-        :currentSection="currentSection"
-        :navItems="navItems"
+        :current-section="currentSection"
+        :nav-items="navItems"
       />
     </router-view>
   </div>
-  <Footer :mainSection="mainSection" />
+  <Footer :main-section="mainSection" />
 </template>
 
 <script setup>
@@ -38,7 +38,7 @@ const navMenuLangPage = ref('')
 
 const isLocaleReady = computed(() => Boolean(messages.value?.[locale.value]))
 
-function updateMetadata(lang) {
+function updateMetadata (lang) {
   document.documentElement.lang = lang
   document.title = t('app.title')
 }

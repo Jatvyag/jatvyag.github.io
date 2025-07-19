@@ -1,7 +1,12 @@
 <template>
   <main class="blog">
-    <section id="home" class="blog-section">
-      <h1 class="blog">{{ t('blog.title') }}</h1>
+    <section
+      id="home"
+      class="blog-section"
+    >
+      <h1 class="blog">
+        {{ t('blog.title') }}
+      </h1>
       <div class="blog-grid">
         <!-- Sidebar -->
         <aside class="blog-sidebar">
@@ -11,11 +16,13 @@
             type="text"
             :placeholder="t('blog.search') + '...'"
             class="search-input"
-          />
+          >
 
           <!-- Categories -->
           <div>
-            <h2 class="sidebar-heading">{{ t('blog.categories') }}</h2>
+            <h2 class="sidebar-heading">
+              {{ t('blog.categories') }}
+            </h2>
             <ul class="category-list">
               <li
                 v-for="cat in categories"
@@ -26,12 +33,17 @@
                 {{ cat }}
               </li>
             </ul>
-            <span class="sidebar-reset" @click="selectedCategory = null">{{ t('blog.reset') }}</span>
+            <span
+              class="sidebar-reset"
+              @click="selectedCategory = null"
+            >{{ t('blog.reset') }}</span>
           </div>
 
           <!-- Tags -->
           <div>
-            <h2 class="sidebar-heading">{{ t('blog.tags') }}</h2>
+            <h2 class="sidebar-heading">
+              {{ t('blog.tags') }}
+            </h2>
             <div class="tag-cloud">
               <span
                 v-for="tag in tags"
@@ -42,12 +54,17 @@
                 {{ tag }}
               </span>
             </div>
-            <span class="sidebar-reset" @click="selectedTag = null">{{ t('blog.reset') }}</span>
+            <span
+              class="sidebar-reset"
+              @click="selectedTag = null"
+            >{{ t('blog.reset') }}</span>
           </div>
 
           <!-- Types -->
           <div>
-            <h2 class="sidebar-heading">{{ t('blog.types') }}</h2>
+            <h2 class="sidebar-heading">
+              {{ t('blog.types') }}
+            </h2>
             <div class="type-icons">
               <img
                 v-for="type in types"
@@ -57,9 +74,12 @@
                 :title="type"
                 class="type-icon"
                 @click="selectedType = type"
-              />
+              >
             </div>
-            <span class="sidebar-reset" @click="selectedType = null">{{ t('blog.reset') }}</span>
+            <span
+              class="sidebar-reset"
+              @click="selectedType = null"
+            >{{ t('blog.reset') }}</span>
           </div>
         </aside>
 
@@ -89,7 +109,10 @@
           </template>
 
           <!-- Pagination -->
-          <div v-if="filteredPosts.length > postsPerPage" class="pagination">
+          <div
+            v-if="filteredPosts.length > postsPerPage"
+            class="pagination"
+          >
             <button
               class="page-btn"
               :disabled="currentPage === 1"
@@ -120,7 +143,7 @@ import jsonENPostsData from '@/data/posts_en.json'
 import jsonBEPostsData from '@/data/posts_be.json'
 
 const emit = defineEmits([
-  'update:mainSection', 
+  'update:mainSection',
   'update:navMenuComponent',
   'update:currentSection',
   'update:navItems',
@@ -128,21 +151,21 @@ const emit = defineEmits([
 ])
 
 const navItems = [
-  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: "main_manu", disabled: true }
+  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: 'main_manu', disabled: true }
 ]
 
 const navMenuLangPage = 'navMenu.blog'
 
 const currentSection = ref('')
 
-function getLinkByKey(key) {
+function getLinkByKey (key) {
   const item = navItems.find(i => i.key === key)
   return item?.link || ''
 }
 
 let observer = null
 
-function observeSections() {
+function observeSections () {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
@@ -151,7 +174,7 @@ function observeSections() {
     }
   }, {
     rootMargin: '0px',
-    threshold: 0.3,
+    threshold: 0.3
   })
   document.querySelectorAll('main section[id]').forEach(section => {
     observer.observe(section)
@@ -178,7 +201,7 @@ watch(currentSection, (newVal) => {
 const skillIcons = import.meta.glob('../assets/icons/*', {
   eager: true,
   import: 'default',
-  query: '?url',
+  query: '?url'
 })
 
 const { t, locale } = useI18n()
@@ -219,7 +242,7 @@ const categories = computed(() => [...new Set(posts.value.map(p => p.cat))])
 const tags = computed(() => [...new Set(posts.value.flatMap(p => p.tag))])
 const types = computed(() => [...new Set(posts.value.map(p => p.type.name))])
 
-function getIconPath(iconName) {
+function getIconPath (iconName) {
   return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
 }
 </script>
@@ -275,8 +298,8 @@ h1.blog {
 }
 
 .category-list {
-  display: flex;            
-  gap: 1rem;                
+  display: flex;
+  gap: 1rem;
   list-style: none;
   padding: 0;
   margin: 0;

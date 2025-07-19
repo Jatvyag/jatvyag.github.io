@@ -1,87 +1,118 @@
 <template>
-    <section :id="props.sectionLink.replace('#', '')" class="section last">
-        <h2>{{ t(`${navMenuLangPage}.contacts`) }}</h2>
-        <p class="contacts">{{ t('contacts.email_client') }}: 
-            <a :href="`mailto:${contactsData.email}`" title="Email">
-                <font-awesome-icon :icon="['fas', 'at']" />
-            </a>
-        </p>
-        <p class="contacts">{{ t('contacts.email_address') }}</p>
-        <div class="code-wrapper">
-            <code id="email" class="code-area">{{ contactsData.email }}</code>
-            <button 
-                class="clipboard" 
-                @click="copyEmail"
-                :title="t('contacts.tooltip_copy')">
-                <font-awesome-icon :icon="['fas', 'clipboard']" />
-            </button>
-        </div>        
-        <p class="contacts">{{ t('contacts.social_platforms') }}</p>
-        <div class="social-media">
-            <a
-                v-for="item in contactsData.social"
-                :key="item.id"
-                :href="item.link"
-                :title="item.tooltip"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-icon"
-            >
-                <font-awesome-icon :icon="item.faIcon" />
-            </a>
-        </div>
-        <form
-            class="contact-form"
-            @submit.prevent.native="handleSubmit" novalidate
-            :action="`https://formsubmit.co/${contactsData.email}`"
-            method="POST"
-            ref="formRef"
+  <section
+    :id="props.sectionLink.replace('#', '')"
+    class="section last"
+  >
+    <h2>{{ t(`${navMenuLangPage}.contacts`) }}</h2>
+    <p class="contacts">
+      {{ t('contacts.email_client') }}:
+      <a
+        :href="`mailto:${contactsData.email}`"
+        title="Email"
+      >
+        <font-awesome-icon :icon="['fas', 'at']" />
+      </a>
+    </p>
+    <p class="contacts">
+      {{ t('contacts.email_address') }}
+    </p>
+    <div class="code-wrapper">
+      <code
+        id="email"
+        class="code-area"
+      >{{ contactsData.email }}</code>
+      <button
+        class="clipboard"
+        :title="t('contacts.tooltip_copy')"
+        @click="copyEmail"
+      >
+        <font-awesome-icon :icon="['fas', 'clipboard']" />
+      </button>
+    </div>
+    <p class="contacts">
+      {{ t('contacts.social_platforms') }}
+    </p>
+    <div class="social-media">
+      <a
+        v-for="item in contactsData.social"
+        :key="item.id"
+        :href="item.link"
+        :title="item.tooltip"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+      >
+        <font-awesome-icon :icon="item.faIcon" />
+      </a>
+    </div>
+    <form
+      ref="formRef"
+      class="contact-form"
+      novalidate
+      :action="`https://formsubmit.co/${contactsData.email}`"
+      method="POST"
+      @submit.prevent="handleSubmit"
+    >
+      <label>
+        {{ t('contacts.form.name') }}
+        <input
+          type="text"
+          name="name"
+          required
+          @input="clearError($event)"
         >
-            <label>
-                {{ t('contacts.form.name') }}
-                <input 
-                    type="text" 
-                    name="name" 
-                    required 
-                    @input="clearError($event)"
-                />
-                <span class="error-message" aria-live="polite"></span>
-            </label>
-            <label>
-                {{ t('contacts.form.email') }}
-                <input 
-                    type="email" 
-                    name="email" 
-                    required 
-                    @input="clearError($event)"
-                />
-                <span class="error-message" aria-live="polite"></span>
-            </label>
-            <label>
-                {{ t('contacts.form.subject') }}
-                <input 
-                    type="text" 
-                    name="subject" 
-                    required 
-                    @input="clearError($event)"
-                />
-                <span class="error-message" aria-live="polite"></span>
-            </label>
-            <label>
-                {{ t('contacts.form.message') }}
-                <textarea 
-                    name="message" 
-                    rows="4" 
-                    required 
-                    @input="clearError($event)"
-                ></textarea>
-                <span class="error-message" aria-live="polite"></span>
-            </label>
-            <button type="submit" class="submit-btn">
-                {{ t('contacts.form.send') }}
-            </button>
-        </form>
-    </section>
+        <span
+          class="error-message"
+          aria-live="polite"
+        />
+      </label>
+      <label>
+        {{ t('contacts.form.email') }}
+        <input
+          type="email"
+          name="email"
+          required
+          @input="clearError($event)"
+        >
+        <span
+          class="error-message"
+          aria-live="polite"
+        />
+      </label>
+      <label>
+        {{ t('contacts.form.subject') }}
+        <input
+          type="text"
+          name="subject"
+          required
+          @input="clearError($event)"
+        >
+        <span
+          class="error-message"
+          aria-live="polite"
+        />
+      </label>
+      <label>
+        {{ t('contacts.form.message') }}
+        <textarea
+          name="message"
+          rows="4"
+          required
+          @input="clearError($event)"
+        />
+        <span
+          class="error-message"
+          aria-live="polite"
+        />
+      </label>
+      <button
+        type="submit"
+        class="submit-btn"
+      >
+        {{ t('contacts.form.send') }}
+      </button>
+    </form>
+  </section>
 </template>
 
 <script setup>
@@ -91,61 +122,61 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const props = defineProps({
-    sectionLink: {
-        type: String,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true
-    }
+  sectionLink: {
+    type: String,
+    required: true
+  },
+  navMenuLangPage: {
+    type: String,
+    required: true
+  }
 })
 
 const contactsData = JSONData.contacts
 
-function copyEmail() {
-    const email = document.getElementById('email')?.textContent
-    if (email) {
-        navigator.clipboard.writeText(email)
-    }
+function copyEmail () {
+  const email = document.getElementById('email')?.textContent
+  if (email) {
+    navigator.clipboard.writeText(email)
+  }
 }
 
 const formRef = ref(null)
 const handleSubmit = (event) => {
-    event.preventDefault()
-    const form = formRef.value
-    if (!form) return
-    form.classList.add('was-attempted')
-    const inputs = form.querySelectorAll('input, textarea')
-    let isFormValid = true
-    inputs.forEach(input => {
-        input.setCustomValidity('') 
-        if (!input.checkValidity()) {
-        isFormValid = false
-        let message = ''
-        if (input.validity.valueMissing) {
-            message = t('contacts.form.required_field')
-        } else if (input.validity.typeMismatch) {
-            message = t('contacts.form.valid_email')
-        }
-        input.setCustomValidity(message)
-        const errorSpan = input.nextElementSibling
-        if (errorSpan) errorSpan.textContent = message
-        } else {
-        const errorSpan = input.nextElementSibling
-        if (errorSpan) errorSpan.textContent = ''
-        }
-    })
-    if (isFormValid) {
-        form.submit()
+  event.preventDefault()
+  const form = formRef.value
+  if (!form) return
+  form.classList.add('was-attempted')
+  const inputs = form.querySelectorAll('input, textarea')
+  let isFormValid = true
+  inputs.forEach(input => {
+    input.setCustomValidity('')
+    if (!input.checkValidity()) {
+      isFormValid = false
+      let message = ''
+      if (input.validity.valueMissing) {
+        message = t('contacts.form.required_field')
+      } else if (input.validity.typeMismatch) {
+        message = t('contacts.form.valid_email')
+      }
+      input.setCustomValidity(message)
+      const errorSpan = input.nextElementSibling
+      if (errorSpan) errorSpan.textContent = message
+    } else {
+      const errorSpan = input.nextElementSibling
+      if (errorSpan) errorSpan.textContent = ''
     }
+  })
+  if (isFormValid) {
+    form.submit()
+  }
 }
 
-function clearError(event) {
-    const input = event.target
-    input.setCustomValidity('')
-    const errorSpan = input.nextElementSibling
-    if (errorSpan) errorSpan.textContent = ''
+function clearError (event) {
+  const input = event.target
+  input.setCustomValidity('')
+  const errorSpan = input.nextElementSibling
+  if (errorSpan) errorSpan.textContent = ''
 }
 </script>
 
@@ -184,8 +215,8 @@ button.clipboard:hover {
 }
 
 button.clipboard:active {
-    color: var(--link-active); 
-    transform: scale(0.95); 
+    color: var(--link-active);
+    transform: scale(0.95);
 }
 
 .social-media {
@@ -261,11 +292,11 @@ button.clipboard:active {
     margin-top: 0rem;
     padding: 0.2rem;
     background-color: #dfc9c9;
-    border: 1px solid $attention-color;  
+    border: 1px solid $attention-color;
     min-height: 1em;
     /* Keep space reserved but invisible */
-    min-height: 1em;     
-    visibility: hidden; 
+    min-height: 1em;
+    visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -292,4 +323,3 @@ button.clipboard:active {
     }
 }
 </style>
-

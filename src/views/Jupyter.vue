@@ -1,17 +1,20 @@
 <template>
   <main class="blog">
-    <section :id="getLinkByKey('home').replace('#', '')" class="jupyter-section">
+    <section
+      :id="getLinkByKey('home').replace('#', '')"
+      class="jupyter-section"
+    >
       <div class="iframe-wrapper">
-        <iframe 
-          :src="iframeSrc" 
-          frameborder="0" 
+        <iframe
+          :src="iframeSrc"
+          frameborder="0"
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           title="Jupyter Notebook"
         />
-        <font-awesome-icon 
-          :icon="['fas', 'chevron-up']" 
-          class="chevron up iframe" 
-          @click="scrollToFirstHeading" 
+        <font-awesome-icon
+          :icon="['fas', 'chevron-up']"
+          class="chevron up iframe"
+          @click="scrollToFirstHeading"
         />
       </div>
     </section>
@@ -24,14 +27,14 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 
 const props = defineProps({
-    post_url: {
-        type: String,
-        required: true
-    }
+  post_url: {
+    type: String,
+    required: true
+  }
 })
 
 const emit = defineEmits([
-  'update:mainSection', 
+  'update:mainSection',
   'update:navMenuComponent',
   'update:currentSection',
   'update:navItems',
@@ -42,14 +45,14 @@ const navMenuLangPage = ''
 const currentSection = ref('')
 
 // Utility to get link by key
-function getLinkByKey(key) {
+function getLinkByKey (key) {
   const item = jupyterNavItems.value.find(i => i.key === key)
   return item?.link || ''
 }
 
 // Intersection observer for main page sections
 let observer = null
-function observeSections() {
+function observeSections () {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
@@ -58,7 +61,7 @@ function observeSections() {
     }
   }, {
     rootMargin: '0px',
-    threshold: 0.3,
+    threshold: 0.3
   })
   document.querySelectorAll('main section[id]').forEach(section => {
     observer.observe(section)
@@ -92,7 +95,7 @@ const theme = ref(sessionStorage.getItem('theme') || 'dark')
 const iframeSrc = ref(`/notebooks/${locale.value}/${props.post_url}`)
 const jupyterNavItems = ref([])
 
-function extractHeadingsFromIframe(iframeEl) {
+function extractHeadingsFromIframe (iframeEl) {
   try {
     const doc = iframeEl.contentDocument || iframeEl.contentWindow?.document
     if (!doc) return
@@ -116,7 +119,7 @@ function extractHeadingsFromIframe(iframeEl) {
   }
 }
 
-function scrollToFirstHeading() {
+function scrollToFirstHeading () {
   const iframe = document.querySelector('iframe')
   const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
   const first = jupyterNavItems.value[0]
@@ -126,7 +129,7 @@ function scrollToFirstHeading() {
   }
 }
 
-function onThemeChange(e) {
+function onThemeChange (e) {
   theme.value = e.detail.theme
 }
 
@@ -163,8 +166,8 @@ main.blog {
 
 iframe {
   border-radius: $border-radius;
-  width: 100%; 
-  height: 80vh; 
+  width: 100%;
+  height: 80vh;
 }
 
 .blog {

@@ -1,43 +1,60 @@
 <template>
-    <section :id="props.sectionLink.replace('#', '')" class="section">
-        <h2>{{ t(`${navMenuLangPage}.achievements`) }}</h2>
-        <h3 class="achievements">DataCamp</h3>
-        <p
-            v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
-            :key="index"
-            class="achievements"
+  <section
+    :id="props.sectionLink.replace('#', '')"
+    class="section"
+  >
+    <h2>{{ t(`${navMenuLangPage}.achievements`) }}</h2>
+    <h3 class="achievements">
+      DataCamp
+    </h3>
+    <p
+      v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
+      :key="index"
+      class="achievements"
+    >
+      {{ paragraph }}
+    </p>
+    <div class="certificates">
+      <div
+        v-for="certificate in tm('achievements.certificates')"
+        :key="certificate.id"
+        class="certificate"
+      >
+        <img
+          :src="getBadgePath(certificate.badge)"
+          :alt="certificate.name"
+          class="badge"
         >
-            {{ paragraph }}
-        </p>
-        <div class="certificates">
-            <div
-                class="certificate"
-                v-for="certificate in tm('achievements.certificates')"
-                :key="certificate.id"
-            >
-                <img
-                    :src="getBadgePath(certificate.badge)"
-                    :alt="certificate.name"
-                    class="badge"
-                />
-                <div class="info">
-                    <div class="name">{{ certificate.name }}</div>
-                    <div class="issuer">{{ certificate.issuer }}, {{ certificate.issued }}</div>
-                </div>
-            </div>
-            <div class="completed-stats">
-                    <div
-                        class="stat-card"
-                        v-for="item in tm('achievements.datacamp.completed')"
-                        :key="item.id"
-                    >
-                        <div class="stat-type">{{ item.type }}</div>
-                        <div class="stat-number">{{ item.number }}</div>
-                    </div>
-                </div>
-            </div>
-        <font-awesome-icon :icon="['fas', 'chevron-down']" class="chevron" @click="scrollToNextSection" />
-    </section>
+        <div class="info">
+          <div class="name">
+            {{ certificate.name }}
+          </div>
+          <div class="issuer">
+            {{ certificate.issuer }}, {{ certificate.issued }}
+          </div>
+        </div>
+      </div>
+      <div class="completed-stats">
+        <div
+          v-for="item in tm('achievements.datacamp.completed')"
+          :key="item.id"
+          class="stat-card"
+        >
+          <div class="stat-type">
+            {{ item.type }}
+          </div>
+          <div class="stat-number">
+            {{ item.number }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <font-awesome-icon
+      :icon="['fas', 'chevron-down']"
+      class="chevron"
+      @click="scrollToNextSection"
+    />
+  </section>
 </template>
 
 <script setup>
@@ -46,26 +63,26 @@ import { useI18n } from 'vue-i18n'
 const { t, tm } = useI18n()
 
 const props = defineProps({
-    sectionLink: {
-        type: String,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true
-    },
-    nextSection: {
-        type: String,
-        required: true
-    }
+  sectionLink: {
+    type: String,
+    required: true
+  },
+  navMenuLangPage: {
+    type: String,
+    required: true
+  },
+  nextSection: {
+    type: String,
+    required: true
+  }
 })
 
 const getBadgePath = (badgeFile) =>
-    new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
+  new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
 
-function scrollToNextSection() {
-    const next = document.querySelector(props.nextSection) 
-    if (next) next.scrollIntoView({ behavior: 'smooth' })
+function scrollToNextSection () {
+  const next = document.querySelector(props.nextSection)
+  if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -75,7 +92,7 @@ h3.achievements {
 }
 
 p.achievements {
-    text-align: left; 
+    text-align: left;
     width: 100%;
 }
 
@@ -146,4 +163,3 @@ p.achievements {
     font-weight: bold;
 }
 </style>
-

@@ -1,35 +1,38 @@
 <template>
-    <section :id="props.sectionLink.replace('#', '')" class="section">
-        <h2>{{ t(`${navMenuLangPage}.skills`) }}</h2>
-        <div class="card skills">
-            <div
-                v-for="(items, categoryKey) in skillsData"
-                :key="categoryKey"
-                class="skill-group"
+  <section
+    :id="props.sectionLink.replace('#', '')"
+    class="section"
+  >
+    <h2>{{ t(`${navMenuLangPage}.skills`) }}</h2>
+    <div class="card skills">
+      <div
+        v-for="(items, categoryKey) in skillsData"
+        :key="categoryKey"
+        class="skill-group"
+      >
+        <h3>{{ t(`skills.${categoryKey}`) }}</h3>
+        <div class="skill-grid">
+          <div
+            v-for="skill in items"
+            :key="skill.id"
+            class="skill-item"
+          >
+            <img
+              :src="getIconPath(skill.icon)"
+              :alt="skill.name"
+              class="skill-icon"
             >
-            <h3>{{ t(`skills.${categoryKey}`) }}</h3>
-            <div class="skill-grid">
-                <div
-                    v-for="skill in items"
-                    :key="skill.id"
-                    class="skill-item"
-                >
-                <img
-                    :src="getIconPath(skill.icon)"
-                    :alt="skill.name"
-                    class="skill-icon"
-                />
-                <span class="skill-name">{{ skill.name }}</span>
-                </div>
-            </div>
-            </div>
+            <span class="skill-name">{{ skill.name }}</span>
+          </div>
         </div>
-        <font-awesome-icon
-        :icon="['fas', 'chevron-down']"
-        class="chevron"
-        @click="scrollToNextSection"
-        />
-    </section>
+      </div>
+    </div>
+    <font-awesome-icon
+      :icon="['fas', 'chevron-down']"
+      class="chevron"
+      @click="scrollToNextSection"
+    />
+  </section>
 </template>
 
 <script setup>
@@ -40,33 +43,33 @@ const { t } = useI18n()
 const skillsData = JSONData.skills
 
 const props = defineProps({
-    sectionLink: {
-        type: String,
-        required: true,
-    },
-    navMenuLangPage: {
-        type: String,
-        required: true
-    },
-    nextSection: {
-        type: String,
-        required: true
-    }
+  sectionLink: {
+    type: String,
+    required: true
+  },
+  navMenuLangPage: {
+    type: String,
+    required: true
+  },
+  nextSection: {
+    type: String,
+    required: true
+  }
 })
 
 const getIconPath = (iconFile) =>
-    new URL(`../assets/icons/${iconFile}`, import.meta.url).href
+  new URL(`../assets/icons/${iconFile}`, import.meta.url).href
 
-function scrollToNextSection() {
-    const next = document.querySelector(props.nextSection)
-    if (next) next.scrollIntoView({ behavior: 'smooth' })
+function scrollToNextSection () {
+  const next = document.querySelector(props.nextSection)
+  if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
 <style scoped>
 .card.skills {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem 2rem;
     padding: 1rem 2rem 2rem 2rem;
 }
@@ -120,4 +123,3 @@ function scrollToNextSection() {
     }
 }
 </style>
-

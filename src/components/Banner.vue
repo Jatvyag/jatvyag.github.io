@@ -1,8 +1,11 @@
 <template>
-    <h2 class="typewriter-line">
-        <span class="typewriter-dynamic" id="typewriter"></span>
-        <span class="typewriter-fixed">{{ tm('banner') }}</span>
-    </h2>
+  <h2 class="typewriter-line">
+    <span
+      id="typewriter"
+      class="typewriter-dynamic"
+    />
+    <span class="typewriter-fixed">{{ tm('banner') }}</span>
+  </h2>
 </template>
 
 <script setup>
@@ -12,21 +15,23 @@ import Typewriter from 'typewriter-effect/dist/core'
 
 const { tm } = useI18n()
 
-function startTypewriter() {
-    const el = document.getElementById('typewriter')
-    if (!el) return
+function startTypewriter () {
+  const el = document.getElementById('typewriter')
+  if (!el) return
 
-    el.innerHTML = '' // Clear previous content
-    new Typewriter(el, {
-        strings: ['Python','JavaScript', 'Full-Stack'],
-        autoStart: true,
-        loop: true,
-        deleteSpeed: 5,
-    })
+  el.innerHTML = '' // Clear previous content
+  /* eslint-disable no-new */
+  new Typewriter(el, {
+    strings: ['Python', 'JavaScript', 'Full-Stack'],
+    autoStart: true,
+    loop: true,
+    deleteSpeed: 5
+  })
+  /* eslint-enable no-new */
 }
 
 onMounted(() => {
-    startTypewriter()
+  startTypewriter()
 })
 </script>
 
