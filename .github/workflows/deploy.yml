@@ -19,13 +19,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install Jupyter dependencies
-        working-directory: ./src/jupyter
+        working-directory: ./src/jupyter_template
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Export Jupyter notebooks to public dir
-        working-directory: ./src/jupyter
+        working-directory: ./src/jupyter_template
         run: |
           python export_mod_lab.py
 
