@@ -11,7 +11,7 @@ jupyter nbconvert \
   --to html \
   --template lab \
   --theme dark \
-  notebooks/en/analyse_tv.ipynb \
+  ../jupyter_notebooks/en/analyse_tv.ipynb \
   --output-dir ../../public/notebooks/en
 
 # Light theme
@@ -19,7 +19,7 @@ jupyter nbconvert \
   --to html \
   --template lab \
   --theme light \
-  notebooks/en/analyse_tv.ipynb \
+  ../jupyter_notebooks/en/analyse_tv.ipynb \
   --output-dir ../../public/notebooks/en
 ```
 
