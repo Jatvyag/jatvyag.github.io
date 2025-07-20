@@ -89,6 +89,7 @@ watchEffect(async () => {
     extractMarkdownHeadings()
     if (nav.navItems.length) {
       nav.setMainSection(nav.navItems[0].link)
+      nav.setCurrentSection(nav.navItems[0].key)
     }
     observeHeaders()
   }
