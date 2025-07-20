@@ -25,7 +25,7 @@
       </a>.
     </p>
     <font-awesome-icon
-      v-if="mainSection"
+      v-if="showChevron"
       :icon="['fas', 'chevron-up']"
       class="chevron up"
       @click="scrollToMain"
@@ -34,22 +34,24 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import JSONData from '@/data/data.json'
 import { useI18n } from 'vue-i18n'
+import { useNavStore } from '@/stores/nav'
+
 const { t } = useI18n()
 
-const props = defineProps({
-  mainSection: {
-    type: String,
-    required: true
-  }
-})
+const nav = useNavStore()
 
 const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
 const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
 
+const showChevron = computed(() => {
+  return nav.mainSection !== 'Jupyter'
+})
+
 function scrollToMain () {
-  const next = document.querySelector(props.mainSection)
+  const next = document.querySelector(nav.mainSection)
   if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>

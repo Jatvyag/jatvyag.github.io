@@ -3,7 +3,7 @@
     :id="props.sectionLink.replace('#', '')"
     class="section last"
   >
-    <h2>{{ t(`${navMenuLangPage}.contacts`) }}</h2>
+    <h2>{{ t('navMenu.main.contacts') }}</h2>
     <p class="contacts">
       {{ t('contacts.email_client') }}:
       <a
@@ -123,10 +123,6 @@ const { t } = useI18n()
 
 const props = defineProps({
   sectionLink: {
-    type: String,
-    required: true
-  },
-  navMenuLangPage: {
     type: String,
     required: true
   }

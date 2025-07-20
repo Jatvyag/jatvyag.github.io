@@ -1,11 +1,12 @@
 <template>
   <main class="blog">
     <section
-      :id="getLinkByKey('home').replace('#', '')"
+      id="Jupyter"
       class="jupyter-section"
     >
       <div class="iframe-wrapper">
         <iframe
+          ref="jupyter-notebook"
           :src="iframeSrc"
           frameborder="0"
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -22,132 +23,127 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, onBeforeUnmount, watch, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useNavStore } from '@/stores/nav'
+
+const nav = useNavStore()
 const { locale } = useI18n()
 
+const iframe = useTemplateRef('jupyter-notebook')
+
 const props = defineProps({
-  post_url: {
+  postUrl: {
     type: String,
     required: true
   }
 })
 
-const emit = defineEmits([
-  'update:mainSection',
-  'update:navMenuComponent',
-  'update:currentSection',
-  'update:navItems',
-  'update:navMenuLangPage'
-])
+const theme = ref(sessionStorage.getItem('theme') || 'dark')
+const iframeSrc = ref(`/notebooks/${locale.value}/${props.postUrl}`)
 
-const navMenuLangPage = ''
-const currentSection = ref('')
+let observer = null
 
-// Utility to get link by key
-function getLinkByKey (key) {
-  const item = jupyterNavItems.value.find(i => i.key === key)
-  return item?.link || ''
+const iframeDoc = ref(null)
+
+function getIframe () {
+  iframeDoc.value = iframe.value?.contentDocument || iframe.value?.contentWindow?.document
 }
 
-// Intersection observer for main page sections
-let observer = null
+function makeUniqueNavItems (headings) {
+  const result = []
+  headings.forEach(h => {
+    const id = h.id
+    const text = h.textContent?.replace('¶', '').trim() || 'untitled'
+    result.push({
+      key: text,
+      link: `#${id}`,
+      faIcon: ['fas', 'house'],
+      disabled: false,
+      type: 'jupyter'
+    })
+  })
+  return result
+}
+
+function extractHeadings () {
+  if (!iframeDoc.value) return
+  const headings = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
+  const items = makeUniqueNavItems(headings)
+  nav.setNavItems(items)
+}
+
 function observeSections () {
+  if (observer) observer.disconnect()
+  if (!iframeDoc.value) return
+
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        currentSection.value = entry.target.id
+        const headingText = entry.target.textContent?.replace('¶', '').trim() || 'untitled'
+        nav.setCurrentSection(headingText)
       }
     }
   }, {
+    root: iframeDoc.value, // Use iframe document as root
     rootMargin: '0px',
     threshold: 0.3
   })
-  document.querySelectorAll('main section[id]').forEach(section => {
-    observer.observe(section)
+
+  const targets = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
+  targets.forEach(target => observer.observe(target))
+}
+
+function setupIframeListeners () {
+  if (!iframe.value) return
+
+  iframe.value.addEventListener('load', () => {
+    getIframe()
+    extractHeadings()
+    observeSections()
   })
 }
 
-// Emit startup values
-onMounted(async () => {
-  emit('update:mainSection', getLinkByKey('home'))
-  emit('update:navItems', jupyterNavItems.value)
-  emit('update:currentSection', currentSection.value)
-  emit('update:navMenuLangPage', navMenuLangPage)
-  await nextTick()
-  observeSections()
-})
-
-onUnmounted(() => {
-  if (observer) observer.disconnect()
-})
-
-watch(
-  [() => locale.value, () => props.post_url, () => currentSection.value],
-  ([newLang, newUrl, newSection]) => {
-    iframeSrc.value = `/notebooks/${newLang}/${newUrl}`
-    emit('update:currentSection', newSection)
-  }
-)
-
-// Jupyter-specific logic
-const theme = ref(sessionStorage.getItem('theme') || 'dark')
-const iframeSrc = ref(`/notebooks/${locale.value}/${props.post_url}`)
-const jupyterNavItems = ref([])
-
-function extractHeadingsFromIframe (iframeEl) {
-  try {
-    const doc = iframeEl.contentDocument || iframeEl.contentWindow?.document
-    if (!doc) return
-    const headings = doc.querySelectorAll('h2')
-    const result = []
-    headings.forEach(h2 => {
-      const id = h2.id
-      const text = h2.textContent?.replace('¶', '').trim() || 'untitled'
-      result.push({
-        key: text,
-        link: `#${id}`,
-        faIcon: ['fas', 'house'],
-        disabled: false,
-        type: 'jupyter'
-      })
-    })
-    jupyterNavItems.value = result
-    emit('update:navItems', result)
-  } catch (err) {
-    console.error('Failed to extract headings:', err)
-  }
-}
-
 function scrollToFirstHeading () {
-  const iframe = document.querySelector('iframe')
-  const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
-  const first = jupyterNavItems.value[0]
-  if (first && iframeDoc) {
-    const el = iframeDoc.getElementById(first.link.replace('#', ''))
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
+  if (!iframeDoc.value) return
+  const first = nav.navItems[0]
+  if (!first) return
+
+  const el = iframeDoc.value.getElementById(first.link.replace('#', ''))
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
 
 function onThemeChange (e) {
   theme.value = e.detail.theme
 }
 
-let hasExtracted = false
-
 onMounted(() => {
+  nav.setMainSection('Jupyter')
+
+  getIframe()
+  setupIframeListeners()
+
   window.addEventListener('theme-changed', onThemeChange)
-  const iframe = document.querySelector('iframe')
-  iframe.addEventListener('load', () => {
-    if (!hasExtracted) {
-      extractHeadingsFromIframe(iframe)
-      hasExtracted = true
-    }
-  })
 })
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
+  if (observer) observer.disconnect()
   window.removeEventListener('theme-changed', onThemeChange)
+})
+
+watch([() => locale.value, () => props.postUrl], ([newLang, newUrl]) => {
+  iframeSrc.value = `/notebooks/${newLang}/${newUrl}`
+
+  // Wait next tick to ensure iframe reloads then re-setup
+  nextTick(() => {
+    getIframe()
+    if (iframe.value?.contentDocument) {
+      extractHeadings()
+      observeSections()
+    } else {
+      setupIframeListeners()
+    }
+  })
 })
 </script>
 

@@ -136,67 +136,25 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { ref, computed } from 'vue'
+import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import jsonENPostsData from '@/data/posts_en.json'
 import jsonBEPostsData from '@/data/posts_be.json'
 
-const emit = defineEmits([
-  'update:mainSection',
-  'update:navMenuComponent',
-  'update:currentSection',
-  'update:navItems',
-  'update:navMenuLangPage'
+const nav = useNavStore()
+nav.setNavItems([
+  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: 'main_menu', disabled: true }
 ])
-
-const navItems = [
-  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: 'main_manu', disabled: true }
-]
-
-const navMenuLangPage = 'navMenu.blog'
-
-const currentSection = ref('')
+nav.setCurrentSection('home')
+nav.setMainSection(getLinkByKey('home'))
+nav.setNavMenuLocale('navMenu.blog')
 
 function getLinkByKey (key) {
-  const item = navItems.find(i => i.key === key)
+  const item = nav.navItems.find(i => i.key === key)
   return item?.link || ''
 }
-
-let observer = null
-
-function observeSections () {
-  observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        currentSection.value = entry.target.id
-      }
-    }
-  }, {
-    rootMargin: '0px',
-    threshold: 0.3
-  })
-  document.querySelectorAll('main section[id]').forEach(section => {
-    observer.observe(section)
-  })
-}
-
-onMounted(async () => {
-  emit('update:mainSection', getLinkByKey('home'))
-  emit('update:navItems', navItems)
-  emit('update:currentSection', currentSection.value)
-  emit('update:navMenuLangPage', navMenuLangPage)
-  await nextTick()
-  observeSections()
-})
-
-onUnmounted(() => {
-  if (observer) observer.disconnect()
-})
-
-watch(currentSection, (newVal) => {
-  emit('update:currentSection', newVal)
-})
 
 const skillIcons = import.meta.glob('../assets/icons/*', {
   eager: true,

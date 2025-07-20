@@ -19,7 +19,8 @@ function startTypewriter () {
   const el = document.getElementById('typewriter')
   if (!el) return
 
-  el.innerHTML = '' // Clear previous content
+  // Clear previous content
+  el.innerHTML = ''
   /* eslint-disable no-new */
   new Typewriter(el, {
     strings: ['Python', 'JavaScript', 'Full-Stack'],

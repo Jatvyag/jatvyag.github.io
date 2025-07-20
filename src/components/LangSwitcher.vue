@@ -1,96 +1,67 @@
 <template>
-  <div class="lang-switcher">
-    <button @click="toggleDropdown">
-      {{ currentLabel }}
-      <font-awesome-icon :icon="['fas', 'language']" />
-      <font-awesome-icon
-        :icon="['fas', 'chevron-down']"
-        :class="['chevron-icon', { open: isOpen }]"
-      />
-    </button>
-    <div
-      v-if="isOpen"
-      class="dropdown"
+  <button
+    class="lang-btn"
+    @click="cycleLanguage"
+  >
+    <Transition
+      name="slide-up"
+      mode="out-in"
     >
-      <button
-        v-for="lang in languages"
-        :key="lang.code"
-        class="dropdown-item"
-        :class="{ active: lang.code === locale }"
-        @click="switchTo(lang.code)"
-      >
-        {{ lang.label }}
-      </button>
-    </div>
-  </div>
+      <span :key="locale">
+        {{ currentLabel }}
+      </span>
+    </Transition>
+    <font-awesome-icon
+      :icon="['fas', 'language']"
+      class="lang-icon"
+    />
+  </button>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
 const { locale, t } = useI18n()
-const isOpen = ref(false)
 
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
+const languageOptions = [
+  { code: 'en', label: () => t('languageNames.en') },
+  { code: 'be', label: () => t('languageNames.be') }
+]
 
-const switchTo = (lang) => {
-  locale.value = lang
-  isOpen.value = false
-  sessionStorage.setItem('locale', lang)
+const cycleLanguage = () => {
+  const currentIndex = languageOptions.findIndex(lang => lang.code === locale.value)
+  const nextIndex = (currentIndex + 1) % languageOptions.length
+  const nextLang = languageOptions[nextIndex].code
+  locale.value = nextLang
+  sessionStorage.setItem('locale', nextLang)
 }
-const languages = computed(() => [
-  { code: 'en', label: t('languageNames.en') },
-  { code: 'be', label: t('languageNames.be') }
-])
 
 const currentLabel = computed(() => {
-  const match = languages.value.find(l => l.code === locale.value)
-  return match?.label || locale.value
+  const match = languageOptions.find(lang => lang.code === locale.value)
+  return match ? match.label() : locale.value
 })
 </script>
 
 <style lang="scss" scoped>
-.lang-switcher {
-    position: relative;
-    display: inline-block;
+.lang-icon {
+  width: 3rem;
+  height: 1.75em;
+  padding: 0rem;
+  margin: 0rem;
 }
-
-.chevron-icon {
-    transition: transform 0.3s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
 }
-
-.chevron-icon.open {
-    transform: rotate(180deg);
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
-
-.dropdown {
-    position: absolute;
-    top: 100%;
-    left: 1%;
-    margin-top: 0.1rem;
-    border-radius: $border-radius;
-    box-shadow: var(--drop-down-box-shadow);
-    background: var(--bg);
-    z-index: 10;
-}
-
-.dropdown-item {
-    display: block;
-    padding: 0.4rem 0.8rem;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: 2px solid transparent;
-    cursor: pointer;
-}
-
-.dropdown-item:hover,
-.dropdown-item.active {
-    border-color: var(--btn-hover-color);
-    background-color: var(--btn-bg);
-    border-radius: $border-radius;
+.lang-btn {
+  width: 6rem;
+  height: 1.9rem;
+  gap: 0.5rem;
+  padding: 0.3rem 1rem 0.3rem 0.3rem;
 }
 </style>

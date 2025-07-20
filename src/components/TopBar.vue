@@ -1,11 +1,6 @@
 <template>
   <div class="top-bar">
-    <NavMenu
-      :nav-items="navItems"
-      :current-section="currentSection"
-      :nav-menu-lang-page="navMenuLangPage"
-      @update:current-section="$emit('update:currentSection', $event)"
-    />
+    <NavMenu />
     <div class="top-right-bar">
       <router-link
         v-if="route.path !== '/'"
@@ -34,23 +29,6 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 import NavMenu from '@/components/NavMenu.vue'
 
 const route = useRoute()
-
-const { navItems, currentSection, navMenuLangPage } = defineProps({
-  navItems: {
-    type: Array,
-    required: true
-  },
-  currentSection: {
-    type: String,
-    required: true
-  },
-  navMenuLangPage: {
-    type: String,
-    required: true
-  }
-})
-
-defineEmits(['update:currentSection'])
 </script>
 
 <style lang="scss" scoped>

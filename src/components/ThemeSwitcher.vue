@@ -25,7 +25,7 @@ function toggleTheme () {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'
   sessionStorage.setItem('theme', theme.value)
   document.documentElement.setAttribute('data-theme', theme.value)
-  // Custom Event dispatch, so, we can listen it other objects
+  // Custom Event dispatch, so, we can listen it in another objects
   window.dispatchEvent(new CustomEvent('theme-changed', {
     detail: { theme: theme.value }
   }))

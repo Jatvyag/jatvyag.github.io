@@ -9,7 +9,7 @@ const routes = [
     path: '/jupyter/:postUrl',
     name: 'Jupyter',
     component: () => import('@/views/Jupyter.vue'),
-    props: route => ({ post_url: route.params.postUrl })
+    props: route => ({ postUrl: route.params.postUrl })
   }
 ]
 

@@ -6,49 +6,39 @@
     />
     <Skills
       :section-link="getLinkByKey('skills')"
-      :nav-menu-lang-page="navMenuLangPage"
       :next-section="getLinkByKey('achievements')"
     />
     <Achievements
       :section-link="getLinkByKey('achievements')"
-      :nav-menu-lang-page="navMenuLangPage"
       :next-section="getLinkByKey('contacts')"
     />
     <Contacts
       :section-link="getLinkByKey('contacts')"
-      :nav-menu-lang-page="navMenuLangPage"
     />
   </main>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import { useNavStore } from '@/stores/nav'
 import About from '@/sections/About.vue'
 import Skills from '@/sections/Skills.vue'
 import Achievements from '@/sections/Achievements.vue'
 import Contacts from '@/sections/Contacts.vue'
 
-const emit = defineEmits([
-  'update:mainSection',
-  'update:navMenuComponent',
-  'update:currentSection',
-  'update:navItems',
-  'update:navMenuLangPage'
+const nav = useNavStore()
+
+nav.setNavItems([
+  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], type: 'main_menu', disabled: false },
+  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], type: 'main_menu', disabled: false },
+  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: 'main_menu', disabled: false },
+  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: 'main_menu', disabled: false }
 ])
 
-const navItems = [
-  { key: 'about', link: '#about', faIcon: ['fas', 'bars'], type: 'main_manu', disabled: false },
-  { key: 'skills', link: '#skills', faIcon: ['fas', 'bars-progress'], type: 'main_manu', disabled: false },
-  { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: 'main_manu', disabled: false },
-  { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: 'main_manu', disabled: false }
-]
-
-const navMenuLangPage = 'navMenu.main'
-
-const currentSection = ref('')
+nav.setNavMenuLocale('navMenu.main')
 
 function getLinkByKey (key) {
-  const item = navItems.find(i => i.key === key)
+  const item = nav.navItems.find(i => i.key === key)
   return item?.link || ''
 }
 
@@ -58,7 +48,7 @@ function observeSections () {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        currentSection.value = entry.target.id
+        nav.setCurrentSection(entry.target.id)
       }
     }
   }, {
@@ -70,21 +60,13 @@ function observeSections () {
   })
 }
 
-onMounted(async () => {
-  emit('update:mainSection', getLinkByKey('about'))
-  emit('update:navItems', navItems)
-  emit('update:currentSection', currentSection.value)
-  emit('update:navMenuLangPage', navMenuLangPage)
-  await nextTick()
+onMounted(() => {
+  nav.setMainSection(getLinkByKey('about'))
   observeSections()
 })
 
 onUnmounted(() => {
   if (observer) observer.disconnect()
-})
-
-watch(currentSection, (newVal) => {
-  emit('update:currentSection', newVal)
 })
 </script>
 

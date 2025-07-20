@@ -2,7 +2,7 @@
   <div class="nav-wrapper">
     <button
       class="menu-btn"
-      :disabled="props.navItems.length <= 1"
+      :disabled="nav.navItems.length <= 1"
       @click="toggleMenu"
     >
       <template v-if="isJupyter">
@@ -30,9 +30,9 @@
     >
       <ul>
         <li
-          v-for="item in props.navItems"
+          v-for="item in nav.navItems"
           :key="item.key"
-          :class="{ active: item.key === currentSection, disabled: item.disabled }"
+          :class="{ active: item.key === nav.currentSection, disabled: item.disabled }"
           @click="handleNavigation(item)"
         >
           <!-- Icon for non-jupyter -->
@@ -44,7 +44,7 @@
             <span v-else>{{ item.unicodeIcon }}</span>
           </template>
           <span>
-            {{ item.type === 'jupyter' ? item.key : t(`${props.navMenuLangPage}.${item.key}`) }}
+            {{ item.type === 'jupyter' ? item.key : t(`${nav.navMenuLocale}.${item.key}`) }}
           </span>
         </li>
       </ul>
@@ -55,23 +55,9 @@
 <script setup>
 import { ref, computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useNavStore } from '@/stores/nav'
 
-const props = defineProps({
-  currentSection: {
-    type: String,
-    required: true
-  },
-  navItems: {
-    type: Array,
-    required: true
-  },
-  navMenuLangPage: {
-    type: String,
-    required: true
-  }
-})
-
-const emit = defineEmits(['update:currentSection'])
+const nav = useNavStore()
 
 const { t } = useI18n()
 const isOpen = ref(false)
@@ -97,7 +83,7 @@ function handleNavigation (item) {
     }
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
-      emit('update:currentSection', item.key)
+      nav.setCurrentSection(item.key)
       isOpen.value = false
     }
   })
@@ -106,11 +92,11 @@ function handleNavigation (item) {
 const jupyterIcon = new URL('@/assets/icons/jupyter.svg', import.meta.url).href
 
 const activeItem = computed(() => {
-  return props.navItems.find(item => item.key === props.currentSection)
+  return nav.navItems.find(item => item.key === nav.currentSection)
 })
 
 const isJupyter = computed(() => {
-  return props.navItems.some(item => item.type === 'jupyter')
+  return nav.navItems.some(item => item.type === 'jupyter')
 })
 
 const currentIcon = computed(() => {
@@ -118,15 +104,15 @@ const currentIcon = computed(() => {
 })
 
 const currentTitle = computed(() => {
-  if (isJupyter.value && props.currentSection) {
-    return props.currentSection
-  } else if (isJupyter.value && !props.currentSection) {
+  if (isJupyter.value && nav.currentSection) {
+    return nav.currentSection
+  } else if (isJupyter.value && !nav.currentSection) {
     const icon = 'Jupyter'
     return icon
   }
-  if (props.navMenuLangPage && props.currentSection) {
-    const key = `${props.navMenuLangPage}.${props.currentSection}`
-    return t(key, props.currentSection)
+  if (nav.navMenuLocale && nav.currentSection) {
+    const key = `${nav.navMenuLocale}.${nav.currentSection}`
+    return t(key, nav.currentSection)
   }
   return ''
 })
