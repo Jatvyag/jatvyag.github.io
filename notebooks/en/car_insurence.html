@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 
 <html lang="en">
-<head><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<head><meta charset="utf-8"></meta>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 <title>car_insurence</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style>
 /* Make wide pandas DataFrames horizontally scrollable */
@@ -7255,7 +7255,6 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-inspector-icon-color: var(--md-grey-200);
   --jp-switch-color: var(--md-grey-400);
   --jp-switch-true-position-color: var(--md-orange-700);
-}
 :root[data-theme='light'] {
 /*-----------------------------------------------------------------------------
 | Copyright (c) Jupyter Development Team.
@@ -7678,7 +7677,6 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-inspector-icon-color: var(--md-grey-700);
   --jp-switch-color: var(--md-grey-400);
   --jp-switch-true-position-color: var(--md-orange-900);
-}
 </style>
 <style type="text/css">
 /* Force rendering true colors when outputing to pdf */
@@ -7734,9 +7732,9 @@ a.anchor-link {
   }
 }
 </style>
-<!-- Load mathjax -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
-<!-- MathJax configuration -->
+
 <script type="text/x-mathjax-config">
     init_mathjax = function() {
         if (window.MathJax) {
@@ -7768,7 +7766,7 @@ a.anchor-link {
     }
     init_mathjax();
     </script>
-<!-- End of mathjax configuration --><script type="module">
+<script type="module">
   document.addEventListener("DOMContentLoaded", async () => {
     const diagrams = document.querySelectorAll(".jp-Mermaid > pre.mermaid");
     // do not load mermaidjs if not needed
@@ -7951,7 +7949,7 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --></head>
+</head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3f0e974-faf8-458f-bf2a-06a469d0ea5e">
@@ -7960,7 +7958,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Modeling-Car-Insurance-Claim-Outcomes">Modeling Car Insurance Claim Outcomes<a class="anchor-link" href="#Modeling-Car-Insurance-Claim-Outcomes">¶</a></h1><h2 id="Intro">Intro<a class="anchor-link" href="#Intro">¶</a></h2><p>Insurance companies invest a lot of <a href="https://www.accenture.com/_acnmedia/pdf-84/accenture-machine-leaning-insurance.pdf">time and money</a> into optimizing their pricing and accurately estimating the likelihood that customers will make a claim. In many countries insurance it is a legal requirement to have car insurance in order to drive a vehicle on public roads, so the market is very large!</p>
+<h1 id="en-car_insurence-h1-1">Modeling Car Insurance Claim Outcomes<a class="anchor-link" href="#Modeling-Car-Insurance-Claim-Outcomes">¶</a></h1><h2 id="en-car_insurence-h2-1">Intro<a class="anchor-link" href="#Intro">¶</a></h2><p>Insurance companies invest a lot of <a href="https://www.accenture.com/_acnmedia/pdf-84/accenture-machine-leaning-insurance.pdf">time and money</a> into optimizing their pricing and accurately estimating the likelihood that customers will make a claim. In many countries insurance it is a legal requirement to have car insurance in order to drive a vehicle on public roads, so the market is very large!</p>
 <p>Knowing all of this, On the Road car insurance have requested your services in building a model to predict whether a customer will make a claim on their insurance during the policy period. As they have very little expertise and infrastructure for deploying and monitoring machine learning models, they've asked you to identify the single feature that results in the best performing model, as measured by accuracy, so they can start with a simple model in production.</p>
 <p>They have supplied you with their customer data as a csv file called <code>car_insurance.csv</code>, along with a table detailing the column names and descriptions below.</p>
 </div>
@@ -7973,7 +7971,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="The-dataset">The dataset<a class="anchor-link" href="#The-dataset">¶</a></h2><table>
+<h2 id="en-car_insurence-h2-2">The dataset<a class="anchor-link" href="#The-dataset">¶</a></h2><table>
 <thead>
 <tr>
 <th>Column</th>
@@ -7987,23 +7985,23 @@ a.anchor-link {
 </tr>
 <tr>
 <td><code>age</code></td>
-<td>Client's age: <br/> <ul><li><code>0</code>: 16-25</li><li><code>1</code>: 26-39</li><li><code>2</code>: 40-64</li><li><code>3</code>: 65+</li></ul></td>
+<td>Client's age: <br></br> <ul><li><code>0</code>: 16-25</li><li><code>1</code>: 26-39</li><li><code>2</code>: 40-64</li><li><code>3</code>: 65+</li></ul></td>
 </tr>
 <tr>
 <td><code>gender</code></td>
-<td>Client's gender: <br/> <ul><li><code>0</code>: Female</li><li><code>1</code>: Male</li></ul></td>
+<td>Client's gender: <br></br> <ul><li><code>0</code>: Female</li><li><code>1</code>: Male</li></ul></td>
 </tr>
 <tr>
 <td><code>driving_experience</code></td>
-<td>Years the client has been driving: <br/> <ul><li><code>0</code>: 0-9</li><li><code>1</code>: 10-19</li><li><code>2</code>: 20-29</li><li><code>3</code>: 30+</li></ul></td>
+<td>Years the client has been driving: <br></br> <ul><li><code>0</code>: 0-9</li><li><code>1</code>: 10-19</li><li><code>2</code>: 20-29</li><li><code>3</code>: 30+</li></ul></td>
 </tr>
 <tr>
 <td><code>education</code></td>
-<td>Client's level of education: <br/> <ul><li><code>0</code>: No education</li><li><code>1</code>: High school</li><li><code>2</code>: University</li></ul></td>
+<td>Client's level of education: <br></br> <ul><li><code>0</code>: No education</li><li><code>1</code>: High school</li><li><code>2</code>: University</li></ul></td>
 </tr>
 <tr>
 <td><code>income</code></td>
-<td>Client's income level: <br/> <ul><li><code>0</code>: Poverty</li><li><code>1</code>: Working class</li><li><code>2</code>: Middle class</li><li><code>3</code>: Upper class</li></ul></td>
+<td>Client's income level: <br></br> <ul><li><code>0</code>: Poverty</li><li><code>1</code>: Working class</li><li><code>2</code>: Middle class</li><li><code>3</code>: Upper class</li></ul></td>
 </tr>
 <tr>
 <td><code>credit_score</code></td>
@@ -8011,15 +8009,15 @@ a.anchor-link {
 </tr>
 <tr>
 <td><code>vehicle_ownership</code></td>
-<td>Client's vehicle ownership status: <br/><ul><li><code>0</code>: Does not own their vehilce (paying off finance)</li><li><code>1</code>: Owns their vehicle</li></ul></td>
+<td>Client's vehicle ownership status: <br></br><ul><li><code>0</code>: Does not own their vehilce (paying off finance)</li><li><code>1</code>: Owns their vehicle</li></ul></td>
 </tr>
 <tr>
 <td><code>vehcile_year</code></td>
-<td>Year of vehicle registration: <br/><ul><li><code>0</code>: Before 2015</li><li><code>1</code>: 2015 or later</li></ul></td>
+<td>Year of vehicle registration: <br></br><ul><li><code>0</code>: Before 2015</li><li><code>1</code>: 2015 or later</li></ul></td>
 </tr>
 <tr>
 <td><code>married</code></td>
-<td>Client's marital status: <br/><ul><li><code>0</code>: Not married</li><li><code>1</code>: Married</li></ul></td>
+<td>Client's marital status: <br></br><ul><li><code>0</code>: Not married</li><li><code>1</code>: Married</li></ul></td>
 </tr>
 <tr>
 <td><code>children</code></td>
@@ -8035,7 +8033,7 @@ a.anchor-link {
 </tr>
 <tr>
 <td><code>vehicle_type</code></td>
-<td>Type of car: <br/> <ul><li><code>0</code>: Sedan</li><li><code>1</code>: Sports car</li></ul></td>
+<td>Type of car: <br></br> <ul><li><code>0</code>: Sedan</li><li><code>1</code>: Sports car</li></ul></td>
 </tr>
 <tr>
 <td><code>speeding_violations</code></td>
@@ -8051,7 +8049,7 @@ a.anchor-link {
 </tr>
 <tr>
 <td><code>outcome</code></td>
-<td>Whether the client made a claim on their car insurance (response variable): <br/><ul><li><code>0</code>: No claim</li><li><code>1</code>: Made a claim</li></ul></td>
+<td>Whether the client made a claim on their car insurance (response variable): <br></br><ul><li><code>0</code>: No claim</li><li><code>1</code>: Made a claim</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -8364,4 +8362,5 @@ Optimization terminated successfully.
   });
 </script>
 </html>
-<!-- StripNestedRoot was here -->
+
+

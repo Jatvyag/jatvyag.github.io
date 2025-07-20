@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 
 <html lang="en">
-<head><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<head><meta charset="utf-8"></meta>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 <title>credit_card</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style>
 /* Make wide pandas DataFrames horizontally scrollable */
@@ -7255,7 +7255,6 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-inspector-icon-color: var(--md-grey-200);
   --jp-switch-color: var(--md-grey-400);
   --jp-switch-true-position-color: var(--md-orange-700);
-}
 :root[data-theme='light'] {
 /*-----------------------------------------------------------------------------
 | Copyright (c) Jupyter Development Team.
@@ -7678,7 +7677,6 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-inspector-icon-color: var(--md-grey-700);
   --jp-switch-color: var(--md-grey-400);
   --jp-switch-true-position-color: var(--md-orange-900);
-}
 </style>
 <style type="text/css">
 /* Force rendering true colors when outputing to pdf */
@@ -7734,9 +7732,9 @@ a.anchor-link {
   }
 }
 </style>
-<!-- Load mathjax -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>
-<!-- MathJax configuration -->
+
 <script type="text/x-mathjax-config">
     init_mathjax = function() {
         if (window.MathJax) {
@@ -7768,7 +7766,7 @@ a.anchor-link {
     }
     init_mathjax();
     </script>
-<!-- End of mathjax configuration --><script type="module">
+<script type="module">
   document.addEventListener("DOMContentLoaded", async () => {
     const diagrams = document.querySelectorAll(".jp-Mermaid > pre.mermaid");
     // do not load mermaidjs if not needed
@@ -7951,7 +7949,7 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --></head>
+</head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3547a93-03e3-4e49-aa1c-77840b79e10c">
@@ -7960,7 +7958,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h1 id="Predicting-Credit-Card-Approvals">Predicting Credit Card Approvals<a class="anchor-link" href="#Predicting-Credit-Card-Approvals">¶</a></h1><h2 id="Credit-card-applications">Credit card applications<a class="anchor-link" href="#Credit-card-applications">¶</a></h2><p>Commercial banks receive <em>a lot</em> of applications for credit cards. Many of them get rejected for many reasons, like high loan balances, low income levels, or too many inquiries on an individual's credit report, for example. Manually analyzing these applications is mundane, error-prone, and time-consuming (and time is money!). Luckily, this task can be automated with the power of machine learning and pretty much every commercial bank does so nowadays. In this notebook, we will build an automatic credit card approval predictor using machine learning techniques, just like the real banks do.</p>
+<h1 id="en-credit_card-h1-1">Predicting Credit Card Approvals<a class="anchor-link" href="#Predicting-Credit-Card-Approvals">¶</a></h1><h2 id="en-credit_card-h2-1">Credit card applications<a class="anchor-link" href="#Credit-card-applications">¶</a></h2><p>Commercial banks receive <em>a lot</em> of applications for credit cards. Many of them get rejected for many reasons, like high loan balances, low income levels, or too many inquiries on an individual's credit report, for example. Manually analyzing these applications is mundane, error-prone, and time-consuming (and time is money!). Luckily, this task can be automated with the power of machine learning and pretty much every commercial bank does so nowadays. In this notebook, we will build an automatic credit card approval predictor using machine learning techniques, just like the real banks do.</p>
 <p>We'll use the <a href="http://archive.ics.uci.edu/ml/datasets/credit+approval">Credit Card Approval dataset</a> from the UCI Machine Learning Repository. The structure of this notebook is as follows:</p>
 <ul>
 <li>First, we will start off by loading and viewing the dataset.</li>
@@ -8147,7 +8145,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Inspecting-the-applications">Inspecting the applications<a class="anchor-link" href="#Inspecting-the-applications">¶</a></h2><p>The output may appear a bit confusing at its first sight, but let's try to figure out the most important features of a credit card application. The features of this dataset have been anonymized to protect the privacy, but <a href="http://rstudio-pubs-static.s3.amazonaws.com/73039_9946de135c0a49daa7a0a9eda4a67a72.html">this blog</a> gives us a pretty good overview of the probable features. The probable features in a typical credit card application are <code>Gender</code>, <code>Age</code>, <code>Debt</code>, <code>Married</code>, <code>BankCustomer</code>, <code>EducationLevel</code>, <code>Ethnicity</code>, <code>YearsEmployed</code>, <code>PriorDefault</code>, <code>Employed</code>, <code>CreditScore</code>, <code>DriversLicense</code>, <code>Citizen</code>, <code>ZipCode</code>, <code>Income</code> and finally the <code>ApprovalStatus</code>. This gives us a pretty good starting point, and we can map these features with respect to the columns in the output.   </p>
+<h2 id="en-credit_card-h2-2">Inspecting the applications<a class="anchor-link" href="#Inspecting-the-applications">¶</a></h2><p>The output may appear a bit confusing at its first sight, but let's try to figure out the most important features of a credit card application. The features of this dataset have been anonymized to protect the privacy, but <a href="http://rstudio-pubs-static.s3.amazonaws.com/73039_9946de135c0a49daa7a0a9eda4a67a72.html">this blog</a> gives us a pretty good overview of the probable features. The probable features in a typical credit card application are <code>Gender</code>, <code>Age</code>, <code>Debt</code>, <code>Married</code>, <code>BankCustomer</code>, <code>EducationLevel</code>, <code>Ethnicity</code>, <code>YearsEmployed</code>, <code>PriorDefault</code>, <code>Employed</code>, <code>CreditScore</code>, <code>DriversLicense</code>, <code>Citizen</code>, <code>ZipCode</code>, <code>Income</code> and finally the <code>ApprovalStatus</code>. This gives us a pretty good starting point, and we can map these features with respect to the columns in the output.   </p>
 <p>As we can see from our first glance at the data, the dataset has a mixture of numerical and non-numerical features. This can be fixed with some preprocessing, but before we do that, let's learn about the dataset a bit more to see if there are other dataset issues that need to be fixed.</p>
 </div>
 </div>
@@ -8197,7 +8195,7 @@ min      0.000000    0.000000    0.00000       0.000000
 max     28.000000   28.500000   67.00000  100000.000000
 
 
-&lt;class 'pandas.core.frame.DataFrame'&gt;
+<class 'pandas.core.frame.DataFrame'>
 RangeIndex: 690 entries, 0 to 689
 Data columns (total 16 columns):
 0     690 non-null object
@@ -8601,7 +8599,7 @@ None
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Splitting-the-dataset-into-train-and-test-sets">Splitting the dataset into train and test sets<a class="anchor-link" href="#Splitting-the-dataset-into-train-and-test-sets">¶</a></h2><p>Now, we will split our data into train set and test set to prepare our data for two different phases of machine learning modeling: training and testing. Ideally, no information from the test data should be used to preprocess the training data or should be used to direct the training process of a machine learning model. Hence, we first split the data and then preprocess it.</p>
+<h2 id="en-credit_card-h2-3">Splitting the dataset into train and test sets<a class="anchor-link" href="#Splitting-the-dataset-into-train-and-test-sets">¶</a></h2><p>Now, we will split our data into train set and test set to prepare our data for two different phases of machine learning modeling: training and testing. Ideally, no information from the test data should be used to preprocess the training data or should be used to direct the training process of a machine learning model. Hence, we first split the data and then preprocess it.</p>
 <p>Also, features like <code>DriversLicense</code> and <code>ZipCode</code> are not as important as the other features in the dataset for predicting credit card approvals. To get a better sense, we can measure their <a href="https://realpython.com/numpy-scipy-pandas-correlation-python/">statistical correlation</a> to the labels of the dataset. But this is out of scope for this project. We should drop them to design our machine learning model with the best set of features. In Data Science literature, this is often referred to as <em>feature selection</em>. </p>
 </div>
 </div>
@@ -8634,7 +8632,7 @@ None
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h2><p>Now we've split our data, we can handle some of the issues we identified when inspecting the DataFrame, including:</p>
+<h2 id="en-credit_card-h2-4">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h2><p>Now we've split our data, we can handle some of the issues we identified when inspecting the DataFrame, including:</p>
 <ul>
 <li>Our dataset contains both numeric and non-numeric data (specifically data that are of <code>float64</code>, <code>int64</code> and <code>object</code> types). Specifically, the features 2, 7, 10 and 14 contain numeric values (of types float64, float64, int64 and int64 respectively) and all the other features contain non-numeric values.</li>
 <li>The dataset also contains values from several ranges. Some features have a value range of 0 - 28, some have a range of 2 - 67, and some have a range of 1017 - 100000. Apart from these, we can get useful statistical information (like <code>mean</code>, <code>max</code>, and <code>min</code>) about the features that have numerical values. </li>
@@ -8670,7 +8668,7 @@ None
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We replaced all the question marks with NaNs. This is going to help us in the next missing value treatment that we are going to perform.</p>
+<h3 id="en-credit_card-h3-1">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We replaced all the question marks with NaNs. This is going to help us in the next missing value treatment that we are going to perform.</p>
 <p>An important question that gets raised here is <em>why are we giving so much importance to missing values</em>? Can't they be just ignored? Ignoring missing values can affect the performance of a machine learning model heavily. While ignoring the missing values our machine learning model may miss out on information about the dataset that may be useful for its training. Then, there are many models which cannot handle missing values implicitly such as Linear Discriminant Analysis (LDA). </p>
 <p>So, to avoid this problem, we are going to impute the missing values with a strategy called mean imputation.</p>
 </div>
@@ -8745,7 +8743,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Handling-the-missing-values">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We have successfully taken care of the missing values present in the numeric columns. There are still some missing values to be imputed for columns 0, 1, 3, 4, 5, 6 and 13. All of these columns contain non-numeric data and this is why the mean imputation strategy would not work here. This needs a different treatment. </p>
+<h3 id="en-credit_card-h3-2">Handling the missing values<a class="anchor-link" href="#Handling-the-missing-values">¶</a></h3><p>We have successfully taken care of the missing values present in the numeric columns. There are still some missing values to be imputed for columns 0, 1, 3, 4, 5, 6 and 13. All of these columns contain non-numeric data and this is why the mean imputation strategy would not work here. This needs a different treatment. </p>
 <p>We are going to impute these missing values with the most frequent values as present in the respective columns. This is <a href="https://www.datacamp.com/community/tutorials/categorical-data">good practice</a> when it comes to imputing missing values for categorical data in general.</p>
 </div>
 </div>
@@ -8823,7 +8821,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Preprocessing-the-data">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h2><p>The missing values are now successfully handled.</p>
+<h2 id="en-credit_card-h2-5">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h2><p>The missing values are now successfully handled.</p>
 <p>There is still some minor but essential data preprocessing needed before we proceed towards building our machine learning model. We are going to divide these remaining preprocessing steps into two main tasks:</p>
 <ol>
 <li>Convert the non-numeric data into numeric.</li>
@@ -8859,7 +8857,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h3 id="Preprocessing-the-data">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h3><p>Now, we are only left with one final preprocessing step of scaling before we can fit a machine learning model to the data. </p>
+<h3 id="en-credit_card-h3-3">Preprocessing the data<a class="anchor-link" href="#Preprocessing-the-data">¶</a></h3><p>Now, we are only left with one final preprocessing step of scaling before we can fit a machine learning model to the data. </p>
 <p>Now, let's try to understand what these scaled values mean in the real world. Let's use <code>CreditScore</code> as an example. The credit score of a person is their creditworthiness based on their credit history. The higher this number, the more financially trustworthy a person is considered to be. So, a <code>CreditScore</code> of 1 is the highest since we're rescaling all the values to the range of 0-1.</p>
 </div>
 </div>
@@ -8895,7 +8893,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Fitting-a-logistic-regression-model-to-the-train-set">Fitting a logistic regression model to the train set<a class="anchor-link" href="#Fitting-a-logistic-regression-model-to-the-train-set">¶</a></h2><p>Essentially, predicting if a credit card application will be approved or not is a <a href="https://en.wikipedia.org/wiki/Statistical_classification">classification</a> task. According to UCI, our dataset contains more instances that correspond to "Denied" status than instances corresponding to "Approved" status. Specifically, out of 690 instances, there are 383 (55.5%) applications that got denied and 307 (44.5%) applications that got approved. </p>
+<h2 id="en-credit_card-h2-6">Fitting a logistic regression model to the train set<a class="anchor-link" href="#Fitting-a-logistic-regression-model-to-the-train-set">¶</a></h2><p>Essentially, predicting if a credit card application will be approved or not is a <a href="https://en.wikipedia.org/wiki/Statistical_classification">classification</a> task. According to UCI, our dataset contains more instances that correspond to "Denied" status than instances corresponding to "Approved" status. Specifically, out of 690 instances, there are 383 (55.5%) applications that got denied and 307 (44.5%) applications that got approved. </p>
 <p>This gives us a benchmark. A good machine learning model should be able to accurately predict the status of the applications with respect to these statistics.</p>
 <p>Which model should we pick? A question to ask is: <em>are the features that affect the credit card approval decision process correlated with each other?</em> Although we can measure correlation, that is outside the scope of this notebook, so we'll rely on our intuition that they indeed are correlated for now. Because of this correlation, we'll take advantage of the fact that generalized linear models perform well in these cases. Let's start our machine learning modeling with a Logistic Regression model (a generalized linear model).</p>
 </div>
@@ -8944,7 +8942,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Making-predictions-and-evaluating-performance">Making predictions and evaluating performance<a class="anchor-link" href="#Making-predictions-and-evaluating-performance">¶</a></h2><p>But how well does our model perform? </p>
+<h2 id="en-credit_card-h2-7">Making predictions and evaluating performance<a class="anchor-link" href="#Making-predictions-and-evaluating-performance">¶</a></h2><p>But how well does our model perform? </p>
 <p>We will now evaluate our model on the test set with respect to <a href="https://developers.google.com/machine-learning/crash-course/classification/accuracy">classification accuracy</a>. But we will also take a look the model's <a href="http://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/">confusion matrix</a>. In the case of predicting credit card applications, it is important to see if our machine learning model is equally capable of predicting approved and denied status, in line with the frequency of these labels in our original dataset. If our model is not performing well in this aspect, then it might end up approving the application that should have been approved. The confusion matrix helps us to view our model's performance from these aspects.  </p>
 </div>
 </div>
@@ -8995,7 +8993,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Grid-searching-and-making-the-model-perform-better">Grid searching and making the model perform better<a class="anchor-link" href="#Grid-searching-and-making-the-model-perform-better">¶</a></h2><p>Our model was pretty good! In fact it was able to yield an accuracy score of 100%.</p>
+<h2 id="en-credit_card-h2-8">Grid searching and making the model perform better<a class="anchor-link" href="#Grid-searching-and-making-the-model-perform-better">¶</a></h2><p>Our model was pretty good! In fact it was able to yield an accuracy score of 100%.</p>
 <p>For the confusion matrix, the first element of the of the first row of the confusion matrix denotes the true negatives meaning the number of negative instances (denied applications) predicted by the model correctly. And the last element of the second row of the confusion matrix denotes the true positives meaning the number of positive instances (approved applications) predicted by the model correctly.</p>
 <p>But if we hadn't got a perfect score what's to be done?. We can perform a <a href="https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/">grid search</a> of the model parameters to improve the model's ability to predict credit card approvals.</p>
 <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn's implementation of logistic regression</a> consists of different hyperparameters but we will grid search over the following two:</p>
@@ -9035,7 +9033,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput celltag_context" data-mime-type="text/markdown">
-<h2 id="Finding-the-best-performing-model">Finding the best performing model<a class="anchor-link" href="#Finding-the-best-performing-model">¶</a></h2><p>We have defined the grid of hyperparameter values and converted them into a single dictionary format which <code>GridSearchCV()</code> expects as one of its parameters. Now, we will begin the grid search to see which values perform best.</p>
+<h2 id="en-credit_card-h2-9">Finding the best performing model<a class="anchor-link" href="#Finding-the-best-performing-model">¶</a></h2><p>We have defined the grid of hyperparameter values and converted them into a single dictionary format which <code>GridSearchCV()</code> expects as one of its parameters. Now, we will begin the grid search to see which values perform best.</p>
 <p>We will instantiate <code>GridSearchCV()</code> with our earlier <code>logreg</code> model with all the data we have. We will also instruct <code>GridSearchCV()</code> to perform a <a href="https://www.dataschool.io/machine-learning-with-scikit-learn/">cross-validation</a> of five folds.</p>
 <p>We'll end the notebook by storing the best-achieved score and the respective best parameters.</p>
 <p>While building this credit card predictor, we tackled some of the most widely-known preprocessing steps such as <strong>scaling</strong>, <strong>label encoding</strong>, and <strong>missing value imputation</strong>. We finished with some <strong>machine learning</strong> to predict if a person's application for a credit card would get approved or not given some information about that person.</p>
@@ -9103,4 +9101,5 @@ Accuracy of logistic regression classifier:  1.0
   });
 </script>
 </html>
-<!-- StripNestedRoot was here -->
+
+
