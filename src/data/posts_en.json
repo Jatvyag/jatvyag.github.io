@@ -181,6 +181,41 @@
             "link":"car_insurence.html",
             "type":{"name":"Jupyter","icon":"jupyter.svg"},
             "pic":"car_insurance.jpeg"
+        },
+        {
+            "id":"12",
+            "title":"Time Series: Importing & Cleaning Data",
+            "desc":"Here we describe how to import and clean time series data",
+            "cat":"Personal",
+            "tag":["Analysis", "Timeseries"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-12-20",
+            "link":"ts-analysis_import_clean.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ai_time_series.jpeg"
+        },
+        {
+            "id":"13",
+            "title":"Timeseries: Information Resources and Systems Registration",
+            "desc":"Here we will analyze the data of information systems and resources registration",
+            "cat":"Personal",
+            "tag":["Analysis", "Timeseries"],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Statsmodels", "icon":"statsmodels.svg"},
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-12-23",
+            "link":"ts-analysis_(s)arima.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ai_time_series.jpeg"
         }
     ]
 }
