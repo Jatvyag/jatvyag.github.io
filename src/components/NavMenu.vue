@@ -1,15 +1,15 @@
 <template>
   <div class="nav-wrapper">
+    <!--  Main menu button  -->
     <button
       class="menu-btn"
       :disabled="isDisabledMenuBtn"
       @click="toggleMenu"
     >
-      <template v-if="isJupyter">
+      <template v-if="isJupyterMD">
         <img
-          :src="jupyterIcon"
-          alt="Jupyter"
-          class="jupyter-icon"
+          :src="jupyterMDIcon"
+          class="jupyter-md-icon"
         >
       </template>
       <template v-else>
@@ -28,6 +28,7 @@
       class="side-menu"
       :class="{ open: isOpen }"
     >
+      <!-- Items of side menu -->
       <ul>
         <li
           v-for="item in nav.navItems"
@@ -35,16 +36,17 @@
           :class="{ active: item.key === nav.currentSection, disabled: item.disabled }"
           @click="handleNavigation(item)"
         >
-          <!-- Icon for non-jupyter -->
-          <template v-if="item.type !== 'jupyter'">
+          <!-- Icons of side menu -->
+          <template v-if="!isJupyterMD">
             <font-awesome-icon
               v-if="item.faIcon"
               :icon="item.faIcon"
             />
             <span v-else>{{ item.unicodeIcon }}</span>
           </template>
+          <!-- Label of side menu -->
           <span>
-            {{ item.type === 'jupyter' ? item.key : t(`${nav.navMenuLocale}.${item.key}`) }}
+            {{ sideMenuLabel(item) }}
           </span>
         </li>
       </ul>
@@ -89,14 +91,30 @@ function handleNavigation (item) {
   })
 }
 
-const jupyterIcon = new URL('@/assets/icons/jupyter.svg', import.meta.url).href
+const jupyterMDIcon = computed(() => {
+  if (nav.navItems[0]?.type === 'md') {
+    return new URL('@/assets/icons/md.svg', import.meta.url).href
+  }
+  if (nav.navItems[0]?.type === 'jupyter') {
+    return new URL('@/assets/icons/jupyter.svg', import.meta.url).href
+  }
+  return ''
+})
+
+function sideMenuLabel (item) {
+  if (['jupyter', 'md'].includes(item.type)) {
+    return item.key
+  } else {
+    return t(`${nav.navMenuLocale}.${item.key}`)
+  }
+}
 
 const activeItem = computed(() => {
   return nav.navItems.find(item => item.key === nav.currentSection)
 })
 
-const isJupyter = computed(() => {
-  return nav.navItems.some(item => item.type === 'jupyter')
+const isJupyterMD = computed(() => {
+  return nav.navItems.some(item => item.type === 'jupyter' || item.type === 'md')
 })
 
 const currentIcon = computed(() => {
@@ -104,16 +122,18 @@ const currentIcon = computed(() => {
 })
 
 const currentTitle = computed(() => {
-  if (isJupyter.value && nav.currentSection) {
+  // Title for Jupyter and Markdown
+  if (isJupyterMD.value && nav.currentSection) {
     return nav.currentSection
-  } else if (isJupyter.value && !nav.currentSection) {
-    const icon = 'Jupyter'
-    return icon
+  } else if (isJupyterMD.value && !nav.currentSection) {
+    return nav.navItems[0]?.type === 'md' ? 'Markdown' : 'Jupyter'
   }
+  // Title for sections
   if (nav.navMenuLocale && nav.currentSection) {
     const key = `${nav.navMenuLocale}.${nav.currentSection}`
     return t(key, nav.currentSection)
   }
+  // Empty title
   return ''
 })
 
@@ -230,7 +250,7 @@ const isDisabledMenuBtn = computed(() => {
     pointer-events: none;
 }
 
-.jupyter-icon {
+.jupyter-md-icon {
     width: 1em;
     height: 1em;
     margin-right: 0.5em;

@@ -10,6 +10,12 @@ const routes = [
     name: 'Jupyter',
     component: () => import('@/views/Jupyter.vue'),
     props: route => ({ postUrl: route.params.postUrl })
+  },
+  {
+    path: '/md/:postUrl',
+    name: 'MD',
+    component: () => import('@/views/MD.vue'),
+    props: route => ({ postUrl: route.params.postUrl })
   }
 ]
 

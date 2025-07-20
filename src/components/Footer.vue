@@ -47,7 +47,7 @@ const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
 const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
 
 const showChevron = computed(() => {
-  return nav.mainSection !== 'Jupyter'
+  return !['Jupyter', 'MD'].includes(nav.mainSection)
 })
 
 function scrollToMain () {

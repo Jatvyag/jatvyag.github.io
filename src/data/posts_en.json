@@ -215,7 +215,21 @@
             "date":"2023-12-23",
             "link":"ts-analysis_(s)arima.html",
             "type":{"name":"Jupyter","icon":"jupyter.svg"},
-            "pic":"ai_time_series.jpeg"
+            "pic":"ai_timeseries_future.png"
+        },
+        {
+            "id":"14",
+            "title":"Sources of legal scientific literature",
+            "desc":"In this post, I’ll talk about the main sources of legal information from the major publishers and aggregators, as well as my experience using their products.",
+            "cat":"Personal",
+            "tag":["Post"],
+            "libs":[
+                {"id":1, "name":"Markdown", "icon":"md.svg"}
+            ],
+            "date":"2023-10-10",
+            "link":"legal-sources.md",
+            "type":{"name":"MD","icon":"markdown.svg"},
+            "pic":"ai_court.png"
         }
     ]
 }

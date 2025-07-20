@@ -127,7 +127,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (observer) observer.disconnect()
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
   window.removeEventListener('theme-changed', onThemeChange)
 })
 

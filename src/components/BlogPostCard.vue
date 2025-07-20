@@ -29,7 +29,7 @@
     <div class="blog-info">
       <component
         :is="post.link ? 'router-link' : 'div'"
-        :to="post.link ? `/jupyter/${encodeURIComponent(post.link)}` : undefined"
+        :to="post.link ? `/${routePrefix}/${encodeURIComponent(post.link)}` : undefined"
       >
         <h3 class="post-title">
           {{ post.title }}
@@ -64,6 +64,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 const { post, empty } = defineProps({
   post: {
     type: Object,
@@ -92,6 +93,15 @@ function getThumb (path) {
 function getIcon (path) {
   return skillIcons[`../assets/icons/${path}`]
 }
+
+const routePrefix = computed(() => {
+  const type = post?.type?.name?.toLowerCase()
+  switch (type) {
+  case 'jupyter': return 'jupyter'
+  case 'md': return 'md'
+  default: return ''
+  }
+})
 </script>
 
 <style lang="scss" scoped>
