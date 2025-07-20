@@ -149,7 +149,15 @@ const props = defineProps({
 .blog-sidebar {
   display: flex;
   flex-direction: column;
+  border-radius: $border-radius;
+  border: 2px solid var(--card-box-shadow);
+  box-shadow: var(--card-box-shadow);
   gap: 1.5rem;
+  padding: 1rem;
+}
+
+[data-theme='light'] .blog-sidebar {
+  background-color: var(--card-bg);
 }
 
 .search-input {
