@@ -5,7 +5,7 @@ import eslint from 'vite-plugin-eslint'
 
 export default defineConfig({
   plugins: [
-    vue(), 
+    vue(),
     eslint({
       cache: false,
       failOnWarning: false,
@@ -15,13 +15,13 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+      '@': path.resolve(__dirname, './src')
+    }
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/styles/variables.scss" as *;`
+        additionalData: '@use "@/styles/variables.scss" as *;'
       }
     }
   }

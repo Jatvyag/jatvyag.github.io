@@ -64,7 +64,6 @@ const route = useRoute()
 .top-link-btn {
     display: flex;
     font-size: 1.7rem;
-    border-radius: $border-radius;
     color: inherit;
     transition: background 0.3s, border-color 0.3s;
 }

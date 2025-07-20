@@ -75,9 +75,15 @@ const { post, empty } = defineProps({
   }
 })
 
-const thumbnails = import.meta.glob('../assets/thumbs/*', { eager: true, query: '?url', import: 'default' })
+const thumbnails = import.meta.glob(
+  '../assets/thumbs/*',
+  { eager: true, query: '?url', import: 'default' }
+)
 
-const skillIcons = import.meta.glob('../assets/icons/*', { eager: true, query: '?url', import: 'default' })
+const skillIcons = import.meta.glob(
+  '../assets/icons/*',
+  { eager: true, query: '?url', import: 'default' }
+)
 
 function getThumb (path) {
   return thumbnails[`../assets/thumbs/${path}`]

@@ -11,7 +11,8 @@ import {
   faChevronDown, faChevronUp,
   faEnvelopeOpenText, faBars, faAward, faBarsProgress, faAt,
   faLanguage, faCopyright, faClipboard, faHouse,
-  faAddressCard, faBlog
+  faAddressCard, faBlog, faForwardStep, faBackwardStep,
+  faFilter, faFilterCircleXmark, faGhost
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -31,7 +32,8 @@ if (savedPath) {
 library.add(
   faChevronDown, faChevronUp, faEnvelopeOpenText, faAt, faClipboard,
   faBars, faAward, faBarsProgress, faLanguage, faCopyright,
-  faHouse, faAddressCard, faBlog)
+  faHouse, faAddressCard, faBlog, faForwardStep, faBackwardStep,
+  faFilter, faFilterCircleXmark, faGhost)
 library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
 const app = createApp(App)

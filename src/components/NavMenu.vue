@@ -2,7 +2,7 @@
   <div class="nav-wrapper">
     <button
       class="menu-btn"
-      :disabled="nav.navItems.length <= 1"
+      :disabled="isDisabledMenuBtn"
       @click="toggleMenu"
     >
       <template v-if="isJupyter">
@@ -115,6 +115,10 @@ const currentTitle = computed(() => {
     return t(key, nav.currentSection)
   }
   return ''
+})
+
+const isDisabledMenuBtn = computed(() => {
+  return nav.navItems.length <= 1
 })
 </script>
 

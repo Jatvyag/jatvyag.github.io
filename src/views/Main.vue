@@ -1,5 +1,8 @@
 <template>
-  <main class="about">
+  <main
+    ref="mainEl"
+    class="about"
+  >
     <About
       :section-link="getLinkByKey('about')"
       :next-section="getLinkByKey('skills')"
@@ -19,13 +22,14 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { useTemplateRef, onMounted, onUnmounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import About from '@/sections/About.vue'
 import Skills from '@/sections/Skills.vue'
 import Achievements from '@/sections/Achievements.vue'
 import Contacts from '@/sections/Contacts.vue'
 
+const main = useTemplateRef('mainEl')
 const nav = useNavStore()
 
 nav.setNavItems([
@@ -45,6 +49,8 @@ function getLinkByKey (key) {
 let observer = null
 
 function observeSections () {
+  if (observer) observer.disconnect()
+  if (!main.value) return
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
@@ -55,7 +61,7 @@ function observeSections () {
     rootMargin: '0px',
     threshold: 0.3
   })
-  document.querySelectorAll('main section[id]').forEach(section => {
+  main.value.querySelectorAll('section[id]').forEach(section => {
     observer.observe(section)
   })
 }

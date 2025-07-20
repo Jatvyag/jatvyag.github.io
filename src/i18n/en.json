@@ -86,7 +86,8 @@
         "date":"Date",
         "libs":"Libraries",
         "reset":"Reset",
-        "prev":"Prev",
+        "no_match":"No match found",
+        "prev":"Previous",
         "next":"Next"
     }
 }

@@ -8,81 +8,16 @@
         {{ t('blog.title') }}
       </h1>
       <div class="blog-grid">
-        <!-- Sidebar -->
-        <aside class="blog-sidebar">
-          <!-- Search -->
-          <input
-            v-model="searchQuery"
-            type="text"
-            :placeholder="t('blog.search') + '...'"
-            class="search-input"
-          >
-
-          <!-- Categories -->
-          <div>
-            <h2 class="sidebar-heading">
-              {{ t('blog.categories') }}
-            </h2>
-            <ul class="category-list">
-              <li
-                v-for="cat in categories"
-                :key="cat"
-                class="sidebar-item"
-                @click="selectedCategory = cat"
-              >
-                {{ cat }}
-              </li>
-            </ul>
-            <span
-              class="sidebar-reset"
-              @click="selectedCategory = null"
-            >{{ t('blog.reset') }}</span>
-          </div>
-
-          <!-- Tags -->
-          <div>
-            <h2 class="sidebar-heading">
-              {{ t('blog.tags') }}
-            </h2>
-            <div class="tag-cloud">
-              <span
-                v-for="tag in tags"
-                :key="tag"
-                class="tag blog"
-                @click="selectedTag = tag"
-              >
-                {{ tag }}
-              </span>
-            </div>
-            <span
-              class="sidebar-reset"
-              @click="selectedTag = null"
-            >{{ t('blog.reset') }}</span>
-          </div>
-
-          <!-- Types -->
-          <div>
-            <h2 class="sidebar-heading">
-              {{ t('blog.types') }}
-            </h2>
-            <div class="type-icons">
-              <img
-                v-for="type in types"
-                :key="type"
-                :src="getIconPath(type)"
-                :alt="type"
-                :title="type"
-                class="type-icon"
-                @click="selectedType = type"
-              >
-            </div>
-            <span
-              class="sidebar-reset"
-              @click="selectedType = null"
-            >{{ t('blog.reset') }}</span>
-          </div>
-        </aside>
-
+        <BlogSidebar
+          v-model:search-query="searchQuery"
+          v-model:selected-category="selectedCategory"
+          v-model:selected-tag="selectedTag"
+          v-model:selected-type="selectedType"
+          :categories="categories"
+          :tags="tags"
+          :types="types"
+          :get-icon-path="getIconPath"
+        />
         <!-- Post List -->
         <div class="blog-posts">
           <template v-if="paginatedPosts.length">
@@ -90,24 +25,15 @@
               v-for="post in paginatedPosts"
               :key="post.id"
               :post="post"
+              :empty="false"
             />
           </template>
           <template v-else>
             <BlogPostCard
-              :post="{
-                title: t('blog.noResults') || 'No posts match your search.',
-                desc: '',
-                tag: [],
-                libs: [],
-                cat: '',
-                date: '',
-                link: '',
-                pic: ''
-              }"
+              :post="emptyCard"
               :empty="true"
             />
           </template>
-
           <!-- Pagination -->
           <div
             v-if="filteredPosts.length > postsPerPage"
@@ -115,18 +41,24 @@
           >
             <button
               class="page-btn"
-              :disabled="currentPage === 1"
+              :disabled="prevBtnDisabled"
+              :title="t('blog.prev')"
               @click="currentPage--"
             >
-              {{ t('blog.prev') }}
+              <font-awesome-icon
+                :icon="['fas', 'backward-step']"
+              />
             </button>
             <span class="page-number">{{ currentPage }}</span>
             <button
               class="page-btn"
-              :disabled="currentPage * postsPerPage >= filteredPosts.length"
+              :disabled="nextBtnDisabled"
+              :title="t('blog.next')"
               @click="currentPage++"
             >
-              {{ t('blog.next') }}
+              <font-awesome-icon
+                :icon="['fas', 'forward-step']"
+              />
             </button>
           </div>
         </div>
@@ -136,10 +68,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import BlogPostCard from '@/components/BlogPostCard.vue'
+import BlogSidebar from '@/components/BlogSideBar.vue'
 import jsonENPostsData from '@/data/posts_en.json'
 import jsonBEPostsData from '@/data/posts_be.json'
 
@@ -195,14 +128,50 @@ const paginatedPosts = computed(() => {
   return filteredPosts.value.slice(start, start + postsPerPage)
 })
 
-// Extract unique values
-const categories = computed(() => [...new Set(posts.value.map(p => p.cat))])
-const tags = computed(() => [...new Set(posts.value.flatMap(p => p.tag))])
-const types = computed(() => [...new Set(posts.value.map(p => p.type.name))])
+// Extract unique filter values from posts
+const categories = computed(() => {
+  return [...new Set(filteredPosts.value.map(p => p.cat))]
+})
 
+const tags = computed(() => {
+  return [...new Set(filteredPosts.value.flatMap(p => p.tag))]
+})
+
+const types = computed(() => {
+  return [...new Set(filteredPosts.value.map(p => p.type.name))]
+})
+
+// Reset pagination when filter values change
+watch([searchQuery, selectedCategory, selectedTag, selectedType], () => {
+  currentPage.value = 1
+})
+
+// Get icons for filter values
 function getIconPath (iconName) {
   return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
 }
+
+const emptyCard = computed(() => {
+  return {
+    title: t('blog.noResults'),
+    desc: '',
+    tag: [],
+    libs: [],
+    cat: '',
+    date: '',
+    link: '',
+    pic: ''
+  }
+})
+
+// Pagination buttons
+const prevBtnDisabled = computed(() => {
+  return currentPage.value === 1
+})
+
+const nextBtnDisabled = computed(() => {
+  return currentPage.value * postsPerPage >= filteredPosts.value.length
+})
 </script>
 
 <style lang="scss" scoped>
@@ -227,112 +196,6 @@ h1.blog {
   grid-template-columns: 1fr 4fr;
   align-items: start;
   gap: 2rem;
-}
-
-/* Sidebar */
-.blog-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.search-input {
-  padding: 0.5rem;
-  border: 1px solid transparent;
-  border-radius: $border-radius;
-}
-
-.search-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px var(--btn-hover-color);
-}
-
-.sidebar-heading {
-  font-weight: bold;
-  font-size: 1.5rem;
-  text-align: left;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.category-list {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-item {
-  display: inline-block;
-  padding: 0.25rem;
-  color: var(--link);
-  cursor: pointer;
-  padding: 0.25rem 0;
-}
-
-.sidebar-item:hover {
-  color: var(--link-hover);
-}
-
-.sidebar-item:active {
-  color: var(--link-active);
-  transform: scale(0.95);
-}
-
-.sidebar-reset {
-  display: inline-block;
-  padding: 0.25rem;
-  color: #999;
-  font-size: 0.875rem;
-  cursor: pointer;
-  margin-top: 0.5rem;
-}
-
-.sidebar-reset:hover {
-  color: var(--link-hover);
-}
-
-.sidebar-reset:active {
-  transform: scale(0.95);
-}
-
-.tag-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tag.blog {
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.tag.blog:hover {
-  cursor: pointer;
-  border-color: var(--btn-hover-color);
-}
-
-.tag.blog:active {
-  transform: scale(0.95);
-}
-
-.type-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.type-icon {
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.type-icon:hover {
-  transform: scale(1.1);
 }
 
 /* Posts */
@@ -364,14 +227,6 @@ h1.blog {
 
 .page-number {
   font-size: 1.2rem;
-}
-
-.no-results {
-  padding: 2rem;
-  text-align: center;
-  width: 100px;
-  color: #888;
-  font-style: italic;
 }
 
 @media (max-width: 800px) {

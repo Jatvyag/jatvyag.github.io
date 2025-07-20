@@ -1,21 +1,23 @@
 <template>
-  <button
-    class="lang-btn"
-    @click="cycleLanguage"
+  <Transition
+    name="slide-up"
+    mode="out-in"
   >
-    <Transition
-      name="slide-up"
-      mode="out-in"
+    <div
+      v-if="locale"
+      :key="locale"
+      class="lang-btn"
+      @click="cycleLanguage"
     >
-      <span :key="locale">
+      <span lang-label>
         {{ currentLabel }}
       </span>
-    </Transition>
-    <font-awesome-icon
-      :icon="['fas', 'language']"
-      class="lang-icon"
-    />
-  </button>
+      <font-awesome-icon
+        :icon="['fas', 'language']"
+        class="lang-icon"
+      />
+    </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -44,24 +46,35 @@ const currentLabel = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.lang-icon {
-  width: 3rem;
-  height: 1.75em;
-  padding: 0rem;
-  margin: 0rem;
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.25s ease-out;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
+
+.slide-up-enter-from {
   opacity: 0;
+  transform: translateY(30px);
 }
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
 .lang-btn {
-  width: 6rem;
-  height: 1.9rem;
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 1rem 0.3rem 0.3rem;
+  width: 3rem;
+  margin-right: 2rem;
+}
+
+.lang-btn:hover {
+    color: var(--btn-hover-color);
+    transition: color 0.3s;
+}
+
+.lang-icon {
+  height: 2rem;
 }
 </style>

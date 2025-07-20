@@ -5,8 +5,7 @@ export const useNavStore = defineStore('nav', {
     navItems: [],
     currentSection: '',
     mainSection: '',
-    navMenuLocale: '',
-    navMenuComponent: ''
+    navMenuLocale: ''
   }),
   actions: {
     setNavItems (navItems) {
@@ -20,9 +19,6 @@ export const useNavStore = defineStore('nav', {
     },
     setNavMenuLocale (navMenuLocale) {
       this.navMenuLocale = navMenuLocale
-    },
-    setNavMenuComponent (navMenuComponent) {
-      this.navMenuComponent = navMenuComponent
     }
   }
 })
