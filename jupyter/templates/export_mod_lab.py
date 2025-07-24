@@ -3,8 +3,7 @@ import sys
 from glob import glob
 from traitlets.config import Config
 from mod_lab.exporter import CustomHTMLExporter
-from mod_lab.exporter import HeadingIDFixer
-from mod_lab.exporter import StripNestedRoot
+from mod_lab.header_fixer import HeadingIDFixer
 
 
 def export_notebook(input_path, output_file):
@@ -12,7 +11,7 @@ def export_notebook(input_path, output_file):
     c.TemplateExporter.extra_template_basedirs = [os.path.abspath(os.path.join(os.path.dirname(__file__)))]
     c.TemplateExporter.template_name = 'mod_lab'
     
-    # Step 1: clean CSS with StripNestedRoot
+    # Step 1: clean CSS with CustomHTMLExporter
     exporter = CustomHTMLExporter(config=c)
     body, resources = exporter.from_filename(input_path)
 

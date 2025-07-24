@@ -138,7 +138,12 @@ const tags = computed(() => {
 })
 
 const types = computed(() => {
-  return [...new Set(filteredPosts.value.map(p => p.type.name))]
+  const uniqueTypes = [
+    ...new Map(
+      filteredPosts.value.map(p => [p.type.name, p.type])
+    ).values()
+  ]
+  return uniqueTypes
 })
 
 // Reset pagination when filter values change
@@ -148,7 +153,7 @@ watch([searchQuery, selectedCategory, selectedTag, selectedType], () => {
 
 // Get icons for filter values
 function getIconPath (iconName) {
-  return skillIcons[`../assets/icons/${iconName.toLowerCase()}.svg`]
+  return skillIcons[`../assets/icons/${iconName}`]
 }
 
 const emptyCard = computed(() => {

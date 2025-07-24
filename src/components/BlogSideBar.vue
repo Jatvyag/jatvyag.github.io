@@ -88,12 +88,12 @@
       >
         <img
           v-for="type in props.types"
-          :key="type"
-          :src="props.getIconPath(type)"
-          :alt="type"
-          :title="type"
+          :key="type.name"
+          :src="props.getIconPath(type.icon)"
+          :alt="type.name"
+          :title="type.name"
           class="type-icon"
-          @click="selectedType = type"
+          @click="selectedType = type.name"
         >
       </div>
       <p

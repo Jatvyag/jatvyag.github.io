@@ -224,7 +224,7 @@
             "cat":"Personal",
             "tag":["Post"],
             "libs":[ 
-                {"id":1, "name":"Markdown", "icon":"md.svg"}
+                {"id":1, "name":"Markdown", "icon":"markdown.svg"}
             ],
             "date":"2023-10-10",
             "link":"legal-sources.md",

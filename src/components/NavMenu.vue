@@ -93,7 +93,7 @@ function handleNavigation (item) {
 
 const jupyterMDIcon = computed(() => {
   if (nav.navItems[0]?.type === 'md') {
-    return new URL('@/assets/icons/md.svg', import.meta.url).href
+    return new URL('@/assets/icons/markdown.svg', import.meta.url).href
   }
   if (nav.navItems[0]?.type === 'jupyter') {
     return new URL('@/assets/icons/jupyter.svg', import.meta.url).href
