@@ -26,12 +26,14 @@
               :key="post.id"
               :post="post"
               :empty="false"
+              :localize="localize"
             />
           </template>
           <template v-else>
             <BlogPostCard
               :post="emptyCard"
               :empty="true"
+              :localize="localize"
             />
           </template>
           <!-- Pagination -->
@@ -73,8 +75,9 @@ import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import BlogSidebar from '@/components/BlogSideBar.vue'
-import jsonENPostsData from '@/data/posts_en.json'
-import jsonBEPostsData from '@/data/posts_be.json'
+import jsonPostsData from '@/data/posts.json'
+
+const { t, locale } = useI18n()
 
 const nav = useNavStore()
 nav.setNavItems([
@@ -89,13 +92,15 @@ function getLinkByKey (key) {
   return item?.link || ''
 }
 
+function localize (fieldArray, locale) {
+  return fieldArray.find(entry => entry[locale])?.[locale] ?? ''
+}
+
 const skillIcons = import.meta.glob('../assets/icons/*', {
   eager: true,
   import: 'default',
   query: '?url'
 })
-
-const { t, locale } = useI18n()
 
 const searchQuery = ref('')
 const selectedCategory = ref(null)
@@ -104,21 +109,20 @@ const selectedType = ref(null)
 const currentPage = ref(1)
 const postsPerPage = 10
 
-const posts = computed(() => {
-  return locale.value === 'be' ? jsonBEPostsData.posts : jsonENPostsData.posts
-})
-
 // Filtered and paginated posts
 const filteredPosts = computed(() =>
-  posts.value.slice().reverse().filter(post => {
+  jsonPostsData.posts.slice().reverse().filter(post => {
+    const title = localize(post.title, locale.value)
+    const desc = localize(post.desc, locale.value)
+    const cat = localize(post.cat, locale.value)
+    const tags = localize(post.tag, locale.value)
+    const typeName = post.type.name
     const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      post.desc.toLowerCase().includes(searchQuery.value.toLowerCase())
-
-    const matchesCategory = !selectedCategory.value || post.cat === selectedCategory.value
-    const matchesTag = !selectedTag.value || post.tag.includes(selectedTag.value)
-    const matchesType = !selectedType.value || post.type.name === selectedType.value
-
+      title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      desc.toLowerCase().includes(searchQuery.value.toLowerCase())
+    const matchesCategory = !selectedCategory.value || cat === selectedCategory.value
+    const matchesTag = !selectedTag.value || tags.includes(selectedTag.value)
+    const matchesType = !selectedType.value || typeName === selectedType.value
     return matchesSearch && matchesCategory && matchesTag && matchesType
   })
 )
@@ -130,11 +134,11 @@ const paginatedPosts = computed(() => {
 
 // Extract unique filter values from posts
 const categories = computed(() => {
-  return [...new Set(filteredPosts.value.map(p => p.cat))]
+  return [...new Set(filteredPosts.value.map(p => localize(p.cat, locale.value)))]
 })
 
 const tags = computed(() => {
-  return [...new Set(filteredPosts.value.flatMap(p => p.tag))]
+  return [...new Set(filteredPosts.value.flatMap(p => localize(p.tag, locale.value)))]
 })
 
 const types = computed(() => {

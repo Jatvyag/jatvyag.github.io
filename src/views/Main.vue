@@ -38,7 +38,8 @@ nav.setNavItems([
   { key: 'achievements', link: '#achievements', faIcon: ['fas', 'award'], type: 'main_menu', disabled: false },
   { key: 'contacts', link: '#contacts', faIcon: ['fas', 'envelope-open-text'], type: 'main_menu', disabled: false }
 ])
-
+nav.setCurrentSection('about')
+nav.setMainSection(getLinkByKey('about'))
 nav.setNavMenuLocale('navMenu.main')
 
 function getLinkByKey (key) {

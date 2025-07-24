@@ -35,7 +35,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import JSONData from '@/data/data.json'
+import JSONData from '@/data/main.json'
 import { useI18n } from 'vue-i18n'
 import { useNavStore } from '@/stores/nav'
 

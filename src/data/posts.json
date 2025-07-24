@@ -1,0 +1,403 @@
+{
+    "posts":[
+        {
+            "id":"1",
+            "title":[
+                {"en":"Analyzing TV Data"},
+                {"be":"Аналіз тэлевізійных даных"}
+            ],
+            "desc":[
+                {"en":"Use data manipulation and visualization to explore one of two different television broadcast datasets: The Super Bowl and hit sitcom The Office"},
+                {"be":"Выкарыстанне апрацоўкі даных і візуалізацыі, каб даследаваць адно з двух розных набораў даных тэлевізійнага вяшчання: Суперкубак і папулярны сітком \"Офіс\""}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":3, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-06-13",
+            "link":"analyse_tv.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"left_shark.jpg"
+        },
+        {
+            "id":"2",
+            "title":[
+                {"en":"Designing a Bank Marketing Database"},
+                {"be":"Распрацоўка маркетынгавай базы даных банка"}
+            ],
+            "desc":[
+                {"en":"Use your data cleaning and database design skills to author a script that sets up tables in a PostgreSQL database for bank marketing campaigns"},
+                {"be":"Выкарыстанне навыкаў ачысткі даных і праектавання базы даных, каб скласці сцэнарый, які стварае табліцы ў базе даных PostgreSQL для банкаўскіх маркетынгавых кампаній"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Analysis"]},
+                {"be":["Аналіз"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"}
+                ],
+            "date":"2023-06-29",
+            "link":"bank_marketing.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"pig.jpeg"
+        },
+        {
+            "id":"3",
+            "title":[
+                {"en":"The Android App Market on Google Play"},
+                {"be":"Google Play Store для Android праграм"}
+            ],
+            "desc":[
+                {"en":"Load, clean, and visualize scraped Google Play Store data to gain insights into the Android app market"},
+                {"be":"Загрузка, ачышчанне і візуалізацыя скрабаваных даных з Google Play Store, каб атрымаць уяўленне аб рынку прыкладанняў для Android"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":4, "name":"Plotly", "icon":"plotly.svg"}
+                ],
+            "date":"2023-07-05",
+            "link":"play_market.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"google-store.png"
+        },
+        {
+            "id":"4",
+            "title":[
+                {"en":"Predicting Credit Card Approvals"},
+                {"be":"Прагназаванне адабрэння крэдытных карт"}
+            ],
+            "desc":[
+                {"en":"Build a machine learning model to predict if a credit card application will get approved"},
+                {"be":"Стварэнне мадэлі машыннага навучання для прагназавання, што заяўка на крэдытную карту будзе зацверджана"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Analysis"]},
+                {"be":["Аналіз"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
+                ],
+            "date":"2023-07-14",
+            "link":"credit_card.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"credit_card.jpg"
+        },
+        {
+            "id":"5",
+            "title":[
+                {"en":"Investigating Netflix Movies and Guest Stars in The Office"},
+                {"be":"Аналіз Netflix фільмаў і запрошаных зорак у серыяле \"Офіс\""}
+            ],
+            "desc":[
+                {"en":"Apply the foundational Python skills you learned in Introduction to Python and Intermediate Python by manipulating and visualizing movie and TV data"},
+                {"be":"Прымяненне асноўных навыкаў Python шляхам апрацоўкі і візуалізацыі даных фільмаў і тэлеперадач"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":2, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-07-04",
+            "link":"netflix.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"netflix.jpg"
+        },
+        {
+            "id":"6",
+            "title":[
+                {"en":"Dr. Semmelweis and the Discovery of Handwashing"},
+                {"be":"Доктар Земмельвейс і адкрыццё мыцця рук"}
+            ],
+            "desc":[
+                {"en":"Reanalyse the data behind one of the most important discoveries of modern medicine: handwashing"},
+                {"be":"Паўторны аналіз даных, якія ляжаць у аснове аднаго з самых важных адкрыццяў сучаснай медыцыны: мыццё рук"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Analysis"]},
+                {"be":["Аналіз"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":2, "name":"Pandas", "icon":"pandas.svg"}
+                ],
+            "date":"2023-07-13",
+            "link":"handwashing.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ignaz_semmelweis_1860.jpeg"
+        },
+        {
+            "id":"7",
+            "title":[
+                {"en":"A Visual History of Nobel Prize Winners"},
+                {"be":"Візуальная гісторыя лаўрэатаў Нобелеўскай прэміі"}
+            ],
+            "desc":[
+                {"en":"Explore a dataset from Kaggle containing a century's worth of Nobel Laureates. Who won? Who got snubbed?"},
+                {"be":"Даследванне набора даных ад Kaggle, які змяшчае лаўрэатаў Нобелеўскай прэміі за стагоддзе. Хто перамог? Каго абняволілі?"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":4, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-07-12",
+            "link":"nobel_prize.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"nobel_prize.png"
+        },
+        {
+            "id":"8",
+            "title":[
+                {"en":"Which Debts Are Worth the Bank's Effort?"},
+                {"be":"Якія даўгі вартыя намаганняў банка?"}
+            ],
+            "desc":[
+                {"en":"Play bank data scientist and use regression discontinuity to see which debts are worth collecting"},
+                {"be":"Гуляйце ў навукоўца па банкаўскіх даных і выкарыстоўвайце разрыў рэгрэсіі, каб убачыць, якія даўгі варта спагнаць"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Scikit-learn", "icon":"scikitlearn.svg"},
+                {"id":5, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-10",
+            "link":"bank_debts.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"bank_debts.png"
+        },
+        {
+            "id":"9",
+            "title":[
+                {"en":"Hypothesis Testing in Healthcare: Drug Safety"},
+                {"be":"Праверка гіпотэз ў ахове здароўя: бяспека лекаў"}
+            ],
+            "desc":[
+                {"en":"Perform hypothesis tests to determine if the adverse effects of a pharmaceutical drug are significant"},
+                {"be":"Выканайце праверку гіпотэз у ахове здароўя, каб вызначыць, ці значныя пабочныя эфекты фармацэўтычнага прэпарата"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Analysis"]},
+                {"be":["Аналіз"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"},
+                {"id":6, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-15",
+            "link":"ht_healthcare.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"health_care_drug_safety.png"
+        },
+        {
+            "id":"10",
+            "title":[
+                {"en":"Hypothesis Testing with Men's and Women's Soccer Matches"},
+                {"be":"Праверка гіпотэз ў мужчынскіх і жаночых футбольных матчах"}
+            ],
+            "desc":[
+                {"en":"Perform a hypothesis test to determine if more goals are scored in women's soccer matches than men's"},
+                {"be":"Выканайце праверку гіпотэзы, каб вызначыць, ці забіваецца больш галоў у жаночых футбольных матчах, чым у мужчынскіх"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Visualization"]},
+                {"be":["Візуалізацыя"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
+                {"id":4, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
+                ],
+            "date":"2023-07-15",
+            "link":"ht_soccer.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"soccer.jpeg"
+        },
+        {
+            "id":"11",
+            "title":[
+                {"en":"Modeling Car Insurance Claim Outcomes"},
+                {"be":"Мадэляванне вынікаў прэтэнзій па страхаванні аўтамабіля"}
+            ],
+            "desc":[
+                {"en":"Clean customer data and use logistic regression to predict whether people will make a claim on their car insurance"},
+                {"be":"Ачысціце даныя кліентаў і выкарыстоўвайце лагістычную рэгрэсію, каб прадбачыць, ці будуць людзі прад'яўляць прэтэнзіі па страхоўцы аўтамабіля"}
+            ],
+            "cat":[
+                {"en":"DataCamp"},
+                {"be":"DataCamp"}
+            ],
+            "tag":[
+                {"en":["Analysis"]},
+                {"be":["Аналіз"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Statsmodels", "icon":"statsmodels.svg"}
+                ],
+            "date":"2023-07-20",
+            "link":"car_insurence.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"car_insurance.jpeg"
+        },
+        {
+            "id":"12",
+            "title":[
+                {"en":"Time Series: Importing & Cleaning Data"},
+                {"be":"Часовыя шэрагі: імпарт і ачыстка даных"}
+            ],
+            "desc":[
+                {"en":"Here described how to import and clean time series data"},
+                {"be":"Тут апісваецца, як імпартаваць і ачышчаць даныя часовых шэрагаў"}
+            ],
+            "cat":[
+                {"en":"Personal"},
+                {"be":"Асабістыя"}
+            ],
+            "tag":[
+                {"en":["Analysis", "Timeseries"]},
+                {"be":["Аналіз", "Часовыя шэрагі"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-12-20",
+            "link":"ts-analysis_import_clean.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ai_time_series.jpeg"
+        },
+        {
+            "id":"13",
+            "title":[
+                {"en":"Timeseries: Information Resources and Systems Registration"},
+                {"be":"Часовыя шэрагі: рэгістрацыя інфармацыйных сістэм і рэсурсаў"}
+            ],
+            "desc":[
+                {"en":"Here we will analyze the data of information systems and resources registration"},
+                {"be":"Тут мы прааналізуем даныя рэгістрацыі інфармацыйных сістэм і рэсурсаў"}
+            ],
+            "cat":[
+                {"en":"Personal"},
+                {"be":"Асабістыя"}
+            ],
+            "tag":[
+                {"en":["Analysis", "Timeseries"]},
+                {"be":["Аналіз", "Часовыя шэрагі"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
+                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
+                {"id":3, "name":"Statsmodels", "icon":"statsmodels.svg"},
+                {"id":1, "name":"Seaborn", "icon":"seaborn.svg"},
+                {"id":2, "name":"Matplotlib", "icon":"matplotlib.svg"}
+                ],
+            "date":"2023-12-23",
+            "link":"ts-analysis_(s)arima.html",
+            "type":{"name":"Jupyter","icon":"jupyter.svg"},
+            "pic":"ai_timeseries_future.png"
+        },
+        {
+            "id":"14",
+            "title":[
+                {"en":"Sources of legal scientific literature"},
+                {"be":"Крыніцы юрыдычнай навуковай літаратуры"}
+            ],
+            "desc":[
+                {"en":"In this post, I’ll talk about the main sources of legal information from the major publishers and aggregators, as well as my experience using their products."},
+                {"be":"У гэтым пасту я раскажу пра асноўныя крыніцы інфармацыі на юрыдычную тэматыку ад асноўных выдаўцоў і агрэгатараў, а таксама пра свой досвед выкарыстання іх прадуктаў."}
+            ],
+            "cat":[
+                {"en":"Personal"},
+                {"be":"Асабістыя"}
+            ],
+            "tag":[
+                {"en":["Post"]},
+                {"be":["Пост"]}
+            ],
+            "libs":[
+                {"id":1, "name":"Markdown", "icon":"markdown.svg"}
+            ],
+            "date":"2023-10-10",
+            "link":"legal-sources.md",
+            "type":{"name":"MD","icon":"markdown.svg"},
+            "pic":"ai_court.png"
+        }
+    ]
+}
