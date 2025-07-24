@@ -35,7 +35,7 @@ def export_notebook(input_path, output_file):
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    input_base = sys.argv[1] if len(sys.argv) > 1 else os.path.normpath(os.path.join(script_dir, '../jupyter_notebooks'))
+    input_base = sys.argv[1] if len(sys.argv) > 1 else os.path.normpath(os.path.join(script_dir, '../notebooks'))
     output_base = sys.argv[2] if len(sys.argv) > 2 else os.path.normpath(os.path.join(script_dir, '../../public/notebooks'))
 
     for input_path in glob(os.path.join(input_base, '**', '*.ipynb'), recursive=True):

@@ -5,6 +5,9 @@ from nbconvert.exporters.html import HTMLExporter
 
 
 class HeadingIDFixer(HTMLParser):
+    """
+    The class is used to fix heading ids in HTML exported from Jupyter Notebooks.
+    """
     def __init__(self, file_path):
         super().__init__()
         self.output = []

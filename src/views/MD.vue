@@ -33,7 +33,7 @@ const route = useRoute()
 
 const htmlContent = ref('')
 
-const markdownFiles = import.meta.glob('../posts/**/**/*.md', { query: '?raw', import: 'default' })
+const markdownFiles = import.meta.glob('../assets/posts/**/**/*.md', { query: '?raw', import: 'default' })
 
 function makeUniqueNavItems (headings) {
   const result = []
@@ -79,7 +79,7 @@ function observeHeaders () {
 
 watchEffect(async () => {
   htmlContent.value = ''
-  const path = `../posts/${locale.value}/${route.params.postUrl}`
+  const path = `../assets/posts/${locale.value}/${route.params.postUrl}`
   const loader = markdownFiles[path]
   if (loader) {
     const rawMd = await loader()
