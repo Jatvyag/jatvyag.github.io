@@ -88,6 +88,7 @@
         "reset":"Reset",
         "no_match":"No match found",
         "prev":"Previous",
-        "next":"Next"
+        "next":"Next",
+        "fetchError":"Failed to fetch posts data"
     }
 }

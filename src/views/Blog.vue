@@ -70,14 +70,15 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import BlogSidebar from '@/components/BlogSideBar.vue'
-import jsonPostsData from '@/data/posts.json'
 
 const { t, locale } = useI18n()
+
+const postsData = ref([])
 
 const nav = useNavStore()
 nav.setNavItems([
@@ -108,10 +109,11 @@ const selectedTag = ref(null)
 const selectedType = ref(null)
 const currentPage = ref(1)
 const postsPerPage = 10
+const errorMessage = ref(null)
 
 // Filtered and paginated posts
 const filteredPosts = computed(() =>
-  jsonPostsData.posts.slice().reverse().filter(post => {
+  postsData.value.filter(post => {
     const title = localize(post.title, locale.value)
     const desc = localize(post.desc, locale.value)
     const cat = localize(post.cat, locale.value)
@@ -150,11 +152,6 @@ const types = computed(() => {
   return uniqueTypes
 })
 
-// Reset pagination when filter values change
-watch([searchQuery, selectedCategory, selectedTag, selectedType], () => {
-  currentPage.value = 1
-})
-
 // Get icons for filter values
 function getIconPath (iconName) {
   return skillIcons[`../assets/icons/${iconName}`]
@@ -162,7 +159,7 @@ function getIconPath (iconName) {
 
 const emptyCard = computed(() => {
   return {
-    title: t('blog.noResults'),
+    title: errorMessage.value ? errorMessage.value : t('blog.noResults'),
     desc: '',
     tag: [],
     libs: [],
@@ -180,6 +177,24 @@ const prevBtnDisabled = computed(() => {
 
 const nextBtnDisabled = computed(() => {
   return currentPage.value * postsPerPage >= filteredPosts.value.length
+})
+
+// Reset pagination when filter values change
+watch([searchQuery, selectedCategory, selectedTag, selectedType], () => {
+  currentPage.value = 1
+})
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/db/posts.json')
+    if (!response.ok) throw new Error('fetchError')
+    const data = await response.json()
+    postsData.value = data.posts.reverse() // The last post will be shown first
+  } catch (error) {
+    errorMessage.value = error.message === 'fetchError'
+      ? t('blog.fetchError')
+      : t('blog.noResults')
+  }
 })
 </script>
 

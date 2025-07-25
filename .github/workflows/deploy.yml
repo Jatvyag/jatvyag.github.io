@@ -36,6 +36,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      
+      - name: Copy posts data into public/db
+        run: mkdir -p public/db && cp db/posts.json public/db/
 
       - name: Build project
         run: npm run build
