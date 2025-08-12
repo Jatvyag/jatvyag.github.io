@@ -1,33 +1,56 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
 :root[data-theme='dark'] {
-  --bg: #242424;
-  --text-color: rgba(255, 255, 255, 0.87);
+  // body
+  --body-bg: #242424;
+  --body-color: rgba(255, 255, 255, 0.87);
+  // links
   --link: #8ab4f8;
   --link-hover: #e8eaed;
   --link-active: #4f9eff;
+  // buttons
   --btn-bg: #555555;
   --btn-hover-color: #646cff;
+  --btn-color: rgba(255, 255, 255, 0.87);
+  // drop-down
   --drop-down-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  // card
   --card-bg: #555555;
   --card-box-shadow: 0 4px 8px rgba(111, 86, 255, 0.3);
+  // footer
   --footer-box-shadow: 0 -4px 8px -2px rgba(255, 255, 255, 0.3);
+  // code
   --code-background: #2d2d2d;
   --code-text-color: #f8f8f2;
+  // tags
+  --tag-color: rgba(255, 255, 255, 0.87);
 }
 
 :root[data-theme='light'] {
-  --bg: #ffffff;
-  --text-color: #213547;
+  // body
+  --body-bg: #ffffff;
+  --body-color: #213547;
+  // links
   --link: #1a0dab;
   --link-hover: #d500f9;
   --link-active: #aa00c7;
+  // buttons
   --btn-bg: #dddddd;
   --btn-hover-color: #292d79;
+  --btn-color: #213547;
+  // drop-down
   --drop-down-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  // card
   --card-bg: #f9f9f9;
   --card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  // footer
   --footer-box-shadow: 0 -4px 8px -2px rgba(0, 0, 0, 0.3);
+  // code
   --code-background: #f5f5f5;
   --code-text-color: #2d2d2d;
+  // tags
+  --tag-color: #213547;
 }
 
 html {
@@ -50,8 +73,8 @@ a:active {
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text-color);
+  background-color: var(--body-bg);
+  color: var(--body-color);
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
@@ -109,8 +132,8 @@ button {
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-family: inherit;
-  color: var(--text-color);
-  border-radius: $border-radius;
+  color: var(--btn-color);
+  border-radius: $border-radius-ten;
   background-color: var(--btn-bg);
   border: 2px solid transparent;
   transition: border-color 0.25s;
@@ -151,7 +174,7 @@ button:focus-visible {
 .card {
   background-color: var(--card-bg); 
   color: var(--text);
-  border-radius: $border-radius;
+  border-radius: $border-radius-ten;
   box-shadow: var(--card-box-shadow);
   border: 2px solid var(--card-box-shadow); 
   transition: box-shadow 0.3s ease;
@@ -159,7 +182,7 @@ button:focus-visible {
 
 .tag {
   background-color: var(--btn-bg);
-  color: var(--text-color);
+  color: var(--tag-color);
   border-radius: 999px;
   padding: 0.3rem 0.6rem 0.5rem 0.6rem;
   font-size: 0.9rem;

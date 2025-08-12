@@ -46,7 +46,7 @@ function toggleTheme () {
     width: 3.5rem;
     height: 1.75rem;
     background: var(--btn-bg);
-    color: var(--text-color);
+    color: var(--body-color);
     border-radius: 999px;
     border: 2px solid transparent;
     cursor: pointer;

@@ -38,7 +38,7 @@ const route = useRoute()
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--bg);
+    background-color: var(--body-bg);
     z-index: 1000;
     justify-content: space-between;
     align-items: center;

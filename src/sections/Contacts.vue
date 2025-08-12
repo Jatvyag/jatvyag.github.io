@@ -238,7 +238,7 @@ button.clipboard:active {
     margin-top: 1rem;
     padding: 1rem;
     background-color: var(--card-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
     box-shadow: var(--card-box-shadow);
 }
 
@@ -265,7 +265,7 @@ button.clipboard:active {
     background-color: var(--link);
     color: white;
     border: none;
-    border-radius: $border-radius;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -276,19 +276,19 @@ button.clipboard:active {
 
 .contact-form.was-attempted input:invalid,
 .contact-form.was-attempted textarea:invalid {
-    border: 1px solid $attention-color;
+    border: 1px solid #e63946;
     outline: none;
 }
 
 .error-message {
     display: inline-block;
-    color: $attention-color;
+    color: #e63946;
     border-radius: 0px 0px 10px 10px;
     font-size: 0.8rem;
     margin-top: 0rem;
     padding: 0.2rem;
     background-color: #dfc9c9;
-    border: 1px solid $attention-color;
+    border: 1px solid #e63946;
     min-height: 1em;
     /* Keep space reserved but invisible */
     min-height: 1em;
@@ -309,7 +309,7 @@ button.clipboard:active {
     visibility: visible;
     opacity: 1;
     padding: 0.2rem;
-    border: 1px solid $attention-color;
+    border: 1px solid #e63946;
     min-height: 1em;
 }
 

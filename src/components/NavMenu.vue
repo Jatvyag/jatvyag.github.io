@@ -167,7 +167,7 @@ const isDisabledMenuBtn = computed(() => {
 .menu-btn:hover {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
 }
 
 .menu-btn:disabled {
@@ -203,8 +203,8 @@ const isDisabledMenuBtn = computed(() => {
     left: 0;
     height: 100vh;
     width: 240px;
-    background-color: var(--bg);
-    color: var(--text-color);
+    background-color: var(--body-bg);
+    color: var(--body-color);
     padding-top: 2rem;
     padding-left: 1rem;
     transition: transform 0.3s ease;
@@ -242,7 +242,7 @@ const isDisabledMenuBtn = computed(() => {
 .side-menu li:hover {
     border-color: var(--btn-hover-color);
     background-color: var(--btn-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
 }
 
 .side-menu li.disabled {

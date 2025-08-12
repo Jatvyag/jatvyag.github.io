@@ -149,7 +149,7 @@ const props = defineProps({
 .blog-sidebar {
   display: flex;
   flex-direction: column;
-  border-radius: $border-radius;
+  border-radius: 10px;
   border: 2px solid var(--card-box-shadow);
   box-shadow: var(--card-box-shadow);
   gap: 1.5rem;
@@ -163,7 +163,7 @@ const props = defineProps({
 .search-input {
   padding: 0.5rem;
   border: 1px solid transparent;
-  border-radius: $border-radius;
+  border-radius: 10px;
 }
 
 .search-input:focus {
