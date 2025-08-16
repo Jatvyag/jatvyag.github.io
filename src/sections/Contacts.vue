@@ -191,9 +191,9 @@ p.contacts {
 }
 
 .code-area {
-    background-color: var(--code-background);
-    color: var(--code-text-color);
-    border: 2px solid var(--btn-hover-color);
+    background-color: var(--code-bg);
+    color: var(--code-txt);
+    border: 2px solid var(--btn-hover);
     padding: 0.25em 0.5em;
     border-radius: 4px;
     font-family: 'Fira Code', monospace;
@@ -239,7 +239,7 @@ button.clipboard:active {
     padding: 1rem;
     background-color: var(--card-bg);
     border-radius: 10px;
-    box-shadow: var(--card-box-shadow);
+    box-shadow: var(--card-shadow);
 }
 
 .contact-form label {
@@ -252,9 +252,9 @@ button.clipboard:active {
 .contact-form textarea {
     padding: 0.5rem;
     font-size: 1rem;
-    border: 2px solid var(--btn-hover-color);
+    border: 2px solid var(--btn-hover);
     border-radius: 4px;
-    background-color: var(--code-background);
+    background-color: var(--code-bg);
     color: var(--text);
 }
 

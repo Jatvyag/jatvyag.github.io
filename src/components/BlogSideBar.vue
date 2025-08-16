@@ -150,8 +150,8 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  border: 2px solid var(--card-box-shadow);
-  box-shadow: var(--card-box-shadow);
+  border: 2px solid var(--card-shadow);
+  box-shadow: var(--card-shadow);
   gap: 1.5rem;
   padding: 1rem;
 }
@@ -168,7 +168,7 @@ const props = defineProps({
 
 .search-input:focus {
   outline: none;
-  box-shadow: 0 0 0 4px var(--btn-hover-color);
+  box-shadow: 0 0 0 4px var(--btn-hover);
 }
 
 .sidebar-heading {
@@ -234,7 +234,7 @@ const props = defineProps({
 
 .tag.blog:hover {
   cursor: pointer;
-  border-color: var(--btn-hover-color);
+  border-color: var(--btn-hover);
 }
 
 .tag.blog:active {

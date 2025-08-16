@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
+.card {
+  background-color: var(--card-bg); 
+  color: var(--text);
+  border-radius: $border-radius-ten;
+  box-shadow: var(--card-shadow);
+  border: 2px solid var(--card-shadow); 
+  transition: box-shadow 0.3s ease;
+}

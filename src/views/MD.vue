@@ -116,6 +116,6 @@ onUnmounted(() => {
   padding: 0rem 2rem 2rem 2rem;
   border-radius: 10px;
   background-color: var(--card-bg);
-  box-shadow: var(--card-box-shadow);
+  box-shadow: var(--card-shadow);
 }
 </style>

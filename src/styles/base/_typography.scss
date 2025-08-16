@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+body {
+  font-family: inherit;
+  color: var(--body-txt);
+  background-color: var(--body-bg);
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  text-align: center;
+  margin: 3rem 1rem 1rem;
+}
+
+@include headings($headings);
+
+html {
+  font-size: 20px;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+  @media (min-width: 601px) and (max-width: 1024px) {
+    font-size: 18px;
+  }
+}

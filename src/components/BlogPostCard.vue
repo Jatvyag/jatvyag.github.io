@@ -159,7 +159,7 @@ const routePrefix = computed(() => {
 }
 
 .tag.blog {
-    border: 2px solid var(--btn-hover-color)
+    border: 2px solid var(--btn-hover)
 }
 
 .post-libs {

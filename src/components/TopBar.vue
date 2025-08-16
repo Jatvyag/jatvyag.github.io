@@ -44,7 +44,7 @@ const route = useRoute()
     align-items: center;
     gap: 1rem;
     padding: 0.3rem 0.3rem 0.3rem 0.3rem;
-    box-shadow: var(--drop-down-box-shadow);
+    box-shadow: var(--drop-down-shadow);
 }
 
 .top-right-bar {
@@ -69,7 +69,7 @@ const route = useRoute()
 }
 
 .top-link-btn:hover {
-    color: var(--btn-hover-color);
+    color: var(--btn-hover);
     transition: color 0.3s;
 }
 </style>

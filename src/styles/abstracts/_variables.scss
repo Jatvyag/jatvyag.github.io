@@ -1,0 +1,71 @@
+// Dark/Light mode
+$bg-color: (
+    dark: #222831,
+    light: #EEEEEE
+);
+
+$text-color: (
+    dark: #EEEEEE,
+    light: #222831
+);
+
+$link-color: (
+    dark: #8ab4f8,
+    dark-active: #e8eaed, 
+    dark-hover: #4f9eff,       
+    light: #1a0dab,
+    light-active: #d500f9,
+    light-hover: #aa00c7
+);
+
+$button-color: (
+    dark: #EEEEEE,
+    dark-bg: #555555,
+    dark-hover: #646cff,
+    light: #213547,
+    light-bg: #dddddd,
+    light-hover: #292d79
+);
+
+$card-color: (
+    dark-bg: #555555,
+    dark-shadow: 0 4px 8px rgba(111, 86, 255, 0.3),
+    light: #f9f9f9,
+    light-shadow: 0 4px 8px rgba(0, 0, 0, 0.3)
+);
+
+$footer-color: (
+    dark-shadow: 0 -4px 8px -2px rgba(255, 255, 255, 0.3),
+    light-shadow: 0 -4px 8px -2px rgba(0, 0, 0, 0.3)
+);
+
+$code-color: (
+    dark-bg: #2d2d2d,
+    dark-txt: #f8f8f2,
+    light-bg: #f5f5f5,
+    light-txt: #2d2d2d
+);
+
+$tag-color: (
+    dark: #EEEEEE,
+    light: #213547
+);
+
+$drop-down-shadow: (
+    dark: 0 0 5px rgba(255, 255, 255, 0.3),
+    light: 0 0 5px rgba(0, 0, 0, 0.3)
+);
+
+// Headings
+$headings: (
+    h1: (size: 3.2rem, weight: 700),
+    h2: (size: 2.4rem, weight: 600),
+    h3: (size: 1.8rem, weight: 600),
+    h4: (size: 1.4rem, weight: 500),
+    h5: (size: 1.2rem, weight: 500),
+    h6: (size: 1rem, weight: 500, color: gray)
+);
+
+// Another parameters
+$border-radius-ten: 10px;
+$attention-color: #e63946;

@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
+:root[data-theme='light'] {
+  // body
+  --body-bg: #{map.get($bg-color, light)};
+  --body-txt: #{map.get($text-color, light)};
+  // links
+  --link: #{map.get($link-color, light)};
+  --link-active: #{map.get($link-color, light-active)};
+  --link-hover: #{map.get($link-color, light-hover)};  
+  // buttons
+  --btn: #{map.get($button-color, light)};
+  --btn-bg: #{map.get($button-color, light-bg)};
+  --btn-hover: #{map.get($button-color, light-hover)}; 
+  // drop down shadow
+  --drop-down-shadow: #{map.get($drop-down-shadow, light)};
+  // card
+  --card-bg: #{map.get($card-color, light-bg)};
+  --card-shadow: #{map.get($card-color, light-shadow)};
+  // footer
+  --footer-shadow: #{map.get($footer-color, light-shadow)};
+  // code
+  --code-bg: #{map.get($code-color, light-bg)};
+  --code-txt: #{map.get($code-color, light-txt)};
+  // tags
+  --tag: #{map.get($tag-color, light)};
+}
