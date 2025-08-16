@@ -60,7 +60,7 @@ function scrollToMain () {
 .footer-bar {
     display: flex;
     flex-direction: column;
-    box-shadow: var(--footer-box-shadow);
+    box-shadow: var(--footer-shadow);
     justify-content: center;
     align-items: center;
     padding-top: 0.5rem;

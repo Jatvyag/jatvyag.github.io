@@ -165,9 +165,9 @@ const isDisabledMenuBtn = computed(() => {
 }
 
 .menu-btn:hover {
-    border-color: var(--btn-hover-color);
+    border-color: var(--btn-hover);
     background-color: var(--btn-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
 }
 
 .menu-btn:disabled {
@@ -203,13 +203,13 @@ const isDisabledMenuBtn = computed(() => {
     left: 0;
     height: 100vh;
     width: 240px;
-    background-color: var(--bg);
-    color: var(--text-color);
+    background-color: var(--body-bg);
+    color: var(--body-txt);
     padding-top: 2rem;
     padding-left: 1rem;
     transition: transform 0.3s ease;
     z-index: 1000;
-    box-shadow: var(--drop-down-box-shadow);
+    box-shadow: var(--drop-down-shadow);
     transform: translateX(-100%);
 }
 
@@ -240,9 +240,9 @@ const isDisabledMenuBtn = computed(() => {
 
 .side-menu li.active,
 .side-menu li:hover {
-    border-color: var(--btn-hover-color);
+    border-color: var(--btn-hover);
     background-color: var(--btn-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
 }
 
 .side-menu li.disabled {

@@ -1,0 +1,14 @@
+a {
+  color: var(--link);
+  font-weight: 500;  
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+a:active {
+  color: var(--link-active);
+  transform: scale(0.95);
+}

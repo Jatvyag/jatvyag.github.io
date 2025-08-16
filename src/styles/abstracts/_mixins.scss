@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
+@mixin headings($map) {
+  @each $tag, $props in $map {
+    #{$tag} {
+      font-size: map.get($props, size);
+      font-weight: map.get($props, weight);
+      @if map.has-key($props, color) {
+        color: map.get($props, color);
+      }
+    }
+  }
+}

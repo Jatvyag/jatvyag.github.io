@@ -127,7 +127,7 @@ const routePrefix = computed(() => {
     width: 160px;
     height: 128px;
     object-fit: cover;
-    border-radius: $border-radius;
+    border-radius: 10px;
 }
 
 .blog-info {
@@ -159,7 +159,7 @@ const routePrefix = computed(() => {
 }
 
 .tag.blog {
-    border: 2px solid var(--btn-hover-color)
+    border: 2px solid var(--btn-hover)
 }
 
 .post-libs {

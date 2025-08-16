@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--btn);
+  border-radius: $border-radius-ten;
+  background-color: var(--btn-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.25s;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--btn-hover);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

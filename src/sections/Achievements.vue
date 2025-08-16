@@ -105,8 +105,8 @@ p.achievements {
     align-items: center;
     max-width: 15rem;
     background-color: var(--card-bg);
-    box-shadow: var(--card-box-shadow);
-    border-radius: $border-radius;
+    box-shadow: var(--card-shadow);
+    border-radius: 10px;
     padding: 0.75rem;
 }
 
@@ -142,9 +142,9 @@ p.achievements {
 
 .stat-card {
     background-color: var(--card-bg);
-    border-radius: $border-radius;
+    border-radius: 10px;
     padding: 0.7rem 0.9rem;
-    box-shadow: var(--card-box-shadow);
+    box-shadow: var(--card-shadow);
     text-align: center;
     min-width: 6rem;
 }

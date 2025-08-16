@@ -70,7 +70,7 @@ const currentLabel = computed(() => {
 }
 
 .lang-btn:hover {
-    color: var(--btn-hover-color);
+    color: var(--btn-hover);
     transition: color 0.3s;
 }
 
