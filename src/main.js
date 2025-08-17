@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/styles/main.scss'
 import App from '@/App.vue'
 import router from '@/router'
+import VueGtag from 'vue-gtag-next'
 import i18n from '@/i18n'
 
 import {
@@ -36,9 +37,16 @@ library.add(
   faFilter, faFilterCircleXmark, faGhost)
 library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
+
 const app = createApp(App)
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.use(i18n)
+app.use(VueGtag, {
+  property: {
+    id: GA_MEASUREMENT_ID
+  }
+}, router)
 app.use(router)
 app.use(createPinia())
 app.mount('#app')
