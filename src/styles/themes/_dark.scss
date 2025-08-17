@@ -25,4 +25,6 @@
   --code-txt: #{map.get($code-color, dark-txt)};
   // tags
   --tag: #{map.get($tag-color, dark)};
+  // blog sidebar
+  --blog-sidebar: #{map.get($blog-sidebar-color, dark)};
 }

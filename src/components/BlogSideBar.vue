@@ -152,12 +152,9 @@ const props = defineProps({
   border-radius: 10px;
   border: 2px solid var(--card-shadow);
   box-shadow: var(--card-shadow);
+  background-color: var(--blog-sidebar);
   gap: 1.5rem;
   padding: 1rem;
-}
-
-[data-theme='light'] .blog-sidebar {
-  background-color: var(--card-bg);
 }
 
 .search-input {
