@@ -8136,7 +8136,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'bank_marketing.csv'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../datasets/bank_marketing.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8217,7 +8217,7 @@ memory usage: 6.9+ MB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">client_df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'client_id'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">,</span> <span class="s1">'job'</span><span class="p">,</span> <span class="s1">'marital'</span><span class="p">,</span> <span class="s1">'education'</span><span class="p">,</span> <span class="s1">'credit_default'</span><span class="p">,</span> <span class="s1">'housing'</span><span class="p">,</span> <span class="s1">'loan'</span><span class="p">]]</span>
-<span class="n">client_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'client_id'</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">client_df</span> <span class="o">=</span> <span class="n">client_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'client_id'</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -8244,7 +8244,7 @@ memory usage: 6.9+ MB
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">campaign_df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'client_id'</span><span class="p">,</span> <span class="s1">'campaign'</span><span class="p">,</span> <span class="s1">'duration'</span><span class="p">,</span> <span class="s1">'pdays'</span><span class="p">,</span> <span class="s1">'previous'</span><span class="p">,</span> <span class="s1">'poutcome'</span><span class="p">,</span>
                     <span class="s1">'y'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">]]</span>
-<span class="n">campaign_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'campaign'</span><span class="p">:</span> <span class="s1">'number_contacts'</span><span class="p">,</span> <span class="s1">'duration'</span><span class="p">:</span> <span class="s1">'contact_duration'</span><span class="p">,</span> <span class="s1">'previous'</span><span class="p">:</span> <span class="s1">'previous_campaign_contacts'</span><span class="p">,</span> <span class="s1">'poutcome'</span><span class="p">:</span><span class="s1">'previous_outcome'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span><span class="s1">'campaign_outcome'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">campaign_df</span> <span class="o">=</span> <span class="n">campaign_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'campaign'</span><span class="p">:</span> <span class="s1">'number_contacts'</span><span class="p">,</span> <span class="s1">'duration'</span><span class="p">:</span> <span class="s1">'contact_duration'</span><span class="p">,</span> <span class="s1">'previous'</span><span class="p">:</span> <span class="s1">'previous_campaign_contacts'</span><span class="p">,</span> <span class="s1">'poutcome'</span><span class="p">:</span><span class="s1">'previous_outcome'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span><span class="s1">'campaign_outcome'</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -8270,7 +8270,7 @@ memory usage: 6.9+ MB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">economics_df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'client_id'</span><span class="p">,</span> <span class="s1">'emp_var_rate'</span><span class="p">,</span> <span class="s1">'cons_price_idx'</span><span class="p">,</span> <span class="s1">'euribor3m'</span><span class="p">,</span> <span class="s1">'nr_employed'</span><span class="p">]]</span>
-<span class="n">economics_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'euribor3m'</span><span class="p">:</span> <span class="s1">'euribor_three_months'</span><span class="p">,</span> <span class="s1">'nr_employed'</span><span class="p">:</span> <span class="s1">'number_employed'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">economics_df</span> <span class="o">=</span> <span class="n">economics_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'euribor3m'</span><span class="p">:</span> <span class="s1">'euribor_three_months'</span><span class="p">,</span> <span class="s1">'nr_employed'</span><span class="p">:</span> <span class="s1">'number_employed'</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -8295,7 +8295,7 @@ memory usage: 6.9+ MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">client_df</span><span class="p">[</span><span class="s1">'education'</span><span class="p">]</span> <span class="o">=</span> <span class="n">client_df</span><span class="p">[</span><span class="s1">'education'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span><span class="s1">'_'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'education'</span><span class="p">]</span> <span class="o">=</span> <span class="n">client_df</span><span class="p">[</span><span class="s1">'education'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8423,7 +8423,7 @@ memory usage: 6.9+ MB
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=65e719fc-5375-4e3e-902a-f384525df0c9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65e719fc-5375-4e3e-902a-f384525df0c9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8431,8 +8431,22 @@ memory usage: 6.9+ MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">campaign_df</span> <span class="o">=</span> <span class="n">campaign_df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'month'</span> <span class="p">:</span> <span class="n">month_dict</span><span class="p">})</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">campaign_df</span> <span class="o">=</span> <span class="n">campaign_df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'month'</span><span class="p">:</span> <span class="n">month_dict</span><span class="p">})</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/tmp/ipykernel_50952/2730958757.py:1: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  campaign_df = campaign_df.replace({'month': month_dict}).infer_objects(copy=False)
+</pre>
 </div>
 </div>
 </div>
@@ -8526,7 +8540,7 @@ memory usage: 6.9+ MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">client_table</span> <span class="o">=</span> <span class="s1">'''</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client_table</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'''</span>
 <span class="s1">CREATE TABLE client</span>
 <span class="s1">(id SERIAL PRIMARY KEY,</span>
 <span class="s1">age INTEGER,</span>
@@ -8552,7 +8566,7 @@ memory usage: 6.9+ MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">campaign_table</span> <span class="o">=</span> <span class="s1">'''</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">campaign_table</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'''</span>
 <span class="s1">CREATE TABLE campaign</span>
 <span class="s1">(</span>
 <span class="s1">campaign_id SERIAL PRIMARY KEY,</span>
@@ -8581,7 +8595,7 @@ memory usage: 6.9+ MB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">economics_table</span> <span class="o">=</span> <span class="s1">'''</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">economics_table</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'''</span>
 <span class="s1">CREATE TABLE economics</span>
 <span class="s1">(</span>
 <span class="s1">client_id SERIAL REFERENCES client (id),</span>

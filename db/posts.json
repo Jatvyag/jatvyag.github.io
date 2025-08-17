@@ -259,36 +259,6 @@
         {
             "id":"10",
             "title":[
-                {"en":"Hypothesis Testing with Men's and Women's Soccer Matches"},
-                {"be":"Праверка гіпотэз ў мужчынскіх і жаночых футбольных матчах"}
-            ],
-            "desc":[
-                {"en":"Perform a hypothesis test to determine if more goals are scored in women's soccer matches than men's"},
-                {"be":"Выканайце праверку гіпотэзы, каб вызначыць, ці забіваецца больш галоў у жаночых футбольных матчах, чым у мужчынскіх"}
-            ],
-            "cat":[
-                {"en":"DataCamp"},
-                {"be":"DataCamp"}
-            ],
-            "tag":[
-                {"en":["Visualization"]},
-                {"be":["Візуалізацыя"]}
-            ],
-            "libs":[
-                {"id":1, "name":"Pandas", "icon":"pandas.svg"},
-                {"id":2, "name":"NumPy", "icon":"numpy.svg"},
-                {"id":3, "name":"Matplotlib", "icon":"matplotlib.svg"},
-                {"id":4, "name":"Seaborn", "icon":"seaborn.svg"},
-                {"id":5, "name":"Scikit-learn", "icon":"scikitlearn.svg"}
-                ],
-            "date":"2023-07-15",
-            "link":"ht_soccer.html",
-            "type":{"name":"Jupyter","icon":"jupyter.svg"},
-            "pic":"soccer.jpeg"
-        },
-        {
-            "id":"11",
-            "title":[
                 {"en":"Modeling Car Insurance Claim Outcomes"},
                 {"be":"Мадэляванне вынікаў прэтэнзій па страхаванні аўтамабіля"}
             ],
@@ -315,7 +285,7 @@
             "pic":"car_insurance.jpeg"
         },
         {
-            "id":"12",
+            "id":"11",
             "title":[
                 {"en":"Time Series: Importing & Cleaning Data"},
                 {"be":"Часовыя шэрагі: імпарт і ачыстка даных"}
@@ -344,7 +314,7 @@
             "pic":"ai_time_series.jpeg"
         },
         {
-            "id":"13",
+            "id":"12",
             "title":[
                 {"en":"Timeseries: Information Resources and Systems Registration"},
                 {"be":"Часовыя шэрагі: рэгістрацыя інфармацыйных сістэм і рэсурсаў"}
@@ -374,7 +344,7 @@
             "pic":"ai_timeseries_future.png"
         },
         {
-            "id":"14",
+            "id":"13",
             "title":[
                 {"en":"Sources of legal scientific literature"},
                 {"be":"Крыніцы юрыдычнай навуковай літаратуры"}

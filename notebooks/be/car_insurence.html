@@ -8063,7 +8063,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import required modules</span>
@@ -8072,7 +8072,7 @@ a.anchor-link {
 <span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">logit</span>
 
 <span class="c1"># import dataset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'car_insurance.csv'</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../datasets/car_insurance.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8083,7 +8083,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># examine dataset</span>
@@ -8101,17 +8101,45 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>                  id           age  ...  past_accidents       outcome
-count   10000.000000  10000.000000  ...    10000.000000  10000.000000
-mean   500521.906800      1.489500  ...        1.056300      0.313300
-std    290030.768758      1.025278  ...        1.652454      0.463858
-min       101.000000      0.000000  ...        0.000000      0.000000
-25%    249638.500000      1.000000  ...        0.000000      0.000000
-50%    501777.000000      1.000000  ...        0.000000      0.000000
-75%    753974.500000      2.000000  ...        2.000000      1.000000
-max    999976.000000      3.000000  ...       15.000000      1.000000
+<pre>                  id           age        gender  credit_score  \
+count   10000.000000  10000.000000  10000.000000   9018.000000   
+mean   500521.906800      1.489500      0.499000      0.515813   
+std    290030.768758      1.025278      0.500024      0.137688   
+min       101.000000      0.000000      0.000000      0.053358   
+25%    249638.500000      1.000000      0.000000      0.417191   
+50%    501777.000000      1.000000      0.000000      0.525033   
+75%    753974.500000      2.000000      1.000000      0.618312   
+max    999976.000000      3.000000      1.000000      0.960819   
 
-[8 rows x 13 columns]
+       vehicle_ownership       married      children   postal_code  \
+count       10000.000000  10000.000000  10000.000000  10000.000000   
+mean            0.697000      0.498200      0.688800  19864.548400   
+std             0.459578      0.500022      0.463008  18915.613855   
+min             0.000000      0.000000      0.000000  10238.000000   
+25%             0.000000      0.000000      0.000000  10238.000000   
+50%             1.000000      0.000000      1.000000  10238.000000   
+75%             1.000000      1.000000      1.000000  32765.000000   
+max             1.000000      1.000000      1.000000  92101.000000   
+
+       annual_mileage  speeding_violations         duis  past_accidents  \
+count     9043.000000         10000.000000  10000.00000    10000.000000   
+mean     11697.003207             1.482900      0.23920        1.056300   
+std       2818.434528             2.241966      0.55499        1.652454   
+min       2000.000000             0.000000      0.00000        0.000000   
+25%      10000.000000             0.000000      0.00000        0.000000   
+50%      12000.000000             0.000000      0.00000        0.000000   
+75%      14000.000000             2.000000      0.00000        2.000000   
+max      22000.000000            22.000000      6.00000       15.000000   
+
+            outcome  
+count  10000.000000  
+mean       0.313300  
+std        0.463858  
+min        0.000000  
+25%        0.000000  
+50%        0.000000  
+75%        1.000000  
+max        1.000000  
 id                       0
 age                      0
 gender                   0
@@ -8136,12 +8164,12 @@ dtype: int64
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f504f856-98df-42db-8dbc-fcc8fb103ec3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f504f856-98df-42db-8dbc-fcc8fb103ec3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># filling missing values</span>
@@ -8152,12 +8180,38 @@ dtype: int64
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/tmp/ipykernel_56187/2508083064.py:2: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df.credit_score.fillna(value=df.credit_score.mean(), inplace=True)
+/tmp/ipykernel_56187/2508083064.py:3: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  df.annual_mileage.fillna(value=df.annual_mileage.mean(), inplace=True)
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a783cefe-a366-4d0b-8bb7-9700a4269811">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># model preparation</span>
@@ -8173,7 +8227,7 @@ dtype: int64
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># import model</span>
@@ -8254,7 +8308,7 @@ Optimization terminated successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># measuring performance</span>
@@ -8285,7 +8339,7 @@ Optimization terminated successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Find the feature with the largest accuracy</span>
@@ -8306,7 +8360,7 @@ Optimization terminated successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
