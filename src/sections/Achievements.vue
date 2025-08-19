@@ -7,7 +7,7 @@
     <h3 class="achievements">
       DataCamp
     </h3>
-    // TODO: отдельный компонент для описания секции строки 11 и 18 и 38
+    <!-- TODO: отдельный компонент для описания секции строки 11 и 18 и 38 -->
     <p
       v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
       :key="index"

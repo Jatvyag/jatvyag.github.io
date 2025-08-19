@@ -4,7 +4,7 @@
     class="section last"
   >
     <h2>{{ t('navMenu.main.contacts') }}</h2>
-    // TODO: contacts отдельный компонент
+    <!-- TODO: contacts отдельный компонент -->
     <p class="contacts">
       {{ t('contacts.email_client') }}:
       <a
@@ -34,7 +34,7 @@
       {{ t('contacts.social_platforms') }}
     </p>
     <div class="social-media">
-      // TODO: отдельный компонент
+      <!-- TODO: отдельный компонент -->
       <a
         v-for="item in contactsData.social"
         :key="item.id"
@@ -55,7 +55,7 @@
       method="POST"
       @submit.prevent="handleSubmit"
     >
-      // TODO: отдельный компонент
+      <!-- TODO: отдельный компонент -->
       <label>
         {{ t('contacts.form.name') }}
         <input

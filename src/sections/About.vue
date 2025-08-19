@@ -6,7 +6,7 @@
     <h1>{{ t('about.my_name') }}</h1>
     <Banner />
     <div>
-      // TODO: Отдельный компонент для описания секции строки 8 и 23
+      <!-- TODO: Отдельный компонент для описания секции строки 8 и 23 -->
       <p class="tagline">
         {{ t('about.intro') }}
       </p>
@@ -80,8 +80,7 @@ function scrollToNextSection () {
   if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
-// TODO: добавить lang="scss" в секцию стилей
-<style scoped>
+<style lang="scss">
 .tagline {
   display: flex;
   font-size: 1rem;
