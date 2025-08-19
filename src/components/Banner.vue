@@ -15,11 +15,14 @@ import Typewriter from 'typewriter-effect/dist/core'
 
 const { tm } = useI18n()
 
+// CamelCase startTypeWrite
 function startTypewriter () {
+  // во Vue для получения элемента используй ref сслылки на элемент
   const el = document.getElementById('typewriter')
   if (!el) return
 
   // Clear previous content
+  // используй v-html для вставки содержимого в элемент и его удаления
   el.innerHTML = ''
   /* eslint-disable no-new */
   new Typewriter(el, {
