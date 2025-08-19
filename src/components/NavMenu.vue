@@ -6,6 +6,7 @@
       :disabled="isDisabledMenuBtn"
       @click="toggleMenu"
     >
+      <!-- можно не использовать обертку template над элементами, а v-if использовать внутри тегов img, font-awesome-icon -->
       <template v-if="isJupyterMD">
         <img
           :src="jupyterMDIcon"
@@ -75,9 +76,11 @@ function handleNavigation (item) {
   nextTick(() => {
     let el = null
     if (item.type === 'jupyter') {
+      // используй ref для получения элемента
       const iframe = document.querySelector('iframe')
       const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
       if (iframeDoc) {
+        // используй ref для получения элемента
         el = iframeDoc.querySelector(hash)
       }
     } else {
@@ -92,6 +95,8 @@ function handleNavigation (item) {
 }
 
 const jupyterMDIcon = computed(() => {
+  // nav.navItems[0]?.type вынести в переменную
+  // 'md', 'jupyter' вынести в Enum константу и сравнивать с ней
   if (nav.navItems[0]?.type === 'md') {
     return new URL('@/assets/icons/markdown.svg', import.meta.url).href
   }
@@ -102,6 +107,7 @@ const jupyterMDIcon = computed(() => {
 })
 
 function sideMenuLabel (item) {
+  // ['jupyter', 'md'] вынести в Enum
   if (['jupyter', 'md'].includes(item.type)) {
     return item.key
   } else {
@@ -114,6 +120,7 @@ const activeItem = computed(() => {
 })
 
 const isJupyterMD = computed(() => {
+  // enum
   return nav.navItems.some(item => item.type === 'jupyter' || item.type === 'md')
 })
 
@@ -175,7 +182,7 @@ const isDisabledMenuBtn = computed(() => {
     border: 2px solid transparent;
     background: none;
     cursor: not-allowed;
-    transform: scale(1);
+    transform: scale(1); // лишнее
 }
 
 .page-title {

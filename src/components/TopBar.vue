@@ -1,7 +1,10 @@
 <template>
   <div class="top-bar">
     <NavMenu />
+    <!-- почитай про именования классов по БЭМ top-bar--right -->
     <div class="top-right-bar">
+      <!-- v-if="route.path !== '/'" все расчеты делай в computed свойствах что бы в шаблоне выглядело таким образом: v-if="isHomePage" -->
+      <!-- можно создать в переменной конфигурацию иконок и потом через v-for вывести их в шаблон -->
       <router-link
         v-if="route.path !== '/'"
         to="/"
@@ -43,6 +46,7 @@ const route = useRoute()
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    // padding: 0.3rem
     padding: 0.3rem 0.3rem 0.3rem 0.3rem;
     box-shadow: var(--drop-down-shadow);
 }
