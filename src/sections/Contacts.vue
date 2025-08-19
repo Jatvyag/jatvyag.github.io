@@ -4,6 +4,7 @@
     class="section last"
   >
     <h2>{{ t('navMenu.main.contacts') }}</h2>
+    // TODO: contacts отдельный компонент
     <p class="contacts">
       {{ t('contacts.email_client') }}:
       <a
@@ -33,6 +34,7 @@
       {{ t('contacts.social_platforms') }}
     </p>
     <div class="social-media">
+      // TODO: отдельный компонент
       <a
         v-for="item in contactsData.social"
         :key="item.id"
@@ -53,6 +55,7 @@
       method="POST"
       @submit.prevent="handleSubmit"
     >
+      // TODO: отдельный компонент
       <label>
         {{ t('contacts.form.name') }}
         <input
@@ -116,8 +119,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import JSONData from '@/data/main.json'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
@@ -131,6 +134,7 @@ const props = defineProps({
 const contactsData = JSONData.contacts
 
 function copyEmail () {
+  // TODO: ref
   const email = document.getElementById('email')?.textContent
   if (email) {
     navigator.clipboard.writeText(email)
@@ -142,7 +146,9 @@ const handleSubmit = (event) => {
   event.preventDefault()
   const form = formRef.value
   if (!form) return
+  // TODO: тут меняем какойто флг по нему добавляем форме класс was-attempted
   form.classList.add('was-attempted')
+  // TODO: refs
   const inputs = form.querySelectorAll('input, textarea')
   let isFormValid = true
   inputs.forEach(input => {

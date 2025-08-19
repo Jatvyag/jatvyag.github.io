@@ -7,6 +7,7 @@
     <h3 class="achievements">
       DataCamp
     </h3>
+    // TODO: отдельный компонент для описания секции строки 11 и 18 и 38
     <p
       v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
       :key="index"
@@ -74,9 +75,11 @@ const props = defineProps({
 })
 
 const getBadgePath = (badgeFile) =>
+// TODO: вынести в утилс и просто экспортировать в компонент
   new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
 
 function scrollToNextSection () {
+  // TODO: использовать нативный механизм вью ref и скроллить на него
   const next = document.querySelector(props.nextSection)
   if (next) next.scrollIntoView({ behavior: 'smooth' })
 }

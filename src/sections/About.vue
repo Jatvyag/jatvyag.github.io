@@ -6,6 +6,7 @@
     <h1>{{ t('about.my_name') }}</h1>
     <Banner />
     <div>
+      // TODO: Отдельный компонент для описания секции строки 8 и 23
       <p class="tagline">
         {{ t('about.intro') }}
       </p>
@@ -58,6 +59,7 @@ const props = defineProps({
 })
 
 function calculateYears (startDateStr) {
+// TODO: плохо понятное название devExpirienceYears например
   const startDate = new Date(startDateStr)
   const today = new Date()
   let years = today.getFullYear() - startDate.getFullYear()
@@ -69,14 +71,16 @@ function calculateYears (startDateStr) {
   return years
 }
 
+// TODO: убрать в константы даты const CODING_START = '2023-09-04'
 const codingYears = calculateYears('2023-09-04')
 const dataYears = calculateYears('2014-09-04')
 function scrollToNextSection () {
+  // TODO: использовать нативный механизм вью ref и скроллить на него
   const next = document.querySelector(props.nextSection)
   if (next) next.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
-
+// TODO: добавить lang="scss" в секцию стилей
 <style scoped>
 .tagline {
   display: flex;
