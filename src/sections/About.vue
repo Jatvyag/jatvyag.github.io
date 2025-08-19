@@ -10,7 +10,7 @@
         {{ t('about.intro') }}
       </p>
       <p class="tagline">
-        <span class="tag">{{ t('about.tagline_prefix', { codingYears }) }}</span>
+        <span class="tag">{{ t('about.tagline_prefix', { coding_years: codingYears }) }}</span>
         <span
           v-for="(tag, index) in tm('about.tech_tags')"
           :key="index"
@@ -23,7 +23,7 @@
         {{ t('about.career_path') }}
       </p>
       <p class="tagline">
-        <span class="tag">{{ t('about.legal_prefix', { dataYears }) }}</span>
+        <span class="tag">{{ t('about.legal_prefix', { data_years: dataYears }) }}</span>
         <span
           v-for="(tag, index) in tm('about.legal_tags')"
           :key="index"
