@@ -45,8 +45,12 @@ app.use(router)
 app.use(i18n)
 app.use(VueGtag, {
   property: {
-    id: GA_MEASUREMENT_ID
-  }
+    id: GA_MEASUREMENT_ID,
+    config: {
+      cookie_domain: 'auto'
+    }
+  },
+  pageTrackerScreenviewEnabled: true
 }, router)
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')
