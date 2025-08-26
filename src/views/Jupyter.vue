@@ -6,11 +6,12 @@
     >
       <div class="iframe-wrapper">
         <iframe
-          ref="jupyter-notebook"
+          ref="iframeRef"
           :src="iframeSrc"
           frameborder="0"
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           title="Jupyter Notebook"
+          @load="onIframeLoad"
         />
         <font-awesome-icon
           :icon="['fas', 'chevron-up']"
@@ -23,15 +24,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick, useTemplateRef } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useNavStore } from '@/stores/nav'
+import { useNavStore, useJupyterStore } from '@/stores'
 
-const nav = useNavStore()
 const { locale } = useI18n()
 
-const iframe = useTemplateRef('jupyter-notebook')
-
+// Props
 const props = defineProps({
   postUrl: {
     type: String,
@@ -39,23 +38,27 @@ const props = defineProps({
   }
 })
 
+// Stores
+const navStore = useNavStore()
+const jupyterStore = useJupyterStore()
+
+// Refs
+const iframeRef = ref(null)
+const iframeDoc = ref(null)
 const theme = ref(sessionStorage.getItem('theme') || 'dark')
 const iframeSrc = ref(`/notebooks/${locale.value}/${props.postUrl}`)
 
-let observer = null
-
-const iframeDoc = ref(null)
-
-function getIframe () {
-  iframeDoc.value = iframe.value?.contentDocument || iframe.value?.contentWindow?.document
-}
-
+/**
+ * Make items for navigation side-menu
+ * @param {NodeList} headings - Array of headings
+ * @returns {Array} - Array of nav items
+ */
 function makeUniqueNavItems (headings) {
-  const result = []
+  const uniqueNavItems = []
   headings.forEach(h => {
     const id = h.id
     const text = h.textContent?.replace('¶', '').trim() || 'untitled'
-    result.push({
+    uniqueNavItems.push({
       key: text,
       link: `#${id}`,
       faIcon: ['fas', 'house'],
@@ -63,50 +66,60 @@ function makeUniqueNavItems (headings) {
       type: 'jupyter'
     })
   })
-  return result
+  return uniqueNavItems
 }
 
-function extractHeadings () {
-  if (!iframeDoc.value) return
-  const headings = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
-  const items = makeUniqueNavItems(headings)
-  nav.setNavItems(items)
-}
+// Observer for sections
+let observer = null
 
-function observeSections () {
+/**
+ * Observe sections
+ * @param {HTMLDocument} observedDoc - Document to observe
+ */
+function observeSections (observedDoc) {
   if (observer) observer.disconnect()
-  if (!iframeDoc.value) return
 
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         const headingText = entry.target.textContent?.replace('¶', '').trim() || 'untitled'
-        nav.setCurrentSection(headingText)
+        navStore.setCurrentSection(headingText)
       }
     }
   }, {
-    root: iframeDoc.value, // Use iframe document as root
+    root: observedDoc,
     rootMargin: '0px',
     threshold: 0.3
   })
 
-  const targets = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
+  const targets = observedDoc.querySelectorAll('h1[id], h2[id]')
   targets.forEach(target => observer.observe(target))
 }
 
-function setupIframeListeners () {
-  if (!iframe.value) return
-
-  iframe.value.addEventListener('load', () => {
-    getIframe()
-    extractHeadings()
-    observeSections()
-  })
+/**
+ * Store iframe document, navigation items
+ * and observe sections
+ */
+function onIframeLoad () {
+  iframeDoc.value =
+    iframeRef.value?.contentDocument ||
+    iframeRef.value?.contentWindow?.document
+  const headings = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
+  const items = makeUniqueNavItems(headings)
+  navStore.setMainSection(items[0].key)
+  observeSections(iframeDoc.value)
+  // Set nav items to store
+  navStore.setNavItems(items)
+  // Set iframe document to store
+  jupyterStore.iframeDoc = iframeDoc.value
 }
 
+/**
+ * Scroll to first heading
+ */
 function scrollToFirstHeading () {
   if (!iframeDoc.value) return
-  const first = nav.navItems[0]
+  const first = navStore.navItems[0]
   if (!first) return
 
   const el = iframeDoc.value.getElementById(first.link.replace('#', ''))
@@ -118,11 +131,6 @@ function onThemeChange (e) {
 }
 
 onMounted(() => {
-  nav.setMainSection('Jupyter')
-
-  getIframe()
-  setupIframeListeners()
-
   window.addEventListener('theme-changed', onThemeChange)
 })
 
@@ -136,17 +144,6 @@ onUnmounted(() => {
 
 watch([() => locale.value, () => props.postUrl], ([newLang, newUrl]) => {
   iframeSrc.value = `/notebooks/${newLang}/${newUrl}`
-
-  // Wait next tick to ensure iframe reloads then re-setup
-  nextTick(() => {
-    getIframe()
-    if (iframe.value?.contentDocument) {
-      extractHeadings()
-      observeSections()
-    } else {
-      setupIframeListeners()
-    }
-  })
 })
 </script>
 

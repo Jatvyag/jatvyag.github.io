@@ -40,13 +40,11 @@ library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
 
 const app = createApp(App)
-app.component('FontAwesomeIcon', FontAwesomeIcon)
+app.use(createPinia())
+app.use(router)
 app.use(i18n)
 app.use(VueGtag, {
-  property: {
-    id: GA_MEASUREMENT_ID
-  }
-}, router)
-app.use(router)
-app.use(createPinia())
+  property: { id: GA_MEASUREMENT_ID }
+})
+app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')

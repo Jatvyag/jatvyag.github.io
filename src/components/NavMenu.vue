@@ -6,16 +6,15 @@
       :disabled="isDisabledMenuBtn"
       @click="toggleMenu"
     >
-      <!-- можно не использовать обертку template над элементами, а v-if использовать внутри тегов img, font-awesome-icon -->
-      <template v-if="isJupyterMD">
-        <img
-          :src="jupyterMDIcon"
-          class="jupyter-md-icon"
-        >
-      </template>
-      <template v-else>
-        <font-awesome-icon :icon="currentIcon" />
-      </template>
+      <img
+        v-if="isJupyterMD"
+        :src="jupyterMDIcon"
+        class="jupyter-md-icon"
+      >
+      <font-awesome-icon
+        v-else
+        :icon="currentIcon"
+      />
       <span class="page-title">{{ currentTitle }}</span>
     </button>
     <!-- Backdrop -->
@@ -32,9 +31,9 @@
       <!-- Items of side menu -->
       <ul>
         <li
-          v-for="item in nav.navItems"
+          v-for="item in navStore.navItems"
           :key="item.key"
-          :class="{ active: item.key === nav.currentSection, disabled: item.disabled }"
+          :class="{ active: item.key === navStore.currentSection, disabled: item.disabled }"
           @click="handleNavigation(item)"
         >
           <!-- Icons of side menu -->
@@ -58,11 +57,21 @@
 <script setup>
 import { ref, computed, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useNavStore } from '@/stores/nav'
-
-const nav = useNavStore()
+import { useNavStore, useJupyterStore } from '@/stores'
+import { NavItemEnumTypes } from '@/constants'
 
 const { t } = useI18n()
+
+// Navigation elements
+const navStore = useNavStore()
+const jupyterStore = useJupyterStore()
+
+// The type of the first navigation item
+const firstNavItemType = computed(() => {
+  return navStore.navItems[0]?.type
+})
+
+// The toggle menu functionality
 const isOpen = ref(false)
 
 function toggleMenu () {
@@ -75,77 +84,78 @@ function handleNavigation (item) {
   if (!hash || !hash.startsWith('#')) return
   nextTick(() => {
     let el = null
-    if (item.type === 'jupyter') {
-      // используй ref для получения элемента
-      const iframe = document.querySelector('iframe')
-      const iframeDoc = iframe?.contentDocument || iframe?.contentWindow?.document
-      if (iframeDoc) {
-        // используй ref для получения элемента
-        el = iframeDoc.querySelector(hash)
+    if (item.type === NavItemEnumTypes.JUPYTER) {
+      if (jupyterStore.iframeDoc) {
+        el = jupyterStore.iframeDoc.querySelector(hash)
       }
     } else {
       el = document.querySelector(hash)
     }
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
-      nav.setCurrentSection(item.key)
+      navStore.setCurrentSection(item.key)
       isOpen.value = false
     }
   })
 }
 
 const jupyterMDIcon = computed(() => {
-  // nav.navItems[0]?.type вынести в переменную
-  // 'md', 'jupyter' вынести в Enum константу и сравнивать с ней
-  if (nav.navItems[0]?.type === 'md') {
+  if (firstNavItemType.value === NavItemEnumTypes.MD) {
     return new URL('@/assets/icons/markdown.svg', import.meta.url).href
   }
-  if (nav.navItems[0]?.type === 'jupyter') {
+  if (firstNavItemType.value === NavItemEnumTypes.JUPYTER) {
     return new URL('@/assets/icons/jupyter.svg', import.meta.url).href
   }
+  // No need for icon if it is not 'md' or 'jupyter' type
   return ''
 })
 
 function sideMenuLabel (item) {
-  // ['jupyter', 'md'] вынести в Enum
-  if (['jupyter', 'md'].includes(item.type)) {
+  // Returns the item key of label
+  if (Object.values(NavItemEnumTypes).includes(item.type)) {
     return item.key
   } else {
-    return t(`${nav.navMenuLocale}.${item.key}`)
+    // If there is not 'md' or 'jupyter' type, then it is from i18n
+    return t(`${navStore.navMenuLocale}.${item.key}`)
   }
 }
 
 const activeItem = computed(() => {
-  return nav.navItems.find(item => item.key === nav.currentSection)
+  return navStore.navItems.find(item => item.key === navStore.currentSection)
 })
 
 const isJupyterMD = computed(() => {
-  // enum
-  return nav.navItems.some(item => item.type === 'jupyter' || item.type === 'md')
+  return navStore.navItems.some(item =>
+    item.type === NavItemEnumTypes.JUPYTER ||
+    item.type === NavItemEnumTypes.MD
+  )
 })
 
+// The font-awesome icon needed for default menu (not for Jupyter or Markdown)
 const currentIcon = computed(() => {
   return activeItem.value?.faIcon || ['fas', 'bars']
 })
 
 const currentTitle = computed(() => {
-  // Title for Jupyter and Markdown
-  if (isJupyterMD.value && nav.currentSection) {
-    return nav.currentSection
-  } else if (isJupyterMD.value && !nav.currentSection) {
-    return nav.navItems[0]?.type === 'md' ? 'Markdown' : 'Jupyter'
+  // Case 1: Jupyter/Markdown with section
+  if (isJupyterMD.value && navStore.currentSection) {
+    return navStore.currentSection
   }
-  // Title for sections
-  if (nav.navMenuLocale && nav.currentSection) {
-    const key = `${nav.navMenuLocale}.${nav.currentSection}`
-    return t(key, nav.currentSection)
+  // Case 2: Jupyter/Markdown without section
+  if (isJupyterMD.value && !navStore.currentSection) {
+    return firstNavItemType.value === NavItemEnumTypes.MD ? 'Markdown' : 'Jupyter'
+  }
+  // Case 3: Title of section
+  if (navStore.navMenuLocale && navStore.currentSection) {
+    const key = `${navStore.navMenuLocale}.${navStore.currentSection}`
+    return t(key, navStore.currentSection)
   }
   // Empty title
   return ''
 })
 
 const isDisabledMenuBtn = computed(() => {
-  return nav.navItems.length <= 1
+  return navStore.navItems.length <= 1
 })
 </script>
 
@@ -182,7 +192,6 @@ const isDisabledMenuBtn = computed(() => {
     border: 2px solid transparent;
     background: none;
     cursor: not-allowed;
-    transform: scale(1); // лишнее
 }
 
 .page-title {
