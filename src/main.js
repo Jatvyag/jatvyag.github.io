@@ -44,7 +44,9 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 app.use(VueGtag, {
-  property: { id: GA_MEASUREMENT_ID }
-})
+  property: {
+    id: GA_MEASUREMENT_ID
+  }
+}, router)
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')
