@@ -1,23 +1,14 @@
 <template>
   <div class="top-bar">
     <NavMenu />
-    <!-- почитай про именования классов по БЭМ top-bar--right -->
-    <div class="top-right-bar">
-      <!-- v-if="route.path !== '/'" все расчеты делай в computed свойствах что бы в шаблоне выглядело таким образом: v-if="isHomePage" -->
-      <!-- можно создать в переменной конфигурацию иконок и потом через v-for вывести их в шаблон -->
+    <div class="top-bar--right">
       <router-link
-        v-if="route.path !== '/'"
-        to="/"
-        class="top-link-btn"
+        v-for="link in visibleLinks"
+        :key="link.path"
+        :to="link.path"
+        class="top-bar--right-link-btn"
       >
-        <font-awesome-icon :icon="['fas', 'address-card']" />
-      </router-link>
-      <router-link
-        v-if="route.path !== '/blog'"
-        to="/blog"
-        class="top-link-btn"
-      >
-        <font-awesome-icon :icon="['fas', 'blog']" />
+        <font-awesome-icon :icon="link.icon" />
       </router-link>
       <LangSwitcher />
       <ThemeSwitcher />
@@ -26,54 +17,63 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import LangSwitcher from '@/components/LangSwitcher.vue'
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 import NavMenu from '@/components/NavMenu.vue'
 
 const route = useRoute()
+
+const routeLink = ref([
+  {
+    path: '/',
+    icon: ['fas', 'address-card']
+  },
+  {
+    path: '/blog',
+    icon: ['fas', 'blog']
+  }
+])
+
+const visibleLinks = computed(() =>
+  routeLink.value.filter(link => link.path !== route.path)
+)
 </script>
 
 <style lang="scss" scoped>
 .top-bar {
-    position: fixed;
-    display: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--body-bg);
-    z-index: 1000;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    // padding: 0.3rem
-    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
-    box-shadow: var(--drop-down-shadow);
-}
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--body-bg);
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.3rem;
+  box-shadow: var(--drop-down-shadow);
 
-.top-right-bar {
+  &--right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0.5rem;
     padding: 0.3rem 1rem 0.3rem 0.3rem;
-}
 
-.top-nav-links {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
+    &-link-btn {
+      display: flex;
+      font-size: 1.7rem;
+      color: inherit;
+      transition: background 0.3s, border-color 0.3s;
 
-.top-link-btn {
-    display: flex;
-    font-size: 1.7rem;
-    color: inherit;
-    transition: background 0.3s, border-color 0.3s;
-}
-
-.top-link-btn:hover {
-    color: var(--btn-hover);
-    transition: color 0.3s;
+      &:hover {
+        color: var(--btn-hover);
+        transition: color 0.3s;
+      }
+    }
+  }
 }
 </style>
