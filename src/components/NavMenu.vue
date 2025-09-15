@@ -80,19 +80,21 @@ function toggleMenu () {
 
 function handleNavigation (item) {
   if (item.disabled) return
-  const hash = item.link
-  if (!hash || !hash.startsWith('#')) return
+  const itemLink = item.link
+  if (!itemLink) return
   nextTick(() => {
-    let el = null
+    let activeLink = null
     if (item.type === NavItemEnumTypes.JUPYTER) {
       if (jupyterStore.iframeDoc) {
-        el = jupyterStore.iframeDoc.querySelector(hash)
+        activeLink = jupyterStore.iframeDoc.querySelector(itemLink)
       }
+    } else if (item.type === NavItemEnumTypes.MD) {
+      activeLink = document.querySelector(itemLink)
     } else {
-      el = document.querySelector(hash)
+      activeLink = itemLink
     }
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+    if (activeLink) {
+      activeLink.scrollIntoView({ behavior: 'smooth' })
       navStore.setCurrentSection(item.key)
       isOpen.value = false
     }

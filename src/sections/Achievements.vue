@@ -1,6 +1,6 @@
 <template>
   <section
-    :id="props.sectionLink.replace('#', '')"
+    :ref="props.sectionLink"
     class="section"
   >
     <h2>{{ t('navMenu.main.achievements') }}</h2>
@@ -65,11 +65,11 @@ const { t, tm } = useI18n()
 
 const props = defineProps({
   sectionLink: {
-    type: String,
+    type: Object,
     required: true
   },
   nextSection: {
-    type: String,
+    type: Object,
     required: true
   }
 })
@@ -78,10 +78,13 @@ const getBadgePath = (badgeFile) =>
 // TODO: вынести в утилс и просто экспортировать в компонент
   new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
 
+/**
+ * Quick scroll to the next section
+ */
 function scrollToNextSection () {
-  // TODO: использовать нативный механизм вью ref и скроллить на него
-  const next = document.querySelector(props.nextSection)
-  if (next) next.scrollIntoView({ behavior: 'smooth' })
+  if (props.nextSection.value) {
+    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 

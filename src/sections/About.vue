@@ -1,6 +1,6 @@
 <template>
   <section
-    :id="props.sectionLink.replace('#', '')"
+    :ref="props.sectionLink"
     class="section"
   >
     <h1>{{ t('about.my_name') }}</h1>
@@ -45,15 +45,16 @@
 <script setup>
 import Banner from '@/components/Banner.vue'
 import { useI18n } from 'vue-i18n'
+
 const { t, tm } = useI18n()
 
 const props = defineProps({
   sectionLink: {
-    type: String,
+    type: Object,
     required: true
   },
   nextSection: {
-    type: String,
+    type: Object,
     required: true
   }
 })
@@ -74,10 +75,14 @@ function calculateYears (startDateStr) {
 // TODO: убрать в константы даты const CODING_START = '2023-09-04'
 const codingYears = calculateYears('2023-09-04')
 const dataYears = calculateYears('2014-09-04')
+
+/**
+ * Quick scroll to the next section
+ */
 function scrollToNextSection () {
-  // TODO: использовать нативный механизм вью ref и скроллить на него
-  const next = document.querySelector(props.nextSection)
-  if (next) next.scrollIntoView({ behavior: 'smooth' })
+  if (props.nextSection.value) {
+    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 <style lang="scss">

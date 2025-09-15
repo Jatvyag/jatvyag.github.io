@@ -1,7 +1,7 @@
 <template>
   <main class="blog">
     <section
-      id="home"
+      ref="homeLink"
       class="blog-section"
     >
       <h1 class="blog">
@@ -80,18 +80,15 @@ const { t, locale } = useI18n()
 
 const postsData = ref([])
 
-const nav = useNavStore()
-nav.setNavItems([
-  { key: 'home', link: '#home', faIcon: ['fas', 'house'], type: 'main_menu', disabled: true }
-])
-nav.setCurrentSection('home')
-nav.setMainSection(getLinkByKey('home'))
-nav.setNavMenuLocale('navMenu.blog')
+const homeLink = ref(null)
 
-function getLinkByKey (key) {
-  const item = nav.navItems.find(i => i.key === key)
-  return item?.link || ''
-}
+const navStore = useNavStore()
+navStore.setNavItems([
+  { key: 'home', link: homeLink, faIcon: ['fas', 'house'], type: 'main_menu', disabled: true }
+])
+navStore.setCurrentSection('home')
+navStore.setMainSection(homeLink)
+navStore.setNavMenuLocale('navMenu.blog')
 
 function localize (fieldArray, locale) {
   return fieldArray.find(entry => entry[locale])?.[locale] ?? ''

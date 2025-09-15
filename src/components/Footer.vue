@@ -51,8 +51,9 @@ const showChevron = computed(() => {
 })
 
 function scrollToMain () {
-  const next = document.querySelector(nav.mainSection)
-  if (next) next.scrollIntoView({ behavior: 'smooth' })
+  if (nav.mainSection.value) {
+    nav.mainSection.value.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 

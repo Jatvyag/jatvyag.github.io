@@ -1,5 +1,8 @@
 <template>
-  <div class="md">
+  <div
+    ref="markdownTopRef"
+    class="md"
+  >
     <!-- eslint-disable vue/no-v-html -->
     <div
       ref="markdownRef"
@@ -25,8 +28,9 @@ const md = new MarkdownIt().use(markdownItAnchor, {
 })
 
 let observer = null
+const markdownTopRef = ref(null)
 const markdownRef = ref(null)
-const nav = useNavStore()
+const navStore = useNavStore()
 
 const { locale } = useI18n()
 const route = useRoute()
@@ -55,7 +59,7 @@ function extractMarkdownHeadings () {
   if (!markdownRef.value) return
   const headings = markdownRef.value.querySelectorAll('h1[id], h2[id]')
   const items = makeUniqueNavItems(headings)
-  nav.setNavItems(items)
+  navStore.setNavItems(items)
 }
 
 function observeHeaders () {
@@ -65,7 +69,7 @@ function observeHeaders () {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         const headingText = entry.target.textContent?.replace('¶', '').trim() || 'untitled'
-        nav.setCurrentSection(headingText)
+        navStore.setCurrentSection(headingText)
       }
     }
   }, {
@@ -87,9 +91,9 @@ watchEffect(async () => {
     // Wait for DOM update after v-html renders content
     await nextTick()
     extractMarkdownHeadings()
-    if (nav.navItems.length) {
-      nav.setMainSection(nav.navItems[0].link)
-      nav.setCurrentSection(nav.navItems[0].key)
+    if (navStore.navItems.length) {
+      navStore.setMainSection(markdownTopRef)
+      navStore.setCurrentSection(navStore.navItems[0].key)
     }
     observeHeaders()
   }

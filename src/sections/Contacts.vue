@@ -1,6 +1,6 @@
 <template>
   <section
-    :id="props.sectionLink.replace('#', '')"
+    :ref="props.sectionLink"
     class="section last"
   >
     <h2>{{ t('navMenu.main.contacts') }}</h2>
@@ -126,7 +126,7 @@ const { t } = useI18n()
 
 const props = defineProps({
   sectionLink: {
-    type: String,
+    type: Object,
     required: true
   }
 })

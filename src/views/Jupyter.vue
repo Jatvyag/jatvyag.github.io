@@ -1,7 +1,7 @@
 <template>
   <main class="blog">
     <section
-      id="Jupyter"
+      ref="JupyterTopRef"
       class="jupyter-section"
     >
       <div class="iframe-wrapper">
@@ -43,6 +43,7 @@ const navStore = useNavStore()
 const jupyterStore = useJupyterStore()
 
 // Refs
+const JupyterTopRef = ref(null)
 const iframeRef = ref(null)
 const iframeDoc = ref(null)
 const theme = ref(sessionStorage.getItem('theme') || 'dark')
@@ -106,7 +107,7 @@ function onIframeLoad () {
     iframeRef.value?.contentWindow?.document
   const headings = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
   const items = makeUniqueNavItems(headings)
-  navStore.setMainSection(items[0].key)
+  navStore.setMainSection(JupyterTopRef)
   observeSections(iframeDoc.value)
   // Set nav items to store
   navStore.setNavItems(items)

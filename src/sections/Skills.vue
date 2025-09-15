@@ -1,6 +1,6 @@
 <template>
   <section
-    :id="props.sectionLink.replace('#', '')"
+    :ref="props.sectionLink"
     class="section"
   >
     <h2>{{ t('navMenu.main.skills') }}</h2>
@@ -44,11 +44,11 @@ const skillsData = JSONData.skills
 
 const props = defineProps({
   sectionLink: {
-    type: String,
+    type: Object,
     required: true
   },
   nextSection: {
-    type: String,
+    type: Object,
     required: true
   }
 })
@@ -56,9 +56,13 @@ const props = defineProps({
 const getIconPath = (iconFile) =>
   new URL(`../assets/icons/${iconFile}`, import.meta.url).href
 
+/**
+ * Quick scroll to the next section
+ */
 function scrollToNextSection () {
-  const next = document.querySelector(props.nextSection)
-  if (next) next.scrollIntoView({ behavior: 'smooth' })
+  if (props.nextSection.value) {
+    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 
