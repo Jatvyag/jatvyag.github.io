@@ -6,33 +6,16 @@
     <h1>{{ t('about.my_name') }}</h1>
     <Banner />
     <div>
-      <!-- TODO: Отдельный компонент для описания секции строки 8 и 23 -->
-      <p class="tagline">
-        {{ t('about.intro') }}
-      </p>
-      <p class="tagline">
-        <span class="tag">{{ t('about.tagline_prefix', { coding_years: codingYears }) }}</span>
-        <span
-          v-for="(tag, index) in tm('about.tech_tags')"
-          :key="index"
-          class="tag"
-        >
-          {{ tag }}
-        </span>
-      </p>
-      <p class="tagline">
-        {{ t('about.career_path') }}
-      </p>
-      <p class="tagline">
-        <span class="tag">{{ t('about.legal_prefix', { data_years: dataYears }) }}</span>
-        <span
-          v-for="(tag, index) in tm('about.legal_tags')"
-          :key="index"
-          class="tag"
-        >
-          {{ tag }}
-        </span>
-      </p>
+      <TagLine
+        :exp-desc="t('about.intro')"
+        :exp-years="t('about.tagline_prefix', { coding_years: codingYears })"
+        :exp-tags="tm('about.tech_tags')"
+      />
+      <TagLine
+        :exp-desc="t('about.career_path')"
+        :exp-years="t('about.legal_prefix', { data_years: dataYears })"
+        :exp-tags="tm('about.legal_tags')"
+      />
     </div>
     <font-awesome-icon
       :icon="['fas', 'chevron-down']"
@@ -44,6 +27,7 @@
 
 <script setup>
 import Banner from '@/components/Banner.vue'
+import TagLine from '@/components/TagLine.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
@@ -59,8 +43,15 @@ const props = defineProps({
   }
 })
 
-function calculateYears (startDateStr) {
-// TODO: плохо понятное название devExpirienceYears например
+const CODING_START = '2023-09-04'
+const DATA_START = '2014-09-04'
+
+/**
+ * Full years expirience calculation
+ * @param {string} startDateStr - Start date for full years expirience calculation
+ * @return {number}
+ */
+function getDataExpYears (startDateStr) {
   const startDate = new Date(startDateStr)
   const today = new Date()
   let years = today.getFullYear() - startDate.getFullYear()
@@ -72,9 +63,8 @@ function calculateYears (startDateStr) {
   return years
 }
 
-// TODO: убрать в константы даты const CODING_START = '2023-09-04'
-const codingYears = calculateYears('2023-09-04')
-const dataYears = calculateYears('2014-09-04')
+const codingYears = getDataExpYears(CODING_START)
+const dataYears = getDataExpYears(DATA_START)
 
 /**
  * Quick scroll to the next section
@@ -86,19 +76,4 @@ function scrollToNextSection () {
 }
 </script>
 <style lang="scss">
-.tagline {
-  display: flex;
-  font-size: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  text-align: center;
-  justify-content: center;
-}
-
-@media (max-width: 600px) {
-  .tagline {
-    text-align: start;
-    justify-content: start;
-  }
-}
 </style>
