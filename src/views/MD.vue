@@ -48,14 +48,21 @@ const {
   setCurrentSectionTitle
 } = navStore
 
+// Files
 const markdownFiles = import.meta.glob('../assets/posts/**/**/*.md', { query: '?raw', import: 'default' })
 
+/**
+ * Creates navigation items from Markdown headings
+ * @param headings {NodeList} - List of headings
+ * @returns {Array} - Array of navigation items
+ */
 function makeUniqueNavItems (headings) {
-  const result = []
-  headings.forEach(h => {
-    const headingId = h.id
-    const text = h.textContent?.replace('¶', '').trim() || 'untitled'
-    result.push({
+  const mDNavItems = []
+  headings.forEach((heading, index) => {
+    const headingId = heading.id
+    const text = heading.textContent?.replace('¶', '').trim() || 'untitled'
+    mDNavItems.push({
+      navItemId: index,
       translatedLabel: text,
       idLink: `#${headingId}`,
       faIcon: ['fas', 'heading'],
@@ -63,9 +70,12 @@ function makeUniqueNavItems (headings) {
       navType: NavItemEnumTypes.MD
     })
   })
-  return result
+  return mDNavItems
 }
 
+/**
+ * Extracts Markdown headings and creates navigation items
+ */
 function extractMarkdownHeadings () {
   if (!markdownRef.value) return
   const headings = markdownRef.value.querySelectorAll('h1[id], h2[id]')
@@ -75,6 +85,9 @@ function extractMarkdownHeadings () {
 
 let observer = null
 
+/**
+ * Observes Markdown headings while scrolling
+ */
 function observeHeaders () {
   if (observer) observer.disconnect()
   if (!markdownRef.value) return
@@ -124,14 +137,14 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   margin-top: 4rem;
-}
 
-.md-content {
-  max-width: 80%;
-  margin: 0rem 0rem 1rem 0rem;
-  padding: 0rem 2rem 2rem 2rem;
-  border-radius: 10px;
-  background-color: var(--card-bg);
-  box-shadow: var(--card-shadow);
+  .md-content {
+    max-width: 80%;
+    margin: 0rem 0rem 1rem 0rem;
+    padding: 0rem 2rem 2rem 2rem;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+  }
 }
 </style>

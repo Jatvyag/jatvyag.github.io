@@ -26,14 +26,14 @@
               :key="post.id"
               :post="post"
               :empty="false"
-              :localize="localize"
+              :localize-post-desc="localizePostDesc"
             />
           </template>
           <template v-else>
             <BlogPostCard
               :post="emptyCard"
               :empty="true"
-              :localize="localize"
+              :localize-post-desc="localizePostDesc"
             />
           </template>
           <!-- Pagination -->
@@ -83,7 +83,7 @@ const { t, locale } = useI18n()
 const navStore = useNavStore()
 
 // Refs
-const postsData = ref([])
+const postsDataSorted = ref([])
 const homeLink = ref(null)
 const searchQuery = ref('')
 const selectedCategory = ref(null)
@@ -100,8 +100,10 @@ const {
   setNavMenuLocale
 } = navStore
 
+// Generate navigation item
 setNavItems([
   {
+    navItemId: 1,
     translateKey: 'home',
     sectionRef: homeLink,
     faIcon: ['fas', 'house'],
@@ -109,27 +111,30 @@ setNavItems([
     navType: NavItemEnumTypes.MAIN
   }
 ])
+
 setCurrentSectionTitle('home')
+
 setNavMenuLocale('navMenu.blog')
 
-function localize (fieldArray, locale) {
+/**
+ * Makes a localized string
+ * @param {Array} fieldArray - the Array of Objects for localized text
+ * @param {string} locale - the locale code
+ * @returns {string} - the localized string
+ */
+function localizePostDesc (fieldArray, locale) {
   return fieldArray.find(entry => entry[locale])?.[locale] ?? ''
 }
 
-const skillIcons = import.meta.glob('../assets/icons/*', {
-  eager: true,
-  import: 'default',
-  query: '?url'
-})
-
-// Filtered and paginated posts
+// Filtered posts
 const filteredPosts = computed(() =>
-  postsData.value.filter(post => {
-    const title = localize(post.title, locale.value)
-    const desc = localize(post.desc, locale.value)
-    const cat = localize(post.cat, locale.value)
-    const tags = localize(post.tag, locale.value)
+  postsDataSorted.value.filter(post => {
+    const title = localizePostDesc(post.title, locale.value)
+    const desc = localizePostDesc(post.desc, locale.value)
+    const cat = localizePostDesc(post.cat, locale.value)
+    const tags = localizePostDesc(post.tag, locale.value)
     const typeName = post.type.name
+
     const matchesSearch =
       title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       desc.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -140,6 +145,7 @@ const filteredPosts = computed(() =>
   })
 )
 
+// Paginated posts after filtering
 const paginatedPosts = computed(() => {
   const start = (currentPage.value - 1) * postsPerPage
   return filteredPosts.value.slice(start, start + postsPerPage)
@@ -147,11 +153,11 @@ const paginatedPosts = computed(() => {
 
 // Extract unique filter values from posts
 const categories = computed(() => {
-  return [...new Set(filteredPosts.value.map(p => localize(p.cat, locale.value)))]
+  return [...new Set(filteredPosts.value.map(p => localizePostDesc(p.cat, locale.value)))]
 })
 
 const tags = computed(() => {
-  return [...new Set(filteredPosts.value.flatMap(p => localize(p.tag, locale.value)))]
+  return [...new Set(filteredPosts.value.flatMap(p => localizePostDesc(p.tag, locale.value)))]
 })
 
 const types = computed(() => {
@@ -163,7 +169,15 @@ const types = computed(() => {
   return uniqueTypes
 })
 
-// Get icons for filter values
+const skillIcons = import.meta.glob('../assets/icons/*', {
+  eager: true,
+  import: 'default',
+  query: '?url'
+})
+
+/**
+ * Get icons for filter values
+ */
 function getIconPath (iconName) {
   return skillIcons[`../assets/icons/${iconName}`]
 }
@@ -197,10 +211,10 @@ watch([searchQuery, selectedCategory, selectedTag, selectedType], () => {
 
 onMounted(async () => {
   try {
-    const response = await fetch('/db/posts.json')
-    if (!response.ok) throw new Error('fetchError')
-    const data = await response.json()
-    postsData.value = data.posts.reverse() // The last post will be shown first
+    const postDataRes = await fetch('/db/posts.json')
+    if (!postDataRes.ok) throw new Error('fetchError')
+    const postData = await postDataRes.json()
+    postsDataSorted.value = postData.posts.reverse() // The last post will be shown first
   } catch (error) {
     errorMessage.value = error.message === 'fetchError'
       ? t('blog.fetchError')
@@ -214,67 +228,68 @@ main.blog {
   display: flex;
   flex-flow: column;
   align-items: center;
-}
 
-.blog-section {
-  padding: 2rem;
-  max-width: 1200px;
-}
-
-h1.blog {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  align-items: start;
-  gap: 2rem;
-}
-
-/* Posts */
-.blog-posts {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  gap: 1.5rem;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  align-items: center;
-}
-
-.page-btn {
-  cursor: pointer;
-}
-
-.page-btn:disabled {
-  border: 2px solid transparent;
-  transform: scale(1);
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.page-number {
-  font-size: 1.2rem;
-}
-
-@media (max-width: 800px) {
   h1.blog {
-    font-size: 2rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .blog-section {
+    padding: 2rem;
+    max-width: 1200px;
   }
 
   .blog-grid {
-    grid-template-columns: 1fr; /* Stack items vertically */
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: start;
+    gap: 2rem;
   }
 
+  // Posts
+  .blog-posts {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 1.5rem;
+  }
+
+  // Pagination
   .pagination {
-    justify-content: center;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+
+    .page-btn {
+      cursor: pointer;
+
+      &:disabled {
+        border: 2px solid transparent;
+        transform: scale(1);
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .page-number {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    h1.blog {
+      font-size: 2rem;
+    }
+
+    .blog-grid {
+      // Stack items vertically
+      grid-template-columns: 1fr;
+    }
+
+    .pagination {
+      justify-content: center;
+    }
   }
 }
 </style>

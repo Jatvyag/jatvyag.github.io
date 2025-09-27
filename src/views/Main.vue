@@ -4,19 +4,19 @@
     class="about"
   >
     <About
-      :section-link="getSectionByKey('about')"
-      :next-section="getSectionByKey('skills')"
+      :section-link="sectionRefs.about"
+      :next-section="sectionRefs.skills"
     />
     <Skills
-      :section-link="getSectionByKey('skills')"
-      :next-section="getSectionByKey('achievements')"
+      :section-link="sectionRefs.skills"
+      :next-section="sectionRefs.achievements"
     />
     <Achievements
-      :section-link="getSectionByKey('achievements')"
-      :next-section="getSectionByKey('contacts')"
+      :section-link="sectionRefs.achievements"
+      :next-section="sectionRefs.contacts"
     />
     <Contacts
-      :section-link="getSectionByKey('contacts')"
+      :section-link="sectionRefs.contacts"
     />
   </main>
 </template>
@@ -48,6 +48,7 @@ const {
   setNavMenuLocale
 } = navStore
 
+// Generate navigation items
 setNavItems([
   {
     navItemId: 1,
@@ -89,8 +90,9 @@ setNavMenuLocale('navMenu.main')
 
 let observer = null
 
-function getSectionByKey (key) { return sectionRefs[key] || null }
-
+/**
+ * Observes sections
+ */
 function observeSections () {
   if (observer) observer.disconnect()
 

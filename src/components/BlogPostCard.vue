@@ -19,7 +19,7 @@
         class="blog-thumb"
       >
       <p class="post-cat">
-        {{ localize(post.cat, locale) }}
+        {{ localizePostDesc(post.cat, locale) }}
       </p>
       <p class="post-cat">
         {{ post.date }}
@@ -32,16 +32,16 @@
         :to="post.link ? `/${routePrefix}/${encodeURIComponent(post.link)}` : undefined"
       >
         <h3 class="post-title">
-          {{ localize(post.title, locale) }}
+          {{ localizePostDesc(post.title, locale) }}
         </h3>
       </component>
       <p class="post-desc">
-        {{ localize(post.desc, locale) }}
+        {{ localizePostDesc(post.desc, locale) }}
       </p>
       <!-- Tags -->
       <div class="post-tags">
         <span
-          v-for="tag in localize(post.tag, locale)"
+          v-for="tag in localizePostDesc(post.tag, locale)"
           :key="tag"
           class="tag blog"
         >
@@ -69,7 +69,7 @@ import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 
-const { post, empty, localize } = defineProps({
+const { post, empty, localizePostDesc } = defineProps({
   post: {
     type: Object,
     required: true
@@ -78,7 +78,7 @@ const { post, empty, localize } = defineProps({
     type: Boolean,
     default: false
   },
-  localize: {
+  localizePostDesc: {
     type: Function,
     required: true
   }

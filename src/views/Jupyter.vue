@@ -70,10 +70,11 @@ const iframeSrc = computed(() => `/notebooks/${locale.value}/${props.postUrl}`)
  */
 function makeUniqueNavItems (headings) {
   const uniqueNavItems = []
-  headings.forEach(h => {
-    const headingId = h.id
-    const text = h.textContent?.replace('¶', '').trim() || 'untitled'
+  headings.forEach((heading, index) => {
+    const headingId = heading.id
+    const text = heading.textContent?.replace('¶', '').trim() || 'untitled'
     uniqueNavItems.push({
+      navItemId: index,
       translatedLabel: text,
       idLink: `#${headingId}`,
       faIcon: ['fas', 'house'],
