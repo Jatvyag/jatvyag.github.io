@@ -73,22 +73,44 @@
 import { ref, computed, watch, onMounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
+import { NavItemEnumTypes } from '@/constants'
 import BlogPostCard from '@/components/BlogPostCard.vue'
 import BlogSidebar from '@/components/BlogSideBar.vue'
 
 const { t, locale } = useI18n()
 
-const postsData = ref([])
-
-const homeLink = ref(null)
-
+// Stores
 const navStore = useNavStore()
-navStore.setNavItems([
-  { key: 'home', link: homeLink, faIcon: ['fas', 'house'], type: 'main_menu', disabled: true }
+
+// Refs
+const postsData = ref([])
+const homeLink = ref(null)
+const searchQuery = ref('')
+const selectedCategory = ref(null)
+const selectedTag = ref(null)
+const selectedType = ref(null)
+const currentPage = ref(1)
+const postsPerPage = 10
+const errorMessage = ref(null)
+
+// Getters
+const {
+  setNavItems,
+  setCurrentSectionTitle,
+  setNavMenuLocale
+} = navStore
+
+setNavItems([
+  {
+    translateKey: 'home',
+    sectionRef: homeLink,
+    faIcon: ['fas', 'house'],
+    disabled: true,
+    navType: NavItemEnumTypes.MAIN
+  }
 ])
-navStore.setCurrentSection('home')
-navStore.setMainSection(homeLink)
-navStore.setNavMenuLocale('navMenu.blog')
+setCurrentSectionTitle('home')
+setNavMenuLocale('navMenu.blog')
 
 function localize (fieldArray, locale) {
   return fieldArray.find(entry => entry[locale])?.[locale] ?? ''
@@ -99,14 +121,6 @@ const skillIcons = import.meta.glob('../assets/icons/*', {
   import: 'default',
   query: '?url'
 })
-
-const searchQuery = ref('')
-const selectedCategory = ref(null)
-const selectedTag = ref(null)
-const selectedType = ref(null)
-const currentPage = ref(1)
-const postsPerPage = 10
-const errorMessage = ref(null)
 
 // Filtered and paginated posts
 const filteredPosts = computed(() =>

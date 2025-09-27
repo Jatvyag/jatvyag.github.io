@@ -18,6 +18,10 @@ const { locale, t, messages } = useI18n()
 
 const isLocaleReady = computed(() => Boolean(messages.value?.[locale.value]))
 
+/**
+ * Changes the document title and lang attribute
+ * @param {string} lang - The language code
+ */
 function updateMetadata (lang) {
   document.documentElement.lang = lang
   document.title = t('app.title')

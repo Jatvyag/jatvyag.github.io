@@ -31,9 +31,9 @@
       <!-- Items of side menu -->
       <ul>
         <li
-          v-for="item in navStore.navItems"
-          :key="item.key"
-          :class="{ active: item.key === navStore.currentSection, disabled: item.disabled }"
+          v-for="item in navItems"
+          :key="item.navItemId"
+          :class="{ active: isActiveMenuItem(item), disabled: item.isDisabled }"
           @click="handleNavigation(item)"
         >
           <!-- Icons of side menu -->
@@ -42,7 +42,6 @@
               v-if="item.faIcon"
               :icon="item.faIcon"
             />
-            <span v-else>{{ item.unicodeIcon }}</span>
           </template>
           <!-- Label of side menu -->
           <span>
@@ -56,19 +55,31 @@
 
 <script setup>
 import { ref, computed, nextTick } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useNavStore, useJupyterStore } from '@/stores'
 import { NavItemEnumTypes } from '@/constants'
 
 const { t } = useI18n()
 
-// Navigation elements
+// Stores
 const navStore = useNavStore()
 const jupyterStore = useJupyterStore()
 
+// Refs
+const { iframeDoc } = storeToRefs(jupyterStore)
+const {
+  navItems,
+  currentSectionTitle,
+  navMenuLocale
+} = storeToRefs(navStore)
+
+// Getters
+const { setCurrentSectionTitle } = navStore
+
 // The type of the first navigation item
 const firstNavItemType = computed(() => {
-  return navStore.navItems[0]?.type
+  return navItems.value[0]?.navType
 })
 
 // The toggle menu functionality
@@ -78,24 +89,32 @@ function toggleMenu () {
   isOpen.value = !isOpen.value
 }
 
+function isActiveMenuItem (item) {
+  if ([NavItemEnumTypes.MD, NavItemEnumTypes.JUPYTER].includes(item.navType)) {
+    return item.translatedLabel === currentSectionTitle.value
+  } else {
+    return item.translateKey === currentSectionTitle.value
+  }
+}
+
 function handleNavigation (item) {
-  if (item.disabled) return
-  const itemLink = item.link
-  if (!itemLink) return
+  if (item.isDisabled) return
   nextTick(() => {
     let activeLink = null
-    if (item.type === NavItemEnumTypes.JUPYTER) {
-      if (jupyterStore.iframeDoc) {
-        activeLink = jupyterStore.iframeDoc.querySelector(itemLink)
+    if (item.navType === NavItemEnumTypes.JUPYTER) {
+      if (iframeDoc.value) {
+        activeLink = iframeDoc.value.querySelector(item.idLink)
       }
-    } else if (item.type === NavItemEnumTypes.MD) {
-      activeLink = document.querySelector(itemLink)
+      setCurrentSectionTitle(item.translateKey)
+    } else if (item.navType === NavItemEnumTypes.MD) {
+      activeLink = document.querySelector(item.idLink)
+      setCurrentSectionTitle(item.translatedLabel)
     } else {
-      activeLink = itemLink
+      activeLink = item.sectionRef
+      setCurrentSectionTitle(item.translatedLabel)
     }
     if (activeLink) {
       activeLink.scrollIntoView({ behavior: 'smooth' })
-      navStore.setCurrentSection(item.key)
       isOpen.value = false
     }
   })
@@ -114,50 +133,47 @@ const jupyterMDIcon = computed(() => {
 
 function sideMenuLabel (item) {
   // Returns the item key of label
-  if (Object.values(NavItemEnumTypes).includes(item.type)) {
-    return item.key
+  if ([NavItemEnumTypes.MD, NavItemEnumTypes.JUPYTER].includes(item.navType)) {
+    return item.translatedLabel
   } else {
-    // If there is not 'md' or 'jupyter' type, then it is from i18n
-    return t(`${navStore.navMenuLocale}.${item.key}`)
+    // If it is not 'md' or 'jupyter' type, then it is from i18n
+    return t(`${navMenuLocale.value}.${item.translateKey}`)
   }
 }
 
-const activeItem = computed(() => {
-  return navStore.navItems.find(item => item.key === navStore.currentSection)
-})
-
 const isJupyterMD = computed(() => {
-  return navStore.navItems.some(item =>
-    item.type === NavItemEnumTypes.JUPYTER ||
-    item.type === NavItemEnumTypes.MD
+  return navItems.value.some(item =>
+    item.navType === NavItemEnumTypes.JUPYTER ||
+    item.navType === NavItemEnumTypes.MD
   )
 })
 
 // The font-awesome icon needed for default menu (not for Jupyter or Markdown)
 const currentIcon = computed(() => {
-  return activeItem.value?.faIcon || ['fas', 'bars']
+  const activeItem = navItems.value.find(item => item.translateKey === currentSectionTitle.value)
+  return activeItem?.faIcon || ['fas', 'bars']
 })
 
 const currentTitle = computed(() => {
   // Case 1: Jupyter/Markdown with section
-  if (isJupyterMD.value && navStore.currentSection) {
-    return navStore.currentSection
+  if (isJupyterMD.value && currentSectionTitle.value) {
+    return currentSectionTitle.value
   }
   // Case 2: Jupyter/Markdown without section
-  if (isJupyterMD.value && !navStore.currentSection) {
+  if (isJupyterMD.value && !currentSectionTitle.value) {
     return firstNavItemType.value === NavItemEnumTypes.MD ? 'Markdown' : 'Jupyter'
   }
   // Case 3: Title of section
-  if (navStore.navMenuLocale && navStore.currentSection) {
-    const key = `${navStore.navMenuLocale}.${navStore.currentSection}`
-    return t(key, navStore.currentSection)
+  if (navMenuLocale.value && currentSectionTitle.value) {
+    const key = `${navMenuLocale.value}.${currentSectionTitle.value}`
+    return t(key, currentSectionTitle.value)
   }
   // Empty title
   return ''
 })
 
 const isDisabledMenuBtn = computed(() => {
-  return navStore.navItems.length <= 1
+  return navItems.value.length <= 1
 })
 </script>
 

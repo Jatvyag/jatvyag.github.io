@@ -35,25 +35,35 @@
 
 <script setup>
 import { computed } from 'vue'
-import JSONData from '@/data/main.json'
 import { useI18n } from 'vue-i18n'
 import { useNavStore } from '@/stores/nav'
+import { storeToRefs } from 'pinia'
+import { NavItemEnumTypes } from '@/constants'
+import JSONData from '@/data/main.json'
 
 const { t } = useI18n()
 
-const nav = useNavStore()
+// Stores
+const navStore = useNavStore()
 
+// Refs
+const { navItems } = storeToRefs(navStore)
+
+// Icons
 const vueCred = JSONData.footer_creds.find(c => c.brand === 'vue')
 const faCred = JSONData.footer_creds.find(c => c.brand === 'fontawesome')
 
-const showChevron = computed(() => {
-  return !['Jupyter', 'MD'].includes(nav.mainSection)
-})
+// Hide chevron in Jupyter and Markdown windows
+const showChevron = computed(() =>
+  !!navItems.value[0] &&
+  ![NavItemEnumTypes.JUPYTER, NavItemEnumTypes.MD].includes(navItems.value[0].navType)
+)
 
 function scrollToMain () {
-  if (nav.mainSection.value) {
-    nav.mainSection.value.scrollIntoView({ behavior: 'smooth' })
-  }
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
 }
 </script>
 

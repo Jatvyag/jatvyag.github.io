@@ -9,14 +9,14 @@
           ref="iframeRef"
           :src="iframeSrc"
           frameborder="0"
-          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          sandbox="allow-same-origin allow-scripts"
           title="Jupyter Notebook"
           @load="onIframeLoad"
         />
         <font-awesome-icon
           :icon="['fas', 'chevron-up']"
           class="chevron up iframe"
-          @click="scrollToFirstHeading"
+          @click="scrollToIframeTop"
         />
       </div>
     </section>
@@ -24,9 +24,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useNavStore, useJupyterStore } from '@/stores'
+import { NavItemEnumTypes } from '@/constants'
 
 const { locale } = useI18n()
 
@@ -43,34 +45,46 @@ const navStore = useNavStore()
 const jupyterStore = useJupyterStore()
 
 // Refs
-const JupyterTopRef = ref(null)
-const iframeRef = ref(null)
-const iframeDoc = ref(null)
-const theme = ref(sessionStorage.getItem('theme') || 'dark')
-const iframeSrc = ref(`/notebooks/${locale.value}/${props.postUrl}`)
+const {
+  iframeDoc,
+  iframeRef
+} = storeToRefs(jupyterStore)
+
+const {
+  navItems
+} = storeToRefs(navStore)
+
+// Getters
+const {
+  setCurrentSectionTitle,
+  setNavItems
+} = navStore
+
+// Iframe source
+const iframeSrc = computed(() => `/notebooks/${locale.value}/${props.postUrl}`)
 
 /**
- * Make items for navigation side-menu
+ * Make items for navigation side-menu from iframe headings
  * @param {NodeList} headings - Array of headings
  * @returns {Array} - Array of nav items
  */
 function makeUniqueNavItems (headings) {
   const uniqueNavItems = []
   headings.forEach(h => {
-    const id = h.id
+    const headingId = h.id
     const text = h.textContent?.replace('¶', '').trim() || 'untitled'
     uniqueNavItems.push({
-      key: text,
-      link: `#${id}`,
+      translatedLabel: text,
+      idLink: `#${headingId}`,
       faIcon: ['fas', 'house'],
-      disabled: false,
-      type: 'jupyter'
+      isDisabled: false,
+      navType: NavItemEnumTypes.JUPYTER
     })
   })
   return uniqueNavItems
 }
 
-// Observer for sections
+// Observer for iframe sections
 let observer = null
 
 /**
@@ -84,7 +98,7 @@ function observeSections (observedDoc) {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         const headingText = entry.target.textContent?.replace('¶', '').trim() || 'untitled'
-        navStore.setCurrentSection(headingText)
+        setCurrentSectionTitle(headingText)
       }
     }
   }, {
@@ -98,8 +112,11 @@ function observeSections (observedDoc) {
 }
 
 /**
- * Store iframe document, navigation items
- * and observe sections
+ * Handles the iframe `load` event.
+ * - Stores the iframe's document reference in `iframeDoc`.
+ * - Extracts heading elements (`h1[id]`, `h2[id]`) and converts them into unique nav items.
+ * - Sets the main navigation section and nav items in the `navStore`.
+ * - Starts observing sections in the iframe for scroll/visibility updates.
  */
 function onIframeLoad () {
   iframeDoc.value =
@@ -107,45 +124,24 @@ function onIframeLoad () {
     iframeRef.value?.contentWindow?.document
   const headings = iframeDoc.value.querySelectorAll('h1[id], h2[id]')
   const items = makeUniqueNavItems(headings)
-  navStore.setMainSection(JupyterTopRef)
   observeSections(iframeDoc.value)
-  // Set nav items to store
-  navStore.setNavItems(items)
-  // Set iframe document to store
-  jupyterStore.iframeDoc = iframeDoc.value
+  setNavItems(items)
 }
 
 /**
- * Scroll to first heading
+ * Smoothly scrolls the iframe content to the first heading element.
+ *
+ * Does nothing if:
+ * - The iframe document is not yet loaded.
+ * - No nav items are available in the store.
  */
-function scrollToFirstHeading () {
+function scrollToIframeTop () {
   if (!iframeDoc.value) return
-  const first = navStore.navItems[0]
+  const first = navItems.value[0]
   if (!first) return
-
-  const el = iframeDoc.value.getElementById(first.link.replace('#', ''))
+  const el = iframeDoc.value.getElementById(first.idLink.replace('#', ''))
   if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
-
-function onThemeChange (e) {
-  theme.value = e.detail.theme
-}
-
-onMounted(() => {
-  window.addEventListener('theme-changed', onThemeChange)
-})
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
-    observer = null
-  }
-  window.removeEventListener('theme-changed', onThemeChange)
-})
-
-watch([() => locale.value, () => props.postUrl], ([newLang, newUrl]) => {
-  iframeSrc.value = `/notebooks/${newLang}/${newUrl}`
-})
 </script>
 
 <style lang="scss" scoped>
@@ -153,38 +149,33 @@ main.blog {
   display: flex;
   flex-flow: column;
   align-items: center;
-}
 
-.jupyter-section {
-  width: 100%;
-  max-width: 80%;
-  padding: 2rem;
-}
+  .jupyter-section {
+    width: 100%;
+    max-width: 80%;
+    padding: 2rem;
+  }
 
-iframe {
-  border-radius: 10px;
-  width: 100%;
-  height: 80vh;
-}
+  .iframe-wrapper {
+    display: flex;
+    margin-top: 2rem;
 
-.blog {
-  padding-bottom: 1rem;
-}
-
-.iframe-wrapper {
-  display: flex;
-  margin-top: 2rem;
-}
-
-.chevron.up.iframe {
-  font-size: 2rem;
-  margin-bottom: 0rem;
-  padding-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-    .iframe-wrapper {
+    @media (max-width: 600px) {
+      // Move chevron to the bottom
       flex-direction: column;
     }
+  }
+
+  iframe {
+    border-radius: 10px;
+    width: 100%;
+    height: 80vh;
+  }
+
+  .chevron.up.iframe {
+    font-size: 2rem;
+    margin-bottom: 0rem;
+    padding-left: 0.5rem;
+  }
 }
 </style>

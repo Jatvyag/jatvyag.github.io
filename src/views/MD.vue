@@ -15,9 +15,11 @@
 
 <script setup>
 import { ref, watchEffect, nextTick, onUnmounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useNavStore } from '@/stores/nav'
+import { NavItemEnumTypes } from '@/constants'
 import MarkdownIt from 'markdown-it'
 import markdownItAnchor from 'markdown-it-anchor'
 import { slugify as translit } from 'transliteration'
@@ -27,29 +29,38 @@ const md = new MarkdownIt().use(markdownItAnchor, {
   slugify: s => translit(s.trim().toLowerCase())
 })
 
-let observer = null
-const markdownTopRef = ref(null)
-const markdownRef = ref(null)
-const navStore = useNavStore()
-
 const { locale } = useI18n()
+
 const route = useRoute()
 
+// Stores
+const navStore = useNavStore()
+
+// Refs
+const { navItems } = storeToRefs(navStore)
+const markdownTopRef = ref(null)
+const markdownRef = ref(null)
 const htmlContent = ref('')
+
+// Getters
+const {
+  setNavItems,
+  setCurrentSectionTitle
+} = navStore
 
 const markdownFiles = import.meta.glob('../assets/posts/**/**/*.md', { query: '?raw', import: 'default' })
 
 function makeUniqueNavItems (headings) {
   const result = []
   headings.forEach(h => {
-    const id = h.id
+    const headingId = h.id
     const text = h.textContent?.replace('¶', '').trim() || 'untitled'
     result.push({
-      key: text,
-      link: `#${id}`,
+      translatedLabel: text,
+      idLink: `#${headingId}`,
       faIcon: ['fas', 'heading'],
-      disabled: false,
-      type: 'md'
+      isDisabled: false,
+      navType: NavItemEnumTypes.MD
     })
   })
   return result
@@ -59,8 +70,10 @@ function extractMarkdownHeadings () {
   if (!markdownRef.value) return
   const headings = markdownRef.value.querySelectorAll('h1[id], h2[id]')
   const items = makeUniqueNavItems(headings)
-  navStore.setNavItems(items)
+  setNavItems(items)
 }
+
+let observer = null
 
 function observeHeaders () {
   if (observer) observer.disconnect()
@@ -69,7 +82,7 @@ function observeHeaders () {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         const headingText = entry.target.textContent?.replace('¶', '').trim() || 'untitled'
-        navStore.setCurrentSection(headingText)
+        setCurrentSectionTitle(headingText)
       }
     }
   }, {
@@ -91,9 +104,8 @@ watchEffect(async () => {
     // Wait for DOM update after v-html renders content
     await nextTick()
     extractMarkdownHeadings()
-    if (navStore.navItems.length) {
-      navStore.setMainSection(markdownTopRef)
-      navStore.setCurrentSection(navStore.navItems[0].key)
+    if (navItems.value.length) {
+      setCurrentSectionTitle(navItems.value[0].translatedLabel)
     }
     observeHeaders()
   }

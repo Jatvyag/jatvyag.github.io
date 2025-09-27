@@ -4,19 +4,19 @@
     class="about"
   >
     <About
-      :section-link="getMainSectionByKey('about')"
-      :next-section="getMainSectionByKey('skills')"
+      :section-link="getSectionByKey('about')"
+      :next-section="getSectionByKey('skills')"
     />
     <Skills
-      :section-link="getMainSectionByKey('skills')"
-      :next-section="getMainSectionByKey('achievements')"
+      :section-link="getSectionByKey('skills')"
+      :next-section="getSectionByKey('achievements')"
     />
     <Achievements
-      :section-link="getMainSectionByKey('achievements')"
-      :next-section="getMainSectionByKey('contacts')"
+      :section-link="getSectionByKey('achievements')"
+      :next-section="getSectionByKey('contacts')"
     />
     <Contacts
-      :section-link="getMainSectionByKey('contacts')"
+      :section-link="getSectionByKey('contacts')"
     />
   </main>
 </template>
@@ -24,6 +24,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
+import { NavItemEnumTypes } from '@/constants'
 import About from '@/sections/About.vue'
 import Skills from '@/sections/Skills.vue'
 import Achievements from '@/sections/Achievements.vue'
@@ -33,26 +34,62 @@ import Contacts from '@/sections/Contacts.vue'
 const sectionKeys = ['about', 'skills', 'achievements', 'contacts']
 
 // Generate refs dynamically
-const sectionRef = Object.fromEntries(
+const sectionRefs = Object.fromEntries(
   sectionKeys.map(key => [key, ref(null)])
 )
 
+// Stores
 const navStore = useNavStore()
-navStore.setNavItems([
-  { key: 'about', link: sectionRef.about, faIcon: ['fas', 'bars'], type: 'main_menu', disabled: false },
-  { key: 'skills', link: sectionRef.skills, faIcon: ['fas', 'bars-progress'], type: 'main_menu', disabled: false },
-  { key: 'achievements', link: sectionRef.achievements, faIcon: ['fas', 'award'], type: 'main_menu', disabled: false },
-  { key: 'contacts', link: sectionRef.contacts, faIcon: ['fas', 'envelope-open-text'], type: 'main_menu', disabled: false }
-])
-navStore.setCurrentSection('about')
-navStore.setMainSection(getMainSectionByKey('about'))
-navStore.setNavMenuLocale('navMenu.main')
 
-function getMainSectionByKey (key) {
-  return sectionRef[key] || null
-}
+// Getters
+const {
+  setNavItems,
+  setCurrentSectionTitle,
+  setNavMenuLocale
+} = navStore
+
+setNavItems([
+  {
+    navItemId: 1,
+    translateKey: 'about',
+    sectionRef: sectionRefs.about,
+    faIcon: ['fas', 'bars'],
+    isDisabled: false,
+    navType: NavItemEnumTypes.MAIN
+  },
+  {
+    navItemId: 2,
+    translateKey: 'skills',
+    sectionRef: sectionRefs.skills,
+    faIcon: ['fas', 'bars-progress'],
+    isDisabled: false,
+    navType: NavItemEnumTypes.MAIN
+  },
+  {
+    navItemId: 3,
+    translateKey: 'achievements',
+    sectionRef: sectionRefs.achievements,
+    faIcon: ['fas', 'award'],
+    isDisabled: false,
+    navType: NavItemEnumTypes.MAIN
+  },
+  {
+    navItemId: 4,
+    translateKey: 'contacts',
+    sectionRef: sectionRefs.contacts,
+    faIcon: ['fas', 'envelope-open-text'],
+    isDisabled: false,
+    navType: NavItemEnumTypes.MAIN
+  }
+])
+
+setCurrentSectionTitle('about')
+
+setNavMenuLocale('navMenu.main')
 
 let observer = null
+
+function getSectionByKey (key) { return sectionRefs[key] || null }
 
 function observeSections () {
   if (observer) observer.disconnect()
@@ -60,8 +97,8 @@ function observeSections () {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        // Updates the currentSection in your navigation store
-        navStore.setCurrentSection(entry.target.dataset.key)
+        // Updates the setCurrentSectionTitle in your navigation store
+        setCurrentSectionTitle(entry.target.dataset.translateKey)
       }
     }
   }, {
@@ -71,10 +108,10 @@ function observeSections () {
 
   // Observe each section by Vue's ref
   sectionKeys.forEach(key => {
-    const el = sectionRef[key].value
+    const el = sectionRefs[key].value
     if (el) {
       // Add an attribute so we know which section triggered
-      el.dataset.key = key
+      el.dataset.translateKey = key
       // Start observing this element for intersection changes
       observer.observe(el)
     }
