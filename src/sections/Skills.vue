@@ -18,7 +18,7 @@
             class="skill-item"
           >
             <img
-              :src="getIconPath(skill.icon)"
+              :src="getAssetHref('icons', skill.icon)"
               :alt="skill.name"
               class="skill-icon"
             >
@@ -27,15 +27,15 @@
         </div>
       </div>
     </div>
-    <font-awesome-icon
-      :icon="['fas', 'chevron-down']"
-      class="chevron"
-      @click="scrollToNextSection"
+    <ChevronSection
+      :section-ref="props.nextSection"
     />
   </section>
 </template>
 
 <script setup>
+import ChevronSection from '@/components/ChevronSection.vue'
+import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import JSONData from '@/data/main.json'
 
@@ -52,18 +52,6 @@ const props = defineProps({
     required: true
   }
 })
-
-const getIconPath = (iconFile) =>
-  new URL(`../assets/icons/${iconFile}`, import.meta.url).href
-
-/**
- * Quick scroll to the next section
- */
-function scrollToNextSection () {
-  if (props.nextSection.value) {
-    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 </script>
 
 <style scoped>

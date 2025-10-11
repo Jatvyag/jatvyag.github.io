@@ -115,10 +115,15 @@
         {{ t('contacts.form.send') }}
       </button>
     </form>
+    <ChevronSection
+      :section-ref="props.firstSection"
+      :is-up="true"
+    />
   </section>
 </template>
 
 <script setup>
+import ChevronSection from '@/components/ChevronSection.vue'
 import JSONData from '@/data/main.json'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -126,6 +131,10 @@ const { t } = useI18n()
 
 const props = defineProps({
   sectionLink: {
+    type: Object,
+    required: true
+  },
+  firstSection: {
     type: Object,
     required: true
   }

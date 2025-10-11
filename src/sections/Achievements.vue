@@ -7,14 +7,9 @@
     <h3 class="achievements">
       DataCamp
     </h3>
-    <!-- TODO: отдельный компонент для описания секции строки 11 и 18 и 38 -->
-    <p
-      v-for="(paragraph, index) in tm('achievements.datacamp.intro')"
-      :key="index"
-      class="achievements"
-    >
-      {{ paragraph }}
-    </p>
+    <ParagraphArray
+      :paragraph-array="tm('achievements.datacamp.intro')"
+    />
     <div class="certificates">
       <div
         v-for="certificate in tm('achievements.certificates')"
@@ -22,7 +17,7 @@
         class="certificate"
       >
         <img
-          :src="getBadgePath(certificate.badge)"
+          :src="getAssetHref('achievements', certificate.badge)"
           :alt="certificate.name"
           class="badge"
         >
@@ -35,30 +30,21 @@
           </div>
         </div>
       </div>
-      <div class="completed-stats">
-        <div
-          v-for="item in tm('achievements.datacamp.completed')"
-          :key="item.id"
-          class="stat-card"
-        >
-          <div class="stat-type">
-            {{ item.type }}
-          </div>
-          <div class="stat-number">
-            {{ item.number }}
-          </div>
-        </div>
-      </div>
     </div>
-    <font-awesome-icon
-      :icon="['fas', 'chevron-down']"
-      class="chevron"
-      @click="scrollToNextSection"
+    <StatCard
+      :stat-card-array="tm('achievements.datacamp.completed')"
+    />
+    <ChevronSection
+      :section-ref="props.nextSection"
     />
   </section>
 </template>
 
 <script setup>
+import ParagraphArray from '@/sections/components/ParagraphArray.vue'
+import StatCard from '@/sections/components/StatCard.vue'
+import ChevronSection from '@/components/ChevronSection.vue'
+import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
@@ -73,29 +59,18 @@ const props = defineProps({
     required: true
   }
 })
-
-const getBadgePath = (badgeFile) =>
-// TODO: вынести в утилс и просто экспортировать в компонент
-  new URL(`../assets/achievements/${badgeFile}`, import.meta.url).href
-
-/**
- * Quick scroll to the next section
- */
-function scrollToNextSection () {
-  if (props.nextSection.value) {
-    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 </script>
 
 <style lang="scss" scoped>
-h3.achievements {
-    margin-top: 0rem;
-}
+.achievements {
+  &.h3 {
+    margin-top: 0;
+  }
 
-p.achievements {
+  &.p {
     text-align: left;
     width: 100%;
+  }
 }
 
 .certificates {
@@ -107,61 +82,36 @@ p.achievements {
 }
 
 .certificate {
-    display: flex;
-    align-items: center;
-    max-width: 15rem;
-    background-color: var(--card-bg);
-    box-shadow: var(--card-shadow);
-    border-radius: 10px;
-    padding: 0.75rem;
-}
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 10px;
+  padding: 0.75rem;
 
-.badge {
+  .badge {
     width: 96px;
     height: 96px;
     object-fit: contain;
-}
+    flex-shrink: 0;
+  }
 
-.info {
+  .info {
     display: flex;
     flex-direction: column;
     padding-left: 0.5rem;
-}
 
-.name {
-    text-align: left;
-    font-weight: bold;
-    font-size: 1.1rem;
+    .name {
+      text-align: left;
+      font-weight: bold;
+      font-size: 1.1rem;
     }
 
-.issuer {
-    text-align: left;
-    color: #8f8f8f;
-    font-size: 0.9rem;
-}
-
-.completed-stats {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.stat-card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 0.7rem 0.9rem;
-    box-shadow: var(--card-shadow);
-    text-align: center;
-    min-width: 6rem;
-}
-
-.stat-type {
-    font-size: 0.875rem;
-    color: var(--text-light);
-}
-
-.stat-number {
-    font-size: 1.5rem;
-    font-weight: bold;
+    .issuer {
+      text-align: left;
+      color: #8f8f8f;
+      font-size: 0.9rem;
+    }
+  }
 }
 </style>

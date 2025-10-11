@@ -17,13 +17,14 @@
     />
     <Contacts
       :section-link="sectionRefs.contacts"
+      :first-section="sectionRefs.about"
     />
   </main>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useNavStore } from '@/stores/nav'
+import { useNavStore } from '@/stores'
 import { NavItemEnumTypes } from '@/constants'
 import About from '@/sections/About.vue'
 import Skills from '@/sections/Skills.vue'

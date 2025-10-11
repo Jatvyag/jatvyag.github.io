@@ -154,7 +154,7 @@ main.blog {
   .jupyter-section {
     width: 100%;
     max-width: 80%;
-    padding: 2rem;
+    padding: 2.5rem;
   }
 
   .iframe-wrapper {

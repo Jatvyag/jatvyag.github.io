@@ -17,17 +17,16 @@
         :exp-tags="tm('about.legal_tags')"
       />
     </div>
-    <font-awesome-icon
-      :icon="['fas', 'chevron-down']"
-      class="chevron"
-      @click="scrollToNextSection"
+    <ChevronSection
+      :section-ref="props.nextSection"
     />
   </section>
 </template>
 
 <script setup>
-import Banner from '@/components/Banner.vue'
-import TagLine from '@/components/TagLine.vue'
+import Banner from '@/sections/components/Banner.vue'
+import TagLine from '@/sections/components/TagLine.vue'
+import ChevronSection from '@/components/ChevronSection.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
@@ -65,15 +64,6 @@ function getDataExpYears (startDateStr) {
 
 const codingYears = getDataExpYears(CODING_START)
 const dataYears = getDataExpYears(DATA_START)
-
-/**
- * Quick scroll to the next section
- */
-function scrollToNextSection () {
-  if (props.nextSection.value) {
-    props.nextSection.value.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 </script>
 <style lang="scss">
 </style>
