@@ -32,8 +32,7 @@ import { NavItemEnumTypes } from '@/constants'
 
 const { locale } = useI18n()
 
-// Props
-const props = defineProps({
+const { postUrl } = defineProps({
   postUrl: {
     type: String,
     required: true
@@ -61,7 +60,7 @@ const {
 } = navStore
 
 // Iframe source
-const iframeSrc = computed(() => `/notebooks/${locale.value}/${props.postUrl}`)
+const iframeSrc = computed(() => `/notebooks/${locale.value}/${postUrl}`)
 
 /**
  * Make items for navigation side-menu from iframe headings

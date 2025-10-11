@@ -10,7 +10,7 @@
 <script setup>
 import { computed } from 'vue'
 
-const props = defineProps({
+const { sectionRef, isUp } = defineProps({
   sectionRef: {
     type: Object,
     required: true
@@ -22,12 +22,12 @@ const props = defineProps({
 })
 
 const chevronIcon = computed(() => {
-  return props.isUp ? 'chevron-up' : 'chevron-down'
+  return isUp ? 'chevron-up' : 'chevron-down'
 })
 
 function scrollToNextSection () {
-  if (props.sectionRef.value) {
-    props.sectionRef.value.scrollIntoView({ behavior: 'smooth' })
+  if (sectionRef.value) {
+    sectionRef.value.scrollIntoView({ behavior: 'smooth' })
   }
 }
 </script>

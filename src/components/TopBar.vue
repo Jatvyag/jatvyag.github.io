@@ -19,8 +19,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import LangSwitcher from '@/components/LangSwitcher.vue'
-import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+import { LangSwitcher, ThemeSwitcher } from '@/components'
 import NavMenu from '@/components/NavMenu.vue'
 
 const route = useRoute()

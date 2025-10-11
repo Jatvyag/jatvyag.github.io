@@ -74,8 +74,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import { NavItemEnumTypes } from '@/constants'
-import BlogPostCard from '@/components/BlogPostCard.vue'
-import BlogSidebar from '@/components/BlogSideBar.vue'
+import { BlogPostCard, BlogSidebar } from '@/components'
 
 const { t, locale } = useI18n()
 

@@ -26,10 +26,12 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useNavStore } from '@/stores'
 import { NavItemEnumTypes } from '@/constants'
-import About from '@/sections/About.vue'
-import Skills from '@/sections/Skills.vue'
-import Achievements from '@/sections/Achievements.vue'
-import Contacts from '@/sections/Contacts.vue'
+import {
+  About,
+  Skills,
+  Achievements,
+  Contacts
+} from '@/sections'
 
 // Section keys
 const sectionKeys = ['about', 'skills', 'achievements', 'contacts']

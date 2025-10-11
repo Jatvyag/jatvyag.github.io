@@ -1,0 +1,7 @@
+export { default as Banner } from '@/sections/components/Banner.vue'
+export { default as ClipBoard } from '@/sections/components/ClipBoard.vue'
+export { default as ContactEmail } from '@/sections/components/ContactEmail.vue'
+export { default as ParagraphArray } from '@/sections/components/ParagraphArray.vue'
+export { default as SocialMediaArray } from '@/sections/components/SocialMediaArray.vue'
+export { default as StatCard } from '@/sections/components/StatCard.vue'
+export { default as TagLine } from '@/sections/components/TagLine.vue'

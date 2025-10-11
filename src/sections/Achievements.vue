@@ -1,6 +1,6 @@
 <template>
   <section
-    :ref="props.sectionLink"
+    :ref="sectionLink"
     class="section"
   >
     <h2>{{ t('navMenu.main.achievements') }}</h2>
@@ -35,21 +35,20 @@
       :stat-card-array="tm('achievements.datacamp.completed')"
     />
     <ChevronSection
-      :section-ref="props.nextSection"
+      :section-ref="nextSection"
     />
   </section>
 </template>
 
 <script setup>
-import ParagraphArray from '@/sections/components/ParagraphArray.vue'
-import StatCard from '@/sections/components/StatCard.vue'
-import ChevronSection from '@/components/ChevronSection.vue'
+import { ParagraphArray, StatCard } from '@/sections/components'
+import ChevronSection from '@/components'
 import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
 
-const props = defineProps({
+const { sectionLink, nextSection } = defineProps({
   sectionLink: {
     type: Object,
     required: true

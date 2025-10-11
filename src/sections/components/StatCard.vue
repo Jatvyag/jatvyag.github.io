@@ -1,7 +1,7 @@
 <template>
   <div class="completed-stats">
     <div
-      v-for="item in props.statCardArray"
+      v-for="item in statCardArray"
       :key="item.id"
       class="stat-card"
     >
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+const { statCardArray } = defineProps({
   statCardArray: {
     type: Array[String],
     required: true

@@ -1,6 +1,6 @@
 <template>
   <p
-    v-for="(paragraph, index) in props.paragraphArray"
+    v-for="(paragraph, index) in paragraphArray"
     :key="index"
     class="paragraph-array"
   >
@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+const { paragraphArray } = defineProps({
   paragraphArray: {
     type: Array[String],
     required: true

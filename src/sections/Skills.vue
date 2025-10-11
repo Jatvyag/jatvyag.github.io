@@ -1,6 +1,6 @@
 <template>
   <section
-    :ref="props.sectionLink"
+    :ref="sectionLink"
     class="section"
   >
     <h2>{{ t('navMenu.main.skills') }}</h2>
@@ -28,13 +28,13 @@
       </div>
     </div>
     <ChevronSection
-      :section-ref="props.nextSection"
+      :section-ref="nextSection"
     />
   </section>
 </template>
 
 <script setup>
-import ChevronSection from '@/components/ChevronSection.vue'
+import ChevronSection from '@/components'
 import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import JSONData from '@/data/main.json'
@@ -42,7 +42,7 @@ import JSONData from '@/data/main.json'
 const { t } = useI18n()
 const skillsData = JSONData.skills
 
-const props = defineProps({
+const { sectionLink, nextSection } = defineProps({
   sectionLink: {
     type: Object,
     required: true

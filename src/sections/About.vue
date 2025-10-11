@@ -1,6 +1,6 @@
 <template>
   <section
-    :ref="props.sectionLink"
+    :ref="sectionLink"
     class="section"
   >
     <h1>{{ t('about.my_name') }}</h1>
@@ -18,20 +18,19 @@
       />
     </div>
     <ChevronSection
-      :section-ref="props.nextSection"
+      :section-ref="nextSection"
     />
   </section>
 </template>
 
 <script setup>
-import Banner from '@/sections/components/Banner.vue'
-import TagLine from '@/sections/components/TagLine.vue'
-import ChevronSection from '@/components/ChevronSection.vue'
+import { Banner, TagLine } from '@/sections/components'
+import ChevronSection from '@/components'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
 
-const props = defineProps({
+const { sectionLink, nextSection } = defineProps({
   sectionLink: {
     type: Object,
     required: true

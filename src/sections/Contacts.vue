@@ -1,55 +1,31 @@
 <template>
   <section
-    :ref="props.sectionLink"
+    :ref="sectionLink"
     class="section last"
   >
     <h2>{{ t('navMenu.main.contacts') }}</h2>
-    <!-- TODO: contacts отдельный компонент -->
     <p class="contacts">
       {{ t('contacts.email_client') }}:
-      <a
-        :href="`mailto:${contactsData.email}`"
-        title="Email"
-      >
-        <font-awesome-icon :icon="['fas', 'at']" />
-      </a>
+      <ContactEmail
+        :email-address="contactsData.email"
+      />
     </p>
     <p class="contacts">
       {{ t('contacts.email_address') }}
     </p>
-    <div class="code-wrapper">
-      <code
-        id="email"
-        class="code-area"
-      >{{ contactsData.email }}</code>
-      <button
-        class="clipboard"
-        :title="t('contacts.tooltip_copy')"
-        @click="copyEmail"
-      >
-        <font-awesome-icon :icon="['fas', 'clipboard']" />
-      </button>
-    </div>
+    <ClipBoard
+      :clip-board-value="contactsData.email"
+    />
     <p class="contacts">
       {{ t('contacts.social_platforms') }}
     </p>
-    <div class="social-media">
-      <!-- TODO: отдельный компонент -->
-      <a
-        v-for="item in contactsData.social"
-        :key="item.id"
-        :href="item.link"
-        :title="item.tooltip"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-icon"
-      >
-        <font-awesome-icon :icon="item.faIcon" />
-      </a>
-    </div>
+    <SocialMediaArray
+      :social-media-array="contactsData.social"
+    />
     <form
       ref="formRef"
       class="contact-form"
+      :class="{ 'was-attempted': wasAttempted }"
       novalidate
       :action="`https://formsubmit.co/${contactsData.email}`"
       method="POST"
@@ -116,20 +92,21 @@
       </button>
     </form>
     <ChevronSection
-      :section-ref="props.firstSection"
+      :section-ref="firstSection"
       :is-up="true"
     />
   </section>
 </template>
 
 <script setup>
-import ChevronSection from '@/components/ChevronSection.vue'
-import JSONData from '@/data/main.json'
 import { ref } from 'vue'
+import { ContactEmail, ClipBoard, SocialMediaArray } from '@/sections/components'
+import ChevronSection from '@/components'
+import JSONData from '@/data/main.json'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-const props = defineProps({
+const { sectionLink, firstSection } = defineProps({
   sectionLink: {
     type: Object,
     required: true
@@ -142,21 +119,18 @@ const props = defineProps({
 
 const contactsData = JSONData.contacts
 
-function copyEmail () {
-  // TODO: ref
-  const email = document.getElementById('email')?.textContent
-  if (email) {
-    navigator.clipboard.writeText(email)
-  }
-}
-
+// Refs
 const formRef = ref(null)
+const wasAttempted = ref(false)
+
 const handleSubmit = (event) => {
   event.preventDefault()
   const form = formRef.value
   if (!form) return
-  // TODO: тут меняем какойто флг по нему добавляем форме класс was-attempted
-  form.classList.add('was-attempted')
+
+  // Toggle form class was-attempted
+  wasAttempted.value = true
+
   // TODO: refs
   const inputs = form.querySelectorAll('input, textarea')
   let isFormValid = true
@@ -193,55 +167,11 @@ function clearError (event) {
 
 <style lang="scss" scoped>
 .section.last{
-    min-height: 80vh;
+  min-height: 80vh;
 }
 
 p.contacts {
-    margin: 0.5rem;
-}
-
-.code-wrapper {
-    display: inline-flex;
-    align-items: center;
-}
-
-.code-area {
-    background-color: var(--code-bg);
-    color: var(--code-txt);
-    border: 2px solid var(--btn-hover);
-    padding: 0.25em 0.5em;
-    border-radius: 4px;
-    font-family: 'Fira Code', monospace;
-}
-
-button.clipboard {
-    color: var(--link);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-button.clipboard:hover {
-    color: var(--link-hover);
-}
-
-button.clipboard:active {
-    color: var(--link-active);
-    transform: scale(0.95);
-}
-
-.social-media {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0rem;
-}
-
-.social-icon {
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+  margin: 0.5rem;
 }
 
 .contact-form {

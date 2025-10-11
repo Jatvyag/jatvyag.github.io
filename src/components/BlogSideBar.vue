@@ -13,11 +13,11 @@
         {{ t('blog.categories') }}
       </h2>
       <ul
-        v-if="props.categories.length"
+        v-if="categories.length"
         class="category-list"
       >
         <li
-          v-for="cat in props.categories"
+          v-for="cat in categories"
           :key="cat"
           class="sidebar-item"
           @click="selectedCategory = cat"
@@ -48,11 +48,11 @@
         {{ t('blog.tags') }}
       </h2>
       <div
-        v-if="props.tags.length"
+        v-if="tags.length"
         class="tag-cloud"
       >
         <span
-          v-for="tag in props.tags"
+          v-for="tag in tags"
           :key="tag"
           class="tag blog"
           @click="selectedTag = tag"
@@ -83,13 +83,13 @@
         {{ t('blog.types') }}
       </h2>
       <div
-        v-if="props.types.length"
+        v-if="types.length"
         class="type-icons"
       >
         <img
-          v-for="type in props.types"
+          v-for="type in types"
           :key="type.name"
-          :src="props.getIconPath(type.icon)"
+          :src="getIconPath(type.icon)"
           :alt="type.name"
           :title="type.name"
           class="type-icon"
@@ -125,7 +125,7 @@ const selectedCategory = defineModel('selectedCategory', { type: String, default
 const selectedTag = defineModel('selectedTag', { type: String, default: null })
 const selectedType = defineModel('selectedType', { type: String, default: null })
 
-const props = defineProps({
+const { categories, tags, types, getIconPath } = defineProps({
   categories: {
     type: Array,
     required: true

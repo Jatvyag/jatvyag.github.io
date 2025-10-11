@@ -1,11 +1,11 @@
 <template>
   <p class="tagline">
-    {{ props.expDesc }}
+    {{ expDesc }}
   </p>
   <p class="tagline">
-    <span class="tag">{{ props.expYears }}</span>
+    <span class="tag">{{ expYears }}</span>
     <span
-      v-for="(tag, index) in props.expTags"
+      v-for="(tag, index) in expTags"
       :key="index"
       class="tag"
     >
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+const { expDesc, expYears, expTags } = defineProps({
   expDesc: {
     type: String,
     required: true
