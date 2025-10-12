@@ -4,19 +4,19 @@
     class="section last"
   >
     <h2>{{ t('navMenu.main.contacts') }}</h2>
-    <p class="contacts">
+    <p class="p-contacts">
       {{ t('contacts.email_client') }}:
       <ContactEmail
         :email-address="contactsData.email"
       />
     </p>
-    <p class="contacts">
+    <p class="p-contacts">
       {{ t('contacts.email_address') }}
     </p>
     <ClipBoard
       :clip-board-value="contactsData.email"
     />
-    <p class="contacts">
+    <p class="p-contacts">
       {{ t('contacts.social_platforms') }}
     </p>
     <SocialMediaArray
@@ -24,69 +24,53 @@
     />
     <form
       ref="formRef"
-      class="contact-form"
-      :class="{ 'was-attempted': wasAttempted }"
+      class="form-contacts"
+      target="_blank"
       novalidate
       :action="`https://formsubmit.co/${contactsData.email}`"
       method="POST"
       @submit.prevent="handleSubmit"
     >
-      <!-- TODO: отдельный компонент -->
-      <label>
-        {{ t('contacts.form.name') }}
-        <input
-          type="text"
-          name="name"
-          required
-          @input="clearError($event)"
-        >
-        <span
-          class="error-message"
-          aria-live="polite"
-        />
-      </label>
-      <label>
-        {{ t('contacts.form.email') }}
-        <input
-          type="email"
-          name="email"
-          required
-          @input="clearError($event)"
-        >
-        <span
-          class="error-message"
-          aria-live="polite"
-        />
-      </label>
-      <label>
-        {{ t('contacts.form.subject') }}
-        <input
-          type="text"
-          name="subject"
-          required
-          @input="clearError($event)"
-        >
-        <span
-          class="error-message"
-          aria-live="polite"
-        />
-      </label>
-      <label>
-        {{ t('contacts.form.message') }}
-        <textarea
-          name="message"
-          rows="4"
-          required
-          @input="clearError($event)"
-        />
-        <span
-          class="error-message"
-          aria-live="polite"
-        />
-      </label>
+      <BasicInput
+        v-model:basic-input-model="formData.userName.text"
+        :input-error-model="formData.userName.errorKey ? t(formData.userName.errorKey) : ''"
+        :label="t('contacts.form.name')"
+        name="userName"
+        type="text"
+        input-class="form-contacts__input"
+        required
+      />
+      <BasicInput
+        v-model:basic-input-model="formData.userEmail.text"
+        :input-error-model="formData.userEmail.errorKey ? t(formData.userEmail.errorKey) : ''"
+        :label="t('contacts.form.email')"
+        name="userEmail"
+        type="email"
+        input-class="form-contacts__input"
+        required
+      />
+      <BasicInput
+        v-model:basic-input-model="formData.userMessageSubject.text"
+        :input-error-model="formData.userMessageSubject.errorKey ? t(formData.userMessageSubject.errorKey) : ''"
+        :label="t('contacts.form.subject')"
+        name="userMessageSubject"
+        type="text"
+        input-class="form-contacts__input"
+        required
+      />
+      <TextAreaInput
+        v-model:text-area-input-model="formData.userMessageText.text"
+        :input-error-model="formData.userMessageText.errorKey ? t(formData.userMessageText.errorKey) : ''"
+        :label="t('contacts.form.message')"
+        name="userMessageText"
+        :rows="4"
+        type="text"
+        input-class="form-contacts__textarea"
+        required
+      />
       <button
         type="submit"
-        class="submit-btn"
+        class="form-contacts__btn"
       >
         {{ t('contacts.form.send') }}
       </button>
@@ -99,12 +83,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import { useToast } from 'vue-toastification'
 import { ContactEmail, ClipBoard, SocialMediaArray } from '@/sections/components'
+import { BasicInput, TextAreaInput } from '@/form'
 import { ChevronSection } from '@/components'
 import JSONData from '@/data/main.json'
 import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
+const toast = useToast()
 
 const { sectionLink, firstSection } = defineProps({
   sectionLink: {
@@ -121,89 +109,87 @@ const contactsData = JSONData.contacts
 
 // Refs
 const formRef = ref(null)
-const wasAttempted = ref(false)
 
-const handleSubmit = (event) => {
-  event.preventDefault()
-  const form = formRef.value
-  if (!form) return
+// Reactive data
+const formData = reactive({
+  userName: { text: '', errorKey: '' },
+  userEmail: { text: '', errorKey: '' },
+  userMessageSubject: { text: '', errorKey: '' },
+  userMessageText: { text: '', errorKey: '' }
+})
 
-  // Toggle form class was-attempted
-  wasAttempted.value = true
-
-  // TODO: refs
-  const inputs = form.querySelectorAll('input, textarea')
+/**
+ * Sends the form data throw formsubmit.co
+ */
+const handleSubmit = () => {
   let isFormValid = true
-  inputs.forEach(input => {
-    input.setCustomValidity('')
-    if (!input.checkValidity()) {
-      isFormValid = false
-      let message = ''
-      if (input.validity.valueMissing) {
-        message = t('contacts.form.required_field')
-      } else if (input.validity.typeMismatch) {
-        message = t('contacts.form.valid_email')
-      }
-      input.setCustomValidity(message)
-      const errorSpan = input.nextElementSibling
-      if (errorSpan) errorSpan.textContent = message
-    } else {
-      const errorSpan = input.nextElementSibling
-      if (errorSpan) errorSpan.textContent = ''
-    }
-  })
+
+  if (!formData.userName.text) {
+    formData.userName.errorKey = 'contacts.form.required_field'
+    isFormValid = false
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!formData.userEmail.text) {
+    formData.userEmail.errorKey = 'contacts.form.required_field'
+    isFormValid = false
+  } else if (!emailRegex.test(formData.userEmail.text)) {
+    formData.userEmail.errorKey = 'contacts.form.valid_email'
+    isFormValid = false
+  }
+
+  if (!formData.userMessageSubject.text) {
+    formData.userMessageSubject.errorKey = 'contacts.form.required_field'
+    isFormValid = false
+  }
+
+  if (!formData.userMessageText.text) {
+    formData.userMessageText.errorKey = 'contacts.form.required_field'
+    isFormValid = false
+  }
+
   if (isFormValid) {
-    form.submit()
+    formRef.value.submit()
+    toast.success(t('contacts.form.success_message'), {
+      timeout: false
+    })
   }
 }
 
-function clearError (event) {
-  const input = event.target
-  input.setCustomValidity('')
-  const errorSpan = input.nextElementSibling
-  if (errorSpan) errorSpan.textContent = ''
-}
+// Clear the error style when the user has typed something
+Object.keys(formData).forEach(key => {
+  // If the text property is changed, then the user has typed something.
+  watch(() => formData[key].text, (newVal) => {
+    // If the errorKey is not empty, then reset it to an empty string.
+    if (formData[key].errorKey) {
+      formData[key].errorKey = ''
+    }
+  })
+})
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
 .section.last{
   min-height: 80vh;
 }
 
-p.contacts {
+.p-contacts {
   margin: 0.5rem;
 }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 600px;
-    max-width: 1200px;
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: var(--card-shadow);
-}
+.form-contacts {
+  min-width: 600px;
+  max-width: 1200px;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
 
-.contact-form label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 2px solid var(--btn-hover);
-    border-radius: 4px;
-    background-color: var(--code-bg);
-    color: var(--text);
-}
-
-.submit-btn {
+  .form-contacts__btn {
     align-self: flex-end;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -213,54 +199,14 @@ p.contacts {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
 
-.submit-btn:hover {
-    background-color: var(--link-hover);
-}
-
-.contact-form.was-attempted input:invalid,
-.contact-form.was-attempted textarea:invalid {
-    border: 1px solid #e63946;
-    outline: none;
-}
-
-.error-message {
-    display: inline-block;
-    color: #e63946;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 0.8rem;
-    margin-top: 0rem;
-    padding: 0.2rem;
-    background-color: #dfc9c9;
-    border: 1px solid #e63946;
-    min-height: 1em;
-    /* Keep space reserved but invisible */
-    min-height: 1em;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.error-message:empty {
-    visibility: hidden;
-    opacity: 0;
-    padding: 0;
-    border: none;
-    min-height: 0;
-}
-
-.error-message:not(:empty) {
-    visibility: visible;
-    opacity: 1;
-    padding: 0.2rem;
-    border: 1px solid #e63946;
-    min-height: 1em;
-}
-
-@media (max-width: 600px) {
-    .contact-form {
-        min-width: 100px;
+    &:hover {
+      background-color: var(--link-hover);
     }
+  }
+
+  @media (max-width: 600px) {
+    min-width: 100px;
+  }
 }
 </style>

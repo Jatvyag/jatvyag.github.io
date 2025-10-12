@@ -69,7 +69,8 @@
             "message":"Message",
             "send":"Send",
             "required_field":"This field cannot be empty",
-            "valid_email":"Please enter correct email"
+            "valid_email":"Please enter correct email",
+            "success_message":"Thank you for your message. I will get back to you as soon as possible."
         }
     },
     "footer":{

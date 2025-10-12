@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use '@/styles/abstracts/variables' as *;
+
+input,
+textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.error-message {
+  display: block;
+  max-width: 75%; 
+  color: $attention-color;
+  font-size: 0.8rem;
+  background-color: $error-bg-color;
+  border-radius: 0 0 6px 6px;
+  border: 1px solid $attention-color;
+  padding: 0.2rem;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &:empty {
+    visibility: hidden;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    min-height: 0;
+  }
+
+  &:not(:empty) {
+    visibility: visible;
+    opacity: 1;
+  }
+}

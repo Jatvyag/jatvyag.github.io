@@ -7,6 +7,8 @@ import App from '@/App.vue'
 import router from '@/router'
 import VueGtag from 'vue-gtag-next'
 import i18n from '@/i18n'
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
 import {
   faChevronDown, faChevronUp,
@@ -52,5 +54,6 @@ app.use(VueGtag, {
   },
   pageTrackerScreenviewEnabled: true
 }, router)
+app.use(Toast)
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')

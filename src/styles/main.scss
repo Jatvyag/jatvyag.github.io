@@ -11,6 +11,9 @@
 @use 'components/links';
 @use 'components/tags';
 
+@use 'form/basic-forms';
+@use 'form/inputs';
+
 @use 'layout/section';
 
 @use 'themes/light';
