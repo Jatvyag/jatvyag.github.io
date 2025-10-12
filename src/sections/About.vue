@@ -25,7 +25,7 @@
 
 <script setup>
 import { Banner, TagLine } from '@/sections/components'
-import ChevronSection from '@/components'
+import { ChevronSection } from '@/components'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()

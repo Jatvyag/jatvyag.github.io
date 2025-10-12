@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import ChevronSection from '@/components'
+import { ChevronSection } from '@/components'
 import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import JSONData from '@/data/main.json'

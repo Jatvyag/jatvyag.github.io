@@ -42,7 +42,7 @@
 
 <script setup>
 import { ParagraphArray, StatCard } from '@/sections/components'
-import ChevronSection from '@/components'
+import { ChevronSection } from '@/components'
 import { getAssetHref } from '@/utils'
 import { useI18n } from 'vue-i18n'
 

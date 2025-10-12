@@ -8,7 +8,7 @@
         {{ t('blog.title') }}
       </h1>
       <div class="blog-grid">
-        <BlogSidebar
+        <BlogSideBar
           v-model:search-query="searchQuery"
           v-model:selected-category="selectedCategory"
           v-model:selected-tag="selectedTag"
@@ -74,7 +74,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { useNavStore } from '@/stores/nav'
 import { useI18n } from 'vue-i18n'
 import { NavItemEnumTypes } from '@/constants'
-import { BlogPostCard, BlogSidebar } from '@/components'
+import { BlogPostCard, BlogSideBar } from '@/components'
 
 const { t, locale } = useI18n()
 
