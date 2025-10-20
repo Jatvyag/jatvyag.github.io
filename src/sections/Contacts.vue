@@ -22,6 +22,9 @@
     <SocialMediaArray
       :social-media-array="contactsData.social"
     />
+    <p class="p-contacts">
+      {{ t('contacts.before_form_par') }}:
+    </p>
     <form
       ref="formRef"
       class="form-contacts"
@@ -35,7 +38,6 @@
         name="userName"
         type="text"
         input-class="form-contacts__input"
-        required
       />
       <BasicInput
         v-model:basic-input-model="formData.userEmail.text"
@@ -44,16 +46,6 @@
         name="userEmail"
         type="email"
         input-class="form-contacts__input"
-        required
-      />
-      <BasicInput
-        v-model:basic-input-model="formData.userMessageSubject.text"
-        :input-error-model="formData.userMessageSubject.errorKey ? t(formData.userMessageSubject.errorKey) : ''"
-        :label="t('contacts.form.subject')"
-        name="userMessageSubject"
-        type="text"
-        input-class="form-contacts__input"
-        required
       />
       <TextAreaInput
         v-model:text-area-input-model="formData.userMessageText.text"
@@ -113,7 +105,6 @@ const formRef = ref(null)
 const formData = reactive({
   userName: { text: '', errorKey: '' },
   userEmail: { text: '', errorKey: '' },
-  userMessageSubject: { text: '', errorKey: '' },
   userMessageText: { text: '', errorKey: '' }
 })
 
@@ -128,23 +119,10 @@ const handleSubmit = async () => {
     formData[key].errorKey = ''
   })
 
-  // Basic validation
-  if (!formData.userName.text) {
-    formData.userName.errorKey = 'contacts.form.required_field'
-    isFormValid = false
-  }
-
+  // Validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!formData.userEmail.text) {
-    formData.userEmail.errorKey = 'contacts.form.required_field'
-    isFormValid = false
-  } else if (!emailRegex.test(formData.userEmail.text)) {
+  if (formData.userEmail.text && !emailRegex.test(formData.userEmail.text)) {
     formData.userEmail.errorKey = 'contacts.form.valid_email'
-    isFormValid = false
-  }
-
-  if (!formData.userMessageSubject.text) {
-    formData.userMessageSubject.errorKey = 'contacts.form.required_field'
     isFormValid = false
   }
 
@@ -159,7 +137,6 @@ const handleSubmit = async () => {
   const payload = {
     userName: formData.userName.text,
     userEmail: formData.userEmail.text,
-    userMessageSubject: formData.userMessageSubject.text,
     userMessageText: formData.userMessageText.text,
     locale: locale.value,
     userAgent: navigator.userAgent

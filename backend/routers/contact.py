@@ -1,13 +1,10 @@
 from fastapi import APIRouter, HTTPException, Request
-from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
+from pydantic import BaseModel, EmailStr, Field, validator
 import requests
 import user_agents
 from config import settings
 
-GMAIL_USER = settings.GMAIL_USER
-GMAIL_PASS = settings.GMAIL_PASS
-EMAIL_FROM = settings.EMAIL_FROM
-EMAIL_TO = settings.EMAIL_TO
 TELEGRAM_TOKEN = settings.TELEGRAM_TOKEN
 TELEGRAM_CHAT_ID = settings.TELEGRAM_CHAT_ID
 
@@ -33,18 +30,22 @@ statusMessages = {
 MAX_LENGTH = {
     "userName": 50,
     "userEmail": 100,
-    "userMessageSubject": 100,
     "userMessageText": 1000,
 }
 
 
 class ContactForm(BaseModel):
     userName: str = Field(..., max_length=MAX_LENGTH["userName"])
-    userEmail: EmailStr = Field(..., max_length=MAX_LENGTH["userEmail"])
-    userMessageSubject: str = Field(..., max_length=MAX_LENGTH["userMessageSubject"])
+    userEmail: Optional[EmailStr] = Field(None, max_length=MAX_LENGTH["userEmail"])
     userMessageText: str = Field(..., max_length=MAX_LENGTH["userMessageText"])
     locale: str = "en"
     userAgent: str | None = None
+
+    @validator("userEmail", pre=True)
+    def empty_string_to_none(cls, v):
+        if v == "":
+            return None
+        return v
 
 
 @router.post("")
@@ -63,7 +64,6 @@ async def contact(form: ContactForm, request: Request):
 
 👤 Name: {form.userName}
 📧 Email: {form.userEmail}
-📝 Subject: {form.userMessageSubject}
 🌎 Locale: {form.locale}
 
 💬 Message:

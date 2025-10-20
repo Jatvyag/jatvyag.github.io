@@ -2,14 +2,22 @@
   <label
     v-if="label"
     :for="name"
-  >{{ label }}</label>
+  >
+    {{ label }}
+    <span
+      v-if="required"
+      class="required-asterisk"
+      aria-hidden="true"
+      :title="t('form.required_field')"
+    >*</span>
+  </label>
   <div>
     <input
       ref="basicInputRef"
       :value="basicInputModel"
       :type="type"
       :name="name"
-      :class="[inputClass, { invalid: inputErrorModel }]"
+      :class="[inputClass, { invalid: inputErrorModel, required: required }]"
       :required="required"
       :aria-invalid="!!inputErrorModel"
       @input="$emit('update:basicInputModel', $event.target.value)"
@@ -24,6 +32,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const basicInputRef = ref(null)
 
@@ -65,11 +76,25 @@ const { label, name, type, inputClass, required } = defineProps({
   &:focus {
     outline: none;
     border-color: var(--link-hover);
-    box-shadow: 0 0 0 2px rgba(var(--link-hover-rgb), 0.2);
+    box-shadow: 0 0 0 2px rgba(var(--link-hover-rgb), 0.1);
   }
 
   &.invalid {
     border-color: $attention-color;
   }
+
+  &.required {
+    background-color: $required-bg-color;
+  }
+
+  &.required:focus {
+    background-color: var(--code-bg);
+  }
+}
+
+.required-asterisk {
+  color: $attention-color;
+  margin-left: 0.25rem;
+  cursor: help;
 }
 </style>

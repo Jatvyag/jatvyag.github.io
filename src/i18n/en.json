@@ -61,6 +61,7 @@
         "email_client":"Contact me via email client",
         "email_address":"Copy my email address into clipboard",
         "social_platforms":"Find me on these platforms",
+        "before_form_par":"Send me message via form",
         "tooltip_copy":"Copy",
         "form":{
             "name":"Your name",
@@ -93,5 +94,8 @@
         "prev":"Previous",
         "next":"Next",
         "fetchError":"Failed to fetch posts data"
+    },
+    "form":{
+        "required_field":"This field cannot be empty"
     }
 }
