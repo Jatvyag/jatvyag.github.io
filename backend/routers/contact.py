@@ -93,7 +93,8 @@ Device: {user_info["device"]}
 """
 
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 587) as server:
+            server.starttls()
             server.login(GMAIL_USER, GMAIL_PASS)
             server.send_message(msg_email)
 
