@@ -25,10 +25,7 @@
     <form
       ref="formRef"
       class="form-contacts"
-      target="_blank"
       novalidate
-      :action="`https://formsubmit.co/${contactsData.email}`"
-      method="POST"
       @submit.prevent="handleSubmit"
     >
       <BasicInput
@@ -91,8 +88,10 @@ import { ChevronSection } from '@/components'
 import JSONData from '@/data/main.json'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const toast = useToast()
+
+const CONTACT_API = import.meta.env.VITE_CONTACT_API
 
 const { sectionLink, firstSection } = defineProps({
   sectionLink: {
@@ -119,11 +118,17 @@ const formData = reactive({
 })
 
 /**
- * Sends the form data throw formsubmit.co
+ * Sends the form data to the backend
  */
-const handleSubmit = () => {
+const handleSubmit = async () => {
   let isFormValid = true
 
+  // Reset errors
+  Object.keys(formData).forEach(key => {
+    formData[key].errorKey = ''
+  })
+
+  // Basic validation
   if (!formData.userName.text) {
     formData.userName.errorKey = 'contacts.form.required_field'
     isFormValid = false
@@ -148,11 +153,38 @@ const handleSubmit = () => {
     isFormValid = false
   }
 
-  if (isFormValid) {
-    formRef.value.submit()
-    toast.success(t('contacts.form.success_message'), {
-      timeout: false
+  if (!isFormValid) return
+
+  // Prepare payload
+  const payload = {
+    userName: formData.userName.text,
+    userEmail: formData.userEmail.text,
+    userMessageSubject: formData.userMessageSubject.text,
+    userMessageText: formData.userMessageText.text,
+    locale: locale.value,
+    userAgent: navigator.userAgent
+  }
+
+  try {
+    const response = await fetch(CONTACT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     })
+
+    const result = await response.json()
+
+    if (response.ok && result.success) {
+      toast.success(t('contacts.form.success_message'))
+      // Optionally reset form
+      Object.keys(formData).forEach(key => {
+        formData[key].text = ''
+      })
+    } else {
+      toast.error(result.message || t('contacts.form.failed_message'))
+    }
+  } catch (error) {
+    toast.error(t('contacts.form.failed_connection'), error)
   }
 }
 

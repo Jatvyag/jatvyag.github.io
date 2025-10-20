@@ -70,7 +70,9 @@
             "send":"Send",
             "required_field":"This field cannot be empty",
             "valid_email":"Please enter correct email",
-            "success_message":"Thank you for your message. I will get back to you as soon as possible."
+            "success_message":"Thank you for your message. I will get back to you as soon as possible.",
+            "failed_message":"Failed to send message",
+            "failed_connection":"Failed to connect to server"
         }
     },
     "footer":{
