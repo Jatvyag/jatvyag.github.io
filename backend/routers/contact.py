@@ -1,7 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, EmailStr, Field
-import smtplib
-from email.mime.text import MIMEText
 import requests
 import user_agents
 from config import settings
@@ -60,22 +58,6 @@ async def contact(form: ContactForm, request: Request):
         "device": ua.device.family or "desktop",
     }
 
-    email_body = f"""
-Name: {form.userName}
-Email: {form.userEmail}
-Message: {form.userMessageText}
-Locale: {form.locale}
-
-Browser: {user_info["browser"]}
-OS: {user_info["os"]}
-Device: {user_info["device"]}
-"""
-
-    msg_email = MIMEText(email_body)
-    msg_email["Subject"] = f"Contact Form: {form.userMessageSubject}"
-    msg_email["From"] = EMAIL_FROM
-    msg_email["To"] = EMAIL_TO
-
     telegram_message = f"""
 📩 New Contact Form Message!
 
@@ -93,16 +75,10 @@ Device: {user_info["device"]}
 """
 
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 587) as server:
-            server.starttls()
-            server.login(GMAIL_USER, GMAIL_PASS)
-            server.send_message(msg_email)
-
         requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
             json={"chat_id": TELEGRAM_CHAT_ID, "text": telegram_message},
         )
-
         return {"success": True, "message": msg["successMessage"]}
     except Exception as e:
         print("Error:", e)
