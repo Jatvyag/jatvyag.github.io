@@ -49,7 +49,9 @@ app.use(VueGtag, {
   property: {
     id: GA_MEASUREMENT_ID,
     config: {
-      cookie_domain: 'auto'
+      cookie_domain: window.location.hostname.includes('github.io')
+        ? 'none' // not to try setting cookies on higher-level domains
+        : 'auto' // in case custom domain
     }
   },
   pageTrackerScreenviewEnabled: true

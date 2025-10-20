@@ -25,3 +25,20 @@ To fix ESLint issues, run the following command:
 ```bash
 npm run lint:fix
 ```
+
+## Contact form backend
+
+This application uses a backend to handle the contact form submissions. The backend is implemented using FastAPI and is located in the `backend` directory. To create local version of backend, run the following command:
+
+```bash
+cd backend
+python -m .venv venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+After the installation, you can run the backend using the following command:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
