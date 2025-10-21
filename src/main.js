@@ -41,12 +41,6 @@ library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
 
-// Determine cookie domain
-let cookieDomain = 'auto'
-if (typeof window !== 'undefined') {
-  cookieDomain = window.location.hostname.includes('github.io') ? 'none' : 'auto'
-}
-
 const app = createApp(App)
 app.use(createPinia())
 app.use(router)
@@ -55,7 +49,7 @@ app.use(VueGtag, {
   property: {
     id: GA_MEASUREMENT_ID,
     config: {
-      cookie_domain: cookieDomain
+      cookie_domain: 'none'
     }
   },
   pageTrackerScreenviewEnabled: true
