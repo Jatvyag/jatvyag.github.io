@@ -12,10 +12,11 @@ import 'vue-toastification/dist/index.css'
 
 import {
   faChevronDown, faChevronUp,
-  faEnvelopeOpenText, faBars, faAward, faBarsProgress, faAt,
-  faLanguage, faCopyright, faClipboard, faHouse,
+  faEnvelopeOpenText, faBars, faAward, faBarsProgress,
+  faAt, faLanguage, faCopyright, faClipboard, faHouse,
   faAddressCard, faBlog, faForwardStep, faBackwardStep,
-  faFilter, faFilterCircleXmark, faGhost
+  faFilter, faFilterCircleXmark, faGhost, faPaperPlane,
+  faSpinner
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -36,7 +37,7 @@ library.add(
   faChevronDown, faChevronUp, faEnvelopeOpenText, faAt, faClipboard,
   faBars, faAward, faBarsProgress, faLanguage, faCopyright,
   faHouse, faAddressCard, faBlog, faForwardStep, faBackwardStep,
-  faFilter, faFilterCircleXmark, faGhost)
+  faFilter, faFilterCircleXmark, faGhost, faPaperPlane, faSpinner)
 library.add(faVuejs, faLinkedin, faGithub, faOrcid, faFontAwesome)
 
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID

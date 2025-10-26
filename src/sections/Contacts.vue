@@ -65,6 +65,15 @@
         class="form-contacts__btn"
         :disabled="isSubmitting"
       >
+        <span v-if="!isSubmitting">
+          <font-awesome-icon :icon="['fas', 'paper-plane']" />
+        </span>
+        <span v-else>
+          <font-awesome-icon
+            :icon="['fas', 'spinner']"
+            spin
+          />
+        </span>
         {{ t('contacts.form.send') }}
       </button>
     </form>
@@ -155,7 +164,6 @@ const handleSubmit = async () => {
   }
 
   isSubmitting.value = true
-  toast.warning(t('contacts.form.submission_pending'))
 
   try {
     // 60-second timeout wrapper
@@ -173,7 +181,10 @@ const handleSubmit = async () => {
     const result = await response.json()
 
     if (response.ok && result.success) {
-      toast.success(t('contacts.form.success_message'))
+      toast.success(t('contacts.form.success_message'), {
+        timeout: 10000,
+        position: 'top-right'
+      })
       // Reset form
       Object.keys(formData).forEach(key => {
         formData[key].text = ''
@@ -191,13 +202,22 @@ const handleSubmit = async () => {
         // Combine main message with errors
         toastMessage += ':\n' + errorItems.join('\n')
       }
-      toast.error(toastMessage)
+      toast.error(toastMessage, {
+        timeout: 10000,
+        position: 'top-right'
+      })
     }
   } catch (error) {
     if (error.name === 'AbortError') {
-      toast.error(t('contacts.form.timeout'))
+      toast.error(t('contacts.form.timeout'), {
+        timeout: 10000,
+        position: 'top-right'
+      })
     } else {
-      toast.error(t('contacts.form.failed_connection'))
+      toast.error(t('contacts.form.failed_connection'), {
+        timeout: 10000,
+        position: 'top-right'
+      })
     }
   } finally {
     isSubmitting.value = false

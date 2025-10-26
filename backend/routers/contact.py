@@ -9,6 +9,7 @@ from config import settings
 from config import logger
 from i18n.messages import get_locale_message
 
+ENV = settings.ENV
 TELEGRAM_TOKEN = settings.TELEGRAM_TOKEN
 TELEGRAM_CHAT_ID = settings.TELEGRAM_CHAT_ID
 
@@ -114,7 +115,8 @@ async def contact(form: ContactForm, request: Request):
 """
 
     try:
-        await asyncio.sleep(10)
+        if ENV == "DEV":
+            await asyncio.sleep(10)
         await send_telegram_message(
             TELEGRAM_TOKEN, 
             TELEGRAM_CHAT_ID, 
