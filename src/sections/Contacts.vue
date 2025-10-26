@@ -168,7 +168,7 @@ const handleSubmit = async () => {
   try {
     // 60-second timeout wrapper
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 60000) // 60s
+    const timeoutId = setTimeout(() => controller.abort(), 90000)
 
     const response = await fetch(CONTACT_API, {
       method: 'POST',
@@ -209,7 +209,7 @@ const handleSubmit = async () => {
     }
   } catch (error) {
     if (error.name === 'AbortError') {
-      toast.error(t('contacts.form.timeout'), {
+      toast.error(t('contacts.form.failed_timeout'), {
         timeout: 10000,
         position: 'top-right'
       })
