@@ -38,6 +38,7 @@
         name="userName"
         type="text"
         input-class="form-contacts__input"
+        :disabled="isSubmitting"
       />
       <BasicInput
         v-model:basic-input-model="formData.userEmail.text"
@@ -46,6 +47,7 @@
         name="userEmail"
         type="email"
         input-class="form-contacts__input"
+        :disabled="isSubmitting"
       />
       <TextAreaInput
         v-model:text-area-input-model="formData.userMessageText.text"
@@ -56,10 +58,12 @@
         type="text"
         input-class="form-contacts__textarea"
         required
+        :disabled="isSubmitting"
       />
       <button
         type="submit"
         class="form-contacts__btn"
+        :disabled="isSubmitting"
       >
         {{ t('contacts.form.send') }}
       </button>
@@ -108,6 +112,15 @@ const formData = reactive({
   userMessageText: { text: '', errorKey: '' }
 })
 
+const isSubmitting = ref(false)
+
+// Field labels for the form
+const fieldLabels = {
+  userName: t('contacts.form.name'),
+  userEmail: t('contacts.form.email'),
+  userMessageText: t('contacts.form.message')
+}
+
 /**
  * Sends the form data to the backend
  */
@@ -138,37 +151,63 @@ const handleSubmit = async () => {
     userName: formData.userName.text,
     userEmail: formData.userEmail.text,
     userMessageText: formData.userMessageText.text,
-    locale: locale.value,
-    userAgent: navigator.userAgent
+    locale: locale.value
   }
 
+  isSubmitting.value = true
+  toast.warning(t('contacts.form.submission_pending'))
+
   try {
+    // 60-second timeout wrapper
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 60000) // 60s
+
     const response = await fetch(CONTACT_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: controller.signal
     })
+    clearTimeout(timeoutId)
 
     const result = await response.json()
 
     if (response.ok && result.success) {
       toast.success(t('contacts.form.success_message'))
-      // Optionally reset form
+      // Reset form
       Object.keys(formData).forEach(key => {
         formData[key].text = ''
       })
     } else {
-      toast.error(result.message || t('contacts.form.failed_message'))
+      let toastMessage = result.message
+      if (result.errors && Array.isArray(result.errors)) {
+        const errorItems = []
+        result.errors.forEach(err => {
+          Object.entries(err).forEach(([field, msg]) => {
+            const label = fieldLabels[field] || field
+            errorItems.push(`- ${label}: ${msg}`)
+          })
+        })
+        // Combine main message with errors
+        toastMessage += ':\n' + errorItems.join('\n')
+      }
+      toast.error(toastMessage)
     }
   } catch (error) {
-    toast.error(t('contacts.form.failed_connection'), error)
+    if (error.name === 'AbortError') {
+      toast.error(t('contacts.form.timeout'))
+    } else {
+      toast.error(t('contacts.form.failed_connection'))
+    }
+  } finally {
+    isSubmitting.value = false
   }
 }
 
 // Clear the error style when the user has typed something
 Object.keys(formData).forEach(key => {
   // If the text property is changed, then the user has typed something.
-  watch(() => formData[key].text, (newVal) => {
+  watch(() => formData[key].text, () => {
     // If the errorKey is not empty, then reset it to an empty string.
     if (formData[key].errorKey) {
       formData[key].errorKey = ''
@@ -202,15 +241,22 @@ Object.keys(formData).forEach(key => {
     align-self: flex-end;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    background-color: var(--link);
-    color: white;
-    border: none;
+    background-color: var(--submit-btn);
+    color: var(--text-color);
+    border: 2px solid var(--btn-hover);
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: var(--link-hover);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      background-color: var(--bg-color);
+      border: 2px dashed var(--btn-hover);
     }
   }
 

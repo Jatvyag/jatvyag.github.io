@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import contact, health
+from errors.handlers import register_error_handlers
 
 app = FastAPI(title="My FastAPI Backend")
 
@@ -16,6 +17,9 @@ app.add_middleware(
     allow_methods=["POST", "GET", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept", "Origin"],
 )
+
+# Register error handlers
+register_error_handlers(app)
 
 # Register routers
 app.include_router(health.router)

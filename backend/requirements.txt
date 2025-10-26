@@ -4,3 +4,4 @@ python-dotenv
 requests
 user-agents
 email-validator
+httpx

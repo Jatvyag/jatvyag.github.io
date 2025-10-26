@@ -12,7 +12,9 @@
   // buttons
   --btn: #{map.get($button-color, light)};
   --btn-bg: #{map.get($button-color, light-bg)};
-  --btn-hover: #{map.get($button-color, light-hover)}; 
+  --btn-hover: #{map.get($button-color, light-hover)};
+    // submit button
+  --submit-btn: #{map.get($submit-button-color, light)};
   // drop down shadow
   --drop-down-shadow: #{map.get($drop-down-shadow, light)};
   // card

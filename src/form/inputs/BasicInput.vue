@@ -8,7 +8,7 @@
       v-if="required"
       class="required-asterisk"
       aria-hidden="true"
-      :title="t('form.required_field')"
+      :title="t('contacts.form.required_field')"
     >*</span>
   </label>
   <div>
@@ -17,8 +17,16 @@
       :value="basicInputModel"
       :type="type"
       :name="name"
-      :class="[inputClass, { invalid: inputErrorModel, required: required }]"
+      :class="[
+        inputClass,
+        {
+          invalid: inputErrorModel,
+          required: required && !textAreaInputModel,
+          filled: required && textAreaInputModel
+        }
+      ]"
       :required="required"
+      :disabled="disabled"
       :aria-invalid="!!inputErrorModel"
       @input="$emit('update:basicInputModel', $event.target.value)"
     >
@@ -57,7 +65,8 @@ const { label, name, type, inputClass, required } = defineProps({
   name: { type: String, required: true },
   type: { type: String, default: 'text' },
   inputClass: { type: String, default: '' },
-  required: { type: Boolean, default: false }
+  required: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false }
 })
 </script>
 
@@ -79,8 +88,18 @@ const { label, name, type, inputClass, required } = defineProps({
     box-shadow: 0 0 0 2px rgba(var(--link-hover-rgb), 0.1);
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    border: 2px dashed var(--btn-hover);
+  }
+
   &.invalid {
     border-color: $attention-color;
+  }
+
+  &.filled {
+    background-color: var(--code-bg);
   }
 
   &.required {
