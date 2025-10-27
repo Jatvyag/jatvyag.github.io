@@ -152,7 +152,7 @@ main.blog {
 
   .jupyter-section {
     width: 100%;
-    max-width: 80%;
+    max-width: 95%;
     padding: 2.5rem;
   }
 

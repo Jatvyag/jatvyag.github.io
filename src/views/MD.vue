@@ -29,6 +29,21 @@ const md = new MarkdownIt().use(markdownItAnchor, {
   slugify: s => translit(s.trim().toLowerCase())
 })
 
+// Add classes to h1/h2
+const defaultRender = md.renderer.rules.heading_open || function (tokens, idx, options, env, self) {
+  return self.renderToken(tokens, idx, options)
+}
+
+md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
+  const token = tokens[idx]
+  if (token.tag === 'h1') {
+    token.attrJoin('class', 'md-heading-h1')
+  } else if (token.tag === 'h2') {
+    token.attrJoin('class', 'md-heading-h2')
+  }
+  return defaultRender(tokens, idx, options, env, self)
+}
+
 const { locale } = useI18n()
 
 const route = useRoute()
@@ -145,6 +160,14 @@ onUnmounted(() => {
     border-radius: 10px;
     background-color: var(--card-bg);
     box-shadow: var(--card-shadow);
+
+    :deep(.md-heading-h1) {
+      font-size: 2rem;
+    }
+
+    :deep(.md-heading-h2) {
+      font-size: 1.5rem;
+    }
   }
 }
 </style>
